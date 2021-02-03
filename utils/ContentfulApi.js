@@ -1,15 +1,64 @@
 export default class ContentfulApi {
+  static blogPostCache;
 
   static async getBlogPosts() {
-    return 'blog posts'
+    if (this.blogPostCache) {
+      return this.blogPostCache;
+    }
+
+    const query = `
+    {
+      blogPostCollection {
+        items {
+          sys {
+            id
+          }
+          date
+          title
+          slug
+          excerpt
+          tags
+          featuredImage {
+            url
+            title
+            width
+            height
+            description
+          }
+          body {
+            json
+          }
+        }
+      }
+    }`
+
+    const response = await this.callContentful(query);
+    const blogPosts = response.data.blogPostCollection.items ? response.data.blogPostCollection.items : [];
+    this.blogPostCache = blogPosts;
+    return blogPosts;
+  }
+
+  static async getBlogPostSlugs() {
+    const blogPosts = await this.getBlogPosts();
+    return blogPosts.map(post => post.slug);
+  }
+
+  static async getBlogPostBySlug(slug) {
+    if (!this.blogPostCache) {
+      await this.getBlogPosts();
+    }
+
+    return this.blogPostCache.filter(post => post.slug === slug).pop();
   }
 
   static async getSocialLinks() {
-    console.log('HERE 1');
     const query = `
       {
         socialLinkCollection {
           items {
+            sys {
+              id
+            }
             name
             ariaLabel
             link
@@ -17,7 +66,8 @@ export default class ContentfulApi {
         }
       }`
 
-    return await this.callContentful(query);
+    const response = await this.callContentful(query);
+    return response.data.socialLinkCollection.items ? response.data.socialLinkCollection.items : [];
   }
 
   static async callContentful(query) {
@@ -41,7 +91,7 @@ export default class ContentfulApi {
       const data = await fetch(fetchUrl, fetchOptions).then(response => response.json())
       return data;
     } catch (error) {
-      console.err('Oops!');
+      throw new Error('Could not fetch blog posts!')
     }
   }
 }

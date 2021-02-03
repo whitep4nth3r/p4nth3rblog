@@ -15,3 +15,11 @@ Limitations - can only getStaticProps on 'pages' (i.e. js files in the /pages di
 ## getServerSideProps
 
 data fetched at run time (good for data that changes often)
+
+## For dynamic routes generated at build time
+
+dir/file: blog/[slug].js
+
+getStaticPaths()
+and then
+getStaticProps()

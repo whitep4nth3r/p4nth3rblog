@@ -4,6 +4,7 @@ export default function SocialLinks(props) {
     <div>
       {socialLinks.map(link => (
         <a href={link.link} 
+        key={link.sys.id}
         aria-label={link.ariaLabel}
         target="_blank"
         rel="noopener nofollow">{link.name}</a> 

@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import ContentfulApi from '../utils/ContentfulApi';
 
-export default function Home() {
+export default function Blog(props) {
+  const { blogPosts } = props
   return (
     <div>
       <Head>
@@ -16,6 +18,17 @@ export default function Home() {
           <p>Nav links</p>
           <Link href="/">Go to HOME</Link>
         </nav>
+
+        <div>
+        {blogPosts.map(item => (
+          <div key={item.sys.id}>
+          <h2>{item.title}</h2>
+          <p>{item.excerpt}</p>
+          <Link href={`/blog/${item.slug}`}>Link</Link>
+          </div>
+        ))}
+
+        </div>
       </main>
 
     </div>

@@ -4,6 +4,7 @@ import ContentfulApi from '../utils/ContentfulApi';
 import SocialLinks from '../components/SocialLinks';
 
 export default function Home(props) {
+  const { socialLinks } = props;
 
   return (
     <div>
@@ -20,7 +21,7 @@ export default function Home(props) {
           <Link href="/blog">GO TO BLOG</Link>
         </nav>
 
-        <SocialLinks socialLinks={props.socialLinks.data.socialLinkCollection.items} />
+        <SocialLinks socialLinks={socialLinks} />
 
       </main>
 
