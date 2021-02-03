@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import ContentfulApi from '../utils/ContentfulApi';
 
-export default function Blog(props) {
+export default function BlogIndex(props) {
   const { blogPosts } = props
   return (
     <div>

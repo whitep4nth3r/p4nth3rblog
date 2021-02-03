@@ -8,7 +8,7 @@ export default class ContentfulApi {
 
     const query = `
     {
-      blogPostCollection {
+      blogPostCollection(limit: 10) {
         items {
           sys {
             id
@@ -27,6 +27,20 @@ export default class ContentfulApi {
           }
           body {
             json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  width
+                  height
+                  description
+                }
+              }
+            }
           }
         }
       }

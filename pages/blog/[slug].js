@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import ContentfulApi from '../../utils/ContentfulApi';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import BlogPost from '../../components/BlogPost';
 
-export default function BlogPost(props) {
+export default function BlogPostWrapper(props) {
   const { blogPost } = props;
 
   return (
@@ -21,12 +21,8 @@ export default function BlogPost(props) {
           <Link href="/">Go to HOME</Link>
         </nav>
 
-        <div>
-
-          <p>THIS IS A BLOG POST PAGE</p>
-          <h2>{blogPost.title}</h2>
-          {documentToReactComponents(blogPost.body.json)}
-        </div>
+        <BlogPost blogPost={blogPost} />
+       
       </main>
 
     </div>
