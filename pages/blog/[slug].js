@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import ContentfulApi from '../../utils/ContentfulApi';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 export default function BlogPost(props) {
   const { blogPost } = props;
@@ -24,7 +25,7 @@ export default function BlogPost(props) {
 
           <p>THIS IS A BLOG POST PAGE</p>
           <h2>{blogPost.title}</h2>
-
+          {documentToReactComponents(blogPost.body.json)}
         </div>
       </main>
 
