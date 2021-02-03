@@ -1,20 +1,35 @@
-import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import { Paragraph, Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, BlockQuote, HorizontalRule, UnorderedList, OrderedList, ListItem, BlogPostImage } from './index.style';
+import {
+  BlogPostContainer,
+  Paragraph,
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  BlockQuote,
+  HorizontalRule,
+  UnorderedList,
+  OrderedList,
+  ListItem,
+  BlogPostImage,
+} from "./index.style";
+
+import Tags from "./Tags";
+import PublishedDate from "./PublishedDate";
 
 function getRenderOptions(links) {
   const assetBlockMap = links?.assets?.block?.reduce((map, asset) => {
-    console.log('here');
-    console.log(asset);
     map.set(asset.sys.id, asset);
-
     return map;
   }, new Map());
 
   return {
     renderMark: {
-      [MARKS.HR]: text => <HorizontalRule>{text}</HorizontalRule>,
+      [MARKS.HR]: (text) => <HorizontalRule>{text}</HorizontalRule>,
       //do global link style?
     },
 
@@ -27,31 +42,42 @@ function getRenderOptions(links) {
       [BLOCKS.HEADING_6]: (node, children) => <Heading6>{children}</Heading6>,
       [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph>{children}</Paragraph>,
       [BLOCKS.QUOTE]: (node, children) => <BlockQuote>{children}</BlockQuote>,
-      [BLOCKS.UL_LIST]: (node, children) => <UnorderedList>{children}</UnorderedList>,
-      [BLOCKS.OL_LIST]: (node, children) => <OrderedList>{children}</OrderedList>,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <UnorderedList>{children}</UnorderedList>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <OrderedList>{children}</OrderedList>
+      ),
       [BLOCKS.LIST_ITEM]: (node, children) => <ListItem>{children}</ListItem>,
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
-        const { title, url, height, width, description } = assetBlockMap.get(node.data.target.sys.id);
-        return <BlogPostImage
-          src={url}
-          alt={description}
-          height={height}
-          width={width} />;
+        const { title, url, height, width, description } = assetBlockMap.get(
+          node.data.target.sys.id,
+        );
+        return (
+          <BlogPostImage
+            src={url}
+            alt={description}
+            height={height}
+            width={width}
+          />
+        );
       },
     },
-  }
+  };
 }
-
 
 export default function BlogPost(props) {
   const { blogPost } = props;
 
-  console.log(blogPost.body.links);
-
   return (
-    <div>
-    <Heading1>{blogPost.title}</Heading1>
-    {documentToReactComponents(blogPost.body.json, getRenderOptions(blogPost.body.links))}
-  </div>
-  )
+    <BlogPostContainer>
+      <PublishedDate date={blogPost.date} />
+      <Tags tags={blogPost.tags} />
+      <Heading1>{blogPost.title}</Heading1>
+      {documentToReactComponents(
+        blogPost.body.json,
+        getRenderOptions(blogPost.body.links),
+      )}
+    </BlogPostContainer>
+  );
 }

@@ -18,13 +18,6 @@ export default class ContentfulApi {
           slug
           excerpt
           tags
-          featuredImage {
-            url
-            title
-            width
-            height
-            description
-          }
           body {
             json
             links {
@@ -44,17 +37,19 @@ export default class ContentfulApi {
           }
         }
       }
-    }`
+    }`;
 
     const response = await this.callContentful(query);
-    const blogPosts = response.data.blogPostCollection.items ? response.data.blogPostCollection.items : [];
+    const blogPosts = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
     this.blogPostCache = blogPosts;
     return blogPosts;
   }
 
   static async getBlogPostSlugs() {
     const blogPosts = await this.getBlogPosts();
-    return blogPosts.map(post => post.slug);
+    return blogPosts.map((post) => post.slug);
   }
 
   static async getBlogPostBySlug(slug) {
@@ -62,7 +57,7 @@ export default class ContentfulApi {
       await this.getBlogPosts();
     }
 
-    return this.blogPostCache.filter(post => post.slug === slug).pop();
+    return this.blogPostCache.filter((post) => post.slug === slug).pop();
   }
 
   static async getSocialLinks() {
@@ -78,10 +73,12 @@ export default class ContentfulApi {
             link
           }
         }
-      }`
+      }`;
 
     const response = await this.callContentful(query);
-    return response.data.socialLinkCollection.items ? response.data.socialLinkCollection.items : [];
+    return response.data.socialLinkCollection.items
+      ? response.data.socialLinkCollection.items
+      : [];
   }
 
   static async callContentful(query) {
@@ -98,14 +95,16 @@ export default class ContentfulApi {
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-      body: JSON.stringify({ query })
-    }
+      body: JSON.stringify({ query }),
+    };
 
     try {
-      const data = await fetch(fetchUrl, fetchOptions).then(response => response.json())
+      const data = await fetch(fetchUrl, fetchOptions).then((response) =>
+        response.json(),
+      );
       return data;
     } catch (error) {
-      throw new Error('Could not fetch blog posts!')
+      throw new Error("Could not fetch blog posts!");
     }
   }
 }
