@@ -1,34 +1,13 @@
-import Head from "next/head";
-import Link from "next/link";
 import ContentfulApi from "../../utils/ContentfulApi";
 import BlogPost from "../../components/BlogPost";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { Config } from "../../utils/Config";
 
 export default function BlogPostWrapper(props) {
   const { blogPost } = props;
 
   return (
     <>
-      <Head>
-        <title>{blogPost.title} | whitep4nth3r.codes</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={blogPost.excerpt} />
-
-        {/* Add OpenGraph meta tags here */}
-      </Head>
-
-      <Header />
-      <main>
-        <nav>
-          <p>Nav links</p>
-          <Link href="/">Go to HOME</Link>
-        </nav>
-
-        <BlogPost blogPost={blogPost} />
-      </main>
-
-      <Footer />
+      <BlogPost blogPost={blogPost} />
     </>
   );
 }
@@ -52,6 +31,9 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       blogPost,
+      title: blogPost.title,
+      description: blogPost.excerpt,
+      url: `${Config.pageMeta.blogIndex.url}/${blogPost.slug}`,
     },
   };
 }

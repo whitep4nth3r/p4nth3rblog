@@ -78,6 +78,8 @@ export default function BlogPost(props) {
         blogPost.body.json,
         getRenderOptions(blogPost.body.links),
       )}
+
+      <p>{blogPost.externalUrl}</p>
     </BlogPostContainer>
   );
 }

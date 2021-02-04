@@ -18,6 +18,7 @@ export default class ContentfulApi {
           slug
           excerpt
           tags
+          externalUrl
           body {
             json
             links {
