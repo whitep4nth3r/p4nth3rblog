@@ -1,4 +1,4 @@
-import { DateDisplay } from "./index.style";
+import styles from "./PublishedDate.module.css";
 
 function getMonthStringFromInt(int) {
   const months = [
@@ -45,8 +45,11 @@ export default function PublishedDate(props) {
   const { date } = props;
 
   return (
-    <DateDisplay datetime={formatPublishedDateForDateTime(date)}>
+    <time
+      className={styles.publishedDate}
+      dateTime={formatPublishedDateForDateTime(date)}
+    >
       {formatPublishedDateForDisplay(date)}
-    </DateDisplay>
+    </time>
   );
 }

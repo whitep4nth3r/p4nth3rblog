@@ -12,7 +12,7 @@ class MyApp extends App {
       <>
         <Head>
           <title>
-            {title} | {Config.siteName}
+            {title} | {Config.site.title}
           </title>
 
           <meta name="description" content={description} />
@@ -35,7 +35,6 @@ class MyApp extends App {
           <meta property="twitter:image:alt" content={imageAlt} /> */}
 
           <link rel="icon" href="/favicon.ico" />
-
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -57,6 +56,12 @@ class MyApp extends App {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0f111a" />
           <meta name="msapplication-TileColor" content="#b91d47" />
           <meta name="theme-color" content="#f11012" />
+
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <MainLayout>
           <Component {...pageProps} />

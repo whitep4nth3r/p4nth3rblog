@@ -1,5 +1,6 @@
 export default class ContentfulApi {
   static blogPostCache;
+  static socialLinksCache;
 
   static async getBlogPosts() {
     if (this.blogPostCache) {
@@ -62,6 +63,10 @@ export default class ContentfulApi {
   }
 
   static async getSocialLinks() {
+    if (this.socialLinksCache) {
+      return this.socialLinksCache;
+    }
+
     const query = `
       {
         socialLinkCollection {
@@ -77,9 +82,11 @@ export default class ContentfulApi {
       }`;
 
     const response = await this.callContentful(query);
-    return response.data.socialLinkCollection.items
+    const socialLinks = response.data.socialLinkCollection.items
       ? response.data.socialLinkCollection.items
       : [];
+    this.socialLinksCache = socialLinks;
+    return socialLinks;
   }
 
   static async callContentful(query) {

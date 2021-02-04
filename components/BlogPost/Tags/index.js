@@ -1,13 +1,15 @@
-import { TagsContainer, Tag } from "./index.style";
+import styles from "./Tags.module.css";
 
 export default function Tags(props) {
   const { tags } = props;
 
   return (
-    <TagsContainer>
+    <ul className={styles.tags}>
       {tags.map((tag) => (
-        <Tag key={tag}>{tag}</Tag>
+        <li className={styles.tags__tag} key={tag}>
+          {tag}
+        </li>
       ))}
-    </TagsContainer>
+    </ul>
   );
 }

@@ -5,7 +5,8 @@ import { Config } from "../utils/Config";
 export default function BlogIndex(props) {
   const { blogPosts } = props;
   return (
-    <>
+    <div>
+      <h1>BLOG POSTS</h1>
       {blogPosts.map((item) => (
         <div key={item.sys.id}>
           <h2>{item.title}</h2>
@@ -13,7 +14,7 @@ export default function BlogIndex(props) {
           <Link href={`/blog/${item.slug}`}>Link</Link>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

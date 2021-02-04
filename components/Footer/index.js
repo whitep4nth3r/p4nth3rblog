@@ -1,9 +1,9 @@
-import { FooterContainer } from "./index.style";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <FooterContainer>
+    <footer className={styles.footer}>
       <p>test footer</p>
-    </FooterContainer>
+    </footer>
   );
 }

@@ -1,23 +1,6 @@
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
-import {
-  BlogPostContainer,
-  Paragraph,
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6,
-  BlockQuote,
-  HorizontalRule,
-  UnorderedList,
-  OrderedList,
-  ListItem,
-  BlogPostImage,
-} from "./index.style";
-
+import styles from "./BlogPost.module.css";
 import Tags from "./Tags";
 import PublishedDate from "./PublishedDate";
 
@@ -34,27 +17,48 @@ function getRenderOptions(links) {
     },
 
     renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => <Heading1>{children}</Heading1>,
-      [BLOCKS.HEADING_2]: (node, children) => <Heading2>{children}</Heading2>,
-      [BLOCKS.HEADING_3]: (node, children) => <Heading3>{children}</Heading3>,
-      [BLOCKS.HEADING_4]: (node, children) => <Heading4>{children}</Heading4>,
-      [BLOCKS.HEADING_5]: (node, children) => <Heading5>{children}</Heading5>,
-      [BLOCKS.HEADING_6]: (node, children) => <Heading6>{children}</Heading6>,
-      [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph>{children}</Paragraph>,
-      [BLOCKS.QUOTE]: (node, children) => <BlockQuote>{children}</BlockQuote>,
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 className={styles.blogPost__h1}>{children}</h1>
+      ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className={styles.blogPost__h2}>{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 className={styles.blogPost__h3}>{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 className={styles.blogPost__h4}>{children}</h4>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h5 className={styles.blogPost__h5}>{children}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (node, children) => (
+        <h6 className={styles.blogPost__h6}>{children}</h6>
+      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className={styles.blogPost__paragraph}>{children}</p>
+      ),
+      [BLOCKS.QUOTE]: (node, children) => (
+        <blockquote className={styles.blogPost__blockquote}>
+          {children}
+        </blockquote>
+      ),
       [BLOCKS.UL_LIST]: (node, children) => (
-        <UnorderedList>{children}</UnorderedList>
+        <ul className={styles.blogPost__ul}>{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <OrderedList>{children}</OrderedList>
+        <ol className={styles.blogPost__ol}>{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (node, children) => <ListItem>{children}</ListItem>,
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className={styles.blogPost__li}>{children}</li>
+      ),
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
         const { title, url, height, width, description } = assetBlockMap.get(
           node.data.target.sys.id,
         );
         return (
-          <BlogPostImage
+          <img
+            className={styles.blogPost__img}
             src={url}
             alt={description}
             height={height}
@@ -70,16 +74,16 @@ export default function BlogPost(props) {
   const { blogPost } = props;
 
   return (
-    <BlogPostContainer>
+    <article className={styles.blogPost}>
       <PublishedDate date={blogPost.date} />
       <Tags tags={blogPost.tags} />
-      <Heading1>{blogPost.title}</Heading1>
+      <h1 className={styles.blogPost__h1}>{blogPost.title}</h1>
       {documentToReactComponents(
         blogPost.body.json,
         getRenderOptions(blogPost.body.links),
       )}
 
       <p>{blogPost.externalUrl}</p>
-    </BlogPostContainer>
+    </article>
   );
 }

@@ -1,0 +1,49 @@
+.blogPost {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blogPost__paragraph {
+  color: red;
+}
+
+.blogPost__h1 {
+  color: blue;
+}
+
+.blogPost__h2 {
+  color: blue;
+}
+
+.blogPost__h3 {
+  color: blue;
+}
+
+.blogPost__h4 {
+  color: blue;
+}
+
+.blogPost__h5 {
+  color: blue;
+}
+
+.blogPost__h6 {
+  color: blue;
+}
+
+.blogPost__blockquote p {
+  color: green;
+}
+
+.blogPost__hr {
+  border-color: yellow;
+}
+
+.blogPost__ul {
+}
+.blogPost__ol {
+}
+.blogPost__li {
+}
+.blogPost__img {
+}

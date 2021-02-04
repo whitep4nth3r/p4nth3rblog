@@ -1,16 +1,19 @@
+import globalStyles from "./main.styles.js";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-import { MainWrapper } from "./main.style";
 
 export default function MainLayout({ children }) {
   return (
     <>
       <Header />
 
-      <MainWrapper>{children}</MainWrapper>
+      <main className="mainWrapper">{children}</main>
 
       <Footer />
+
+      <style jsx global>
+        {globalStyles}
+      </style>
     </>
   );
 }

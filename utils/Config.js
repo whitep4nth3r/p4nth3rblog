@@ -1,5 +1,8 @@
 export const Config = {
-  siteName: "whitep4nth3r.com",
+  site: {
+    title: "whitep4nth3r.com | Build stuff, learn things, love what you do",
+    domain: "whitep4nth3r.com",
+  },
   pageMeta: {
     home: {
       title: "Home",
