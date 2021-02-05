@@ -5,8 +5,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-content: center;
-  margin-top: 0;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 

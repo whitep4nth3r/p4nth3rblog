@@ -1,9 +1,9 @@
-.blogPost {
+.post {
   margin-left: auto;
   margin-right: auto;
 }
 
-.blogPost__copy {
+.post__copy {
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -12,11 +12,11 @@
   color: var(--white);
 }
 
-.blogPost__copy__bold {
+.post__copy__bold {
   font-weight: var(--font-weight-bold);
 }
 
-.blogPost__h1 {
+.post__h1 {
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 3rem;
@@ -26,13 +26,13 @@
 }
 
 @media screen and (min-width: 600px) {
-  .blogPost__h1 {
+  .post__h1 {
     font-size: 2.8rem;
     line-height: 1.4;
   }
 }
 
-.blogPost__h2 {
+.post__h2 {
   font-size: 1.8rem;
   line-height: 1.5;
   margin-bottom: 2rem;
@@ -43,12 +43,12 @@
 }
 
 @media screen and (min-width: 600px) {
-  .blogPost__h2 {
+  .post__h2 {
     font-size: 2.2rem;
   }
 }
 
-.blogPost__h3 {
+.post__h3 {
   font-size: 1.4rem;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -57,19 +57,19 @@
   color: var(--color-foreground);
 }
 
-.blogPost__h4 {
+.post__h4 {
   color: blue;
 }
 
-.blogPost__h5 {
+.post__h5 {
   color: blue;
 }
 
-.blogPost__h6 {
+.post__h6 {
   color: blue;
 }
 
-.blogPost__blockquote {
+.post__blockquote {
   display: block;
   margin-block-start: 4rem;
   margin-block-end: 4rem;
@@ -77,34 +77,34 @@
   margin-inline-end: 2rem;
 }
 
-.blogPost__blockquote p {
+.post__blockquote p {
   font-style: italic;
   font-size: 1.2rem;
   line-height: 1.6;
 }
 
 @media screen and (min-width: 600px) {
-  .blogPost__blockquote {
+  .post__blockquote {
     margin-inline-start: 4rem;
     margin-inline-end: 4rem;
   }
 
-  .blogPost__blockquote p {
+  .post__blockquote p {
     font-size: 1.6rem;
   }
 }
 
-.blogPost__blockquote:before {
+.post__blockquote:before {
   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' height='44px' width='44px'%3E%3Cpath fill='%2382af3a' d='M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z' /%3E%3C/svg%3E%0A");
 }
 
-.blogPost__hr {
+.post__hr {
   margin-bottom: 2rem;
   border-color: transparent;
   border-bottom: 0.25rem solid var(--color-tertiary);
 }
 
-.blogPost__ul {
+.post__ul {
   display: block;
   list-style-type: disc;
   margin-block-start: 3rem;
@@ -114,7 +114,7 @@
   padding-inline-start: 4rem;
 }
 
-.blogPost__ol {
+.post__ol {
   display: block;
   list-style-type: decimal;
   margin-block-start: 3rem;
@@ -124,7 +124,7 @@
   padding-inline-start: 4rem;
 }
 
-.blogPost__li {
+.post__li {
   font-size: 1.2rem;
   line-height: 1.6rem;
   margin-bottom: 1rem;
@@ -133,11 +133,11 @@
   color: var(--color-foreground);
 }
 
-.blogPost__img {
+.post__img {
   width: 100%;
 }
 
-.blogPost__table {
+.post__table {
   width: 100%;
   text-align: left;
   border: 0.125rem solid var(--color-foreground);

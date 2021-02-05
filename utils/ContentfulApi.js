@@ -2,8 +2,8 @@ export default class ContentfulApi {
   static blogPostCache;
 
   static async getBlogPosts() {
-    if (this.blogPostCache) {
-      return this.blogPostCache;
+    if (this.postCache) {
+      return this.postCache;
     }
 
     const query = `
@@ -44,7 +44,7 @@ export default class ContentfulApi {
     const blogPosts = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
-    this.blogPostCache = blogPosts;
+    this.postCache = blogPosts;
     return blogPosts;
   }
 
@@ -54,11 +54,11 @@ export default class ContentfulApi {
   }
 
   static async getBlogPostBySlug(slug) {
-    if (!this.blogPostCache) {
+    if (!this.postCache) {
       await this.getBlogPosts();
     }
 
-    return this.blogPostCache.filter((post) => post.slug === slug).pop();
+    return this.postCache.filter((post) => post.slug === slug).pop();
   }
 
   static async callContentful(query) {

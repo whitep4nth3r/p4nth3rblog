@@ -1,13 +1,13 @@
 import ContentfulApi from "../../utils/ContentfulApi";
-import BlogPost from "../../components/BlogPost";
+import BlogPost from "../../components/Post";
 import { Config } from "../../utils/Config";
 
-export default function BlogPostWrapper(props) {
+export default function PostWrapper(props) {
   const { blogPost } = props;
 
   return (
     <>
-      <BlogPost blogPost={blogPost} />
+      <Post blogPost={blogPost} />
     </>
   );
 }

@@ -1,5 +1,3 @@
-import styles from "./PublishedDate.module.css";
-
 function getMonthStringFromInt(int) {
   const months = [
     "Jan",
@@ -25,7 +23,7 @@ function addLeadingZero(num) {
   return num;
 }
 
-function formatPublishedDateForDateTime(dateString) {
+export function formatPublishedDateForDateTime(dateString) {
   const timestamp = Date.parse(dateString);
   const date = new Date(timestamp);
   return `${date.getFullYear()}-${addLeadingZero(
@@ -33,23 +31,10 @@ function formatPublishedDateForDateTime(dateString) {
   )}-${date.getDate()}`;
 }
 
-function formatPublishedDateForDisplay(dateString) {
+export function formatPublishedDateForDisplay(dateString) {
   const timestamp = Date.parse(dateString);
   const date = new Date(timestamp);
   return `${date.getDate()} ${getMonthStringFromInt(
     date.getMonth(),
   )} ${date.getFullYear()}`;
-}
-
-export default function PublishedDate(props) {
-  const { date } = props;
-
-  return (
-    <time
-      className={styles.publishedDate}
-      dateTime={formatPublishedDateForDateTime(date)}
-    >
-      {formatPublishedDateForDisplay(date)}
-    </time>
-  );
 }

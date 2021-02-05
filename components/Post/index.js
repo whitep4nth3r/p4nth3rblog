@@ -1,6 +1,6 @@
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import styles from "./BlogPost.module.css";
+import styles from "./Post.module.css";
 import Tags from "./Tags";
 import PublishedDate from "./PublishedDate";
 
@@ -13,49 +13,45 @@ function getRenderOptions(links) {
   return {
     renderMark: {
       [MARKS.BOLD]: (text) => (
-        <b class={[styles.blogPost__copy, styles.blogPost__copy__bold]}>
-          {text}
-        </b>
+        <b className={[styles.post__copy, styles.post__copy__bold]}>{text}</b>
       ),
       //do global link style?
     },
 
     renderNode: {
-      [BLOCKS.HR]: (text) => <hr class={styles.blogPost__hr} />,
+      [BLOCKS.HR]: (text) => <hr className={styles.post__hr} />,
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className={styles.blogPost__h1}>{children}</h1>
+        <h1 className={styles.post__h1}>{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className={styles.blogPost__h2}>{children}</h2>
+        <h2 className={styles.post__h2}>{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className={styles.blogPost__h3}>{children}</h3>
+        <h3 className={styles.post__h3}>{children}</h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 className={styles.blogPost__h4}>{children}</h4>
+        <h4 className={styles.post__h4}>{children}</h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 className={styles.blogPost__h5}>{children}</h5>
+        <h5 className={styles.post__h5}>{children}</h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 className={styles.blogPost__h6}>{children}</h6>
+        <h6 className={styles.post__h6}>{children}</h6>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className={styles.blogPost__copy}>{children}</p>
+        <p className={styles.post__copy}>{children}</p>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className={styles.blogPost__blockquote}>
-          {children}
-        </blockquote>
+        <blockquote className={styles.post__blockquote}>{children}</blockquote>
       ),
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className={styles.blogPost__ul}>{children}</ul>
+        <ul className={styles.post__ul}>{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className={styles.blogPost__ol}>{children}</ol>
+        <ol className={styles.post__ol}>{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className={styles.blogPost__li}>{children}</li>
+        <li className={styles.post__li}>{children}</li>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
         const { title, url, height, width, description } = assetBlockMap.get(
@@ -64,7 +60,7 @@ function getRenderOptions(links) {
         return (
           /* todo - nextJS image component */
           <img
-            className={styles.blogPost__img}
+            className={styles.post__img}
             src={url}
             alt={description}
             height={height}
@@ -76,14 +72,14 @@ function getRenderOptions(links) {
   };
 }
 
-export default function BlogPost(props) {
+export default function Post(props) {
   const { blogPost } = props;
 
   return (
-    <article className={styles.blogPost}>
+    <article className={styles.post}>
       <PublishedDate date={blogPost.date} />
       <Tags tags={blogPost.tags} />
-      <h1 className={styles.blogPost__h1}>{blogPost.title}</h1>
+      <h1 className={styles.post__h1}>{blogPost.title}</h1>
       {documentToReactComponents(
         blogPost.body.json,
         getRenderOptions(blogPost.body.links),
