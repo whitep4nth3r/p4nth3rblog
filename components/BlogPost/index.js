@@ -12,11 +12,16 @@ function getRenderOptions(links) {
 
   return {
     renderMark: {
-      [MARKS.HR]: (text) => <HorizontalRule>{text}</HorizontalRule>,
+      [MARKS.BOLD]: (text) => (
+        <b class={[styles.blogPost__copy, styles.blogPost__copy__bold]}>
+          {text}
+        </b>
+      ),
       //do global link style?
     },
 
     renderNode: {
+      [BLOCKS.HR]: (text) => <hr class={styles.blogPost__hr} />,
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1 className={styles.blogPost__h1}>{children}</h1>
       ),
@@ -36,7 +41,7 @@ function getRenderOptions(links) {
         <h6 className={styles.blogPost__h6}>{children}</h6>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className={styles.blogPost__paragraph}>{children}</p>
+        <p className={styles.blogPost__copy}>{children}</p>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote className={styles.blogPost__blockquote}>
@@ -57,6 +62,7 @@ function getRenderOptions(links) {
           node.data.target.sys.id,
         );
         return (
+          /* todo - nextJS image component */
           <img
             className={styles.blogPost__img}
             src={url}
@@ -83,6 +89,7 @@ export default function BlogPost(props) {
         getRenderOptions(blogPost.body.links),
       )}
 
+      {/* TODO - this bit */}
       <p>{blogPost.externalUrl}</p>
     </article>
   );
