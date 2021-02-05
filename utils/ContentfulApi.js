@@ -1,6 +1,5 @@
 export default class ContentfulApi {
   static blogPostCache;
-  static socialLinksCache;
 
   static async getBlogPosts() {
     if (this.blogPostCache) {
@@ -60,33 +59,6 @@ export default class ContentfulApi {
     }
 
     return this.blogPostCache.filter((post) => post.slug === slug).pop();
-  }
-
-  static async getSocialLinks() {
-    if (this.socialLinksCache) {
-      return this.socialLinksCache;
-    }
-
-    const query = `
-      {
-        socialLinkCollection {
-          items {
-            sys {
-              id
-            }
-            name
-            ariaLabel
-            link
-          }
-        }
-      }`;
-
-    const response = await this.callContentful(query);
-    const socialLinks = response.data.socialLinkCollection.items
-      ? response.data.socialLinkCollection.items
-      : [];
-    this.socialLinksCache = socialLinks;
-    return socialLinks;
   }
 
   static async callContentful(query) {

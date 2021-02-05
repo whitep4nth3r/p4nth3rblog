@@ -1,5 +1,6 @@
 import styles from "./Header.module.css";
 import Link from "next/link";
+import SocialLinks from "../SocialLinks";
 
 export default function Header() {
   return (
@@ -14,6 +15,7 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+      <SocialLinks />
     </header>
   );
 }

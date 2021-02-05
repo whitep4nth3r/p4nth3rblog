@@ -4,28 +4,39 @@ import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";
 import GitHub from "./svgs/github";
 
-function getSvg(name) {
-  switch (name) {
-    case "discord":
-      return <Discord />;
-    case "github":
-      return <GitHub />;
-    case "twitch":
-      return <Twitch />;
-    case "twitter":
-      return <Twitter />;
-    default:
-      return "";
-  }
-}
+const socialLinksList = [
+  {
+    name: "Discord",
+    url: "https://discord.gg/GQbXUVCneJ",
+    ariaLabel: "Join The Claw community on Discord",
+    svg: <Discord />,
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/whitep4nth3r",
+    ariaLabel: "Browse code on GitHub",
+    svg: <GitHub />,
+  },
+  {
+    name: "Twitch",
+    url: "https://twitch.tv/whitep4nth3r",
+    ariaLabel: "Join whitep4nth3r on Twitch",
+    svg: <Twitch />,
+  },
+  {
+    name: "Twitter",
+    url: "https://twitter.com/whitep4nth3r",
+    ariaLabel: "Follow whitep4nth3r on Twitter",
+    svg: <Twitter />,
+  },
+];
 
-export default function SocialLinks(props) {
-  const { socialLinks } = props;
+export default function SocialLinks() {
   return (
     <div className={styles.socialLinks}>
       <ul className={styles.socialLinks__list}>
-        {socialLinks.map((link) => (
-          <li className={styles.socialLinks__listItem} key={link.sys.id}>
+        {socialLinksList.map((link) => (
+          <li className={styles.socialLinks__listItem} key={link.name}>
             <a
               className={styles.socialLinks__listItemLink}
               href={link.link}
@@ -33,7 +44,7 @@ export default function SocialLinks(props) {
               target="_blank"
               rel="noopener nofollow"
             >
-              {getSvg(link.name)}
+              {link.svg}
             </a>
           </li>
         ))}
