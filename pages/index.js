@@ -12,12 +12,13 @@ export default function Home() {
   return (
     <>
       <h1>Build stuff, learn things, love what you do.</h1>
-      {process.browser && <DynamicComponentWithNoSSR />}
+      {/* {process.browser && <DynamicComponentWithNoSSR />}
+      {!process.browser && <p>Watch on Twitch.... TODO</p>} */}
     </>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   return {
     props: {
       title: Config.pageMeta.home.title,

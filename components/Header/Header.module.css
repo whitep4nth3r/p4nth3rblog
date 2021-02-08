@@ -4,23 +4,30 @@
 .header__nav {
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  background-color: var(--color-foreground);
+  padding: 1rem;
 }
 
 .header__navList {
   list-style: none;
+  padding: 0;
 }
 
 .header__navListItem {
   padding: 0.8rem 1rem;
   text-transform: uppercase;
-  color: var(--color-foreground);
-  font-size: 1rem;
-  line-height: 1rem;
+  color: var(--color-background);
+  font-size: 1.4rem;
+  line-height: 1;
   transition: color var(--global-transition-time) ease-in-out;
   display: inline-block;
   text-decoration: none;
   font-weight: var(--font-weight-bold);
+}
+
+.header__navListItem.header__navListItem__active {
+  color: var(--color-tertiary);
 }
 
 .header__navListItem a {

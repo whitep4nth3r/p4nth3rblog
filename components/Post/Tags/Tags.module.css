@@ -11,14 +11,14 @@
 }
 
 .tags__tag {
-  background-color: var(--color-primary);
+  background-color: var(--color-foreground);
   color: var(--color-background);
   text-transform: uppercase;
   font-size: 1rem;
   border: 0.25rem solid var(--color-tertiary);
   border-radius: 1rem;
   padding: 0.25rem 0.5rem;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
   font-size: 0.875rem;
   text-decoration: none;

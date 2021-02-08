@@ -1,5 +1,5 @@
 import ContentfulApi from "../../utils/ContentfulApi";
-import BlogPost from "../../components/Post";
+import Post from "../../components/Post";
 import { Config } from "../../utils/Config";
 
 export default function PostWrapper(props) {

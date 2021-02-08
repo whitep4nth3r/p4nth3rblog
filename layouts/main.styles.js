@@ -40,5 +40,6 @@ export default css.global`
     margin-left: auto;
     margin-right: auto;
     max-width: 45rem;
+    padding: 1rem;
   }
 `;

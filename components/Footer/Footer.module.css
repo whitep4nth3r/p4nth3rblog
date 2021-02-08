@@ -1,2 +1,14 @@
 .footer {
+  background-color: var(--color-foreground);
+  padding: 1rem;
+}
+
+.footer__copyright {
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-family-main);
+  color: var(--color-tertiary);
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

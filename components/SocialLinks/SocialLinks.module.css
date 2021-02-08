@@ -1,5 +1,7 @@
 .socialLinks {
   max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .socialLinks__list {

@@ -1,3 +1,4 @@
+import ReactMarkdown from "react-markdown";
 import styles from "./PostList.module.css";
 import Link from "next/link";
 import PublishedDate from "../Post/PublishedDate";
@@ -18,7 +19,9 @@ export default function PostList(props) {
               </a>
             </Link>
             <Tags tags={post.tags} />
-            <p className={styles.postList__excerpt}>{post.excerpt}</p>
+            <div className={styles.postList__excerpt}>
+              <ReactMarkdown>{post.excerpt}</ReactMarkdown>
+            </div>
           </article>
         </li>
       ))}

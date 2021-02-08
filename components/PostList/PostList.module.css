@@ -39,13 +39,18 @@
   line-height: 1.4;
 }
 
-.postList__excerpt {
+.postList__excerpt p {
   font-size: 1.2rem;
   line-height: 1.8rem;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
+}
+
+.postList__excerpt a {
+  /* TODO */
+  color: green;
 }
 
 .postList__link {
