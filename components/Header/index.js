@@ -28,7 +28,10 @@ export default function Header() {
                 : "";
 
             return (
-              <li className={styles.header__navListItem + isActiveClass}>
+              <li
+                key={link.displayName}
+                className={styles.header__navListItem + isActiveClass}
+              >
                 <Link href={link.path}>{link.displayName}</Link>
               </li>
             );

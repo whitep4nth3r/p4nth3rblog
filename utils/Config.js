@@ -9,11 +9,13 @@ export const Config = {
       title: "Home",
       description: "blah",
       url: "https://whitep4nth3r.com",
+      slug: "/",
     },
     blogIndex: {
       title: "Blog",
       description: "blah blah",
       url: "https://whitep4nth3r.com/blog",
+      slug: "/blog",
     },
   },
 };

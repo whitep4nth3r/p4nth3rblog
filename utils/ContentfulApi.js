@@ -1,5 +1,58 @@
 export default class ContentfulApi {
-  static blogPostCache;
+  static postCache;
+  static pagesContentCache;
+
+  static async getPagesContent() {
+    if (this.pagesContentCache) {
+      return this.pagesContentCache;
+    }
+
+    const query = `
+    {
+      pageContentCollection(limit: 10) {
+        items {
+          sys {
+            id
+          }
+          slug
+          body {
+            json
+            links {
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  width
+                  height
+                  description
+                }
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const pageContent = response.data.pageContentCollection.items
+      ? response.data.pageContentCollection.items
+      : [];
+
+    this.pagesContentCache = pageContent;
+    return pageContent;
+  }
+
+  static async getPageContentBySlug(slug) {
+    if (!this.pagesContentCache) {
+      await this.getPagesContent();
+    }
+
+    return this.pagesContentCache.filter((page) => page.slug === slug).pop();
+  }
 
   static async getBlogPosts() {
     if (this.postCache) {
