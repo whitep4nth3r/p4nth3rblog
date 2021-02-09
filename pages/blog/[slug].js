@@ -31,8 +31,10 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       blogPost,
-      title: blogPost.title,
-      description: blogPost.excerpt,
+      pageContent: {
+        title: blogPost.title,
+        description: blogPost.excerpt,
+      },
       url: `${Config.pageMeta.blogIndex.url}/${blogPost.slug}`,
     },
   };

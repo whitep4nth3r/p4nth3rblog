@@ -30,8 +30,6 @@ export async function getStaticProps() {
 
   return {
     props: {
-      title: Config.pageMeta.home.title,
-      description: Config.pageMeta.home.description,
       url: Config.pageMeta.home.url,
       pageContent,
     },

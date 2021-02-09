@@ -1,6 +1,9 @@
+import { Config } from "./Config";
+
 export default class ContentfulApi {
   static postCache;
   static pagesContentCache;
+  static totalPostsCache;
 
   static async getPagesContent() {
     if (this.pagesContentCache) {
@@ -10,10 +13,13 @@ export default class ContentfulApi {
     const query = `
     {
       pageContentCollection(limit: 10) {
+        total
         items {
           sys {
             id
           }
+          title
+          description
           slug
           body {
             json
@@ -54,14 +60,37 @@ export default class ContentfulApi {
     return this.pagesContentCache.filter((page) => page.slug === slug).pop();
   }
 
-  static async getBlogPosts() {
+  static async getTotalBlogPostsNumber() {
+    if (this.totalPostsCache) {
+      return this.totalPostsCache;
+    }
+
+    const query = `
+      {
+        blogPostCollection(limit: ${Config.pagination.pageSize}) {
+          total
+        }
+      }
+    `;
+
+    const response = await this.callContentful(query);
+    const totalBlogPosts = response.data.blogPostCollection.total
+      ? response.data.blogPostCollection.total
+      : 0;
+
+    this.totalPostsCache = totalBlogPosts;
+    return totalBlogPosts;
+  }
+
+  static async getBlogPosts(skip = 0) {
     if (this.postCache) {
       return this.postCache;
     }
 
     const query = `
     {
-      blogPostCollection(limit: 10) {
+      blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}) {
+        total
         items {
           sys {
             id

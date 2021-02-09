@@ -8,13 +8,12 @@ export default function Post(props) {
 
   return (
     <article className={styles.page}>
-      <PublishedDate date={blogPost.date} />
-      <Tags tags={blogPost.tags} />
-      <h1 className={styles.page__h1}>{blogPost.title}</h1>
-      <RichTextPageContent richTextBodyField={blogPost.body} />
-
       {/* TODO - this bit */}
       <p>{blogPost.externalUrl}</p>
+      <PublishedDate date={blogPost.date} />
+      {blogPost.tags !== null && <Tags tags={blogPost.tags} />}
+      <h1 className={styles.page__h1}>{blogPost.title}</h1>
+      <RichTextPageContent richTextBodyField={blogPost.body} />
     </article>
   );
 }

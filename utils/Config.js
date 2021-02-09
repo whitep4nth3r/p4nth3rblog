@@ -6,16 +6,28 @@ export const Config = {
   },
   pageMeta: {
     home: {
-      title: "Home",
-      description: "blah",
       url: "https://whitep4nth3r.com",
       slug: "/",
     },
     blogIndex: {
-      title: "Blog",
-      description: "blah blah",
       url: "https://whitep4nth3r.com/blog",
       slug: "/blog",
     },
+    blogPost: {
+      slug: "/blog/[slug]",
+    },
   },
+  pagination: {
+    pageSize: 1,
+  },
+  menuLinks: [
+    {
+      displayName: "Home",
+      path: "/",
+    },
+    {
+      displayName: "Blog",
+      path: "/blog",
+    },
+  ],
 };

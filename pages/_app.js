@@ -3,27 +3,30 @@ import Head from "next/head";
 import MainLayout from "../layouts/main";
 import { Config } from "../utils/Config";
 
-class MyApp extends App {
+class MyBlogWebsite extends App {
   render() {
     const { Component, pageProps } = this.props;
-    const { title, description, url } = pageProps;
+    const { pageContent, url } = pageProps;
 
     return (
       <>
         <Head>
           <title>
-            {title} | {Config.site.title}
+            {pageContent.title} | {Config.site.title}
           </title>
 
-          <meta name="description" content={description} />
+          <meta name="description" content={pageContent.description} />
 
-          <meta name="title" content={title} />
-          <meta property="og:title" content={title} />
-          <meta property="twitter:title" content={title} />
+          <meta name="title" content={pageContent.title} />
+          <meta property="og:title" content={pageContent.title} />
+          <meta property="twitter:title" content={pageContent.title} />
 
-          <meta name="description" content={description} />
-          <meta property="og:description" content={description} />
-          <meta property="twitter:description" content={description} />
+          <meta name="description" content={pageContent.description} />
+          <meta property="og:description" content={pageContent.description} />
+          <meta
+            property="twitter:description"
+            content={pageContent.description}
+          />
 
           <meta property="og:url" content={url} />
           <meta property="twitter:url" content={url} />
@@ -63,6 +66,7 @@ class MyApp extends App {
             rel="stylesheet"
           />
         </Head>
+
         <MainLayout>
           <Component {...pageProps} />
         </MainLayout>
@@ -71,4 +75,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default MyBlogWebsite;
