@@ -73,11 +73,11 @@ export function getRenderOptions(links) {
 export default function RichTextPageContent(props) {
   const { richTextBodyField } = props;
   return (
-    <>
+    <div className={styles.page__content}>
       {documentToReactComponents(
         richTextBodyField.json,
         getRenderOptions(richTextBodyField.links),
       )}
-    </>
+    </div>
   );
 }

@@ -2,11 +2,8 @@
 
 TODO:
 
-1. Work out pagination on blog index
-2. Work out what to do with the 'limit' parameter in the graphql query to avoid complexity and hardcoded numbers
-  - create a pagination component
-
-  Create reference fields for tags - to build /slugs etc?
+**_ the current static generation only builds the first page of blog posts
+_** how to build them all at build time?????
 
 3. Decide what else to show on home page
 4. What other bits of content do we want on the site?

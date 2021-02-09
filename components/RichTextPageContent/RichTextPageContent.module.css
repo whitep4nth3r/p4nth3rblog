@@ -3,6 +3,10 @@
   margin-right: auto;
 }
 
+.page__content {
+  margin-bottom: 4rem;
+}
+
 .page__copy {
   font-size: 1.2rem;
   line-height: 1.8;

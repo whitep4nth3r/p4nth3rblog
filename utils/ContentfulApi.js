@@ -1,7 +1,6 @@
 import { Config } from "./Config";
 
 export default class ContentfulApi {
-  static postCache;
   static pagesContentCache;
   static totalPostsCache;
 
@@ -131,11 +130,8 @@ export default class ContentfulApi {
   }
 
   static async getBlogPostBySlug(slug) {
-    if (!this.postCache) {
-      await this.getBlogPosts();
-    }
-
-    return this.postCache.filter((post) => post.slug === slug).pop();
+    const blogPosts = await this.getBlogPosts();
+    return blogPosts.filter((post) => post.slug === slug).pop();
   }
 
   static async callContentful(query) {
