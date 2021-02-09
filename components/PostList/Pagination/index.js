@@ -8,8 +8,6 @@ export default function Pagination(props) {
 
     prevDisabled,
     nextDisabled,
-    goToNextPage,
-    goToPrevPage,
   } = props;
 
   function renderPageNumbers(totalPages) {
@@ -32,13 +30,21 @@ export default function Pagination(props) {
 
   return (
     <nav className={styles.pagination}>
-      <button onClick={goToPrevPage} disabled={prevDisabled}>
-        PREV
-      </button>
-      <button onClick={goToNextPage} disabled={nextDisabled}>
-        NEXT
-      </button>
+      {prevDisabled && <button disabled={prevDisabled}>PREV</button>}
+      {!prevDisabled && (
+        <Link href={`/blog?page=${currentPage - 1}`} disabled={prevDisabled}>
+          <a>PREV LINK</a>
+        </Link>
+      )}
+
       <ul>{renderPageNumbers(totalPages)}</ul>
+
+      {nextDisabled && <button disabled={nextDisabled}>NEXT</button>}
+      {!nextDisabled && (
+        <Link href={`/blog?page=${currentPage + 1}`}>
+          <a>NEXT LINK</a>
+        </Link>
+      )}
     </nav>
   );
 }

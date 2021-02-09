@@ -26,16 +26,15 @@ async function getNewBlogPosts(newCurrentPage) {
 }
 
 export default function PostList(props) {
+  const { blogPosts, totalBlogPosts } = props;
+
   const router = useRouter();
 
   const currentPageParam =
     router.query.page !== undefined ? parseInt(router.query.page, 10) : 1;
 
-  const { blogPosts, totalBlogPosts } = props;
   const [blogPostsToDisplay, setBlogPostsToDisplay] = useState(blogPosts);
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const [nextDisabled, setNextDisabled] = useState(false);
   const [prevDisabled, setPrevDisabled] = useState(true);
 
@@ -60,49 +59,8 @@ export default function PostList(props) {
     setPrevDisabled,
   ]);
 
-  async function goToNextPage() {
-    const newCurrentPage =
-      currentPage + 1 > totalPages ? totalPages : currentPage + 1;
-
-    if (newCurrentPage <= totalPages) {
-      setCurrentPage(newCurrentPage);
-      router.push({
-        pathname: Config.pageMeta.blogIndex.slug,
-        query: { page: newCurrentPage },
-      });
-    }
-
-    setNextDisabled(shouldDisableNext(totalPages, newCurrentPage));
-    setPrevDisabled(shouldDisablePrev(totalPages));
-
-    const newBlogPosts = await getNewBlogPosts(newCurrentPage);
-    setBlogPostsToDisplay(newBlogPosts);
-  }
-
-  async function goToPrevPage() {
-    const newCurrentPage = currentPage - 1 === 0 ? 1 : currentPage - 1;
-
-    if (newCurrentPage >= 1) {
-      setCurrentPage(newCurrentPage);
-      router.push({
-        pathname: Config.pageMeta.blogIndex.slug,
-        query: { page: newCurrentPage },
-      });
-    }
-
-    setNextDisabled(shouldDisableNext(totalPages, newCurrentPage));
-    setPrevDisabled(shouldDisablePrev(newCurrentPage));
-
-    const newBlogPosts = await getNewBlogPosts(newCurrentPage);
-    setBlogPostsToDisplay(newBlogPosts);
-  }
-
   return (
     <>
-      <h1>TOTAL POSTS {totalBlogPosts}</h1>
-      <h1>numberOfPages {totalPages}</h1>
-      <h1>current page {currentPage}</h1>
-
       <ol className={styles.postList}>
         {blogPostsToDisplay.map((post) => (
           <li key={post.sys.id}>
@@ -125,8 +83,6 @@ export default function PostList(props) {
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
-        goToNextPage={goToNextPage}
-        goToPrevPage={goToPrevPage}
         setCurrentPage={setCurrentPage}
         nextDisabled={nextDisabled}
         prevDisabled={prevDisabled}
