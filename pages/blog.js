@@ -5,6 +5,7 @@ import RichTextPageContent from "../components/RichTextPageContent";
 
 export default function BlogIndex(props) {
   const { blogPosts, totalBlogPosts, pageContent } = props;
+
   return (
     <>
       <RichTextPageContent richTextBodyField={pageContent.body} />

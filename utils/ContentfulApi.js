@@ -83,10 +83,6 @@ export default class ContentfulApi {
   }
 
   static async getBlogPosts(skip = 0) {
-    if (this.postCache) {
-      return this.postCache;
-    }
-
     const query = `
     {
       blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}) {
@@ -126,11 +122,10 @@ export default class ContentfulApi {
     const blogPosts = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
-    this.postCache = blogPosts;
     return blogPosts;
   }
 
-  static async getBlogPostSlugs() {
+  static async getBlogPostslugs() {
     const blogPosts = await this.getBlogPosts();
     return blogPosts.map((post) => post.slug);
   }
@@ -144,15 +139,16 @@ export default class ContentfulApi {
   }
 
   static async callContentful(query) {
-    const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
+    const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}`;
 
     const fetchOptions = {
-      spaceID: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      spaceID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+      accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
       endpoint: fetchUrl,
       method: "POST",
       headers: {
-        Authorization: "Bearer " + process.env.CONTENTFUL_ACCESS_TOKEN,
+        Authorization:
+          "Bearer " + process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
         "Content-Type": "application/json",
       },
       redirect: "follow",
