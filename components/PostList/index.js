@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { Config } from "../../utils/Config";
 import ReactMarkdown from "react-markdown";
 import styles from "./PostList.module.css";
 import Link from "next/link";
 import PublishedDate from "../Post/PublishedDate";
 import Tags from "../Post/Tags";
 import Pagination from "./Pagination";
-import { Config } from "../../utils/Config";
 import ContentfulApi from "../../utils/ContentfulApi";
 
 function shouldDisablePrev(newCurrentPage) {

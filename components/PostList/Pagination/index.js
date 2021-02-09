@@ -1,5 +1,7 @@
 import styles from "./Pagination.module.css";
 import Link from "next/link";
+import ChevronLeft from "./svgs/ChevronLeft";
+import ChevronRight from "./svgs/ChevronRight";
 
 export default function Pagination(props) {
   const {
@@ -14,12 +16,16 @@ export default function Pagination(props) {
     const pageNumbers = [];
 
     for (let i = 1; i <= totalPages; i++) {
+      const isActiveClass =
+        currentPage === i ? ` ${styles.pagination__listItem__active}` : "";
+
       pageNumbers.push(
-        <li key={i}>
+        <li
+          key={`page-${i}`}
+          className={styles.pagination__listItem + isActiveClass}
+        >
           <Link href={`/blog?page=${i}`}>
-            <a>
-              Page {i} {currentPage === i && <span>SELECTED</span>}
-            </a>
+            <a>Page {i}</a>
           </Link>
         </li>,
       );
@@ -29,22 +35,50 @@ export default function Pagination(props) {
   }
 
   return (
-    <nav className={styles.pagination}>
-      {prevDisabled && <button disabled={prevDisabled}>PREV</button>}
-      {!prevDisabled && (
-        <Link href={`/blog?page=${currentPage - 1}`} disabled={prevDisabled}>
-          <a>PREV LINK</a>
-        </Link>
-      )}
-
-      <ul>{renderPageNumbers(totalPages)}</ul>
-
-      {nextDisabled && <button disabled={nextDisabled}>NEXT</button>}
-      {!nextDisabled && (
-        <Link href={`/blog?page=${currentPage + 1}`}>
-          <a>NEXT LINK</a>
-        </Link>
-      )}
-    </nav>
+    <div className={styles.pagination}>
+      <ol className={styles.pagination__list}>
+        <li className={styles.pagination__listItem}>
+          {prevDisabled && (
+            <span className={styles.pagination__listItem__disabled}>
+              <span className={styles.pagination__chevronContainer__left}>
+                <ChevronLeft />
+              </span>
+              <span>Previous page</span>
+            </span>
+          )}
+          {!prevDisabled && (
+            <Link href={`/blog?page=${currentPage - 1}`}>
+              <a>
+                <span className={styles.pagination__chevronContainer__left}>
+                  <ChevronLeft />
+                </span>
+                <span>Previous page</span>
+              </a>
+            </Link>
+          )}
+        </li>
+        {renderPageNumbers(totalPages)}
+        <li className={styles.pagination__listItem}>
+          {nextDisabled && (
+            <span className={styles.pagination__listItem__disabled}>
+              <span>Next page</span>
+              <span className={styles.pagination__chevronContainer__right}>
+                <ChevronRight />
+              </span>
+            </span>
+          )}
+          {!nextDisabled && (
+            <Link href={`/blog?page=${currentPage + 1}`}>
+              <a>
+                <span>Next page</span>
+                <span className={styles.pagination__chevronContainer__right}>
+                  <ChevronRight />
+                </span>
+              </a>
+            </Link>
+          )}
+        </li>
+      </ol>
+    </div>
   );
 }

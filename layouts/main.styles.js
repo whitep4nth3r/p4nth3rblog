@@ -6,7 +6,8 @@ export default css.global`
     --color-secondary: #82af3a;
     --color-tertiary: #ffb626;
     --color-foreground: #0f111a;
-    --color-background: #f8f8f2;
+    --color-background: #ffffff;
+    --color-muted: #666666;
 
     --grid-unit: 0.5rem;
 

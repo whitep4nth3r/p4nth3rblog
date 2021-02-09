@@ -9,22 +9,26 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.header__nav}>
+      <nav className={styles.header__nav} role="navigation">
         <ul className={styles.header__navList}>
           {Config.menuLinks.map((link) => {
-            const isActiveClass =
+            const isActive =
               (router.pathname === Config.pageMeta.blogPost.slug &&
                 link.path === Config.pageMeta.blogIndex.slug) ||
-              router.pathname === link.path
-                ? ` ${styles.header__navListItem__active}`
-                : "";
+              router.pathname === link.path;
+
+            const isActiveClass = isActive
+              ? ` ${styles.header__navListItem__active}`
+              : "";
 
             return (
               <li
                 key={link.displayName}
                 className={styles.header__navListItem + isActiveClass}
               >
-                <Link href={link.path}>{link.displayName}</Link>
+                <Link href={link.path}>
+                  <a>{link.displayName}</a>
+                </Link>
               </li>
             );
           })}
