@@ -1,0 +1,76 @@
+.recentPostList {
+  list-style: none;
+  padding-inline-start: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recentPostList__header {
+  font-size: 2rem;
+  color: var(--color-foreground);
+  font-family: var(--font-family-main);
+  margin-bottom: 1rem;
+}
+
+.recentPostList__post {
+  margin-bottom: 4rem;
+}
+
+.recentPostList__titleLink {
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.recentPostList__titleLink:hover {
+  color: var(--color-tertiary);
+}
+
+.recentPostList__titleLink:focus {
+  outline-width: 0;
+  box-shadow: var(--color-tertiary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.recentPostList__titleLink:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
+}
+
+.recentPostList__title {
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+.recentPostList__excerpt p {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+}
+
+.recentPostList__excerpt a {
+  /* TODO */
+  color: green;
+}
+
+.recentPostList__link {
+  color: var(--color-tertiary);
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  text-decoration: none;
+  padding-bottom: 0.125rem;
+  border-bottom: 0.125rem solid var(--yellow);
+  transition: color var(--global-transition-time) ease-in-out,
+    border-color var(--global-transition-time) ease-in-out;
+  cursor: pointer;
+}

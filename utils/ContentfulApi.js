@@ -45,7 +45,7 @@ export default class ContentfulApi {
     return pageContent.pop();
   }
 
-  static async getTotalBlogPostsNumber() {
+  static async getTotalPostsNumber() {
     const query = `
       {
         blogPostCollection {
@@ -55,14 +55,14 @@ export default class ContentfulApi {
     `;
 
     const response = await this.callContentful(query);
-    const totalBlogPosts = response.data.blogPostCollection.total
+    const totalPosts = response.data.blogPostCollection.total
       ? response.data.blogPostCollection.total
       : 0;
 
-    return totalBlogPosts;
+    return totalPosts;
   }
 
-  static async getBlogPostSlugs() {
+  static async getPostSlugs() {
     const query = `
       {
         blogPostCollection {
@@ -74,16 +74,14 @@ export default class ContentfulApi {
     }`;
 
     const response = await this.callContentful(query);
-    const blogPostSlugs = response.data.blogPostCollection.items
+    const postSlugs = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
 
-    const returnSlugs = blogPostSlugs.map((post) => post.slug);
-
-    return returnSlugs;
+    return postSlugs.map((post) => post.slug);
   }
 
-  static async getBlogPostBySlug(slug) {
+  static async getPostBySlug(slug) {
     const query = `{
       blogPostCollection(limit: 1, where: {slug: "${slug}"}) {
         total
@@ -119,13 +117,13 @@ export default class ContentfulApi {
     }`;
 
     const response = await this.callContentful(query);
-    const blogPost = response.data.blogPostCollection.items
+    const post = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
-    return blogPost.pop();
+    return post.pop();
   }
 
-  static async getPaginatedBlogPostSummaries(page) {
+  static async getPaginatedPostSummaries(page) {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
@@ -147,11 +145,36 @@ export default class ContentfulApi {
 
     const response = await this.callContentful(query);
 
-    const paginatedBlogPostSummaries = response.data.blogPostCollection.items
+    const paginatedPostSummaries = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
 
-    return paginatedBlogPostSummaries;
+    return paginatedPostSummaries;
+  }
+
+  static async getRecentPostList() {
+    const query = `{
+      blogPostCollection(limit: ${Config.pagination.recentPostsSize}) {
+        items {
+          sys {
+            id
+          }
+          date
+          title
+          slug
+          excerpt
+          tags
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const recentPosts = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
+
+    return recentPosts;
   }
 
   static async callContentful(query) {

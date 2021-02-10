@@ -6,7 +6,7 @@ import RichTextPageContent from "../components/RichTextPageContent";
 import MainLayout from "../layouts/main";
 
 export default function BlogIndex(props) {
-  const { blogPostSummaries, totalBlogPosts, pageContent, url } = props;
+  const { postSummaries, totalPosts, pageContent, url } = props;
 
   return (
     <MainLayout>
@@ -16,25 +16,23 @@ export default function BlogIndex(props) {
         url={Config.pageMeta.blogIndex.url}
       />
       <RichTextPageContent richTextBodyField={pageContent.body} />
-      <PostList blogPosts={blogPostSummaries} totalBlogPosts={totalBlogPosts} />
+      <PostList posts={postSummaries} totalPosts={totalPosts} />
     </MainLayout>
   );
 }
 
 export async function getStaticProps() {
-  const blogPostSummaries = await ContentfulApi.getPaginatedBlogPostSummaries(
-    1,
-  );
+  const postSummaries = await ContentfulApi.getPaginatedPostSummaries(1);
 
-  const totalBlogPosts = await ContentfulApi.getTotalBlogPostsNumber();
+  const totalPosts = await ContentfulApi.getTotalPostsNumber();
   const pageContent = await ContentfulApi.getPageContentBySlug(
     Config.pageMeta.blogIndex.slug,
   );
 
   return {
     props: {
-      blogPostSummaries,
-      totalBlogPosts,
+      postSummaries,
+      totalPosts,
       pageContent,
     },
   };

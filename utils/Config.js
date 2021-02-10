@@ -13,12 +13,13 @@ export const Config = {
       url: "https://whitep4nth3r.com/blog",
       slug: "/blog",
     },
-    blogPost: {
+    post: {
       slug: "/blog/[slug]",
     },
   },
   pagination: {
     pageSize: 2,
+    recentPostsSize: 3,
   },
   menuLinks: [
     {

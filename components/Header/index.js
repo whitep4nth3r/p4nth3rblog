@@ -13,7 +13,7 @@ export default function Header() {
         <ul className={styles.header__navList}>
           {Config.menuLinks.map((link) => {
             const isActive =
-              (router.pathname === Config.pageMeta.blogPost.slug &&
+              (router.pathname === Config.pageMeta.post.slug &&
                 link.path === Config.pageMeta.blogIndex.slug) ||
               router.pathname === link.path;
 

@@ -18,38 +18,38 @@ function shouldDisableNext(totalPages, newCurrentPage) {
 }
 
 export default function PostList(props) {
-  const { blogPosts, totalBlogPosts } = props;
+  const { posts, totalPosts } = props;
 
   const router = useRouter();
 
   const currentPageParam =
     router.query.page !== undefined ? parseInt(router.query.page, 10) : 1;
 
-  const [blogPostsToDisplay, setBlogPostsToDisplay] = useState(blogPosts);
+  const [postsToDisplay, setPostsToDisplay] = useState(posts);
   const [currentPage, setCurrentPage] = useState(1);
   const [nextDisabled, setNextDisabled] = useState(false);
   const [prevDisabled, setPrevDisabled] = useState(true);
 
-  const totalPages = Math.ceil(totalBlogPosts / Config.pagination.pageSize);
+  const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
 
   useEffect(() => {
     setCurrentPage(currentPageParam);
 
-    async function updateBlogPosts() {
-      const newBlogPosts = await ContentfulApi.getPaginatedBlogPostSummaries(
+    async function updatePosts() {
+      const newPosts = await ContentfulApi.getPaginatedPostSummaries(
         currentPageParam,
       );
 
-      setBlogPostsToDisplay(newBlogPosts);
+      setPostsToDisplay(newPosts);
     }
 
-    updateBlogPosts();
+    updatePosts();
     setNextDisabled(shouldDisableNext(totalPages, currentPageParam));
     setPrevDisabled(shouldDisablePrev(currentPageParam));
   }, [
     setCurrentPage,
     currentPageParam,
-    setBlogPostsToDisplay,
+    setPostsToDisplay,
     setNextDisabled,
     setPrevDisabled,
   ]);
@@ -57,11 +57,11 @@ export default function PostList(props) {
   return (
     <>
       <ol className={styles.postList}>
-        {blogPostsToDisplay.map((post) => (
+        {postsToDisplay.map((post) => (
           <li key={post.sys.id}>
             <article className={styles.postList__post}>
               <PublishedDate date={post.date} />
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
                 <a className={styles.postList__titleLink}>
                   <h2 className={styles.postList__title}>{post.title}</h2>
                 </a>
