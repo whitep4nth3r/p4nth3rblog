@@ -55,6 +55,8 @@ Rendering page content from a new content type
 
 Day 5
 
+canonical links
+
 //separate query for just the slugs
 //separate query for just the blog post summaries
 //separate query for single blog post

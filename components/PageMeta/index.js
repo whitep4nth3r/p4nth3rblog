@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Config } from "../../utils/Config";
 
 export default function PageMeta(props) {
-  const { title, description, url } = props;
+  const { title, description, url, canonical } = props;
   return (
     <Head>
       <title>
@@ -12,6 +12,9 @@ export default function PageMeta(props) {
       <meta name="description" content={description} />
 
       <meta name="title" content={title} />
+
+      {canonical && <link rel="canonical" href={canonical} />}
+
       <meta property="og:title" content={title} />
       <meta property="twitter:title" content={title} />
 

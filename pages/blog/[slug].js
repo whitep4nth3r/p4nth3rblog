@@ -13,6 +13,7 @@ export default function PostWrapper(props) {
         title={blogPost.title}
         description={blogPost.excerpt}
         url={`${Config.pageMeta.blogIndex.url}/${blogPost.slug}`}
+        canonical={blogPost.externalUrl ? blogPost.externalUrl : false}
       />
       <Post blogPost={blogPost} />
     </MainLayout>
