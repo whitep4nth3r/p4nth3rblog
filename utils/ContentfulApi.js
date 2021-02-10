@@ -1,18 +1,14 @@
 import { Config } from "./Config";
 
 export default class ContentfulApi {
-  static pagesContentCache;
-  static totalPostsCache;
-
-  static async getPagesContent() {
-    if (this.pagesContentCache) {
-      return this.pagesContentCache;
-    }
-
+  /*
+   * Get the content for one page
+   * param: slug
+   */
+  static async getPageContentBySlug(slug) {
     const query = `
     {
-      pageContentCollection(limit: 10) {
-        total
+      pageContentCollection(limit: 1, where: {slug: "${slug}"}) {
         items {
           sys {
             id
@@ -42,31 +38,17 @@ export default class ContentfulApi {
     }`;
 
     const response = await this.callContentful(query);
-
     const pageContent = response.data.pageContentCollection.items
       ? response.data.pageContentCollection.items
       : [];
 
-    this.pagesContentCache = pageContent;
-    return pageContent;
-  }
-
-  static async getPageContentBySlug(slug) {
-    if (!this.pagesContentCache) {
-      await this.getPagesContent();
-    }
-
-    return this.pagesContentCache.filter((page) => page.slug === slug).pop();
+    return pageContent.pop();
   }
 
   static async getTotalBlogPostsNumber() {
-    if (this.totalPostsCache) {
-      return this.totalPostsCache;
-    }
-
     const query = `
       {
-        blogPostCollection(limit: ${Config.pagination.pageSize}) {
+        blogPostCollection {
           total
         }
       }
@@ -77,14 +59,33 @@ export default class ContentfulApi {
       ? response.data.blogPostCollection.total
       : 0;
 
-    this.totalPostsCache = totalBlogPosts;
     return totalBlogPosts;
   }
 
-  static async getBlogPosts(skip = 0) {
+  static async getBlogPostSlugs() {
     const query = `
-    {
-      blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}) {
+      {
+        blogPostCollection {
+          total
+          items {
+            slug
+          }
+        }
+    }`;
+
+    const response = await this.callContentful(query);
+    const blogPostSlugs = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
+
+    const returnSlugs = blogPostSlugs.map((post) => post.slug);
+
+    return returnSlugs;
+  }
+
+  static async getBlogPostBySlug(slug) {
+    const query = `{
+      blogPostCollection(limit: 1, where: {slug: "${slug}"}) {
         total
         items {
           sys {
@@ -118,20 +119,39 @@ export default class ContentfulApi {
     }`;
 
     const response = await this.callContentful(query);
-    const blogPosts = response.data.blogPostCollection.items
+    const blogPost = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
-    return blogPosts;
+    return blogPost.pop();
   }
 
-  static async getBlogPostslugs() {
-    const blogPosts = await this.getBlogPosts();
-    return blogPosts.map((post) => post.slug);
-  }
+  static async getPaginatedBlogPostSummaries(page) {
+    const skipMultiplier = page === 1 ? 0 : page - 1;
+    const skip =
+      skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
-  static async getBlogPostBySlug(slug) {
-    const blogPosts = await this.getBlogPosts();
-    return blogPosts.filter((post) => post.slug === slug).pop();
+    const query = `{
+        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}) {
+          items {
+            sys {
+              id
+            }
+            date
+            title
+            slug
+            excerpt
+            tags
+          }
+        }
+      }`;
+
+    const response = await this.callContentful(query);
+
+    const paginatedBlogPostSummaries = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
+
+    return paginatedBlogPostSummaries;
   }
 
   static async callContentful(query) {

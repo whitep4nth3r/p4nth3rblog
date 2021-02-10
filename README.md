@@ -2,8 +2,9 @@
 
 TODO:
 
-**_ the current static generation only builds the first page of blog posts
-_** how to build them all at build time?????
+
+
+//paginate the slugs function...
 
 3. Decide what else to show on home page
 4. What other bits of content do we want on the site?
@@ -50,4 +51,11 @@ Rendering the Twitch iframe on the front end - using process.env on the client s
 Day 4
 
 Rendering page content from a new content type
-and consolidating the render options for both blog posts and page content
+
+
+Day 5
+
+//separate query for just the slugs
+//separate query for just the blog post summaries
+//separate query for single blog post
+//separate query for a single page 

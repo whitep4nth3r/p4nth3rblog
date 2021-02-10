@@ -17,14 +17,6 @@ function shouldDisableNext(totalPages, newCurrentPage) {
   return newCurrentPage === totalPages;
 }
 
-async function getNewBlogPosts(newCurrentPage) {
-  const skipMultiplier = newCurrentPage === 1 ? 0 : newCurrentPage - 1;
-  const skip =
-    skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
-
-  return await ContentfulApi.getBlogPosts(skip);
-}
-
 export default function PostList(props) {
   const { blogPosts, totalBlogPosts } = props;
 
@@ -44,7 +36,10 @@ export default function PostList(props) {
     setCurrentPage(currentPageParam);
 
     async function updateBlogPosts() {
-      const newBlogPosts = await getNewBlogPosts(currentPageParam);
+      const newBlogPosts = await ContentfulApi.getPaginatedBlogPostSummaries(
+        currentPageParam,
+      );
+
       setBlogPostsToDisplay(newBlogPosts);
     }
 
