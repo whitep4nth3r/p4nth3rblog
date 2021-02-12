@@ -98,6 +98,19 @@ export default class ContentfulApi {
           body {
             json
             links {
+              entries {
+                block {
+                  sys {
+                    id
+                  }
+                  __typename
+                  ... on CodeBlock {
+                    description
+                    language
+                    code
+                  }
+                }
+              }
               assets {
                 block {
                   sys {

@@ -1,10 +1,21 @@
+import { useEffect } from "react";
+import Prism from "Prismjs";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import styles from "./RichTextPageContent.module.css";
 
 export function getRenderOptions(links) {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   const assetBlockMap = links?.assets?.block?.reduce((map, asset) => {
     map.set(asset.sys.id, asset);
+    return map;
+  }, new Map());
+
+  const entryBlockMap = links?.entries?.block?.reduce((map, entry) => {
+    map.set(entry.sys.id, entry);
     return map;
   }, new Map());
 
@@ -51,6 +62,19 @@ export function getRenderOptions(links) {
       [BLOCKS.LIST_ITEM]: (node, children) => (
         <li className={styles.page__li}>{children}</li>
       ),
+      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+        const { language, code, __typename } = entryBlockMap.get(
+          node.data.target.sys.id,
+        );
+
+        if (__typename === "CodeBlock") {
+          return (
+            <pre className={`${styles.page__codeBlock} language-${language}`}>
+              <code>{code}</code>
+            </pre>
+          );
+        }
+      },
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
         const { title, url, height, width, description } = assetBlockMap.get(
           node.data.target.sys.id,
@@ -72,6 +96,7 @@ export function getRenderOptions(links) {
 
 export default function RichTextPageContent(props) {
   const { richTextBodyField } = props;
+
   return (
     <div className={styles.page__content}>
       {documentToReactComponents(
