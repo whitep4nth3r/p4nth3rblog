@@ -151,11 +151,6 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
-
-pre[class*="language-"].page__codeBlock {
-  margin: 2rem 0;
-}
-
 /* 
 .content :global(figure) {
   width: 100%;

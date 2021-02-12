@@ -1,14 +1,17 @@
-import { useEffect } from "react";
-import Prism from "Prismjs";
+import dynamic from "next/dynamic";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import styles from "./RichTextPageContent.module.css";
 
-export function getRenderOptions(links) {
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+const DynamicCodeBlock = dynamic(() => import("./CodeBlock"), {
+  ssr: false,
+});
 
+const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"), {
+  ssr: false,
+});
+
+export function getRenderOptions(links) {
   const assetBlockMap = links?.assets?.block?.reduce((map, asset) => {
     map.set(asset.sys.id, asset);
     return map;
@@ -63,16 +66,25 @@ export function getRenderOptions(links) {
         <li className={styles.page__li}>{children}</li>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const { language, code, __typename } = entryBlockMap.get(
-          node.data.target.sys.id,
-        );
+        const entry = entryBlockMap.get(node.data.target.sys.id);
+        const { __typename } = entry;
 
-        if (__typename === "CodeBlock") {
-          return (
-            <pre className={`${styles.page__codeBlock} language-${language}`}>
-              <code>{code}</code>
-            </pre>
-          );
+        switch (__typename) {
+          case "VideoEmbed":
+            const { embedUrl, title, type } = entry;
+
+            return (
+              <DynamicVideoEmbed
+                embedUrl={embedUrl}
+                title={title}
+                type={type}
+              />
+            );
+          case "CodeBlock":
+            const { language, code } = entry;
+            return <DynamicCodeBlock language={language} code={code} />;
+          default:
+            return null;
         }
       },
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
