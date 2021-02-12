@@ -36,11 +36,22 @@
   }
 }
 
+.page__h2Container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+
+.page__h2Link {
+  color: var(--color-tertiary);
+  margin-left: 0.5rem;
+}
+
 .page__h2 {
   font-size: 1.8rem;
   line-height: 1.5;
-  margin-bottom: 2rem;
-  margin-top: 6rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);

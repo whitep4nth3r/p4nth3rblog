@@ -2,6 +2,17 @@ import dynamic from "next/dynamic";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import styles from "./RichTextPageContent.module.css";
+import LinkIcon from "./svgs/LinkIcon";
+
+function slugifyString(string) {
+  return string
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+    .toLowerCase();
+}
 
 const DynamicCodeBlock = dynamic(() => import("./CodeBlock"), {
   ssr: false,
@@ -45,7 +56,14 @@ export function getRenderOptions(links) {
         <h1 className={styles.page__h1}>{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className={styles.page__h2}>{children}</h2>
+        <div className={styles.page__h2Container}>
+          <h2 id={`${slugifyString(children[0])}`} className={styles.page__h2}>
+            {children}
+          </h2>
+          <a className={styles.page__h2Link} href={`#${slugifyString(children[0])}`}>
+            <LinkIcon />
+          </a>
+        </div>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3 className={styles.page__h3}>{children}</h3>
