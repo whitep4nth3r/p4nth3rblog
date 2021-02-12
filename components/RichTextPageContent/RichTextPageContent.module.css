@@ -11,7 +11,7 @@
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);
   color: var(--white);
 }
@@ -24,7 +24,7 @@
   font-size: 2rem;
   line-height: 1;
   margin-bottom: 3rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }
@@ -41,7 +41,7 @@
   line-height: 1.5;
   margin-bottom: 2rem;
   margin-top: 6rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }
@@ -56,20 +56,23 @@
   font-size: 1.4rem;
   line-height: 1.8;
   margin-bottom: 2rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }
 
 .page__h4 {
+  /* TODO */
   color: blue;
 }
 
 .page__h5 {
+  /* TODO */
   color: blue;
 }
 
 .page__h6 {
+  /* TODO */
   color: blue;
 }
 
@@ -132,7 +135,7 @@
   font-size: 1.2rem;
   line-height: 1.6rem;
   margin-bottom: 1rem;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }

@@ -12,11 +12,12 @@ export default css.global`
 
     --grid-unit: 0.5rem;
 
+    --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-bold: 700;
 
-    --font-family-heading: "Titillium Web", sans-serif;
-    --font-family-body: "Titillium Web", sans-serif;
+    --font-family-heading: "Work Sans", sans-serif;
+    --font-family-body: "Work Sans", sans-serif;
 
     --global-transition-time: 0.2s;
   }
@@ -27,7 +28,7 @@ export default css.global`
 
   body {
     font-size: 1rem;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-light);
     font-family: var(--font-family-body);
     color: var(--color-foreground);
     margin: 0;

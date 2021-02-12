@@ -39,25 +39,47 @@
 }
 
 .recentPostList__title {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
-  font-size: 2rem;
-  line-height: 1.4;
+  font-size: 1.6rem;
+  line-height: 1.6;
 }
 
 .recentPostList__excerpt p {
   font-size: 1.2rem;
   line-height: 1.8rem;
   margin-bottom: 2rem;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }
 
 .recentPostList__excerpt a {
-  /* TODO */
-  color: green;
+  color: var(--color-foreground);
+  transition: color var(--global-transition-time) ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.recentPostList__excerpt a:visited {
+  color: var(--color-foreground);
+}
+
+.recentPostList__excerpt a:hover {
+  color: var(--color-foreground);
+}
+
+.recentPostList__excerpt a:focus {
+  outline-width: 0;
+  box-shadow: var(--color-tertiary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.recentPostList__excerpt a:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
 }
 
 .recentPostList__link {

@@ -1,6 +1,7 @@
 .footer {
   background-color: var(--color-foreground);
-  padding: 1rem;
+  padding: 4rem 2rem;
+  margin-top: 2rem;
 }
 
 .footer__copyright {

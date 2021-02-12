@@ -146,7 +146,7 @@ export default class ContentfulApi {
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
     const query = `{
-        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}) {
+        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC) {
           items {
             sys {
               id
@@ -171,7 +171,7 @@ export default class ContentfulApi {
 
   static async getRecentPostList() {
     const query = `{
-      blogPostCollection(limit: ${Config.pagination.recentPostsSize}) {
+      blogPostCollection(limit: ${Config.pagination.recentPostsSize}, order: date_DESC) {
         items {
           sys {
             id

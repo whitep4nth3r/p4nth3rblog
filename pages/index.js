@@ -24,9 +24,9 @@ export default function Home(props) {
         url={Config.pageMeta.home.url}
       />
       <RichTextPageContent richTextBodyField={pageContent.body} />
+      {/* {process.browser && <DynamicComponentWithNoSSR />} */}
+
       <RecentPostList posts={recentPosts} />
-      {/* {process.browser && <DynamicComponentWithNoSSR />}
-      {!process.browser && <p>Watch on Twitch.... TODO</p>} */}
     </MainLayout>
   );
 }

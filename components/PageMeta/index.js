@@ -56,7 +56,7 @@ export default function PageMeta(props) {
 
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
-        href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700&amp;display=swap"
         rel="stylesheet"
       />
     </Head>
