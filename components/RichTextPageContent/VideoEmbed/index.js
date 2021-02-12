@@ -1,7 +1,7 @@
 import styles from "./VideoEmbed.module.css";
 
 export default function VideoEmbed(props) {
-  const { embedUrl, title, type } = props;
+  const { embedUrl, title } = props;
 
   return (
     <div className={styles.videoEmbed}>

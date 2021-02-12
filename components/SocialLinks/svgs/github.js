@@ -1,6 +1,11 @@
 export default function GitHub() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="44"
+      width="44"
+      viewBox="0 0 496 512"
+    >
       <path
         fill="currentColor"
         d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6

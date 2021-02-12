@@ -39,7 +39,7 @@ export default function SocialLinks() {
           <li className={styles.socialLinks__listItem} key={link.name}>
             <a
               className={styles.socialLinks__listItemLink}
-              href={link.link}
+              href={link.url}
               aria-label={link.ariaLabel}
               target="_blank"
               rel="noopener nofollow"

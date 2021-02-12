@@ -30,7 +30,26 @@
   color: var(--color-tertiary);
 }
 
-.header__navListItem a {
+.header__navListItemLink {
   color: inherit;
   text-decoration: none;
+}
+
+.header__navListItemLink:visited {
+  color: inherit;
+}
+
+.header__navListItemLink:hover {
+  color: inherit;
+}
+
+.header__navListItemLink:focus {
+  outline-width: 0;
+  box-shadow: var(--color-tertiary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.header__navListItemLink:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
 }

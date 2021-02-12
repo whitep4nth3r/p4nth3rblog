@@ -23,4 +23,27 @@
 
 .externalUrl__link {
   color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.externalUrl__link:visited {
+  color: var(--color-foreground);
+}
+
+.externalUrl__link:hover {
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.externalUrl__link:focus {
+  outline-width: 0;
+  box-shadow: var(--color-foreground) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.externalUrl__link:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
 }

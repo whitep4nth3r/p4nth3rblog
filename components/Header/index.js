@@ -27,7 +27,9 @@ export default function Header() {
                 className={styles.header__navListItem + isActiveClass}
               >
                 <Link href={link.path}>
-                  <a>{link.displayName}</a>
+                  <a className={styles.header__navListItemLink}>
+                    {link.displayName}
+                  </a>
                 </Link>
               </li>
             );

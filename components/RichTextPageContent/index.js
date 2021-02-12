@@ -27,10 +27,19 @@ export function getRenderOptions(links) {
       [MARKS.BOLD]: (text) => (
         <b className={[styles.page__copy, styles.page__copy__bold]}>{text}</b>
       ),
-      //do global link style?
     },
 
     renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => (
+        <a
+          className={styles.page__inlineLink}
+          href={node.data.uri}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ),
       [BLOCKS.HR]: (text) => <hr className={styles.page__hr} />,
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1 className={styles.page__h1}>{children}</h1>
@@ -71,15 +80,9 @@ export function getRenderOptions(links) {
 
         switch (__typename) {
           case "VideoEmbed":
-            const { embedUrl, title, type } = entry;
+            const { embedUrl, title } = entry;
 
-            return (
-              <DynamicVideoEmbed
-                embedUrl={embedUrl}
-                title={title}
-                type={type}
-              />
-            );
+            return <DynamicVideoEmbed embedUrl={embedUrl} title={title} />;
           case "CodeBlock":
             const { language, code } = entry;
             return <DynamicCodeBlock language={language} code={code} />;

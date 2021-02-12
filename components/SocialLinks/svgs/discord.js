@@ -1,6 +1,11 @@
 export default function Discord() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="44"
+      width="44"
+      viewBox="0 0 448 512"
+    >
       <path
         fill="currentColor"
         d="M297.216 243.2c0 15.616-11.52 28.416-26.112 28.416-14.336

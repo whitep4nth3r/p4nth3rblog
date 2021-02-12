@@ -17,7 +17,11 @@ export default function ExternalUrl(props) {
       <p className={styles.externalUrl__text}>
         Originally published on{" "}
         <Link href={url}>
-          <a target="_blank" className={styles.externalUrl__link}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.externalUrl__link}
+          >
             {formatUrlForDisplay(url)}
           </a>
         </Link>

@@ -1,6 +1,11 @@
 export default function Twitter() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="44"
+      width="44"
+      viewBox="0 0 512 512"
+    >
       <path
         fill="currentColor"
         d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583

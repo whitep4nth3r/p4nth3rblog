@@ -106,7 +106,6 @@ export default class ContentfulApi {
                   __typename
                   ... on VideoEmbed {
                     title
-                    type
                     embedUrl
                   }
                   ... on CodeBlock {

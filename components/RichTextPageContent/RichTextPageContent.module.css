@@ -151,6 +151,34 @@
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+
+.page__inlineLink {
+  color: var(--color-foreground);
+  transition: color var(--global-transition-time) ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.page__inlineLink:visited {
+  color: var(--color-foreground);
+}
+
+.page__inlineLink:hover {
+  color: var(--color-foreground);
+}
+
+.page__inlineLink:focus {
+  outline-width: 0;
+  box-shadow: var(--color-tertiary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.page__inlineLink:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
+}
+
 /* 
 .content :global(figure) {
   width: 100%;
