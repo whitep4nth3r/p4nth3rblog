@@ -1,4 +1,99 @@
+.heading__h1 {
+  /* todo - clamp! */
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 3rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+}
 
+@media screen and (min-width: 600px) {
+  .heading__h1 {
+    font-size: 2.8rem;
+    line-height: 1.4;
+  }
+}
+
+.heading__h2 {
+  /* todo - clamp! */
+  font-size: 1.8rem;
+  line-height: 1.5;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+}
+
+@media screen and (min-width: 600px) {
+  .heading__h2 {
+    font-size: 2.2rem;
+  }
+}
+
+.heading__h3 {
+  /* todo - clamp! */
+  font-size: 1.4rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+}
+
+.heading__h4 {
+  /* TODO */
+  color: blue;
+}
+
+.heading__h5 {
+  /* TODO */
+  color: blue;
+}
+
+.heading__h6 {
+  /* TODO */
+  color: blue;
+}
+
+.bodyCopy {
+  /* todo - clamp! */
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-light);
+  font-family: var(--font-family-main);
+  color: var(--white);
+}
+
+.bodyCopy__bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.blockquote {
+  display: block;
+  margin-block-start: 4rem;
+  margin-block-end: 4rem;
+  margin-inline-start: 2rem;
+  margin-inline-end: 2rem;
+}
+
+.blockquote p {
+  /* todo - clamp! */
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+@media screen and (min-width: 600px) {
+  .blockquote {
+    margin-inline-start: 4rem;
+    margin-inline-end: 4rem;
+  }
+}
+
+.blockquote:before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' height='44px' width='44px'%3E%3Cpath fill='%2382af3a' d='M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z' /%3E%3C/svg%3E%0A");
+}
 
 .inlineLink {
   color: var(--color-foreground);

@@ -16,7 +16,6 @@ export default function Home(props) {
         url={Config.pageMeta.home.url}
       />
       <RichTextPageContent richTextBodyField={pageContent.body} />
-
       <RecentPostList posts={recentPosts} />
     </MainLayout>
   );
