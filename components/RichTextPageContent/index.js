@@ -2,6 +2,8 @@ import dynamic from "next/dynamic";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import styles from "./RichTextPageContent.module.css";
+import TypographyStyles from "../../styles/Typography.module.css";
+
 import LinkIcon from "./svgs/LinkIcon";
 
 function slugifyString(string) {
@@ -43,7 +45,7 @@ export function getRenderOptions(links) {
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => (
         <a
-          className={styles.page__inlineLink}
+          className={TypographyStyles.inlineLink}
           href={node.data.uri}
           target="_blank"
           rel="noopener noreferrer"
@@ -60,7 +62,10 @@ export function getRenderOptions(links) {
           <h2 id={`${slugifyString(children[0])}`} className={styles.page__h2}>
             {children}
           </h2>
-          <a className={styles.page__h2Link} href={`#${slugifyString(children[0])}`}>
+          <a
+            className={styles.page__h2Link}
+            href={`#${slugifyString(children[0])}`}
+          >
             <LinkIcon />
           </a>
         </div>

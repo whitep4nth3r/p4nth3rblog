@@ -3,7 +3,7 @@ import { Config } from "./Config";
 export default class ContentfulApi {
   /*
    * Get the content for one page
-   * param: slug
+   * param: slug (string)
    */
   static async getPageContentBySlug(slug) {
     const query = `
@@ -45,6 +45,9 @@ export default class ContentfulApi {
     return pageContent.pop();
   }
 
+  /*
+   * Get the total number of blog posts
+   */
   static async getTotalPostsNumber() {
     const query = `
       {
@@ -62,6 +65,9 @@ export default class ContentfulApi {
     return totalPosts;
   }
 
+  /*
+   * Get all blog post slugs
+   */
   static async getPostSlugs() {
     const query = `
       {
@@ -81,6 +87,10 @@ export default class ContentfulApi {
     return postSlugs.map((post) => post.slug);
   }
 
+  /*
+   * Get blog post by slug
+   * param: slug (string)
+   */
   static async getPostBySlug(slug) {
     const query = `{
       blogPostCollection(limit: 1, where: {slug: "${slug}"}) {
@@ -140,6 +150,10 @@ export default class ContentfulApi {
     return post.pop();
   }
 
+  /*
+   * Get post summaries for blog index page
+   * param: page (number)
+   */
   static async getPaginatedPostSummaries(page) {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip =
@@ -169,6 +183,9 @@ export default class ContentfulApi {
     return paginatedPostSummaries;
   }
 
+  /*
+   * Get most recent post summaries for home page (not paginated)
+   */
   static async getRecentPostList() {
     const query = `{
       blogPostCollection(limit: ${Config.pagination.recentPostsSize}, order: date_DESC) {
@@ -194,6 +211,10 @@ export default class ContentfulApi {
     return recentPosts;
   }
 
+  /*
+   * Call the Contentful GraphQL Api
+   * param: query (string)
+   */
   static async callContentful(query) {
     const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}`;
 

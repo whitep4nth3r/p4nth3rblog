@@ -1,9 +1,11 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import styles from "./RecentPostList.module.css";
-import ButtonStyles from "../Button/Button.module.css";
+import ButtonStyles from "../../styles/Button.module.css";
 import PublishedDate from "../Post/PublishedDate";
 import Tags from "../Post/Tags";
+import TypographyStyles from "../../styles/Typography.module.css";
+import ContentListStyles from "../../styles/ContentList.module.css";
 import { Config } from "../../utils/Config";
 
 export default function RecentPostList(props) {
@@ -11,19 +13,33 @@ export default function RecentPostList(props) {
   return (
     <>
       <h2 className={styles.recentPostList__header}>Recent articles</h2>
-      <ol className={styles.recentPostList}>
+      <ol className={ContentListStyles.contentList}>
         {posts.map((post) => (
           <li key={post.sys.id}>
-            <article className={styles.recentPostList__post}>
+            <article className={ContentListStyles.contentList__post}>
               <PublishedDate date={post.date} />
               <Link href={`/blog/${post.slug}`}>
-                <a className={styles.recentPostList__titleLink}>
-                  <h2 className={styles.recentPostList__title}>{post.title}</h2>
+                <a className={ContentListStyles.contentList__titleLink}>
+                  <h2 className={ContentListStyles.contentList__title}>
+                    {post.title}
+                  </h2>
                 </a>
               </Link>
               {post.tags !== null && <Tags tags={post.tags} />}
-              <div className={styles.recentPostList__excerpt}>
-                <ReactMarkdown>{post.excerpt}</ReactMarkdown>
+              <div className={ContentListStyles.contentList__excerpt}>
+                <ReactMarkdown
+                  renderers={{
+                    link: (props) => (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={TypographyStyles.inlineLink}
+                      />
+                    ),
+                  }}
+                >
+                  {post.excerpt}
+                </ReactMarkdown>
               </div>
             </article>
           </li>
