@@ -141,7 +141,7 @@ export function getRenderOptions(links, isBlogPost = false) {
         return (
           /* todo - nextJS image component */
           <img
-            className={TypographyStyles.heading__img}
+            className={RichTextPageContentStyles.page__img}
             src={url}
             alt={description}
             height={height}

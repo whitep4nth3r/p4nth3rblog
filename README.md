@@ -1,15 +1,24 @@
 # p4nth3rblog
 
-TODO:
+Typography TODO:
 
+1. Apply typography styles to markdown excerpts via `<React-Markdown>` including `<p>`
+2. Apply clamp styles to all typography
 
+Fun stuff:
 
-//paginate the slugs function...
+1. NextJS Image component
 
-3. Decide what else to show on home page
-4. What other bits of content do we want on the site?
-5. CREATE NEW STARTER REPO
-6. Then.. pantherise this one?
+API to do:
+
+1. paginate the slugs function...
+
+Appearance to do:
+
+1. Decide what else to show on home page
+2. What other bits of content do we want on the site?
+3. CREATE NEW STARTER REPO
+4. Then.. pantherise this one?
 
 IMAGES
 
@@ -52,7 +61,6 @@ Day 4
 
 Rendering page content from a new content type
 
-
 Day 5
 
 canonical links
@@ -60,4 +68,4 @@ canonical links
 //separate query for just the slugs
 //separate query for just the blog post summaries
 //separate query for single blog post
-//separate query for a single page 
+//separate query for a single page
