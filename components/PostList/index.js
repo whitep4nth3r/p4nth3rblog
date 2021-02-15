@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Config } from "../../utils/Config";
 import ReactMarkdown from "react-markdown";
-import styles from "./PostList.module.css";
 import Link from "next/link";
 import PublishedDate from "../Post/PublishedDate";
 import Tags from "../Post/Tags";
 import Pagination from "./Pagination";
 import ContentfulApi from "../../utils/ContentfulApi";
+import TypographyStyles from "../../styles/Typography.module.css";
+import ContentListStyles from "../../styles/ContentList.module.css";
 
 function shouldDisablePrev(newCurrentPage) {
   return newCurrentPage === 1;
@@ -56,19 +57,34 @@ export default function PostList(props) {
 
   return (
     <>
-      <ol className={styles.postList}>
+      <ol className={ContentListStyles.contentList}>
         {postsToDisplay.map((post) => (
           <li key={post.sys.id}>
-            <article className={styles.postList__post}>
+            <article className={ContentListStyles.contentList__post}>
               <PublishedDate date={post.date} />
               <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
-                <a className={styles.postList__titleLink}>
-                  <h2 className={styles.postList__title}>{post.title}</h2>
+                <a className={ContentListStyles.contentList__titleLink}>
+                  <h2 className={ContentListStyles.contentList__title}>
+                    {post.title}
+                  </h2>
                 </a>
               </Link>
               {post.tags !== null && <Tags tags={post.tags} />}
-              <div className={styles.postList__excerpt}>
-                <ReactMarkdown>{post.excerpt}</ReactMarkdown>
+              <div className={ContentListStyles.contentList__excerpt}>
+                <ReactMarkdown
+                  renderers={{
+                    link: (props) => (
+                      <a
+                        href={props.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={TypographyStyles.inlineLink}
+                      />
+                    ),
+                  }}
+                >
+                  {post.excerpt}
+                </ReactMarkdown>
               </div>
             </article>
           </li>

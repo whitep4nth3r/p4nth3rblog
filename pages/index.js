@@ -1,17 +1,9 @@
-import dynamic from "next/dynamic";
 import { Config } from "../utils/Config";
 import PageMeta from "../components/PageMeta";
 import ContentfulApi from "../utils/ContentfulApi";
 import RichTextPageContent from "../components/RichTextPageContent";
 import MainLayout from "../layouts/main";
 import RecentPostList from "../components/RecentPostList";
-
-const DynamicComponentWithNoSSR = dynamic(
-  () => import("../components/TwitchPlayer"),
-  {
-    ssr: false,
-  },
-);
 
 export default function Home(props) {
   const { pageContent, recentPosts } = props;
@@ -24,7 +16,6 @@ export default function Home(props) {
         url={Config.pageMeta.home.url}
       />
       <RichTextPageContent richTextBodyField={pageContent.body} />
-      {/* {process.browser && <DynamicComponentWithNoSSR />} */}
 
       <RecentPostList posts={recentPosts} />
     </MainLayout>
