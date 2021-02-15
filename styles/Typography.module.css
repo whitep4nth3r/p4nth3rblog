@@ -41,24 +41,40 @@
 }
 
 .heading__h4 {
-  /* TODO */
-  color: blue;
+  /* todo - clamp! */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
 }
 
 .heading__h5 {
-  /* TODO */
-  color: blue;
+  /* todo - clamp! */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
 }
 
 .heading__h6 {
-  /* TODO */
-  color: blue;
+  /* todo - clamp! */
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-foreground);
 }
 
 .bodyCopy {
   /* todo - clamp! */
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 2;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);

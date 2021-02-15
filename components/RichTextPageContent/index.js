@@ -55,14 +55,18 @@ export function getRenderOptions(links, isBlogPost = false) {
           {children}
         </a>
       ),
-      [BLOCKS.HR]: (text) => <hr className={TypographyStyles.heading__hr} />,
+      [BLOCKS.HR]: (text) => (
+        <hr className={RichTextPageContentStyles.page__hr} />
+      ),
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1 className={TypographyStyles.heading__h1}>{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => {
         if (isBlogPost) {
           return (
-            <div className={RichTextPageContentStyles.page__h2Container}>
+            <div
+              className={RichTextPageContentStyles.page__linkedHeaderContainer}
+            >
               <h2
                 id={`${slugifyString(children[0])}`}
                 className={TypographyStyles.heading__h2}
@@ -70,7 +74,7 @@ export function getRenderOptions(links, isBlogPost = false) {
                 {children}
               </h2>
               <a
-                className={RichTextPageContentStyles.page__h2Link}
+                className={RichTextPageContentStyles.page__headerLink}
                 href={`#${slugifyString(children[0])}`}
               >
                 <LinkIcon />
