@@ -1,3 +1,4 @@
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import RichTextPageContentStyles from "./RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
@@ -103,14 +104,17 @@ export function getRenderOptions(links, isBlogPost = false) {
         </blockquote>
       ),
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className={TypographyStyles.heading__ul}>{children}</ul>
+        <ul className={RichTextPageContentStyles.page__ul}>{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className={TypographyStyles.heading__ol}>{children}</ol>
+        <ol className={RichTextPageContentStyles.page__ol}>{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
         <li
-          className={[TypographyStyles.bodyCopy, TypographyStyles.heading__li]}
+          className={[
+            TypographyStyles.bodyCopy,
+            RichTextPageContentStyles.page__li,
+          ]}
         >
           {children}
         </li>
@@ -136,14 +140,15 @@ export function getRenderOptions(links, isBlogPost = false) {
           node.data.target.sys.id,
         );
         return (
-          /* todo - nextJS image component */
-          <img
-            className={RichTextPageContentStyles.page__img}
-            src={url}
-            alt={description}
-            height={height}
-            width={width}
-          />
+          <div className={RichTextPageContentStyles.page__imgContainer}>
+            <Image
+              src={url}
+              alt={description}
+              height={height}
+              width={width}
+              layout="responsive"
+            />
+          </div>
         );
       },
     },

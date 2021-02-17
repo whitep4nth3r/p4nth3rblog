@@ -4,20 +4,28 @@ import ContentfulApi from "@utils/ContentfulApi";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
+import HeroBanner from "@components/HeroBanner";
 
 export default function Home(props) {
   const { pageContent, recentPosts } = props;
+  console.log(pageContent);
 
   return (
-    <MainLayout>
-      <PageMeta
-        title={pageContent.title}
-        description={pageContent.description}
-        url={Config.pageMeta.home.url}
-      />
-      <RichTextPageContent richTextBodyField={pageContent.body} />
-      <RecentPostList posts={recentPosts} />
-    </MainLayout>
+    <>
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
+      <MainLayout>
+        <PageMeta
+          title={pageContent.title}
+          description={pageContent.description}
+          url={Config.pageMeta.home.url}
+        />
+
+        <RichTextPageContent richTextBodyField={pageContent.body} />
+        <RecentPostList posts={recentPosts} />
+      </MainLayout>
+    </>
   );
 }
 

@@ -13,6 +13,20 @@ export default class ContentfulApi {
           sys {
             id
           }
+          heroBanner {
+            headline
+            subHeading
+            internalLink
+            externalLink
+            ctaText
+            image {
+              url
+              title
+              description
+              width
+              height
+            }
+          }
           title
           description
           slug

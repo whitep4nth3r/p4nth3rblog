@@ -3,7 +3,6 @@
 Fun stuff:
 
 1. NextJS Image component
-2. Config stuff
 
 Typography TODO:
 

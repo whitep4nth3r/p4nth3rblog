@@ -56,7 +56,7 @@
   color: var(--color-foreground);
 }
 
-.page__img {
+.page__imgContainer {
   width: 100%;
   height: auto;
   margin: 1rem 0 2rem 0;

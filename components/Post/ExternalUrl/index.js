@@ -1,6 +1,6 @@
 import ExternalUrlStyles from "./ExternalUrl.module.css";
 import Link from "next/link";
-import InfoSvg from "@components/InfoSvg";
+import InfoSvg from "./InfoSvg";
 
 export default function ExternalUrl(props) {
   const { url } = props;

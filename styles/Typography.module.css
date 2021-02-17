@@ -1,6 +1,6 @@
 .heading__h1 {
   font-size: clamp(2.2rem, 3vw, 3rem);
-  line-height: 1.8;
+  line-height: 1.5;
   margin-bottom: 3rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);

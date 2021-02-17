@@ -1,8 +1,8 @@
 import RichTextPageContentStyles from "@components/RichTextPageContent/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
-import Tags from "@components/Tags";
-import PublishedDate from "@components/PublishedDate";
-import ExternalUrl from "@components/ExternalUrl";
+import Tags from "@components/Post/Tags";
+import PublishedDate from "@components/Post/PublishedDate";
+import ExternalUrl from "@components/Post/ExternalUrl";
 import RichTextPageContent from "@components/RichTextPageContent";
 
 export default function Post(props) {
