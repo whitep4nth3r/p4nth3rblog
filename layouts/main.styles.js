@@ -3,9 +3,9 @@ import "prismjs/themes/prism-okaidia.css";
 
 export default css.global`
   :root {
-    --color-primary: #f11012;
+    --color-primary: #ffb626;
     --color-secondary: #82af3a;
-    --color-tertiary: #ffb626;
+    --color-tertiary: #f11012;
     --color-foreground: #0f111a;
     --color-background: #ffffff;
     --color-muted: #666666;
@@ -20,7 +20,10 @@ export default css.global`
     --font-family-body: "Work Sans", sans-serif;
 
     --global-transition-time: 0.2s;
+
+    --wrapper-max-width: 45rem;
   }
+
   html {
     font-size: 100%;
     background-color: var(--color-background);
@@ -37,12 +40,5 @@ export default css.global`
   * {
     margin: 0;
     box-sizing: border-box;
-  }
-
-  .mainWrapper {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 45rem;
-    padding: 1rem;
   }
 `;

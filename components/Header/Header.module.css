@@ -27,7 +27,7 @@
 }
 
 .header__navListItem.header__navListItem__active {
-  color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .header__navListItemLink {
@@ -45,7 +45,7 @@
 
 .header__navListItemLink:focus {
   outline-width: 0;
-  box-shadow: var(--color-tertiary) 0 0 0 0.25rem;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
   transition: box-shadow var(--global-transition-time) ease 0s;
 }
 

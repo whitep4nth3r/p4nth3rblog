@@ -6,7 +6,7 @@ export default function MainLayout(props) {
   return (
     <>
       <Header />
-      <main className="mainWrapper">{props.children}</main>
+      <main>{props.children}</main>
       <Footer />
 
       <style jsx global>

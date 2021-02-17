@@ -60,7 +60,7 @@
 
 .pagination__listItem__active a {
   text-decoration: underline;
-  text-decoration-color: var(--color-tertiary);
+  text-decoration-color: var(--color-primary);
   text-underline-offset: 0.5rem;
   text-decoration-thickness: 0.125rem;
 }

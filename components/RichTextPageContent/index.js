@@ -36,7 +36,12 @@ export function getRenderOptions(links, isBlogPost = false) {
   return {
     renderMark: {
       [MARKS.BOLD]: (text) => (
-        <b className={[TypographyStyles.bodyCopy, bodyCopy.bodyCopy__bold]}>
+        <b
+          className={[
+            TypographyStyles.bodyCopy,
+            TypographyStyles.bodyCopy__bold,
+          ]}
+        >
           {text}
         </b>
       ),
@@ -139,6 +144,7 @@ export function getRenderOptions(links, isBlogPost = false) {
         const { title, url, height, width, description } = assetBlockMap.get(
           node.data.target.sys.id,
         );
+
         return (
           <div className={RichTextPageContentStyles.page__imgContainer}>
             <Image

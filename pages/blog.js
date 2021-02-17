@@ -4,6 +4,7 @@ import PageMeta from "@components/PageMeta";
 import PostList from "@components/PostList";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
+import ContentWrapper from "@components/ContentWrapper";
 
 export default function BlogIndex(props) {
   const { postSummaries, totalPosts, pageContent, url } = props;
@@ -15,8 +16,10 @@ export default function BlogIndex(props) {
         description={pageContent.description}
         url={Config.pageMeta.blogIndex.url}
       />
-      <RichTextPageContent richTextBodyField={pageContent.body} />
-      <PostList posts={postSummaries} totalPosts={totalPosts} />
+      <ContentWrapper>
+        <RichTextPageContent richTextBodyField={pageContent.body} />
+        <PostList posts={postSummaries} totalPosts={totalPosts} />
+      </ContentWrapper>
     </MainLayout>
   );
 }

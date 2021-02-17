@@ -3,6 +3,7 @@ import Post from "@components/Post";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
+import ContentWrapper from "@components/ContentWrapper";
 
 export default function PostWrapper(props) {
   const { post } = props;
@@ -15,7 +16,9 @@ export default function PostWrapper(props) {
         url={`${Config.pageMeta.blogIndex.url}/${post.slug}`}
         canonical={post.externalUrl ? post.externalUrl : false}
       />
-      <Post post={post} />
+      <ContentWrapper>
+        <Post post={post} />
+      </ContentWrapper>
     </MainLayout>
   );
 }
