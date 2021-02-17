@@ -1,10 +1,5 @@
 # p4nth3rblog
 
-Fun stuff:
-
-1. NextJS Image component - done on blog [slug]
-2. Hero banner - how to use the Contentful Images API to optimise the display of the huge hero banner images
-
 Typography TODO:
 
 1. Apply typography styles to markdown excerpts via `<React-Markdown>` including `<p>`

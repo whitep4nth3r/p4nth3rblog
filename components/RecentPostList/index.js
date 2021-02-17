@@ -48,7 +48,7 @@ export default function RecentPostList(props) {
         ))}
       </ol>
       <Link href={Config.pageMeta.blogIndex.slug}>
-        <a className={ButtonStyles.button}>Read more</a>
+        <a className={ButtonStyles.button}>See more articles</a>
       </Link>
     </>
   );

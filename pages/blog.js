@@ -5,6 +5,7 @@ import PostList from "@components/PostList";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
+import HeroBanner from "@components/HeroBanner";
 
 export default function BlogIndex(props) {
   const { postSummaries, totalPosts, pageContent, url } = props;
@@ -16,6 +17,11 @@ export default function BlogIndex(props) {
         description={pageContent.description}
         url={Config.pageMeta.blogIndex.url}
       />
+
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
+
       <ContentWrapper>
         <RichTextPageContent richTextBodyField={pageContent.body} />
         <PostList posts={postSummaries} totalPosts={totalPosts} />

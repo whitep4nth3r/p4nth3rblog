@@ -18,7 +18,7 @@ export const Config = {
     },
   },
   pagination: {
-    pageSize: 2,
+    pageSize: 6,
     recentPostsSize: 3,
   },
   menuLinks: [

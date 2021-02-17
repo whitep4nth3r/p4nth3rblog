@@ -23,7 +23,7 @@ export default function HeroBanner(props) {
         src={image.url}
         alt={image.description}
       />
-      <div className={HeroBannerStyles.heroBanner__overlay}></div>
+      <span className={HeroBannerStyles.heroBanner__overlay}></span>
       <div className={HeroBannerStyles.heroBanner__inner}>
         <div className={HeroBannerStyles.heroBanner__textContainer}>
           {headline && (
@@ -56,13 +56,6 @@ export default function HeroBanner(props) {
             </a>
           </div>
         )}
-        {/* <Image
-        src={image.url}
-        // height={image.height}
-        // width={image.width}
-        alt={image.description}
-        layout="fill"
-      /> */}
       </div>
     </section>
   );
