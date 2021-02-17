@@ -1,8 +1,8 @@
-import ContentfulApi from "../../utils/ContentfulApi";
-import Post from "../../components/Post";
-import { Config } from "../../utils/Config";
-import PageMeta from "../../components/PageMeta";
-import MainLayout from "../../layouts/main";
+import ContentfulApi from "@utils/ContentfulApi";
+import Post from "@components/Post";
+import { Config } from "@utils/Config";
+import PageMeta from "@components/PageMeta";
+import MainLayout from "@layouts/main";
 
 export default function PostWrapper(props) {
   const { post } = props;

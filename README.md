@@ -1,13 +1,13 @@
 # p4nth3rblog
 
-Typography TODO:
-
-1. Apply typography styles to markdown excerpts via `<React-Markdown>` including `<p>`
-2. Apply clamp styles to all typography
-
 Fun stuff:
 
 1. NextJS Image component
+2. Config stuff
+
+Typography TODO:
+
+1. Apply typography styles to markdown excerpts via `<React-Markdown>` including `<p>`
 
 API to do:
 

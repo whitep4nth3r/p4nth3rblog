@@ -1,6 +1,6 @@
-import globalStyles from "./main.styles.js";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import GlobalStyles from "./main.styles.js";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 export default function MainLayout(props) {
   return (
@@ -10,7 +10,7 @@ export default function MainLayout(props) {
       <Footer />
 
       <style jsx global>
-        {globalStyles}
+        {GlobalStyles}
       </style>
     </>
   );

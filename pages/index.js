@@ -1,9 +1,9 @@
-import { Config } from "../utils/Config";
-import PageMeta from "../components/PageMeta";
-import ContentfulApi from "../utils/ContentfulApi";
-import RichTextPageContent from "../components/RichTextPageContent";
-import MainLayout from "../layouts/main";
-import RecentPostList from "../components/RecentPostList";
+import { Config } from "@utils/Config";
+import PageMeta from "@components/PageMeta";
+import ContentfulApi from "@utils/ContentfulApi";
+import RichTextPageContent from "@components/RichTextPageContent";
+import MainLayout from "@layouts/main";
+import RecentPostList from "@components/RecentPostList";
 
 export default function Home(props) {
   const { pageContent, recentPosts } = props;

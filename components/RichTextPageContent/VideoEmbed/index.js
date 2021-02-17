@@ -1,12 +1,12 @@
-import styles from "./VideoEmbed.module.css";
+import VideoEmbedStyles from "./VideoEmbed.module.css";
 
 export default function VideoEmbed(props) {
   const { embedUrl, title } = props;
 
   return (
-    <div className={styles.videoEmbed}>
+    <div className={VideoEmbedStyles.videoEmbed}>
       <iframe
-        className={styles.videoEmbed__iframe}
+        className={VideoEmbedStyles.videoEmbed__iframe}
         src={embedUrl}
         height="100%"
         width="100%"

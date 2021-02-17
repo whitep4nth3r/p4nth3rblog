@@ -1,10 +1,9 @@
 import dynamic from "next/dynamic";
+import RichTextPageContentStyles from "./RichTextPageContent.module.css";
+import TypographyStyles from "@styles/Typography.module.css";
+import LinkIcon from "./svgs/LinkIcon";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import RichTextPageContentStyles from "./RichTextPageContent.module.css";
-import TypographyStyles from "../../styles/Typography.module.css";
-
-import LinkIcon from "./svgs/LinkIcon";
 
 function slugifyString(string) {
   return string
@@ -25,15 +24,13 @@ const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"), {
 });
 
 export function getRenderOptions(links, isBlogPost = false) {
-  const assetBlockMap = links?.assets?.block?.reduce((map, asset) => {
-    map.set(asset.sys.id, asset);
-    return map;
-  }, new Map());
+  const assetBlockMap = new Map(
+    links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
+  );
 
-  const entryBlockMap = links?.entries?.block?.reduce((map, entry) => {
-    map.set(entry.sys.id, entry);
-    return map;
-  }, new Map());
+  const entryBlockMap = new Map(
+    links?.entries?.block?.map((entry) => [entry.sys.id, entry]),
+  );
 
   return {
     renderMark: {

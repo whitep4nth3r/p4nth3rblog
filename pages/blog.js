@@ -1,9 +1,9 @@
-import ContentfulApi from "../utils/ContentfulApi";
-import { Config } from "../utils/Config";
-import PageMeta from "../components/PageMeta";
-import PostList from "../components/PostList";
-import RichTextPageContent from "../components/RichTextPageContent";
-import MainLayout from "../layouts/main";
+import ContentfulApi from "@utils/ContentfulApi";
+import { Config } from "@utils/Config";
+import PageMeta from "@components/PageMeta";
+import PostList from "@components/PostList";
+import RichTextPageContent from "@components/RichTextPageContent";
+import MainLayout from "@layouts/main";
 
 export default function BlogIndex(props) {
   const { postSummaries, totalPosts, pageContent, url } = props;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Config } from "../../utils/Config";
+import { Config } from "@utils/Config";
 
 export default function PageMeta(props) {
   const { title, description, url, canonical } = props;

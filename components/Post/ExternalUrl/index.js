@@ -1,6 +1,6 @@
-import styles from "./ExternalUrl.module.css";
+import ExternalUrlStyles from "./ExternalUrl.module.css";
 import Link from "next/link";
-import InfoSvg from "./InfoSvg";
+import InfoSvg from "@components/InfoSvg";
 
 export default function ExternalUrl(props) {
   const { url } = props;
@@ -10,17 +10,17 @@ export default function ExternalUrl(props) {
   }
 
   return (
-    <div className={styles.externalUrl}>
-      <span className={styles.externalUrl__svgContainer}>
+    <div className={ExternalUrlStyles.externalUrl}>
+      <span className={ExternalUrlStyles.externalUrl__svgContainer}>
         <InfoSvg />
       </span>
-      <p className={styles.externalUrl__text}>
+      <p className={ExternalUrlStyles.externalUrl__text}>
         Originally published on{" "}
         <Link href={url}>
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.externalUrl__link}
+            className={ExternalUrlStyles.externalUrl__link}
           >
             {formatUrlForDisplay(url)}
           </a>

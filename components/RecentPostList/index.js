@@ -1,18 +1,20 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import styles from "./RecentPostList.module.css";
-import ButtonStyles from "../../styles/Button.module.css";
-import PublishedDate from "../Post/PublishedDate";
-import Tags from "../Post/Tags";
-import TypographyStyles from "../../styles/Typography.module.css";
-import ContentListStyles from "../../styles/ContentList.module.css";
-import { Config } from "../../utils/Config";
+import RecentPostListStyles from "./RecentPostList.module.css";
+import ButtonStyles from "@styles/Button.module.css";
+import PublishedDate from "@components/Post/PublishedDate";
+import Tags from "@components/Post/Tags";
+import TypographyStyles from "@styles/Typography.module.css";
+import ContentListStyles from "@styles/ContentList.module.css";
+import { Config } from "@utils/Config";
 
 export default function RecentPostList(props) {
   const { posts } = props;
   return (
     <>
-      <h2 className={styles.recentPostList__header}>Recent articles</h2>
+      <h2 className={RecentPostListStyles.recentPostList__header}>
+        Recent articles
+      </h2>
       <ol className={ContentListStyles.contentList}>
         {posts.map((post) => (
           <li key={post.sys.id}>
