@@ -21,7 +21,7 @@ export default css.global`
 
     --global-transition-time: 0.2s;
 
-    --wrapper-max-width: 45rem;
+    --wrapper-max-width: 48rem;
   }
 
   html {

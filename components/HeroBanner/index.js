@@ -14,10 +14,15 @@ export default function HeroBanner(props) {
   } = props.data;
 
   return (
-    <section
-      className={HeroBannerStyles.heroBanner}
-      style={{ backgroundImage: `url(${image.url})` }} //todo - optimise with contentful api
-    >
+    <section className={HeroBannerStyles.heroBanner}>
+      <Image
+        className={HeroBannerStyles.heroBanner__bgImg}
+        layout="fill"
+        quality={100}
+        priority={true}
+        src={image.url}
+        alt={image.description}
+      />
       <div className={HeroBannerStyles.heroBanner__overlay}></div>
       <div className={HeroBannerStyles.heroBanner__inner}>
         <div className={HeroBannerStyles.heroBanner__textContainer}>

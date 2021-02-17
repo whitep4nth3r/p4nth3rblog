@@ -21,6 +21,12 @@
   z-index: 0;
 }
 
+.heroBanner__bgImg {
+  object-position: center;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 .heroBanner__inner {
   width: 100%;
   max-width: var(--wrapper-max-width);
