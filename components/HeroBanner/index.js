@@ -18,7 +18,6 @@ export default function HeroBanner(props) {
       <Image
         className={HeroBannerStyles.heroBanner__bgImg}
         layout="fill"
-        quality={100}
         priority={true}
         src={image.url}
         alt={image.description}
