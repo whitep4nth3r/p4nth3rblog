@@ -81,6 +81,7 @@ export default class ContentfulApi {
 
   /*
    * Get all blog post slugs
+   * TODO - paginate these?
    */
   static async getPostSlugs() {
     const query = `
