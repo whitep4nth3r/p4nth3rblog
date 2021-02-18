@@ -6,7 +6,7 @@
   justify-content: center;
   margin-bottom: 2rem;
   background-color: var(--color-foreground);
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .header__navList {

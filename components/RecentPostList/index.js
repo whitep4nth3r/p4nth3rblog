@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import RecentPostListStyles from "./RecentPostList.module.css";
+import RecentPostListStyles from "@styles/RecentPostList.module.css";
 import ButtonStyles from "@styles/Button.module.css";
 import PublishedDate from "@components/Post/PublishedDate";
 import Tags from "@components/Post/Tags";

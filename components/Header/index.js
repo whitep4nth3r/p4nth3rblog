@@ -1,4 +1,4 @@
-import HeaderStyles from "./Header.module.css";
+import HeaderStyles from "@styles/Header.module.css";
 import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
 import { useRouter } from "next/router";

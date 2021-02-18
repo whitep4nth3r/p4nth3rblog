@@ -1,4 +1,4 @@
-import FooterStyles from "./Footer.module.css";
+import FooterStyles from "@styles/Footer.module.css";
 import { Config } from "@utils/Config";
 
 export default function Footer() {

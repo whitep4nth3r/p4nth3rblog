@@ -1,4 +1,4 @@
-import SocialLinksStyles from "./SocialLinks.module.css";
+import SocialLinksStyles from "@styles/SocialLinks.module.css";
 import Discord from "./svgs/discord";
 import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";

@@ -1,4 +1,4 @@
-import TagsStyles from "./Tags.module.css";
+import TagsStyles from "@styles/Tags.module.css";
 
 export default function Tags(props) {
   const { tags } = props;

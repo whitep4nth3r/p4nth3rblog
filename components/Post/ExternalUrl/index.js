@@ -1,4 +1,4 @@
-import ExternalUrlStyles from "./ExternalUrl.module.css";
+import ExternalUrlStyles from "@styles/ExternalUrl.module.css";
 import Link from "next/link";
 import InfoSvg from "./InfoSvg";
 

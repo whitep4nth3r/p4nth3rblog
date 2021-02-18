@@ -1,6 +1,6 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import RichTextPageContentStyles from "./RichTextPageContent.module.css";
+import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
 import LinkIcon from "./svgs/LinkIcon";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";

@@ -1,4 +1,4 @@
-import PaginationStyles from "./Pagination.module.css";
+import PaginationStyles from "@styles/Pagination.module.css";
 import Link from "next/link";
 import ChevronLeft from "./svgs/ChevronLeft";
 import ChevronRight from "./svgs/ChevronRight";

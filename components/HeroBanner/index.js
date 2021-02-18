@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HeroBannerStyles from "./HeroBanner.module.css";
+import HeroBannerStyles from "@styles/HeroBanner.module.css";
 import ButtonStyles from "@styles/Button.module.css";
 
 export default function HeroBanner(props) {

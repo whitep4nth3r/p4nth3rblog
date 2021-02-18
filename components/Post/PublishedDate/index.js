@@ -1,4 +1,4 @@
-import PublishedDateStyles from "./PublishedDate.module.css";
+import PublishedDateStyles from "@styles/PublishedDate.module.css";
 import {
   formatPublishedDateForDateTime,
   formatPublishedDateForDisplay,
