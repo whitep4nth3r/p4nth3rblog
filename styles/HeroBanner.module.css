@@ -10,6 +10,7 @@
   margin-bottom: 2rem;
   border-top: 0.5rem solid var(--color-primary);
   border-bottom: 0.5rem solid var(--color-primary);
+  background-color: var(--color-foreground);
 }
 
 .heroBanner__overlay {
