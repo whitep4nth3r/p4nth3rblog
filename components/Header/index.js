@@ -3,12 +3,16 @@ import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
 import { useRouter } from "next/router";
 import { Config } from "@utils/Config";
+import Logo from "./svg/Logo";
 
 export default function Header() {
   const router = useRouter();
 
   return (
     <header className={HeaderStyles.header}>
+      <div className={HeaderStyles.header__logoContainer}>
+        <Logo />
+      </div>
       <nav className={HeaderStyles.header__nav} role="navigation">
         <ul className={HeaderStyles.header__navList}>
           {Config.menuLinks.map((link) => {

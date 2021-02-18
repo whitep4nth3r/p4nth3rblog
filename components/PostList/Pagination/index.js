@@ -1,7 +1,7 @@
 import PaginationStyles from "@styles/Pagination.module.css";
 import Link from "next/link";
-import ChevronLeft from "./svgs/ChevronLeft";
-import ChevronRight from "./svgs/ChevronRight";
+import ChevronLeft from "./svg/ChevronLeft";
+import ChevronRight from "./svg/ChevronRight";
 
 export default function Pagination(props) {
   const { totalPages, currentPage, prevDisabled, nextDisabled } = props;

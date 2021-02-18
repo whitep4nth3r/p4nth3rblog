@@ -2,11 +2,13 @@
   background-color: var(--color-foreground);
   padding: 4rem 2rem;
   margin-top: 2rem;
+  border-top: 0.5rem solid var(--color-tertiary);
 }
 
 .footer__copyright {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1;
+  font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
   color: var(--color-primary);
   display: flex;
