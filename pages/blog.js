@@ -5,6 +5,7 @@ import PostList from "@components/PostList";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
+import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
 
 export default function BlogIndex(props) {
@@ -23,7 +24,9 @@ export default function BlogIndex(props) {
       )}
 
       <ContentWrapper>
-        <RichTextPageContent richTextBodyField={pageContent.body} />
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
         <PostList posts={postSummaries} totalPosts={totalPosts} />
       </ContentWrapper>
     </MainLayout>

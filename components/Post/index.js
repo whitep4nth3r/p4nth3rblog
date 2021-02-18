@@ -1,4 +1,4 @@
-import RichTextPageContentStyles from "@components/RichTextPageContent/RichTextPageContent.module.css";
+import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
 import Tags from "@components/Post/Tags";
 import PublishedDate from "@components/Post/PublishedDate";

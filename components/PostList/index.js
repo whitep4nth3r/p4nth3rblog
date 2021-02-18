@@ -9,6 +9,7 @@ import Pagination from "@components/PostList/Pagination";
 import ContentfulApi from "@utils/ContentfulApi";
 import TypographyStyles from "@styles/Typography.module.css";
 import ContentListStyles from "@styles/ContentList.module.css";
+import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 
 function shouldDisablePrev(newCurrentPage) {
   return newCurrentPage === 1;
@@ -72,19 +73,9 @@ export default function PostList(props) {
               {post.tags !== null && <Tags tags={post.tags} />}
               <div className={ContentListStyles.contentList__excerpt}>
                 <ReactMarkdown
-                  renderers={{
-                    link: (props) => (
-                      <a
-                        href={props.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={TypographyStyles.inlineLink}
-                      />
-                    ),
-                  }}
-                >
-                  {post.excerpt}
-                </ReactMarkdown>
+                  children={post.excerpt}
+                  renderers={ReactMarkdownRenderers(post.excerpt)}
+                />
               </div>
             </article>
           </li>

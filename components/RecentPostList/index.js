@@ -4,9 +4,9 @@ import RecentPostListStyles from "@styles/RecentPostList.module.css";
 import ButtonStyles from "@styles/Button.module.css";
 import PublishedDate from "@components/Post/PublishedDate";
 import Tags from "@components/Post/Tags";
-import TypographyStyles from "@styles/Typography.module.css";
 import ContentListStyles from "@styles/ContentList.module.css";
 import { Config } from "@utils/Config";
+import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 
 export default function RecentPostList(props) {
   const { posts } = props;
@@ -30,18 +30,9 @@ export default function RecentPostList(props) {
               {post.tags !== null && <Tags tags={post.tags} />}
               <div className={ContentListStyles.contentList__excerpt}>
                 <ReactMarkdown
-                  renderers={{
-                    link: (props) => (
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={TypographyStyles.inlineLink}
-                      />
-                    ),
-                  }}
-                >
-                  {post.excerpt}
-                </ReactMarkdown>
+                  children={post.excerpt}
+                  renderers={ReactMarkdownRenderers(post.excerpt)}
+                />
               </div>
             </article>
           </li>

@@ -10,6 +10,7 @@
 .heading__h2 {
   font-size: clamp(2rem, 2.8vw, 1.8rem);
   line-height: 1.8;
+  margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
   color: var(--color-foreground);

@@ -6,6 +6,7 @@ import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
 import ContentWrapper from "@components/ContentWrapper";
+import PageContentWrapper from "@components/PageContentWrapper";
 
 export default function Home(props) {
   const { pageContent, recentPosts } = props;
@@ -24,7 +25,9 @@ export default function Home(props) {
         )}
 
         <ContentWrapper>
-          <RichTextPageContent richTextBodyField={pageContent.body} />
+          <PageContentWrapper>
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+          </PageContentWrapper>
           <RecentPostList posts={recentPosts} />
         </ContentWrapper>
       </MainLayout>
