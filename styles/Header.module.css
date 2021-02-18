@@ -17,7 +17,6 @@
 .header__nav {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
   background-color: var(--color-foreground);
   padding: 0.5rem 1rem;
   border-bottom: 0.5rem solid var(--color-tertiary);

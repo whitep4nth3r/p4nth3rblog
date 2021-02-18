@@ -11,7 +11,7 @@ export default function PageMeta(props) {
 
       <meta name="description" content={description} />
 
-      <meta name="title" content={title} />
+      <meta name="title" content={`${title} | {Config.site.title}`} />
 
       {canonical && <link rel="canonical" href={canonical} />}
 

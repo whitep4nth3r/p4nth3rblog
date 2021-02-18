@@ -17,6 +17,8 @@
   width: 25%;
   max-width: 2.75rem;
   display: block;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .socialLinks__listItemLink {
