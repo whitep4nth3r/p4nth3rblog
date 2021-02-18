@@ -45,6 +45,9 @@ export function getRenderOptions(links, isBlogPost = false) {
           {text}
         </b>
       ),
+      [MARKS.CODE]: (text) => (
+        <code className={TypographyStyles.inlineCode}>{text}</code>
+      ),
     },
 
     renderNode: {

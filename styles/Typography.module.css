@@ -9,7 +9,7 @@
 
 .heading__h2 {
   font-size: clamp(2rem, 2.8vw, 1.8rem);
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -18,7 +18,7 @@
 
 .heading__h3 {
   font-size: 1.4rem;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -27,7 +27,7 @@
 
 .heading__h4 {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -36,7 +36,7 @@
 
 .heading__h5 {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -45,7 +45,7 @@
 
 .heading__h6 {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -118,4 +118,16 @@
 .inlineLink:focus:active {
   outline-width: 0;
   box-shadow: unset;
+}
+
+.inlineCodeContainer {
+  display: inline;
+}
+
+.inlineCode {
+  color: var(--color-background);
+  background-color: var(--color-foreground);
+  text-shadow: 0 1px rgb(0 0 0 / 30%);
+  font-family: var(--font-family-code);
+  font-size: 1rem;
 }

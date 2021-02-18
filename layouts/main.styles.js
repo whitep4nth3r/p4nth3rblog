@@ -18,6 +18,8 @@ export default css.global`
 
     --font-family-heading: "Work Sans", sans-serif;
     --font-family-body: "Work Sans", sans-serif;
+    --font-family-code: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+      monospace;
 
     --global-transition-time: 0.2s;
 

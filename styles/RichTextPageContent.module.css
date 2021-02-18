@@ -65,36 +65,3 @@
   height: auto;
   margin: 1rem 0 2rem 0;
 }
-
-.page__table {
-  width: 100%;
-  text-align: left;
-  border: 0.125rem solid var(--color-foreground);
-  border-collapse: collapse;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-/* 
-.content :global(figure) {
-  width: 100%;
-  display: block;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-}
-
-.content :global(figure) :global(img) {
-  margin-bottom: 1rem;
-  border: 0.25rem solid var(--yellow);
-}
-
-.content :global(figure) :global(figcaption) {
-  font-size: 1.2rem;
-  line-height: 1.8rem;
-  font-style: italic;
-  margin-top: 1rem;
-  color: var(--yellow);
-}
-*/
