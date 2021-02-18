@@ -1,5 +1,5 @@
 import CodeBlockStyles from "./CodeBlock.module.css";
-import Prism from "Prismjs";
+import Prism from "prismjs";
 import { useEffect } from "react";
 
 export default function CodeBlock(props) {
