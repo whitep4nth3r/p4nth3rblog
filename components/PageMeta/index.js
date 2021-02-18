@@ -53,12 +53,6 @@ export default function PageMeta(props) {
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0f111a" />
       <meta name="msapplication-TileColor" content="#b91d47" />
       <meta name="theme-color" content="#f11012" />
-
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700&amp;display=swap"
-        rel="stylesheet"
-      />
     </Head>
   );
 }
