@@ -3,6 +3,8 @@ import Discord from "./svgs/discord";
 import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";
 import GitHub from "./svgs/github";
+import Feed from "./svgs/feed";
+import { Config } from "@utils/Config";
 
 const socialLinksList = [
   {
@@ -28,6 +30,12 @@ const socialLinksList = [
     url: "https://twitter.com/whitep4nth3r",
     ariaLabel: "Follow whitep4nth3r on Twitter",
     svg: <Twitter />,
+  },
+  {
+    name: "RSS Feed",
+    url: "feed.xml",
+    ariaLabel: `View the RSS feed of ${Config.site.domain}`,
+    svg: <Feed />,
   },
 ];
 

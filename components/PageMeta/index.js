@@ -11,9 +11,16 @@ export default function PageMeta(props) {
 
       <meta name="description" content={description} />
 
-      <meta name="title" content={`${title} | {Config.site.title}`} />
+      <meta name="title" content={`${title} | ${Config.site.title}`} />
 
       {canonical && <link rel="canonical" href={canonical} />}
+
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`RSS Feed for ${Config.site.domain}`}
+        href="/feed.xml"
+      />
 
       <meta property="og:title" content={title} />
       <meta property="twitter:title" content={title} />
