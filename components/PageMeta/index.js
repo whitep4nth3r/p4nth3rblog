@@ -19,7 +19,7 @@ export default function PageMeta(props) {
         rel="alternate"
         type="application/rss+xml"
         title={`RSS Feed for ${Config.site.domain}`}
-        href="/feed.xml"
+        href={`https://${Config.site.domain}/feed.xml`}
       />
 
       <meta property="og:title" content={title} />
