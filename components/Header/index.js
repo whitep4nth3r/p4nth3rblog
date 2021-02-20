@@ -11,7 +11,11 @@ export default function Header() {
   return (
     <header className={HeaderStyles.header}>
       <div className={HeaderStyles.header__logoContainer}>
-        <Logo />
+        <Link href="/">
+          <a>
+            <Logo />
+          </a>
+        </Link>
       </div>
       <nav className={HeaderStyles.header__nav} role="navigation">
         <ul className={HeaderStyles.header__navList}>
