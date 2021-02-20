@@ -1,9 +1,29 @@
 import ContentfulApi from "@utils/ContentfulApi";
 import fs from "fs";
+import PageMeta from "@components/PageMeta";
+import MainLayout from "@layouts/main";
+import ContentWrapper from "@components/ContentWrapper";
+import PageContentWrapper from "@components/PageContentWrapper";
+import RichTextPageContent from "@components/RichTextPageContent";
 import { Config } from "@utils/Config";
 
-export default function rss() {
-  return null;
+export default function buildRss(props) {
+  const { pageContent } = props;
+  return (
+    <MainLayout>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.buildRss.url}
+      />
+
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
+      </ContentWrapper>
+    </MainLayout>
+  );
 }
 
 function buildRssItems(posts) {
@@ -24,6 +44,10 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
+  const pageContent = await ContentfulApi.getPageContentBySlug(
+    Config.pageMeta.buildRss.slug,
+  );
+
   const blogPostSlugs = await ContentfulApi.getPostSlugs();
 
   const posts = await Promise.all(
@@ -51,6 +75,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      pageContent,
       feedString,
     },
   };

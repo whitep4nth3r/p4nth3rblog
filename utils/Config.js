@@ -18,6 +18,10 @@ export const Config = {
     post: {
       slug: "/blog/[slug]",
     },
+    buildRss: {
+      url: "https://whitep4nth3r.com/buildrss",
+      slug: "/buildrss",
+    },
   },
   pagination: {
     pageSize: 6,
