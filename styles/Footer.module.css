@@ -1,8 +1,17 @@
 .footer {
   background-color: var(--color-foreground);
-  padding: 4rem 2rem;
+  padding: 2rem 2rem 4rem;
   margin-top: 2rem;
   border-top: 0.5rem solid var(--color-tertiary);
+}
+
+.footer__ctaContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
 }
 
 .footer__copyright {

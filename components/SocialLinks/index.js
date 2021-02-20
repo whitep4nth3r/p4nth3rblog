@@ -39,7 +39,9 @@ const socialLinksList = [
   },
 ];
 
-export default function SocialLinks() {
+export default function SocialLinks(props) {
+  const { fillColor } = props;
+
   return (
     <div className={SocialLinksStyles.socialLinks}>
       <ul className={SocialLinksStyles.socialLinks__list}>
@@ -50,6 +52,7 @@ export default function SocialLinks() {
           >
             <a
               className={SocialLinksStyles.socialLinks__listItemLink}
+              style={{ color: fillColor }}
               href={link.url}
               aria-label={link.ariaLabel}
               target="_blank"

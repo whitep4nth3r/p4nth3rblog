@@ -1,6 +1,6 @@
 export const Config = {
   site: {
-    owner: "whitep4nth3r",
+    owner: "Salma Alam-Naylor | whitep4nth3r",
     title: "whitep4nth3r.com | Build stuff, learn things, love what you do",
     domain: "whitep4nth3r.com",
     feedDescription:
