@@ -12,9 +12,7 @@ export default function Header() {
     <header className={HeaderStyles.header}>
       <div className={HeaderStyles.header__logoContainer}>
         <Link href="/">
-          <a>
-            <Logo />
-          </a>
+          <Logo />
         </Link>
       </div>
       <nav className={HeaderStyles.header__nav} role="navigation">
