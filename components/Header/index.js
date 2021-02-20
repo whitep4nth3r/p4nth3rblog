@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/">
           <a
             className={HeaderStyles.header__logoContainerLink}
-            ariaLabel="Navigate to home page"
+            aria-label="Navigate to home page"
           >
             <Logo />
           </a>
