@@ -12,7 +12,12 @@ export default function Header() {
     <header className={HeaderStyles.header}>
       <div className={HeaderStyles.header__logoContainer}>
         <Link href="/">
-          <Logo />
+          <a
+            className={HeaderStyles.header__logoContainerLink}
+            ariaLabel="Navigate to home page"
+          >
+            <Logo />
+          </a>
         </Link>
       </div>
       <nav className={HeaderStyles.header__nav} role="navigation">
