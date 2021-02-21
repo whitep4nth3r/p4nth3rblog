@@ -1,4 +1,5 @@
 .socialLinks {
+  width: 100%;
   max-width: 20rem;
   margin-left: auto;
   margin-right: auto;
@@ -7,18 +8,15 @@
 .socialLinks__list {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 2rem 1rem;
   list-style: none;
   padding: 0;
 }
 
 .socialLinks__listItem {
-  width: 25%;
   max-width: 2.75rem;
-  display: block;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  display: inline-flex;
 }
 
 .socialLinks__listItemLink {

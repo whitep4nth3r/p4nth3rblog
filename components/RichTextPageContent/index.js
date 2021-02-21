@@ -37,10 +37,7 @@ export function getRenderOptions(links, isBlogPost = false) {
     renderMark: {
       [MARKS.BOLD]: (text) => (
         <b
-          className={[
-            TypographyStyles.bodyCopy,
-            TypographyStyles.bodyCopy__bold,
-          ]}
+          className={`${TypographyStyles.bodyCopy} ${TypographyStyles.bodyCopy__bold}`}
         >
           {text}
         </b>
@@ -119,10 +116,7 @@ export function getRenderOptions(links, isBlogPost = false) {
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
         <li
-          className={[
-            TypographyStyles.bodyCopy,
-            RichTextPageContentStyles.page__li,
-          ]}
+          className={`${TypographyStyles.bodyCopy} ${RichTextPageContentStyles.page__li}`}
         >
           {children}
         </li>

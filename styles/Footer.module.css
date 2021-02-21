@@ -1,8 +1,11 @@
 .footer {
   background-color: var(--color-foreground);
+  color: var(--color-background);
   padding: 2rem 2rem 4rem;
   margin-top: 2rem;
   border-top: 0.5rem solid var(--color-tertiary);
+  display: flex;
+  flex-direction: column;
 }
 
 .footer__ctaContainer {
@@ -10,17 +13,30 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
 .footer__copyright {
   font-size: 1.2rem;
-  line-height: 1.4;
+  line-height: 1.6;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
   color: var(--color-primary);
   display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.footer__privacyPolicyLink {
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-background) !important;
+  display: inline-flex;
   justify-content: center;
   align-content: center;
 }

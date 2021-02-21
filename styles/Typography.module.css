@@ -94,7 +94,7 @@
 }
 
 .inlineLink {
-  color: var(--color-foreground);
+  color: inherit;
   transition: color var(--global-transition-time) ease-in-out;
   text-decoration: underline;
   text-underline-offset: 0.125rem;

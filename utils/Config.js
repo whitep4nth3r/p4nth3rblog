@@ -22,6 +22,10 @@ export const Config = {
       url: "https://whitep4nth3r.com/buildrss",
       slug: "/buildrss",
     },
+    privacyPolicy: {
+      url: "https://whitep4nth3r.com/privacy-policy",
+      slug: "/privacy-policy",
+    },
   },
   pagination: {
     pageSize: 6,
