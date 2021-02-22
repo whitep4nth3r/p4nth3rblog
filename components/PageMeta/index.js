@@ -1,8 +1,10 @@
 import Head from "next/head";
+import OpenGraph from "@utils/OpenGraph";
 import { Config } from "@utils/Config";
 
 export default function PageMeta(props) {
   const { title, description, url, canonical } = props;
+
   return (
     <Head>
       <title>
@@ -32,11 +34,7 @@ export default function PageMeta(props) {
       <meta property="og:url" content={url} />
       <meta property="twitter:url" content={url} />
 
-      {/* <meta property="og:image" content={image} />
-          <meta property="twitter:image" content={image} /> */}
-
-      {/* <meta property="og:image:alt" content={imageAlt} />
-          <meta property="twitter:image:alt" content={imageAlt} /> */}
+      <meta property="og:image" content={OpenGraph.generateImageUrl(title)} />
 
       <link rel="icon" href="/favicon.ico" />
       <link
