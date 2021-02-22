@@ -27,6 +27,6 @@ export default class OpenGraph {
   static generateImageUrl(title) {
     return `https://p4nth3rblog-og-image.vercel.app/${encodeURI(
       title,
-    )}.png?theme=${OpenGraph.getRandomTheme()}&md=0fontSize=60px&images=${OpenGraph.getBaseImageEncodedUri()}${OpenGraph.getRandomPanther()}.svg`;
+    )}.png?theme=${OpenGraph.getRandomTheme()}&md=0fontSize=80px&images=${OpenGraph.getBaseImageEncodedUri()}${OpenGraph.getRandomPanther()}.svg`;
   }
 }
