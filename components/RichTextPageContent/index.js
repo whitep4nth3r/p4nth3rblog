@@ -24,7 +24,7 @@ const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"), {
   ssr: false,
 });
 
-export function getRenderOptions(links, isBlogPost = false) {
+export function getRichTextRenderOptions(links, isBlogPost = false) {
   const assetBlockMap = new Map(
     links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
   );
@@ -162,10 +162,10 @@ export default function RichTextPageContent(props) {
   const { richTextBodyField, isBlogPost } = props;
 
   return (
-    <div className={TypographyStyles.heading__content}>
+    <div className={RichTextPageContentStyles.page__content}>
       {documentToReactComponents(
         richTextBodyField.json,
-        getRenderOptions(richTextBodyField.links, isBlogPost),
+        getRichTextRenderOptions(richTextBodyField.links, isBlogPost),
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+import ReactDOMServer from "react-dom/server";
 import ContentfulApi from "@utils/ContentfulApi";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
@@ -5,6 +6,8 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import RichTextPageContent from "@components/RichTextPageContent";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { getRichTextRenderOptions } from "@components/RichTextPageContent";
 import { Config } from "@utils/Config";
 
 export default function buildRss(props) {
@@ -26,6 +29,26 @@ export default function buildRss(props) {
   );
 }
 
+function buildTags(tags) {
+  return tags
+    .map((tag) => {
+      return `<category>${tag}</category>`;
+    })
+    .join("");
+}
+
+function buildContent(postBody) {
+  return `
+  <content type="html">
+    ${ReactDOMServer.renderToString(
+      documentToReactComponents(
+        postBody.json,
+        getRichTextRenderOptions(postBody.links),
+      ),
+    ).replace(/ data-reactroot=""/g, "")}
+  </content>`;
+}
+
 function buildRssItems(posts) {
   return posts
     .map((post) => {
@@ -37,6 +60,8 @@ function buildRssItems(posts) {
         <link>https://${Config.site.domain}/blog/${post.slug}</link>
         <pubDate>${post.date}</pubDate>
         <guid>${post.sys.id}</guid>
+        ${buildTags(post.tags)}
+        ${buildContent(post.body)}
         </item>
         `;
     })
