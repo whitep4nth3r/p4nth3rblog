@@ -36,6 +36,16 @@ export default function PageMeta(props) {
         content={OpenGraph.generateImageUrl(title)}
       />
 
+      <meta name="twitter:card" content="summary" />
+      <meta
+        name="twitter:site"
+        content={`@${Config.pageMeta.openGraph.twitterUser}`}
+      />
+      <meta
+        name="twitter:creator"
+        content={`@${Config.pageMeta.openGraph.twitterUser}`}
+      />
+
       <link rel="icon" href="/favicon.ico" />
 
       <link
