@@ -39,14 +39,14 @@ function buildTags(tags) {
 
 function buildContent(postBody) {
   return `
-  <content type="html"><![CDATA[ 
+  <content:encoded><![CDATA[ 
     ${ReactDOMServer.renderToString(
       documentToReactComponents(
         postBody.json,
         getRichTextRenderOptions(postBody.links),
       ),
     ).replace(/ data-reactroot=""/g, "")}
-  ]]></content>`;
+  ]]></content:encoded>`;
 }
 
 function buildRssItems(posts) {
@@ -81,10 +81,15 @@ export async function getStaticProps() {
     ),
   );
 
-  const feedString = `<?xml version="1.0"?>
-    <rss version="2.0">
+  const feedString = `<?xml version="1.0" encoding="UTF-8"?>
+    <rss version="2.0" 
+      xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
       <title>${Config.site.title}</title>
+      <atom:link href="https://${
+        Config.site.domain
+      }/feed.xml" rel="self" type="application/rss+xml" />
       <link>https://${Config.site.domain}</link>
       <description>${Config.site.feedDescription}</description>
     </channel>
