@@ -9,3 +9,12 @@ To do
 API to do:
 
 1. paginate the slugs function...
+
+
+
+Build RSS:
+
+1. we can get a max of 10 full blog posts
+
+getPaginatedFullBlogPosts --> limit is 10 --> we skip depending on page no.
+

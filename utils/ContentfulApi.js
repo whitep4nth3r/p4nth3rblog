@@ -99,6 +99,8 @@ export default class ContentfulApi {
   /*
    * Get all blog post slugs
    * TODO - paginate these?
+   * Complexity - 100 - can return a max of 100 entities
+   * https://www.contentful.com/developers/videos/learn-graphql/#graphql-fragments-and-query-complexity
    */
   static async getPostSlugs() {
     const query = `
@@ -117,6 +119,75 @@ export default class ContentfulApi {
       : [];
 
     return postSlugs.map((post) => post.slug);
+  }
+
+  static async getAllBlogPosts() {
+    let limit = 10;
+    let _skip = 0;
+
+    let skip = _skip + limit;
+
+    const returnPosts = [];
+
+    const query = `{
+      blogPostCollection(limit: ${limit}, order: date_DESC, skip: ${skip}) {
+        total
+        items {
+          sys {
+            id
+          }
+          date
+          title
+          slug
+          excerpt
+          tags
+          externalUrl
+          body {
+            json
+            links {
+              entries {
+                block {
+                  sys {
+                    id
+                  }
+                  __typename
+                  ... on VideoEmbed {
+                    title
+                    embedUrl
+                  }
+                  ... on CodeBlock {
+                    description
+                    language
+                    code
+                  }
+                }
+              }
+              assets {
+                block {
+                  sys {
+                    id
+                  }
+                  url
+                  title
+                  width
+                  height
+                  description
+                }
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    //make first call
+    // put results in array
+
+    //return posts length - compare to the result total
+    // if it is smaller, make same query,     reassign _skip;
+    // add results to array...
+
+    // we carry on until returnPosts.length === query.total
   }
 
   /*

@@ -54,14 +54,14 @@ function buildRssItems(posts) {
     .map((post) => {
       return `
         <item>
-        <title>${post.title}</title>
-        <description>${post.excerpt}</description>
-        <author>${Config.site.email} (${Config.site.owner})</author>
-        <link>https://${Config.site.domain}/blog/${post.slug}</link>
-        <pubDate>${post.date}</pubDate>
-        <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
-        ${buildTags(post.tags)}
-        ${buildContent(post.body)}
+          <title>${post.title}</title>
+          <description>${post.excerpt}</description>
+          <author>${Config.site.email} (${Config.site.owner})</author>
+          <link>https://${Config.site.domain}/blog/${post.slug}</link>
+          <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
+          <pubDate>${post.date}</pubDate>
+          ${buildTags(post.tags)}
+          ${buildContent(post.body)}
         </item>
         `;
     })
@@ -69,12 +69,14 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
+  // TODO - replace with new getAllBlogPosts function 
   const pageContent = await ContentfulApi.getPageContentBySlug(
     Config.pageMeta.buildRss.slug,
   );
 
   const blogPostSlugs = await ContentfulApi.getPostSlugs();
 
+  // TODO - remove this for getAllBlogPosts
   const posts = await Promise.all(
     await blogPostSlugs.map(
       async (slug) => await ContentfulApi.getPostBySlug(slug),
