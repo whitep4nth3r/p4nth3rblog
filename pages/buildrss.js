@@ -56,10 +56,10 @@ function buildRssItems(posts) {
         <item>
         <title>${post.title}</title>
         <description>${post.excerpt}</description>
-        <author>whitep4nth3r</author>
+        <author>${Config.site.email} (${Config.site.owner})</author>
         <link>https://${Config.site.domain}/blog/${post.slug}</link>
         <pubDate>${post.date}</pubDate>
-        <guid>${post.sys.id}</guid>
+        <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
         ${buildTags(post.tags)}
         ${buildContent(post.body)}
         </item>
@@ -92,8 +92,8 @@ export async function getStaticProps() {
       }/feed.xml" rel="self" type="application/rss+xml" />
       <link>https://${Config.site.domain}</link>
       <description>${Config.site.feedDescription}</description>
-    </channel>
       ${buildRssItems(posts)}
+    </channel>
     </rss>`;
 
   fs.writeFile("./public/feed.xml", feedString, function (err) {

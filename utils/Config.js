@@ -3,6 +3,7 @@ export const Config = {
     owner: "Salma Alam-Naylor | whitep4nth3r",
     title: "whitep4nth3r.com | Build stuff, learn things, love what you do",
     domain: "whitep4nth3r.com",
+    email: "whitep4nth3r@gmail.com",
     feedDescription:
       "Live coding streamer, writer, speaker | whitep4nth3r.com | Build stuff, learn things, love what you do",
   },
