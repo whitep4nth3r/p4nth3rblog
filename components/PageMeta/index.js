@@ -36,7 +36,7 @@ export default function PageMeta(props) {
         content={OpenGraph.generateImageUrl(title)}
       />
 
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:site"
         content={`@${Config.pageMeta.openGraph.twitterUser}`}
