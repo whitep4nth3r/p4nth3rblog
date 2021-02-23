@@ -69,23 +69,15 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
-  // TODO - replace with new getAllBlogPosts function 
   const pageContent = await ContentfulApi.getPageContentBySlug(
     Config.pageMeta.buildRss.slug,
   );
 
-  const blogPostSlugs = await ContentfulApi.getPostSlugs();
-
-  // TODO - remove this for getAllBlogPosts
-  const posts = await Promise.all(
-    await blogPostSlugs.map(
-      async (slug) => await ContentfulApi.getPostBySlug(slug),
-    ),
-  );
+  const posts = await ContentfulApi.getAllBlogPosts();
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0" 
-      xmlns:atom="http://www.w3.org/2005/Atom" 
+    <rss version="2.0"
+      xmlns:atom="http://www.w3.org/2005/Atom"
       xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
       <title>${Config.site.title}</title>

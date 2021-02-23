@@ -121,73 +121,89 @@ export default class ContentfulApi {
     return postSlugs.map((post) => post.slug);
   }
 
-  static async getAllBlogPosts() {
-    let limit = 10;
-    let _skip = 0;
-
-    let skip = _skip + limit;
-
-    const returnPosts = [];
+  static async getPaginatedBlogPosts(page) {
+    const queryLimit = 10;
+    const skipMultiplier = page === 1 ? 0 : page - 1;
+    const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
     const query = `{
-      blogPostCollection(limit: ${limit}, order: date_DESC, skip: ${skip}) {
-        total
-        items {
-          sys {
-            id
-          }
-          date
-          title
-          slug
-          excerpt
-          tags
-          externalUrl
-          body {
-            json
-            links {
-              entries {
-                block {
-                  sys {
-                    id
-                  }
-                  __typename
-                  ... on VideoEmbed {
-                    title
-                    embedUrl
-                  }
-                  ... on CodeBlock {
-                    description
-                    language
-                    code
+        blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+          total
+          items {
+            sys {
+              id
+            }
+            date
+            title
+            slug
+            excerpt
+            tags
+            externalUrl
+            body {
+              json
+              links {
+                entries {
+                  block {
+                    sys {
+                      id
+                    }
+                    __typename
+                    ... on VideoEmbed {
+                      title
+                      embedUrl
+                    }
+                    ... on CodeBlock {
+                      description
+                      language
+                      code
+                    }
                   }
                 }
-              }
-              assets {
-                block {
-                  sys {
-                    id
+                assets {
+                  block {
+                    sys {
+                      id
+                    }
+                    url
+                    title
+                    width
+                    height
+                    description
                   }
-                  url
-                  title
-                  width
-                  height
-                  description
                 }
               }
             }
           }
         }
+      }`;
+
+    const response = await this.callContentful(query);
+
+    const { total } = response.data.blogPostCollection;
+    const posts = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
+
+    return { posts, total };
+  }
+
+  static async getAllBlogPosts() {
+    let page = 1;
+    let morePostsToLoad = true;
+    const returnPosts = [];
+
+    while (morePostsToLoad) {
+      const response = await this.getPaginatedBlogPosts(page);
+
+      if (response.posts.length > 0) {
+        returnPosts.push(...response.posts);
       }
-    }`;
 
-    //make first call
-    // put results in array
+      morePostsToLoad = returnPosts.length < response.total;
+      page++;
+    }
 
-    //return posts length - compare to the result total
-    // if it is smaller, make same query,     reassign _skip;
-    // add results to array...
-
-    // we carry on until returnPosts.length === query.total
+    return returnPosts;
   }
 
   /*
