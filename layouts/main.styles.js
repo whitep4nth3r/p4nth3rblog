@@ -46,8 +46,12 @@ export default css.global`
     box-sizing: border-box;
   }
 
-  /* accessibility fix for prismjs theme comments */
+  /* accessibility fixes for prismjs */
   .token.comment {
     color: #adb8c2 !important;
+  }
+
+  .token.tag {
+    color: #fc92b6 !important;
   }
 `;
