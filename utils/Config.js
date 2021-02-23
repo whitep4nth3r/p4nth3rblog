@@ -8,6 +8,9 @@ export const Config = {
       "Live coding streamer, writer, speaker | whitep4nth3r.com | Build stuff, learn things, love what you do",
   },
   pageMeta: {
+    openGraph: {
+      twitterUser: "whitep4nth3r",
+    },
     home: {
       url: "https://whitep4nth3r.com",
       slug: "/",
