@@ -189,17 +189,17 @@ export default class ContentfulApi {
 
   static async getAllBlogPosts() {
     let page = 1;
-    let morePostsToLoad = true;
+    let shouldQueryMorePosts = true;
     const returnPosts = [];
 
-    while (morePostsToLoad) {
+    while (shouldQueryMorePosts) {
       const response = await this.getPaginatedBlogPosts(page);
 
       if (response.posts.length > 0) {
         returnPosts.push(...response.posts);
       }
 
-      morePostsToLoad = returnPosts.length < response.total;
+      shouldQueryMorePosts = returnPosts.length < response.total;
       page++;
     }
 
