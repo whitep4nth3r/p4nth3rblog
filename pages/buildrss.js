@@ -54,14 +54,14 @@ function buildRssItems(posts) {
     .map((post) => {
       return `
         <item>
-        <title>${post.title}</title>
-        <description>${post.excerpt}</description>
-        <author>${Config.site.email} (${Config.site.owner})</author>
-        <link>https://${Config.site.domain}/blog/${post.slug}</link>
-        <pubDate>${post.date}</pubDate>
-        <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
-        ${buildTags(post.tags)}
-        ${buildContent(post.body)}
+          <title>${post.title}</title>
+          <description>${post.excerpt}</description>
+          <author>${Config.site.email} (${Config.site.owner})</author>
+          <link>https://${Config.site.domain}/blog/${post.slug}</link>
+          <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
+          <pubDate>${post.date}</pubDate>
+          ${buildTags(post.tags)}
+          ${buildContent(post.body)}
         </item>
         `;
     })
@@ -73,17 +73,11 @@ export async function getStaticProps() {
     Config.pageMeta.buildRss.slug,
   );
 
-  const blogPostSlugs = await ContentfulApi.getPostSlugs();
-
-  const posts = await Promise.all(
-    await blogPostSlugs.map(
-      async (slug) => await ContentfulApi.getPostBySlug(slug),
-    ),
-  );
+  const posts = await ContentfulApi.getAllBlogPosts();
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0" 
-      xmlns:atom="http://www.w3.org/2005/Atom" 
+    <rss version="2.0"
+      xmlns:atom="http://www.w3.org/2005/Atom"
       xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
       <title>${Config.site.title}</title>

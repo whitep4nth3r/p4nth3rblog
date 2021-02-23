@@ -99,6 +99,8 @@ export default class ContentfulApi {
   /*
    * Get all blog post slugs
    * TODO - paginate these?
+   * Complexity - 100 - can return a max of 100 entities
+   * https://www.contentful.com/developers/videos/learn-graphql/#graphql-fragments-and-query-complexity
    */
   static async getPostSlugs() {
     const query = `
@@ -117,6 +119,91 @@ export default class ContentfulApi {
       : [];
 
     return postSlugs.map((post) => post.slug);
+  }
+
+  static async getPaginatedBlogPosts(page) {
+    const queryLimit = 10;
+    const skipMultiplier = page === 1 ? 0 : page - 1;
+    const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
+
+    const query = `{
+        blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+          total
+          items {
+            sys {
+              id
+            }
+            date
+            title
+            slug
+            excerpt
+            tags
+            externalUrl
+            body {
+              json
+              links {
+                entries {
+                  block {
+                    sys {
+                      id
+                    }
+                    __typename
+                    ... on VideoEmbed {
+                      title
+                      embedUrl
+                    }
+                    ... on CodeBlock {
+                      description
+                      language
+                      code
+                    }
+                  }
+                }
+                assets {
+                  block {
+                    sys {
+                      id
+                    }
+                    url
+                    title
+                    width
+                    height
+                    description
+                  }
+                }
+              }
+            }
+          }
+        }
+      }`;
+
+    const response = await this.callContentful(query);
+
+    const { total } = response.data.blogPostCollection;
+    const posts = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items
+      : [];
+
+    return { posts, total };
+  }
+
+  static async getAllBlogPosts() {
+    let page = 1;
+    let shouldQueryMorePosts = true;
+    const returnPosts = [];
+
+    while (shouldQueryMorePosts) {
+      const response = await this.getPaginatedBlogPosts(page);
+
+      if (response.posts.length > 0) {
+        returnPosts.push(...response.posts);
+      }
+
+      shouldQueryMorePosts = returnPosts.length < response.total;
+      page++;
+    }
+
+    return returnPosts;
   }
 
   /*

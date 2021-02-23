@@ -45,4 +45,13 @@ export default css.global`
     margin: 0;
     box-sizing: border-box;
   }
+
+  /* accessibility fixes for prismjs */
+  .token.comment {
+    color: #adb8c2 !important;
+  }
+
+  .token.tag {
+    color: #fc92b6 !important;
+  }
 `;
