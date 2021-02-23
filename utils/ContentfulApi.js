@@ -97,30 +97,59 @@ export default class ContentfulApi {
   }
 
   /*
-   * Get all blog post slugs
-   * TODO - paginate these?
-   * Complexity - 100 - can return a max of 100 entities
-   * https://www.contentful.com/developers/videos/learn-graphql/#graphql-fragments-and-query-complexity
+   * Get blog post slugs by page
+   * param: page (number)
    */
-  static async getPostSlugs() {
-    const query = `
-      {
-        blogPostCollection {
+  static async getPaginatedSlugs(page) {
+    const queryLimit = 100;
+    const skipMultiplier = page === 1 ? 0 : page - 1;
+    const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
+
+    const query = `{
+        blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
           total
           items {
             slug
+            }
           }
-        }
-    }`;
+        }`;
 
     const response = await this.callContentful(query);
-    const postSlugs = response.data.blogPostCollection.items
-      ? response.data.blogPostCollection.items
+
+    const { total } = response.data.blogPostCollection;
+    const slugs = response.data.blogPostCollection.items
+      ? response.data.blogPostCollection.items.map((item) => item.slug)
       : [];
 
-    return postSlugs.map((post) => post.slug);
+    return { slugs, total };
   }
 
+  /*
+   * Get all blog post slugs
+   */
+  static async getAllPostSlugs() {
+    let page = 1;
+    let shouldQueryMoreSlugs = true;
+    const returnSlugs = [];
+
+    while (shouldQueryMoreSlugs) {
+      const response = await this.getPaginatedSlugs(page);
+
+      if (response.slugs.length > 0) {
+        returnSlugs.push(...response.slugs);
+      }
+
+      shouldQueryMoreSlugs = returnSlugs.length < response.total;
+      page++;
+    }
+
+    return returnSlugs;
+  }
+
+  /*
+   * Get blog posts by page
+   * param: page (number)
+   */
   static async getPaginatedBlogPosts(page) {
     const queryLimit = 10;
     const skipMultiplier = page === 1 ? 0 : page - 1;
@@ -187,6 +216,9 @@ export default class ContentfulApi {
     return { posts, total };
   }
 
+  /*
+   * Get all blog posts
+   */
   static async getAllBlogPosts() {
     let page = 1;
     let shouldQueryMorePosts = true;
