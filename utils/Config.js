@@ -30,6 +30,10 @@ export const Config = {
       url: "https://whitep4nth3r.com/privacy-policy",
       slug: "/privacy-policy",
     },
+    notFound: {
+      url: "https://whitep4nth3r.com",
+      slug: "/404",
+    },
   },
   pagination: {
     pageSize: 6,
