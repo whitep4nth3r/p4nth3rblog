@@ -30,4 +30,4 @@ yarn-error.log*
 .env.production.local
 
 # Generated XML feed at build time
-/public/feed.xml
+public/feed.xml
