@@ -77,8 +77,9 @@ export function getRichTextRenderOptions(links, isBlogPost = false) {
                 {children}
               </h2>
               <a
-                className={RichTextPageContentStyles.page__headerLink}
+                className={`${RichTextPageContentStyles.page__headerLink} ${TypographyStyles.inlineLink}`}
                 href={`#${slugifyString(children[0])}`}
+                aria-label={children}
               >
                 <LinkIcon />
               </a>

@@ -11,7 +11,7 @@ export default function CodeBlock(props) {
 
   return (
     <pre className={`${CodeBlockStyles.codeBlock} language-${language}`}>
-      <code>{code}</code>
+      <code className={CodeBlockStyles.codeBlock__inner}>{code}</code>
     </pre>
   );
 }

@@ -51,7 +51,8 @@ export default css.global`
     color: #adb8c2 !important;
   }
 
-  .token.tag {
+  .token.tag,
+  .token.constant {
     color: #fc92b6 !important;
   }
 `;
