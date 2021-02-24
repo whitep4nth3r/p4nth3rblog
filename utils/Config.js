@@ -1,3 +1,5 @@
+const SITE_URL = "https://whitep4nth3r.com";
+
 export const Config = {
   site: {
     owner: "Salma Alam-Naylor | whitep4nth3r",
@@ -12,26 +14,26 @@ export const Config = {
       twitterUser: "whitep4nth3r",
     },
     home: {
-      url: "https://whitep4nth3r.com",
+      url: SITE_URL,
       slug: "/",
     },
     blogIndex: {
-      url: "https://whitep4nth3r.com/blog",
+      url: `${SITE_URL}/blog`,
       slug: "/blog",
     },
     post: {
       slug: "/blog/[slug]",
     },
     buildRss: {
-      url: "https://whitep4nth3r.com/buildrss",
+      url: `${SITE_URL}/buildrss`,
       slug: "/buildrss",
     },
     privacyPolicy: {
-      url: "https://whitep4nth3r.com/privacy-policy",
+      url: `${SITE_URL}/privacy-policy`,
       slug: "/privacy-policy",
     },
     notFound: {
-      url: "https://whitep4nth3r.com",
+      url: SITE_URL,
       slug: "/404",
     },
   },

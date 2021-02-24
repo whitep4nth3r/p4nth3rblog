@@ -1,10 +1,8 @@
-import { Config } from "@utils/Config";
 import ContentfulApi from "@utils/ContentfulApi";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
-import ContentWrapper from "@components/ContentWrapper";
-import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
+import { Config } from "@utils/Config";
 
 export default function Panther404(props) {
   const { pageContent } = props;
