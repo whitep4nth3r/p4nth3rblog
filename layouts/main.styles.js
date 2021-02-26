@@ -52,7 +52,7 @@ export default css.global`
   }
 
   .token.important {
-    color: #f3a344;
+    color: #f3a344 !important;
   }
 
   .token.tag,
