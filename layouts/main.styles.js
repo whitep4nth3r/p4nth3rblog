@@ -51,6 +51,10 @@ export default css.global`
     color: #adb8c2 !important;
   }
 
+  .token.important {
+    color: #f3a344;
+  }
+
   .token.tag,
   .token.property,
   .token.constant {
