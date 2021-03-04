@@ -9,10 +9,10 @@ export default class ContentfulApi {
    * Get the content for one page
    * param: slug (string)
    */
-  static async getPageContentBySlug(slug) {
+  static async getPageContentBySlug(slug, options = defaultOptions) {
     const query = `
     {
-      pageContentCollection(limit: 1, where: {slug: "${slug}"}) {
+      pageContentCollection(limit: 1, where: {slug: "${slug}"}, preview: ${options.preview}) {
         items {
           sys {
             id
@@ -72,7 +72,7 @@ export default class ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, options);
     const pageContent = response.data.pageContentCollection.items
       ? response.data.pageContentCollection.items
       : [];
