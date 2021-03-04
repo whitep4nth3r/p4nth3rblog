@@ -20,14 +20,8 @@ const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
 const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"));
 
-const defaultOptions = {
-  renderH2Links: false,
-  renderNativeImg: false,
-};
-
 export function getRichTextRenderOptions(links, options) {
-  const displayOptions = { ...defaultOptions, ...options };
-  const { renderH2Links, renderNativeImg } = displayOptions;
+  const { renderH2Links, renderNativeImg } = options;
 
   const assetBlockMap = new Map(
     links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
@@ -178,7 +172,7 @@ export default function RichTextPageContent(props) {
       {documentToReactComponents(
         richTextBodyField.json,
         getRichTextRenderOptions(richTextBodyField.links, {
-          renderH2Links: renderH2Links || false,
+          renderH2Links,
         }),
       )}
     </div>
