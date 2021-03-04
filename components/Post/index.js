@@ -14,7 +14,7 @@ export default function Post(props) {
       <PublishedDate date={post.date} />
       {post.tags !== null && <Tags tags={post.tags} />}
       <h1 className={TypographyStyles.heading__h1}>{post.title}</h1>
-      <RichTextPageContent richTextBodyField={post.body} isBlogPost={true} />
+      <RichTextPageContent richTextBodyField={post.body} renderH2Links={true} />
     </article>
   );
 }

@@ -46,7 +46,7 @@ function buildContent(postBody) {
     ${ReactDOMServer.renderToString(
       documentToReactComponents(
         postBody.json,
-        getRichTextRenderOptions(postBody.links),
+        getRichTextRenderOptions(postBody.links, { renderNativeImg: true }),
       ),
     ).replace(/ data-reactroot=""/g, "")}
   ]]></content:encoded>`;
