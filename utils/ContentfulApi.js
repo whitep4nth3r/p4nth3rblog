@@ -367,6 +367,38 @@ export default class ContentfulApi {
     return recentPosts;
   }
 
+  static async getThingsIUse() {
+    //todo - paginate these things
+    //include preview
+    const query = `{
+      thingIUseCollection {
+        total
+        items {
+          name
+          category
+          description
+          image {
+            url
+            description
+            height
+            width
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const thingIUseCollection = response.data.thingIUseCollection.items
+      ? response.data.thingIUseCollection.items
+      : [];
+
+    return thingIUseCollection;
+  }
+
   /*
    * Call the Contentful GraphQL Api
    * param: query (string)

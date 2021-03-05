@@ -32,6 +32,10 @@ export const Config = {
       url: `${SITE_URL}/privacy-policy`,
       slug: "/privacy-policy",
     },
+    uses: {
+      url: `${SITE_URL}/uses`,
+      slug: "/uses",
+    },
     notFound: {
       url: SITE_URL,
       slug: "/404",
@@ -49,6 +53,10 @@ export const Config = {
     {
       displayName: "Blog",
       path: "/blog",
+    },
+    {
+      displayName: "Uses",
+      path: "/uses",
     },
   ],
 };
