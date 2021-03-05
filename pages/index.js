@@ -9,11 +9,11 @@ import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 
 export default function Home(props) {
-  const { pageContent, recentPosts } = props;
+  const { pageContent, recentPosts, preview } = props;
 
   return (
     <>
-      <MainLayout>
+      <MainLayout preview={preview}>
         <PageMeta
           title={pageContent.title}
           description={pageContent.description}
@@ -35,15 +35,19 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ preview = false }) {
   const pageContent = await ContentfulApi.getPageContentBySlug(
     Config.pageMeta.home.slug,
+    {
+      preview: preview,
+    },
   );
 
   const recentPosts = await ContentfulApi.getRecentPostList();
 
   return {
     props: {
+      preview,
       pageContent,
       recentPosts,
     },

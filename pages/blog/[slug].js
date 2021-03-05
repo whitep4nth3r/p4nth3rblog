@@ -6,16 +6,17 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 
 export default function PostWrapper(props) {
-  const { post } = props;
+  const { post, preview } = props;
 
   return (
-    <MainLayout>
+    <MainLayout preview={preview}>
       <PageMeta
         title={post.title}
         description={post.excerpt}
         url={`${Config.pageMeta.blogIndex.url}/${post.slug}`}
         canonical={post.externalUrl ? post.externalUrl : false}
       />
+
       <ContentWrapper>
         <Post post={post} />
       </ContentWrapper>
@@ -36,11 +37,14 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const post = await ContentfulApi.getPostBySlug(params.slug);
+export async function getStaticProps({ params, preview = false }) {
+  const post = await ContentfulApi.getPostBySlug(params.slug, {
+    preview: preview,
+  });
 
   return {
     props: {
+      preview,
       post,
     },
   };

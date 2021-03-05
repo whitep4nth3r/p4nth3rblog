@@ -1,6 +1,5 @@
 # p4nth3rblog
 
-To do
+## TO DO
 
-1. Custom 404
-2. Site map - at build time
+Site map
