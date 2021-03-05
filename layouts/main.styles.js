@@ -26,6 +26,18 @@ export default css.global`
     --global-transition-time: 0.2s;
 
     --wrapper-max-width: 48rem;
+
+    --screen-med: 768px;
+
+    --hamburger_padding-x: 16px;
+    --hamburger_padding-y: 16px;
+    --hamburger_layer-width: 32px;
+    --hamburger_layer-height: 4px;
+    --hamburger_layer-spacing: 6px;
+    --hamburger_layer-color: var(--color-primary);
+    --hamburger_layer-border-radius: 1px;
+    --hamburger_hover-opacity: 0.9;
+    --hamburger_active-hover-opacity: var(--hamburger_hover-opacity);
   }
 
   html {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import HeaderStyles from "@styles/Header.module.css";
 import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
@@ -7,6 +8,19 @@ import Logo from "./svg/Logo";
 
 export default function Header() {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  function toggleMenu() {
+    setMenuOpen(!menuOpen);
+  }
+
+  const hamburgerClasses = menuOpen
+    ? `${HeaderStyles.hamburger} ${HeaderStyles.is__open}`
+    : `${HeaderStyles.hamburger}`;
+
+  const navLinksClasses = menuOpen
+    ? `${HeaderStyles.header__navList}`
+    : `${HeaderStyles.header__navList} ${HeaderStyles.header__navList__hide}`;
 
   return (
     <header className={HeaderStyles.header}>
@@ -20,8 +34,22 @@ export default function Header() {
           </a>
         </Link>
       </div>
+
       <nav className={HeaderStyles.header__nav} role="navigation">
-        <ul className={HeaderStyles.header__navList}>
+        <button
+          className={hamburgerClasses}
+          onClick={() => toggleMenu()}
+          aria-expanded={menuOpen}
+          aria-label="Menu Toggle"
+          aria-controls="headerLinks"
+          type="button"
+        >
+          <span className={HeaderStyles.hamburger__box}>
+            <span className={HeaderStyles.hamburger__inner}></span>
+          </span>
+        </button>
+
+        <ul className={navLinksClasses}>
           {Config.menuLinks.map((link) => {
             const isActive =
               (router.pathname === Config.pageMeta.post.slug &&
@@ -47,6 +75,7 @@ export default function Header() {
           })}
         </ul>
       </nav>
+
       <SocialLinks />
     </header>
   );
