@@ -68,5 +68,12 @@ export default async function preview(req, res) {
    * We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities.
    */
 
-  res.redirect(`${redirectPrefix}${preview.slug}`);
+  const url = `${redirectPrefix}${preview.slug}`;
+
+  res.write(
+    `<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; url=${url}" />
+    <script>window.location.href = '${url}'</script>
+    </head>`,
+  );
+  res.end();
 }
