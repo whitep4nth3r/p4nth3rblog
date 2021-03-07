@@ -47,6 +47,7 @@ export default function Header() {
           <span className={HeaderStyles.hamburger__box}>
             <span className={HeaderStyles.hamburger__inner}></span>
           </span>
+          <span className={HeaderStyles.hamburger__text}>Menu</span>
         </button>
 
         <ul className={navLinksClasses}>

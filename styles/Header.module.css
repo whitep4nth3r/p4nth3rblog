@@ -213,6 +213,18 @@
     transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
+.hamburger__text {
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-left: 1rem;
+  transition: color var(--global-transition-time) ease-in-out;
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
 .is__open .hamburger__inner {
   transition-delay: 0.22s;
   background-color: transparent !important;

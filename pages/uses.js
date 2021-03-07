@@ -6,6 +6,7 @@ import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
+import ThingsIUse from "@components/ThingsIUse";
 
 export default function Uses(props) {
   const { pageContent, preview, thingsIUse } = props;
@@ -28,7 +29,7 @@ export default function Uses(props) {
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </PageContentWrapper>
 
-          {thingsIUse.map((thing) => thing.name)}
+          <ThingsIUse things={thingsIUse} />
         </ContentWrapper>
       </MainLayout>
     </>

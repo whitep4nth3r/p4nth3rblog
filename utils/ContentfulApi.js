@@ -369,14 +369,20 @@ export default class ContentfulApi {
 
   static async getThingsIUse() {
     //todo - paginate these things
-    //include preview
+
     const query = `{
       thingIUseCollection {
         total
         items {
+          sys {
+            id
+          }
           name
-          category
+          categories
           description
+          link
+          isAffiliateLink
+          customLinkText
           image {
             url
             description
