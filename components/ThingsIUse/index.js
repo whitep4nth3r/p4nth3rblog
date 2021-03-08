@@ -6,6 +6,14 @@ import ButtonStyles from "@styles/Button.module.css";
 import ReactMarkdown from "react-markdown";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 
+/*
+ * TODO
+ * 1. there's actually a new rel value created by Google called "sponsored" for affiliate links
+ * 2. Maybe make the link button the full width of the container, attached to the bottom
+ * 3. Style the category buttons
+ * 4. Add links to the H2s
+ */
+
 function calculateLinkText(thing) {
   //there's actually a new rel value created by Google called "sponsored"
   //for affiliate links
@@ -71,49 +79,64 @@ export default function ThingsIUse(props) {
 
   return (
     <section>
-      {categories.map((category) => (
-        <button
-          key={category}
-          type="button"
-          onClick={() => setCategoryFilters(category)}
-        >
-          {filteredCategoriesSet.has(category) && <span>SELECTED</span>}
-          {category}
-        </button>
-      ))}
+      <div className={ThingsIUseStyles.categoryButtonContainer}>
+        {categories.map((category) => (
+          <button
+            key={category}
+            type="button"
+            onClick={() => setCategoryFilters(category)}
+            className={ThingsIUseStyles.categoryButton}
+          >
+            {filteredCategoriesSet.has(category) && <span>SELECTED</span>}
+            {category}
+          </button>
+        ))}
+      </div>
 
-      {filteredThings.map((thing) => (
-        <article key={thing.sys.id}>
-          <h2 className={TypographyStyles.heading__h2}>{thing.name}</h2>
+      <div className={ThingsIUseStyles.thingsContainer}>
+        {filteredThings.map((thing) => (
+          <article key={thing.sys.id} className={ThingsIUseStyles.thing}>
+            <div className={ThingsIUseStyles.thing__imageContainer}>
+              <Image
+                src={thing.image.url}
+                alt={thing.image.description}
+                height={thing.image.height}
+                width={thing.image.width}
+                layout="responsive"
+              />
+            </div>
+            <div className={TypographyStyles.thing__detailsContainer}>
+              <h2 className={TypographyStyles.heading__h2}>{thing.name}</h2>
 
-          {thing.categories.map((category) => (
-            <div key={category}>{category}</div>
-          ))}
+              <div className={ThingsIUseStyles.thing__categories}>
+                {thing.categories.map((category) => (
+                  <span
+                    className={ThingsIUseStyles.thing__categories__cat}
+                    key={category}
+                  >
+                    {category}
+                  </span>
+                ))}
+              </div>
 
-          <ReactMarkdown
-            children={thing.description}
-            renderers={ReactMarkdownRenderers(thing.description)}
-          />
+              <ReactMarkdown
+                children={thing.description}
+                renderers={ReactMarkdownRenderers(thing.description)}
+              />
 
-          {thing.link && (
-            <a
-              href={thing.link}
-              rel="noopener noreferrer"
-              className={ButtonStyles.button}
-            >
-              {calculateLinkText(thing)}
-            </a>
-          )}
-
-          <Image
-            src={thing.image.url}
-            alt={thing.image.description}
-            height={thing.image.height}
-            width={thing.image.width}
-            layout="responsive"
-          />
-        </article>
-      ))}
+              {thing.link && (
+                <a
+                  href={thing.link}
+                  rel="noopener noreferrer"
+                  className={ButtonStyles.button}
+                >
+                  {calculateLinkText(thing)}
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
