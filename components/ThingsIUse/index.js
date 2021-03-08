@@ -12,11 +12,20 @@ import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
 
 function calculateLinkTextAndAttrs(thing) {
   if (thing.customLinkText) {
-    return { text: thing.customLinkText, rel: "nofollow" };
+    return {
+      text: thing.customLinkText,
+      rel: "nofollow",
+    };
   } else if (thing.isAffiliateLink) {
-    return { text: "View on Amazon", rel: "sponsored" };
+    return {
+      text: `View ${thing.name} on Amazon`,
+      rel: "sponsored",
+    };
   } else {
-    return { text: "View website", rel: "nofollow" };
+    return {
+      text: `View ${thing.name} website`,
+      rel: "nofollow",
+    };
   }
 }
 
