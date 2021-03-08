@@ -374,7 +374,7 @@ export default class ContentfulApi {
    */
   static async getThingsIUse() {
     const query = `{
-      thingIUseCollection {
+      thingIUseCollection(order: name_ASC) {
         total
         items {
           sys {

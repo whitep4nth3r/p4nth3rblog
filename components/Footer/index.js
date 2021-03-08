@@ -15,7 +15,7 @@ export default function Footer() {
         <a
           href="https://twitch.tv/whitep4nth3r"
           className={ButtonStyles.button}
-          rel="noopener noreferrer"
+          rel="nofollow"
           target="_blank"
         >
           Watch me live on Twitch

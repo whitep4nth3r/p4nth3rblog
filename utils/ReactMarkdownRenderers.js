@@ -1,4 +1,5 @@
 import TypographyStyles from "@styles/Typography.module.css";
+import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 
 export default function ReactMarkdownRenderers(markdown) {
   return {
@@ -15,11 +16,17 @@ export default function ReactMarkdownRenderers(markdown) {
       <a
         href={href}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow"
         className={TypographyStyles.inlineLink}
       >
         {children}
       </a>
+    ),
+    list: ({ children }) => (
+      <ul className={RichTextPageContentStyles.page__ul}>{children}</ul>
+    ),
+    listItem: ({ children }) => (
+      <li className={RichTextPageContentStyles.page__li}>{children}</li>
     ),
   };
 }

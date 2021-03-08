@@ -56,7 +56,7 @@ export default function SocialLinks(props) {
               href={link.url}
               aria-label={link.ariaLabel}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow"
             >
               {link.svg}
             </a>
