@@ -368,6 +368,47 @@ export default class ContentfulApi {
   }
 
   /*
+   * Get all thingsIUse entries
+   * This query is not paginated, because even with a limit of 2000,
+   * the GQL complexity is only 4000
+   */
+  static async getThingsIUse() {
+    const query = `{
+      thingIUseCollection(order: name_ASC) {
+        total
+        items {
+          sys {
+            id
+          }
+          name
+          categories
+          description
+          link
+          isAffiliateLink
+          customLinkText
+          image {
+            url
+            description
+            height
+            width
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const thingIUseCollection = response.data.thingIUseCollection.items
+      ? response.data.thingIUseCollection.items
+      : [];
+
+    return thingIUseCollection;
+  }
+
+  /*
    * Call the Contentful GraphQL Api
    * param: query (string)
    */

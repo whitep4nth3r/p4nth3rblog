@@ -2,19 +2,10 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
-import LinkIcon from "./svg/LinkIcon";
+import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
-function slugifyString(string) {
-  return string
-    .replace(/\s+/g, "-")
-    .replace(/[^\w\-]+/g, "")
-    .replace(/\-\-+/g, "-")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "")
-    .toLowerCase();
-}
+import { slugifyString } from "@utils/Tools";
 
 const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
@@ -51,7 +42,7 @@ export function getRichTextRenderOptions(links, options) {
           className={TypographyStyles.inlineLink}
           href={node.data.uri}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow"
         >
           {children}
         </a>
