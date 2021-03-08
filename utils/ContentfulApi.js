@@ -367,9 +367,12 @@ export default class ContentfulApi {
     return recentPosts;
   }
 
+  /*
+   * Get all thingsIUse entries
+   * This query is not paginated, because even with a limit of 2000,
+   * the GQL complexity is only 4000
+   */
   static async getThingsIUse() {
-    //todo - paginate these things
-
     const query = `{
       thingIUseCollection {
         total
