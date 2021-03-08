@@ -27,8 +27,6 @@ export default css.global`
 
     --wrapper-max-width: 48rem;
 
-    --screen-med: 768px;
-
     --hamburger_padding-x: 16px;
     --hamburger_padding-y: 16px;
     --hamburger_layer-width: 32px;
