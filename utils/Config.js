@@ -17,6 +17,10 @@ export const Config = {
       url: SITE_URL,
       slug: "/",
     },
+    about: {
+      url: `${SITE_URL}/about`,
+      slug: "/about",
+    },
     blogIndex: {
       url: `${SITE_URL}/blog`,
       slug: "/blog",
