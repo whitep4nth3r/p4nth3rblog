@@ -9,7 +9,6 @@ import TypographyStyles from "@styles/Typography.module.css";
 export default function About(props) {
   const { twitterUser } = props;
 
-  console.log(twitterUser);
   return (
     <>
       <MainLayout>
@@ -22,7 +21,8 @@ export default function About(props) {
         <ContentWrapper>
           <PageContentWrapper>
             <h1 className={TypographyStyles.heading__h1}>
-              Testing incremental static regeneration with Next.js
+              Testing incremental static regeneration with Next.js - live on
+              stream with Shy Ruparel!
             </h1>
             <div style={{ margin: "2rem auto" }}>
               <p className={TypographyStyles.bodyCopy}>
@@ -45,6 +45,13 @@ export default function About(props) {
                 Followers: {twitterUser.public_metrics.followers_count}
               </h2>
             </div>
+
+            <div style={{ margin: "2rem auto" }}>
+              <p className={TypographyStyles.bodyCopy}>
+                REMINDER TO SALMA - this route has currently been disallowed in
+                robots.txt
+              </p>
+            </div>
           </PageContentWrapper>
         </ContentWrapper>
       </MainLayout>
@@ -55,10 +62,10 @@ export default function About(props) {
 export async function getStaticProps() {
   const twitterUser = await TwitterApi.getUserPublicMetrics();
 
-  console.log(twitterUser.data[0]);
   return {
     props: {
       twitterUser: twitterUser.data[0],
     },
+    revalidate: 5,
   };
 }

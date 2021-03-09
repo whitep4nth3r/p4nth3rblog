@@ -55,10 +55,6 @@ export const Config = {
       path: "/",
     },
     {
-      displayName: "About",
-      path: "/about",
-    },
-    {
       displayName: "Blog",
       path: "/blog",
     },
