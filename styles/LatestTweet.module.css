@@ -1,0 +1,87 @@
+.container {
+  border: 0.125rem solid var(--color-border);
+  border-radius: 0.25rem;
+  padding: 2rem;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  column-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.imgContainer {
+  align-self: center;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.nameContainer {
+}
+
+.twitterName {
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-foreground);
+}
+
+.twitterUsername {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-foreground);
+}
+
+.logo {
+  align-self: center;
+}
+
+.tweetText {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+  word-break: break-word;
+}
+
+.tweetText a {
+  color: inherit;
+  transition: color var(--global-transition-time) ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.tweetText a:visited {
+  color: var(--color-foreground);
+}
+
+.tweetText a:hover {
+  color: var(--color-foreground);
+}
+
+.tweetText a:focus {
+  outline-width: 0;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s;
+}
+
+.tweetText a:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
+}
+
+.mediaImg {
+  border-radius: 0.5rem;
+}

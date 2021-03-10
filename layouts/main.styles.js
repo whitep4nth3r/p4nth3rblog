@@ -11,6 +11,7 @@ export default css.global`
     --color-foreground: #0f111a;
     --color-background: #ffffff;
     --color-muted: #666666;
+    --color-border: #c7c8cc;
 
     --grid-unit: 0.5rem;
 

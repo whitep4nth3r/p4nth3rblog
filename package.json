@@ -1,5 +1,5 @@
 {
-  "name": "learn-starter",
+  "name": "whitep4nth3r",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
+    "html-react-parser": "^1.2.4",
     "next": "^10.0.0",
     "prismjs": "^1.23.0",
     "react": "17.0.1",

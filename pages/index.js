@@ -1,15 +1,17 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import ContentfulApi from "@utils/ContentfulApi";
+import TwitterApi from "@utils/TwitterApi";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
+import LatestTweet from "@components/LatestTweet";
 
 export default function Home(props) {
-  const { pageContent, recentPosts, preview } = props;
+  const { pageContent, recentPosts, preview, latestTweet } = props;
 
   return (
     <>
@@ -27,6 +29,7 @@ export default function Home(props) {
         <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
+            <LatestTweet latestTweet={latestTweet} />
           </PageContentWrapper>
           <RecentPostList posts={recentPosts} />
         </ContentWrapper>
@@ -44,12 +47,15 @@ export async function getStaticProps({ preview = false }) {
   );
 
   const recentPosts = await ContentfulApi.getRecentPostList();
+  const latestTweet = await TwitterApi.getLatestTweet();
 
   return {
     props: {
       preview,
       pageContent,
       recentPosts,
+      latestTweet,
     },
+    revalidate: 2,
   };
 }
