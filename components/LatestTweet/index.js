@@ -14,6 +14,7 @@ import Twitter from "@components/LatestTweet/svg/Twitter";
  * - check mark (isaud_)
  * - video type preview image url
  * - other entities?
+ * - links and retweets and stuff
  */
 
 export function processTweet(data) {
