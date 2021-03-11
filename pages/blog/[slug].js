@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
@@ -41,6 +41,12 @@ export async function getStaticProps({ params, preview = false }) {
   const post = await ContentfulApi.getPostBySlug(params.slug, {
     preview: preview,
   });
+
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
