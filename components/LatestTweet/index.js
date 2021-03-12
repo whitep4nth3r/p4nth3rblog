@@ -2,15 +2,23 @@ import parse from "html-react-parser";
 import LatestTweetStyles from "@styles/LatestTweet.module.css";
 import Image from "next/image";
 import Twitter from "@components/LatestTweet/svg/Twitter";
+import LinkIcon from "@components/LatestTweet/svg/LinkIcon";
+
+function formatUrlForShortDisplay(url) {
+  return new URL(url).hostname;
+}
 
 /**
  * DONE:
- * - linking to tagged users
+ * - mentions
  * - show photo media
+ * - do not show reply tweets
+ * - show rich url previews with images
+ * - use mentions entities rather than regex for users
  *
  * TODO:
  * - Link component to my Twitter profile
- * - show rich url previews with images
+ * - check gifs
  * - check mark (isaud_)
  * - video type preview image url
  * - other entities?
@@ -18,38 +26,29 @@ import Twitter from "@components/LatestTweet/svg/Twitter";
  */
 
 export function processTweet(data) {
-  // turning @tags into anchor links
-
   let _text = data.text;
-  // Luke says  you can also store the express as an object and then
-  //.test before doing a match - it is more performant? i think?
+  const { entities } = data;
 
-  // Check for and remove urls in tweet text
-  const urlMatches = _text.match(/https:\/\/t.co\/[a-zA-Z0-9]+/g);
+  // remove the url string which is replaced by a rich
+  // preview in processUrls
+  entities.urls.forEach((urlEntity) => {
+    _text = _text.replace(urlEntity.url, "");
+  });
 
-  if (urlMatches) {
-    urlMatches.forEach((match) => {
-      _text = _text.replace(match, "");
-    });
-  }
-
-  const usernameMatches = _text.match(/@(\w){1,15}/g);
-
-  if (usernameMatches) {
-    usernameMatches.forEach((name) => {
-      _text = _text.replace(
-        name,
-        `<a href="https://twitter.com/${name.replace(
-          "@",
-          "",
-        )}" target="_blank">${name}</a>`,
-      );
-    });
-  }
+  // replace @mentions with anchor links
+  // warning - probably use the start and end of the mention
+  // to properly replace the text with the link
+  entities.mentions.forEach((mention) => {
+    _text = _text.replace(
+      `@${mention.username}`,
+      `<a href="https://twitter.com/${mention.username}" target="_blank">@${mention.username}</a>`,
+    );
+  });
 
   return parse(_text);
 }
 
+// not sure with the new query whether this will work
 function processMedia(includes) {
   // check for media type = photo
 
@@ -59,6 +58,7 @@ function processMedia(includes) {
         case "photo":
           return (
             <Image
+              alt="test"
               src={media.url}
               height={media.height}
               width={media.width}
@@ -75,8 +75,49 @@ function processMedia(includes) {
   return media;
 }
 
+function processUrls(urls) {
+  const processed = urls
+    .map((url) => {
+      return (
+        <a
+          href={url.expanded_url}
+          target="_blank"
+          className={LatestTweetStyles.urlPreview}
+        >
+          <div className={LatestTweetStyles.urlPreview__imgContainer}>
+            <Image alt={url.title} src={url.images[0].url} layout="fill" />
+          </div>
+          <div className={LatestTweetStyles.urlPreview__inner}>
+            <p className={LatestTweetStyles.urlPreview__title}>{url.title}</p>
+            <p className={LatestTweetStyles.urlPreview__description}>
+              {url.description}
+            </p>
+            <div className={LatestTweetStyles.urlPreview__shortUrlDisplay}>
+              <span className={LatestTweetStyles.urlPreview__linkIconContainer}>
+                <LinkIcon />
+              </span>
+              <p className={LatestTweetStyles.urlPreview__shortUrlDisplay__url}>
+                {formatUrlForShortDisplay(url.expanded_url)}
+              </p>
+            </div>
+          </div>
+        </a>
+      );
+    })
+    .pop();
+
+  return processed;
+}
+
 export default function LatestTweet({ latestTweet }) {
   const { tweet, metrics, profileImgUrl } = latestTweet;
+
+  // Do not show latest tweet if it is a reply tweet
+  if (tweet.data.referenced_tweets) {
+    return null;
+  }
+
+  console.log(tweet.data.text);
 
   return (
     <div className={LatestTweetStyles.container}>
@@ -99,7 +140,8 @@ export default function LatestTweet({ latestTweet }) {
         <Twitter className={LatestTweetStyles.logo} />
       </div>
       <p className={LatestTweetStyles.tweetText}>{processTweet(tweet.data)}</p>
-      {processMedia(tweet.includes)}
+      {tweet.includes && processMedia(tweet.includes)}
+      {tweet.data.entities.urls && processUrls(tweet.data.entities.urls)}
     </div>
   );
 }
