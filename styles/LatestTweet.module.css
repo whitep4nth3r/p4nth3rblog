@@ -47,7 +47,7 @@
 
 .tweetText {
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 1rem;
   font-weight: var(--font-weight-normal);
   font-family: var(--font-family-main);
@@ -84,7 +84,8 @@
 }
 
 .mediaImg {
-  border-radius: 0.5rem;
+  border: 0.25rem solid var(--color-primary) !important;
+  border-radius: 1rem;
 }
 
 .urlPreview {
@@ -104,6 +105,7 @@
 .urlPreview__imgContainer {
   position: relative;
 }
+
 .urlPreview__imgContainer img {
   object-fit: cover;
 }
@@ -148,4 +150,33 @@
   font-size: 1rem;
   line-height: 1rem;
   font-weight: var(--font-weight-normal);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.metrics__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-self: center;
+  align-items: center;
+}
+
+.metrics__iconContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.metrics__metric {
+  font-size: 1.4rem;
+  line-height: 1;
+  font-weight: var(--font-weight-light);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
 }
