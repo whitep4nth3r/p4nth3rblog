@@ -10,8 +10,11 @@ export default function CodeBlock(props) {
   const { language, code } = props;
 
   return (
-    <pre className={`${CodeBlockStyles.codeBlock} language-${language}`}>
-      <code className={CodeBlockStyles.codeBlock__inner}>{code}</code>
-    </pre>
+    <div className={CodeBlockStyles.codeBlock__container}>
+      <span className={CodeBlockStyles.codeBlock__lang}>{language}</span>
+      <pre className={`${CodeBlockStyles.codeBlock} language-${language}`}>
+        <code className={CodeBlockStyles.codeBlock__inner}>{code}</code>
+      </pre>
+    </div>
   );
 }

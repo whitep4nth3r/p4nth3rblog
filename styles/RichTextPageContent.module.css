@@ -54,10 +54,14 @@
 .page__li {
   font-size: 1.2rem;
   line-height: 1.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
   font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
+}
+
+.page__li p {
+  margin-bottom: 0 !important;
 }
 
 .page__imgContainer {
