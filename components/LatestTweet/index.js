@@ -23,32 +23,57 @@ function formatUrlForShortDisplay(url) {
  * - Link component to actual tweet
  * - accessibility on metrics
  * - check mark (isaud_)
+ * - show time
+ * - hashtags
  *
- * 
+ *
  * IN PROGRESS:
- * - video media
- * - render multiple entities
- * - check gifs
+ *
+ *
+ * - video media - not possible with api v2?
+ * - render multiple entities - do we really want to do this?
+ * - check gifs - not possible with api v2?
  *
  *
  * TODO:
- * - hashtags
- * - show time - time ago?
  * - i.e. youtube link
  * - other entities?
+ *
+ *
+ * Problems:
+ *
+ * 1. Some urlEntities I want to show, i.e. those that are in line with the tweet text
+ * some I do not want to show, because they should be replaced by the media embedded below
+ *
+ * Is there a way to cross reference url entities with media urls and only show the url entities
+ * that are not present in a media object
+ *
+ * 2. The tweet is getting a bit thicc
+ * do we create a priority list of what we show - so we don't have a million bits of media etc
+ * -- only expand the last media object
  */
 
 export function processTweet(data) {
   let _text = data.text;
   const { entities } = data;
 
+  if (entities.hashtags) {
+    entities.hashtags.forEach((hashtag) => {
+      _text = _text.replace(
+        `#${hashtag.tag}`,
+        `<a href="https://twitter.com/hashtag/${hashtag.tag}" className="${LatestTweetStyles.hashtag}" target="_blank">#${hashtag.tag}</a>`,
+      );
+    });
+  }
+
   // remove the url string which is replaced by a rich
   // preview in processUrls
   if (entities.urls) {
     entities.urls.forEach((urlEntity) => {
-      // console.log("ENTITY URL");
-      // console.log(urlEntity);
-      _text = _text.replace(urlEntity.url, "");
+      _text = _text.replace(
+        urlEntity.url,
+        `<a href="https://twitter.com/${urlEntity.url}" target="_blank">${urlEntity.display_url}</a>`,
+      );
     });
   }
 
@@ -72,7 +97,6 @@ function processMedia(includes) {
     "Image media from the latest tweet - sorry there's no real alternative text - the Twitter API doesn't seem to provide it!";
   const media = includes.media
     .map((media) => {
-      // console.log(media);
       switch (media.type) {
         case "animated_gif":
           return (
@@ -195,6 +219,28 @@ function processTweetMetrics(metrics) {
   );
 }
 
+function processDate(created_at) {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const date = new Date(created_at);
+  return `${date.getHours()}:${date.getMinutes()} ${date.getDate()} ${
+    months[date.getMonth()]
+  } ${date.getFullYear()}`;
+}
+
 export default function LatestTweet({ latestTweet }) {
   const { tweet, metrics, profileImgUrl } = latestTweet;
   // Do not show latest tweet if it is a reply tweet
@@ -205,8 +251,6 @@ export default function LatestTweet({ latestTweet }) {
   function goToTweet(id) {
     window.open(`https://twitter.com/whitep4nth3r/status/${id}`, "_blank");
   }
-
-  // console.log(tweet);
 
   return (
     <div
@@ -227,16 +271,23 @@ export default function LatestTweet({ latestTweet }) {
         <div className={LatestTweetStyles.nameContainer}>
           <h3 className={LatestTweetStyles.twitterName}>
             {metrics.name}{" "}
-            <span class={LatestTweetStyles.verifiedIconContainer}>
+            <span className={LatestTweetStyles.verifiedIconContainer}>
               <Verified />
             </span>
           </h3>
           <h4 className={LatestTweetStyles.twitterUsername}>
             @{metrics.username}
+            <time
+              className={LatestTweetStyles.createdAt}
+              dateTime={tweet.data.created_at}
+            >
+              {processDate(tweet.data.created_at)}
+            </time>
           </h4>
         </div>
         <Twitter className={LatestTweetStyles.logo} />
       </div>
+
       <p className={LatestTweetStyles.tweetText}>{processTweet(tweet.data)}</p>
       {tweet.includes && processMedia(tweet.includes)}
       {tweet.data.entities.urls && processUrls(tweet.data.entities.urls)}

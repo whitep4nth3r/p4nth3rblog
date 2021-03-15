@@ -183,8 +183,8 @@
   transition-timing-function: ease;
 }
 
-.hamburger__inner:before,
-.hamburger__inner:after {
+.hamburger__inner::before,
+.hamburger__inner::after {
   content: "";
   display: block;
   width: var(--hamburger_layer-width);

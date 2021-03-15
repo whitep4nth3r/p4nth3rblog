@@ -65,11 +65,9 @@
 }
 
 .tweetText a {
-  color: inherit;
   transition: color var(--global-transition-time) ease-in-out;
-  text-decoration: underline;
-  text-underline-offset: 0.125rem;
-  text-decoration-thickness: 0.125rem;
+  color: #1b94e0;
+  text-decoration: none;
 }
 
 .tweetText a:visited {
@@ -166,7 +164,8 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1rem;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 .metrics__block {
@@ -192,4 +191,20 @@
 
 .urlEntity {
   display: block;
+}
+
+.createdAt {
+  font-size: inherit;
+  line-height: inherit;
+  margin-left: 0.5rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+  text-decoration: none;
+  display: inline;
+}
+
+.createdAt::before {
+  content: "•";
+  margin-right: 0.5rem;
 }

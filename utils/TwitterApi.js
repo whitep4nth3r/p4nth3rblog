@@ -48,7 +48,7 @@ export default class TwitterApi {
       ).then((response) => response.json());
 
       const latestRichTweet = await fetch(
-        `https://api.twitter.com/2/tweets/${tweets.data[0].id}?expansions=attachments.media_keys,referenced_tweets.id&tweet.fields=entities,public_metrics&media.fields=preview_image_url,height,width,duration_ms`,
+        `https://api.twitter.com/2/tweets/${tweets.data[0].id}?expansions=attachments.media_keys,referenced_tweets.id&tweet.fields=created_at,entities,public_metrics&media.fields=url,preview_image_url,height,width,duration_ms`,
         TwitterApi.getFetchOptions(),
       ).then((response) => response.json());
 
