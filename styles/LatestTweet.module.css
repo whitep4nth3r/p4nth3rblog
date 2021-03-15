@@ -2,6 +2,7 @@
   border: 0.125rem solid var(--color-border);
   border-radius: 0.25rem;
   padding: 2rem;
+  cursor: pointer;
 }
 
 .top {
@@ -30,6 +31,13 @@
   font-family: var(--font-family-main);
   font-weight: var(--font-weight-bold);
   color: var(--color-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.verifiedIconContainer {
+  margin-left: 0.5rem;
 }
 
 .twitterUsername {
@@ -96,6 +104,7 @@
   border-radius: 1rem;
   overflow: hidden;
   text-decoration: none;
+  margin-top: 1rem;
 }
 
 .urlPreview__inner {
@@ -179,4 +188,8 @@
   font-weight: var(--font-weight-light);
   font-family: var(--font-family-main);
   color: var(--color-foreground);
+}
+
+.urlEntity {
+  display: block;
 }

@@ -5,6 +5,7 @@ export default function LinkIcon() {
       viewBox="0 0 512 512"
       height="16"
       width="16"
+      aria-label="Link icon"
     >
       <path
         fill="currentColor"

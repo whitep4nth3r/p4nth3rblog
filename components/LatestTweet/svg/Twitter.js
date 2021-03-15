@@ -5,6 +5,7 @@ export default function Twitter() {
       height="44"
       width="44"
       viewBox="0 0 512 512"
+      aria-label="Twitter icon"
     >
       <path
         fill="#1DA1F2"
