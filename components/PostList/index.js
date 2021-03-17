@@ -7,9 +7,9 @@ import PublishedDate from "@components/Post/PublishedDate";
 import Tags from "@components/Post/Tags";
 import Pagination from "@components/PostList/Pagination";
 import ContentfulApi from "@utils/ContentfulApi";
-import TypographyStyles from "@styles/Typography.module.css";
 import ContentListStyles from "@styles/ContentList.module.css";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
+import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
 function shouldDisablePrev(newCurrentPage) {
   return newCurrentPage === 1;
@@ -62,6 +62,12 @@ export default function PostList(props) {
         {postsToDisplay.map((post) => (
           <li key={post.sys.id}>
             <article className={ContentListStyles.contentList__post}>
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: buildStructuredDataForBlogPost(post),
+                }}
+              />
               <PublishedDate date={post.date} />
               <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
                 <a className={ContentListStyles.contentList__titleLink}>
