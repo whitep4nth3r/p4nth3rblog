@@ -10,7 +10,11 @@ export function slugifyString(string) {
     .toLowerCase();
 }
 
-export function buildStructuredDataForBlogPost(post) {
+const defaultOptions = {
+  isPostList: false,
+};
+
+export function buildStructuredDataForBlogPost(post, options = defaultOptions) {
   return JSON.stringify({
     "@context": "https://schema.org/",
     "@type": "BlogPosting",
@@ -19,9 +23,9 @@ export function buildStructuredDataForBlogPost(post) {
       "@id": `${Config.pageMeta.blogIndex.url}/${post.slug}`,
     },
     headline: post.title,
-    image: post.body
-      ? post.body.links?.assets?.block?.map((asset) => asset.url)
-      : [],
+    image: options.isPostList
+      ? [post.featuredImage.url]
+      : post.body.links?.assets?.block?.map((asset) => asset.url),
     dateCreated: post.date,
     description: post.excerpt,
     keywords: post.tags.join(","),

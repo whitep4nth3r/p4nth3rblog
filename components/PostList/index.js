@@ -65,7 +65,9 @@ export default function PostList(props) {
               <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
-                  __html: buildStructuredDataForBlogPost(post),
+                  __html: buildStructuredDataForBlogPost(post, {
+                    isPostList: true,
+                  }),
                 }}
               />
               <PublishedDate date={post.date} />
