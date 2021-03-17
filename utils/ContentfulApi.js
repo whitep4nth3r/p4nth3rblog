@@ -172,6 +172,21 @@ export default class ContentfulApi {
             excerpt
             tags
             externalUrl
+            author {
+              name
+              description
+              twitchUsername
+              twitterUsername
+              gitHubUsername
+              websiteUrl
+              image {
+                url
+                title
+                width
+                height
+                description
+              }
+            }
             body {
               json
               links {
@@ -261,6 +276,21 @@ export default class ContentfulApi {
           excerpt
           tags
           externalUrl
+          author {
+            name
+            description
+            twitchUsername
+            twitterUsername
+            gitHubUsername
+            websiteUrl
+            image {
+              url
+              title
+              width
+              height
+              description
+            }
+          }
           body {
             json
             links {
