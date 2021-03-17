@@ -10,6 +10,7 @@ pre[class*="language-"].codeBlock {
 code[class*="language-"].codeBlock__inner {
   overflow-x: auto;
   white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .codeBlock__lang {
