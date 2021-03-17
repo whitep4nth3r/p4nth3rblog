@@ -5,12 +5,20 @@ import PublishedDate from "@components/Post/PublishedDate";
 import Author from "@components/Post/Author";
 import ExternalUrl from "@components/Post/ExternalUrl";
 import RichTextPageContent from "@components/RichTextPageContent";
+import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
 export default function Post(props) {
   const { post } = props;
 
   return (
     <article className={RichTextPageContentStyles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: buildStructuredDataForBlogPost(post),
+        }}
+      />
+
       {post.externalUrl && <ExternalUrl url={post.externalUrl} />}
       <PublishedDate date={post.date} />
       {post.tags !== null && <Tags tags={post.tags} />}

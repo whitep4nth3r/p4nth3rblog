@@ -356,6 +356,19 @@ export default class ContentfulApi {
             slug
             excerpt
             tags
+            featuredImage {
+              url
+              description
+              height
+              width
+            }
+            author {
+              name
+              description
+              image {
+                url
+              }
+            }
           }
         }
       }`;
