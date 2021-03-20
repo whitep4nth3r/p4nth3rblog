@@ -46,6 +46,8 @@ export default function PageMeta(props) {
         content={`@${Config.pageMeta.openGraph.twitterUser}`}
       />
 
+      <meta name="monetization" content="$ilp.uphold.com/J7y7wkRezRYL" />
+
       <link rel="icon" href="/favicon.ico" />
 
       <link
