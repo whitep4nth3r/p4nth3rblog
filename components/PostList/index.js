@@ -93,7 +93,6 @@ export default function PostList(props) {
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
         nextDisabled={nextDisabled}
         prevDisabled={prevDisabled}
       />
