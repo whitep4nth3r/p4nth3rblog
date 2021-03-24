@@ -1,65 +1,22 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { Config } from "@utils/Config";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import PublishedDate from "@components/Post/PublishedDate";
 import Tags from "@components/Post/Tags";
 import Pagination from "@components/PostList/Pagination";
-import ContentfulApi from "@utils/ContentfulApi";
 import ContentListStyles from "@styles/ContentList.module.css";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
+import { Config } from "@utils/Config";
 import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
-function shouldDisablePrev(newCurrentPage) {
-  return newCurrentPage === 1;
-}
-
-function shouldDisableNext(totalPages, newCurrentPage) {
-  return newCurrentPage === totalPages;
-}
-
 export default function PostList(props) {
-  const { posts, totalPosts } = props;
-
-  const router = useRouter();
-
-  const currentPageParam =
-    router.query.page !== undefined ? parseInt(router.query.page, 10) : 1;
-
-  const [postsToDisplay, setPostsToDisplay] = useState(posts);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [nextDisabled, setNextDisabled] = useState(false);
-  const [prevDisabled, setPrevDisabled] = useState(true);
-
-  const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
-
-  useEffect(() => {
-    setCurrentPage(currentPageParam);
-
-    async function updatePosts() {
-      const newPosts = await ContentfulApi.getPaginatedPostSummaries(
-        currentPageParam,
-      );
-
-      setPostsToDisplay(newPosts);
-    }
-
-    updatePosts();
-    setNextDisabled(shouldDisableNext(totalPages, currentPageParam));
-    setPrevDisabled(shouldDisablePrev(currentPageParam));
-  }, [
-    setCurrentPage,
-    currentPageParam,
-    setPostsToDisplay,
-    setNextDisabled,
-    setPrevDisabled,
-  ]);
+  const { posts, currentPage, totalPages } = props;
+  const nextDisabled = parseInt(currentPage, 10) === parseInt(totalPages, 10);
+  const prevDisabled = parseInt(currentPage, 10) === 1;
 
   return (
     <>
       <ol className={ContentListStyles.contentList}>
-        {postsToDisplay.map((post) => (
+        {posts.map((post) => (
           <li key={post.sys.id}>
             <article className={ContentListStyles.contentList__post}>
               <script

@@ -52,10 +52,16 @@ export default function Header() {
 
         <ul className={navLinksClasses}>
           {Config.menuLinks.map((link) => {
+            const onBlogPost =
+              router.pathname === Config.pageMeta.post.slug &&
+              link.path === Config.pageMeta.blogIndex.slug;
+
+            const onBlogIndexPage =
+              router.pathname === Config.pageMeta.blogIndexPage.slug &&
+              link.path === Config.pageMeta.blogIndex.slug;
+
             const isActive =
-              (router.pathname === Config.pageMeta.post.slug &&
-                link.path === Config.pageMeta.blogIndex.slug) ||
-              router.pathname === link.path;
+              onBlogPost || onBlogIndexPage || router.pathname === link.path;
 
             const isActiveClass = isActive
               ? ` ${HeaderStyles.header__navListItem__active}`

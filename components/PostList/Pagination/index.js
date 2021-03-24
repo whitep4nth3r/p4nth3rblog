@@ -6,29 +6,8 @@ import ChevronRight from "./svg/ChevronRight";
 export default function Pagination(props) {
   const { totalPages, currentPage, prevDisabled, nextDisabled } = props;
 
-  function renderPageNumbers(totalPages) {
-    const pageNumbers = [];
-
-    for (let i = 1; i <= totalPages; i++) {
-      const isActiveClass =
-        currentPage === i
-          ? ` ${PaginationStyles.pagination__listItem__active}`
-          : "";
-
-      pageNumbers.push(
-        <li
-          key={`page-${i}`}
-          className={PaginationStyles.pagination__listItem + isActiveClass}
-        >
-          <Link href={`/blog?page=${i}`}>
-            <a>Page {i}</a>
-          </Link>
-        </li>,
-      );
-    }
-
-    return pageNumbers;
-  }
+  const prevPage = parseInt(currentPage, 10) - 1;
+  const nextPage = parseInt(currentPage, 10) + 1;
 
   return (
     <div className={PaginationStyles.pagination}>
@@ -45,7 +24,7 @@ export default function Pagination(props) {
             </span>
           )}
           {!prevDisabled && (
-            <Link href={`/blog?page=${currentPage - 1}`}>
+            <Link href={`/blog/page/${prevPage}`}>
               <a>
                 <span
                   className={
@@ -59,7 +38,11 @@ export default function Pagination(props) {
             </Link>
           )}
         </li>
-        {renderPageNumbers(totalPages)}
+        <li
+          className={`${PaginationStyles.pagination__listItem} ${PaginationStyles.pagination__listItem__pageDescriptor}`}
+        >
+          Page {currentPage} of {totalPages}
+        </li>
         <li className={PaginationStyles.pagination__listItem}>
           {nextDisabled && (
             <span className={PaginationStyles.pagination__listItem__disabled}>
@@ -72,7 +55,7 @@ export default function Pagination(props) {
             </span>
           )}
           {!nextDisabled && (
-            <Link href={`/blog?page=${currentPage + 1}`}>
+            <Link href={`/blog/page/${nextPage}`}>
               <a>
                 <span>Next page</span>
                 <span
