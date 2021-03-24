@@ -21,7 +21,7 @@ export default function BlogIndexPage(props) {
   return (
     <MainLayout preview={preview}>
       <PageMeta
-        title={pageContent.title}
+        title={`${pageContent.title} Page ${currentPage}`}
         description={pageContent.description}
         url={Config.pageMeta.blogIndex.url}
       />
