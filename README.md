@@ -4,11 +4,15 @@
 
 ## This blog site is built with Next.js and Contentful
 
-I usually build this blog site live on my [Twitch stream](https://twitch.tv/whitep4nth3r). Come and hang out!
+I usually build this blog site live on my [Twitch stream](https://twitch.tv/whitep4nth3r).
+
+Come and hang out!
 
 ## Watch the Twitch trailer
 
-[![A short GIF loop of a whitep4nth3r Twitch stream](twitch_chatting.gif)]("https://www.twitch.tv/videos/935244244" "Build stuff, learn things, love what you do — the trailer")
+<a href="https://www.twitch.tv/videos/935244244" target="_blank">
+[![A short GIF loop of a whitep4nth3r Twitch stream]
+</a>
 
 ## Building your own blog site with Next.js and Contentful
 
