@@ -23,7 +23,7 @@ export default function BlogIndexPage(props) {
       <PageMeta
         title={`${pageContent.title} Page ${currentPage}`}
         description={pageContent.description}
-        url={Config.pageMeta.blogIndex.url}
+        url={`${Config.pageMeta.blogIndex.url}/page/${currentPage}`}
       />
 
       {pageContent.heroBanner !== null && (
