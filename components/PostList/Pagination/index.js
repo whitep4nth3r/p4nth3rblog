@@ -6,6 +6,9 @@ import ChevronRight from "./svg/ChevronRight";
 export default function Pagination(props) {
   const { totalPages, currentPage, prevDisabled, nextDisabled } = props;
 
+  const prevPage = parseInt(currentPage, 10) - 1;
+  const nextPage = parseInt(currentPage, 10) + 1;
+
   return (
     <div className={PaginationStyles.pagination}>
       <ol className={PaginationStyles.pagination__list}>
@@ -21,7 +24,7 @@ export default function Pagination(props) {
             </span>
           )}
           {!prevDisabled && (
-            <Link href={`/blog/page/${parseInt(currentPage, 10) - 1}`}>
+            <Link href={`/blog/page/${prevPage}`}>
               <a>
                 <span
                   className={
@@ -52,7 +55,7 @@ export default function Pagination(props) {
             </span>
           )}
           {!nextDisabled && (
-            <Link href={`/blog/page/${parseInt(currentPage, 10) + 1}`}>
+            <Link href={`/blog/page/${nextPage}`}>
               <a>
                 <span>Next page</span>
                 <span
