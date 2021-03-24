@@ -8,11 +8,9 @@ I usually build this blog site live on my [Twitch stream](https://twitch.tv/whit
 
 Come and hang out!
 
-## Watch the Twitch trailer
+## [Watch the Twitch trailer ▶️](https://www.twitch.tv/videos/935244244)
 
-<a href="https://www.twitch.tv/videos/935244244" target="_blank">
-[![A short GIF loop of a whitep4nth3r Twitch stream]
-</a>
+![A short GIF loop of a whitep4nth3r Twitch stream](twitch_chatting.gif)
 
 ## Building your own blog site with Next.js and Contentful
 
