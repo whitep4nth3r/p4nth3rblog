@@ -9,7 +9,14 @@ import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
 
 export default function BlogIndex(props) {
-  const { postSummaries, totalPosts, pageContent, url, preview } = props;
+  const {
+    postSummaries,
+    totalPosts,
+    currentPage,
+    totalPages,
+    pageContent,
+    preview,
+  } = props;
 
   return (
     <MainLayout preview={preview}>
@@ -27,7 +34,12 @@ export default function BlogIndex(props) {
         <PageContentWrapper>
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
-        <PostList posts={postSummaries} totalPosts={totalPosts} />
+        <PostList
+          posts={postSummaries}
+          totalPosts={totalPosts}
+          totalPages={totalPages}
+          currentPage={currentPage}
+        />
       </ContentWrapper>
     </MainLayout>
   );
@@ -43,11 +55,15 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
+  const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
+
   return {
     props: {
       preview,
       postSummaries,
       totalPosts,
+      totalPages,
+      currentPage: "1",
       pageContent,
     },
   };
