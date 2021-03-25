@@ -7,7 +7,6 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
-import BlogIndexPageStyles from "@styles/BlogIndexPage.module.css";
 
 export default function BlogIndexPage(props) {
   const {
@@ -34,9 +33,6 @@ export default function BlogIndexPage(props) {
       <ContentWrapper>
         <PageContentWrapper>
           <RichTextPageContent richTextBodyField={pageContent.body} />
-          <h3 className={BlogIndexPageStyles.blogIndexPage__pageCounter}>
-            Page {currentPage} of {totalPages}
-          </h3>
         </PageContentWrapper>
         <PostList
           posts={postSummaries}
@@ -55,7 +51,7 @@ export async function getStaticPaths() {
 
   const paths = [];
 
-  for (let page = 1; page <= totalPages; page++) {
+  for (let page = 2; page <= totalPages; page++) {
     paths.push({ params: { page: page.toString() } });
   }
 

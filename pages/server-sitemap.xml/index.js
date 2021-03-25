@@ -20,7 +20,7 @@ export const getServerSideProps = async (ctx) => {
 
   const blogIndexPageFields = [];
 
-  for (let page = 1; page <= totalPages; page++) {
+  for (let page = 2; page <= totalPages; page++) {
     blogIndexPageFields.push({
       loc: `https://whitep4nth3r.com/blog/page/${page}`,
       lastmod: new Date().toISOString(),
