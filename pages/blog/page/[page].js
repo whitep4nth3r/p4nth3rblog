@@ -11,7 +11,6 @@ import HeroBanner from "@components/HeroBanner";
 export default function BlogIndexPage(props) {
   const {
     postSummaries,
-    totalPosts,
     totalPages,
     currentPage,
     pageContent,
@@ -36,7 +35,6 @@ export default function BlogIndexPage(props) {
         </PageContentWrapper>
         <PostList
           posts={postSummaries}
-          totalPosts={totalPosts}
           totalPages={totalPages}
           currentPage={currentPage}
         />
@@ -78,7 +76,6 @@ export async function getStaticProps({ params, preview = false }) {
     props: {
       preview,
       postSummaries,
-      totalPosts,
       totalPages,
       pageContent,
       currentPage: params.page,
