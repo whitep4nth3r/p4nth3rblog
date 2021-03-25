@@ -10,7 +10,7 @@ export const getServerSideProps = async (ctx) => {
 
   const blogPostFields = blogPostSlugs.map((slug) => {
     return {
-      loc: `https://whitep4nth3r.com.com/blog/${slug}`,
+      loc: `https://whitep4nth3r.com/blog/${slug}`,
       lastmod: new Date().toISOString(),
     };
   });
@@ -22,7 +22,7 @@ export const getServerSideProps = async (ctx) => {
 
   for (let page = 1; page <= totalPages; page++) {
     blogIndexPageFields.push({
-      loc: `https://whitep4nth3r.com.com/blog/page/${page}`,
+      loc: `https://whitep4nth3r.com/blog/page/${page}`,
       lastmod: new Date().toISOString(),
     });
   }
