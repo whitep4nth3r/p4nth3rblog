@@ -10,7 +10,9 @@ export default function Footer() {
 
   return (
     <footer className={FooterStyles.footer}>
-      <SocialLinks fillColor="#ffffff" />
+      <div className={FooterStyles.footer__socialLinksContainer}>
+        <SocialLinks fillColor="#ffffff" />
+      </div>
       <div className={FooterStyles.footer__ctaContainer}>
         <a
           href="https://twitch.tv/whitep4nth3r"

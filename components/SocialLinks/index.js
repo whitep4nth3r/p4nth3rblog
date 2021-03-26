@@ -3,6 +3,7 @@ import Discord from "./svgs/discord";
 import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";
 import GitHub from "./svgs/github";
+import Youtube from "./svgs/youtube";
 import Feed from "./svgs/feed";
 import { Config } from "@utils/Config";
 
@@ -30,6 +31,12 @@ const socialLinksList = [
     url: "https://twitter.com/whitep4nth3r",
     ariaLabel: "Follow whitep4nth3r on Twitter",
     svg: <Twitter />,
+  },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com/channel/UCiGFO97qgxZEbbg43mZSeyg",
+    ariaLabel: "Subscribe to whitep4nth3r on YouTube",
+    svg: <Youtube />,
   },
   {
     name: "RSS Feed",

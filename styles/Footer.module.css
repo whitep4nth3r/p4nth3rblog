@@ -8,6 +8,11 @@
   flex-direction: column;
 }
 
+.footer__socialLinksContainer {
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
+
 .footer__ctaContainer {
   display: flex;
   flex-direction: row;
