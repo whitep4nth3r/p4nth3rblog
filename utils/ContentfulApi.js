@@ -179,6 +179,7 @@ export default class ContentfulApi {
               twitterUsername
               gitHubUsername
               websiteUrl
+              youtubeUrl
               image {
                 url
                 title
@@ -283,6 +284,7 @@ export default class ContentfulApi {
             twitterUsername
             gitHubUsername
             websiteUrl
+            youtubeUrl
             image {
               url
               title

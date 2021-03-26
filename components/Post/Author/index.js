@@ -2,6 +2,19 @@ import Image from "next/image";
 import AuthorStyles from "@styles/Author.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
 
+function renderYoutubeUrl(youtubeUrl) {
+  return (
+    <a
+      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
+      href={youtubeUrl}
+      target="_blank"
+      rel="nofollow"
+    >
+      YouTube
+    </a>
+  );
+}
+
 function renderTwitter(username) {
   return (
     <a
@@ -60,6 +73,7 @@ export default function Author(props) {
     author.twitterUsername ||
     author.twitchUsername ||
     author.gitHubUsername ||
+    author.youtubeUrl ||
     author.websiteUrl;
   return (
     <div className={AuthorStyles.author}>
@@ -81,6 +95,7 @@ export default function Author(props) {
             {author.twitchUsername && renderTwitch(author.twitchUsername)}
             {author.gitHubUsername && renderGitHub(author.gitHubUsername)}
             {author.websiteUrl && renderWebsite(author.websiteUrl)}
+            {author.youtubeUrl && renderYoutubeUrl(author.youtubeUrl)}
           </div>
         )}
       </div>
