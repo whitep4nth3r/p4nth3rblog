@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import PublishedDate from "@components/Post/PublishedDate";
+import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
 import Tags from "@components/Post/Tags";
 import Pagination from "@components/PostList/Pagination";
 import ContentListStyles from "@styles/ContentList.module.css";
@@ -27,7 +27,10 @@ export default function PostList(props) {
                   }),
                 }}
               />
-              <PublishedDate date={post.date} />
+              <PublishedDateAndReadingTime
+                date={post.date}
+                readingTime={post.readingTime}
+              />
               <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
                 <a className={ContentListStyles.contentList__titleLink}>
                   <h2 className={ContentListStyles.contentList__title}>

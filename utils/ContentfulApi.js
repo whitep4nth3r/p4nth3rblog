@@ -277,6 +277,7 @@ export default class ContentfulApi {
           excerpt
           tags
           externalUrl
+          readingTime
           author {
             name
             description
@@ -358,6 +359,7 @@ export default class ContentfulApi {
             slug
             excerpt
             tags
+            readingTime
             featuredImage {
               url
               description
@@ -399,6 +401,7 @@ export default class ContentfulApi {
           slug
           excerpt
           tags
+          readingTime
         }
       }
     }`;
