@@ -382,7 +382,7 @@ export default class ContentfulApi {
 
     const paginatedPostSummaries = response.data.blogPostCollection
       ? response.data.blogPostCollection
-      : [];
+      : { total: 0, items: [] };
 
     return paginatedPostSummaries;
   }
