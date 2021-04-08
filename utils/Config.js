@@ -26,7 +26,7 @@ export const Config = {
       slug: "/blog",
     },
     blogIndexPage: {
-      slug:  "/blog/page/[page]",
+      slug: "/blog/page/[page]",
     },
     post: {
       slug: "/blog/[slug]",
@@ -50,7 +50,7 @@ export const Config = {
   },
   pagination: {
     pageSize: 6,
-    recentPostsSize: 3,
+    recentPostsSize: 6,
   },
   menuLinks: [
     {
