@@ -1,7 +1,9 @@
 .button {
   border-radius: 0;
-  border: 0.125rem solid var(--color-foreground);
+  border: 0.125rem solid var(--color-background);
   text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
   font-size: 1.5rem;
   display: inline-block;
@@ -11,8 +13,6 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-weight: var(--font-weight-normal);
-  border: 0.125rem solid var(--color-background);
   box-shadow: 0.5rem 0.5rem 0 0 var(--color-primary);
   margin-bottom: 2rem;
 }

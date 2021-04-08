@@ -51,7 +51,7 @@ export default function HeroBanner(props) {
               rel="nofollow noreferrer"
               target="_blank"
             >
-              {ctaText}
+              {ctaText} →
             </a>
           </div>
         )}

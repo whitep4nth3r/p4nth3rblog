@@ -75,7 +75,7 @@ export default function TheClaw() {
         height="818"
         rx="409"
         stroke="#ffffff"
-        stroke-width="12"
+        strokeWidth="12"
       />
     </svg>
   );

@@ -15,7 +15,7 @@
   color: var(--color-background);
   text-transform: uppercase;
   font-size: 1rem;
-  border: 0.125rem solid var(--color-secondary);
+  border: 0.25rem solid var(--color-secondary);
   border-radius: 1rem;
   padding: 0.25rem 0.5rem;
   font-weight: var(--font-weight-normal);
