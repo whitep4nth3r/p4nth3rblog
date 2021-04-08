@@ -26,6 +26,7 @@ export default css.global`
     --global-transition-time: 0.2s;
 
     --wrapper-max-width: 48rem;
+    --landing-wrapper-max-width: 72rem;
 
     --hamburger_padding-x: 16px;
     --hamburger_padding-y: 16px;

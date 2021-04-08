@@ -5,7 +5,9 @@ import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
+import LandingPageWrapper from "@components/LandingPageWrapper";
 import ContentWrapper from "@components/ContentWrapper";
+import ColorBg from "@components/ColorBg";
 import PageContentWrapper from "@components/PageContentWrapper";
 
 export default function Home(props) {
@@ -28,8 +30,12 @@ export default function Home(props) {
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </PageContentWrapper>
-          <RecentPostList posts={recentPosts} />
         </ContentWrapper>
+        <ColorBg borderTopColor="#ffb626">
+          <LandingPageWrapper>
+            <RecentPostList posts={recentPosts} />
+          </LandingPageWrapper>
+        </ColorBg>
       </MainLayout>
     </>
   );
