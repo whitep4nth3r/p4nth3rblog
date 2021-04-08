@@ -1,0 +1,98 @@
+.socialCards {
+  width: 100%;
+  margin: 2rem auto 0 auto;
+}
+
+.socialCards__header {
+  font-size: 3rem;
+  line-height: 1.4;
+  color: var(--color-foreground);
+  font-family: var(--font-family-main);
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  letter-spacing: 1px;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.socialCards__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .socialCards__list {
+    display: grid;
+    column-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.socialCards__listItem {
+  padding: 2rem;
+  background-color: var(--color-foreground);
+  border: 0.25rem solid var(--color-background);
+  box-shadow: 0.5rem 0.5rem 0 0 var(--color-tertiary);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.socialCards__svgHolder {
+  height: 6rem;
+  width: 6rem;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialCards__title {
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font-family-main);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.socialCards__description {
+  color: var(--color-background);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-family: var(--font-family-main);
+}
+
+.socialCards__listItemLink {
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+}
+
+.socialCards__listItemLink:focus,
+.socialCards__listItemLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}

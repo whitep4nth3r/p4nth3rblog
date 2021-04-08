@@ -10,6 +10,8 @@ export default function Header() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const showSocialLinks = router.pathname !== "/";
+
   function toggleMenu() {
     setMenuOpen(!menuOpen);
   }
@@ -83,7 +85,7 @@ export default function Header() {
         </ul>
       </nav>
 
-      <SocialLinks />
+      {showSocialLinks && <SocialLinks />}
     </header>
   );
 }

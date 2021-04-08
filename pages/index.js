@@ -9,6 +9,7 @@ import LandingPageWrapper from "@components/LandingPageWrapper";
 import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
 import PageContentWrapper from "@components/PageContentWrapper";
+import SocialCards from "@components/SocialCards";
 
 export default function Home(props) {
   const { pageContent, recentPosts, preview } = props;
@@ -31,7 +32,13 @@ export default function Home(props) {
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </PageContentWrapper>
         </ContentWrapper>
-        <ColorBg borderTopColor="#ffb626">
+
+        <ColorBg color="#ffb626" borderTopColor="#f11012">
+          <LandingPageWrapper>
+            <SocialCards />
+          </LandingPageWrapper>
+        </ColorBg>
+        <ColorBg borderTopColor="#f11012">
           <LandingPageWrapper>
             <RecentPostList posts={recentPosts} />
           </LandingPageWrapper>
