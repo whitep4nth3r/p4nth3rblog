@@ -6,6 +6,7 @@ import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
 import LandingPageWrapper from "@components/LandingPageWrapper";
+import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
 import PageContentWrapper from "@components/PageContentWrapper";
 
@@ -25,11 +26,11 @@ export default function Home(props) {
           <HeroBanner data={pageContent.heroBanner} />
         )}
 
-        <LandingPageWrapper>
+        <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </PageContentWrapper>
-        </LandingPageWrapper>
+        </ContentWrapper>
         <ColorBg borderTopColor="#ffb626">
           <LandingPageWrapper>
             <RecentPostList posts={recentPosts} />
