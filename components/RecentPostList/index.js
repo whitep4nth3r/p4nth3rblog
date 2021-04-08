@@ -12,7 +12,7 @@ export default function RecentPostList(props) {
   return (
     <>
       <h2 className={RecentPostListStyles.recentPostList__header}>
-        Recent articles
+        I build stuff, learn things, and write about it.
       </h2>
       <ol className={RecentPostListStyles.contentList}>
         {posts.map((post) => (
