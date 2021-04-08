@@ -82,9 +82,13 @@
   color: var(--color-background);
 }
 
-.contentList__excerpt p a,
+.contentList__excerpt p a {
+  color: var(--color-background) !important;
+}
+
+.contentList__excerpt p a:hover,
 .contentList__excerpt p a:visited {
-  color: var(--color-background);
+  color: var(--color-primary) !important;
 }
 
 .contentList__readMoreContainer {
