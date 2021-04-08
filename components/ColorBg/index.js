@@ -7,7 +7,7 @@ export default function ColorBg({ children, color, borderTopColor }) {
     <div
       style={{
         backgroundColor: applyColor,
-        borderTop: `0.5rem solid ${applyBorderTopColor}`,
+        borderTop: `0.25rem solid ${applyBorderTopColor}`,
       }}
     >
       {children}

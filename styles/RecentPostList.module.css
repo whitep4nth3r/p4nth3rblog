@@ -1,11 +1,15 @@
 .recentPostList__header {
-  font-size: 2.4rem;
+  font-size: 3rem;
   line-height: 1.4;
   color: var(--color-primary);
   font-family: var(--font-family-main);
   margin-top: 2rem;
   margin-bottom: 4rem;
   text-align: center;
+  letter-spacing: 1px;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contentList {
@@ -52,6 +56,7 @@
 }
 
 .contentList__readMoreLink {
+  letter-spacing: 1px;
   color: var(--color-primary);
   text-decoration: none;
   text-transform: uppercase;
@@ -60,6 +65,7 @@
   font-size: 1rem;
   line-height: 1;
   padding: 0.5rem 0;
+  border-bottom: 0.125rem solid var(--color-tertiary);
 }
 
 .contentList__readMoreLink:focus,
