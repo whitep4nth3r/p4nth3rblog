@@ -26,13 +26,13 @@ export default function Uses(props) {
           <HeroBanner data={pageContent.heroBanner} />
         )}
 
-        <LandingPageWrapper>
-          {pageContent.body && (
+        {pageContent.body && (
+          <LandingPageWrapper>
             <PageContentWrapper>
               <RichTextPageContent richTextBodyField={pageContent.body} />
             </PageContentWrapper>
-          )}
-        </LandingPageWrapper>
+          </LandingPageWrapper>
+        )}
         <ColorBg color="#ffb626" borderTopColor="#f11012">
           <LandingPageWrapper>
             <Projects projects={projects} />
