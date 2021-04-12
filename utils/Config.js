@@ -39,6 +39,10 @@ export const Config = {
       url: `${SITE_URL}/privacy-policy`,
       slug: "/privacy-policy",
     },
+    projects: {
+      url: `${SITE_URL}/projects`,
+      slug: "/projects",
+    },
     uses: {
       url: `${SITE_URL}/uses`,
       slug: "/uses",
@@ -60,6 +64,10 @@ export const Config = {
     {
       displayName: "Blog",
       path: "/blog",
+    },
+    {
+      displayName: "Projects",
+      path: "/projects",
     },
     {
       displayName: "Uses",

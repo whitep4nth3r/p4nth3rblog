@@ -417,6 +417,44 @@ export default class ContentfulApi {
   }
 
   /*
+   * Get all project entries
+   */
+  static async getProjects() {
+    const query = `{
+      projectCollection(order: [order_ASC]) {
+        total
+        items {
+          sys {
+            id
+          }
+          name
+          description
+          link
+          linkText
+          order
+          image {
+            url
+            description
+            height
+            width
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const projectCollection = response.data.projectCollection.items
+      ? response.data.projectCollection.items
+      : [];
+
+    return projectCollection;
+  }
+
+  /*
    * Get all thingsIUse entries
    * This query is not paginated, because even with a limit of 2000,
    * the GQL complexity is only 4000
