@@ -10,7 +10,7 @@ import PageContentWrapper from "@components/PageContentWrapper";
 import ColorBg from "@components/ColorBg";
 import Projects from "@components/Projects";
 
-export default function Uses(props) {
+export default function Projects(props) {
   const { pageContent, preview, projects } = props;
 
   return (
@@ -19,7 +19,7 @@ export default function Uses(props) {
         <PageMeta
           title={pageContent.title}
           description={pageContent.description}
-          url={Config.pageMeta.uses.url}
+          url={Config.pageMeta.projects.url}
         />
 
         {pageContent.heroBanner !== null && (
