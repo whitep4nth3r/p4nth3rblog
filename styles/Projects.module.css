@@ -67,7 +67,9 @@
   text-transform: uppercase;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
   font-size: 1rem;
   line-height: 1;
   padding: 0.5rem 0;

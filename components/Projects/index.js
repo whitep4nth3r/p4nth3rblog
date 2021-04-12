@@ -5,7 +5,7 @@ export default function Projects({ projects }) {
   return (
     <ol className={Styles.projects}>
       {projects.map((project) => (
-        <li className={Styles.projects__project}>
+        <li className={Styles.projects__project} key={project.sys.id}>
           <Image
             src={project.image.url}
             height={project.image.height}
