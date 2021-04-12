@@ -8,7 +8,7 @@ import HeroBanner from "@components/HeroBanner";
 import LandingPageWrapper from "@components/LandingPageWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ColorBg from "@components/ColorBg";
-import Projects from "@components/Projects";
+import ProjectsList from "@components/ProjectsList";
 
 export default function Projects(props) {
   const { pageContent, preview, projects } = props;
@@ -35,7 +35,7 @@ export default function Projects(props) {
         )}
         <ColorBg color="#ffb626" borderTopColor="#f11012">
           <LandingPageWrapper>
-            <Projects projects={projects} />
+            <ProjectsList projects={projects} />
           </LandingPageWrapper>
         </ColorBg>
       </MainLayout>

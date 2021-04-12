@@ -1,7 +1,7 @@
-import Styles from "@styles/Projects.module.css";
+import Styles from "@styles/ProjectsList.module.css";
 import Image from "next/image";
 
-export default function Projects({ projects }) {
+export default function ProjectsList({ projects }) {
   return (
     <ol className={Styles.projects}>
       {projects.map((project) => (
