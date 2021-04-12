@@ -33,7 +33,7 @@ export default function Uses(props) {
             </PageContentWrapper>
           )}
         </LandingPageWrapper>
-        <ColorBg borderTopColor="#f11012">
+        <ColorBg color="#ffb626" borderTopColor="#f11012">
           <LandingPageWrapper>
             <Projects projects={projects} />
           </LandingPageWrapper>
