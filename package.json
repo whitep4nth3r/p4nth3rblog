@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
+    "@whitep4nth3r/random-code": "^1.0.10",
     "next": "^10.0.0",
     "prismjs": "^1.23.0",
     "react": "17.0.1",

@@ -7,11 +7,13 @@ export default function CodeBlock(props) {
     Prism.highlightAll();
   }, []);
 
-  const { language, code } = props;
+  const { language, code, title } = props;
+
+  const displayTitle = title || language;
 
   return (
     <div className={CodeBlockStyles.codeBlock__container}>
-      <span className={CodeBlockStyles.codeBlock__lang}>{language}</span>
+      <span className={CodeBlockStyles.codeBlock__lang}>{displayTitle}</span>
       <pre className={`${CodeBlockStyles.codeBlock} language-${language}`}>
         <code className={CodeBlockStyles.codeBlock__inner}>{code}</code>
       </pre>
