@@ -23,5 +23,6 @@ code[class*="language-"].codeBlock__inner {
   display: inline-block;
   border-top-right-radius: 0.5rem;
   font-size: 1rem;
-  line-height: 1;
+  line-height: 1.2;
+  max-width: 75%;
 }

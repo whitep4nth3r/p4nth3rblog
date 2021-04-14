@@ -10,6 +10,7 @@ import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
 import PageContentWrapper from "@components/PageContentWrapper";
 import SocialCards from "@components/SocialCards";
+import RandomCodeSnippet from "@components/RandomCodeSnippet";
 
 export default function Home(props) {
   const { pageContent, recentPosts, preview } = props;
@@ -38,11 +39,17 @@ export default function Home(props) {
             <SocialCards />
           </LandingPageWrapper>
         </ColorBg>
-        <ColorBg borderTopColor="#f11012">
+        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
           <LandingPageWrapper>
             <RecentPostList posts={recentPosts} />
           </LandingPageWrapper>
         </ColorBg>
+
+        <ContentWrapper>
+          <PageContentWrapper>
+            <RandomCodeSnippet />
+          </PageContentWrapper>
+        </ContentWrapper>
       </MainLayout>
     </>
   );
