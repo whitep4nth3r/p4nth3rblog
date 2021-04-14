@@ -5,6 +5,7 @@ export default function Octocat() {
       height="16"
       width="16"
       viewBox="0 0 496 512"
+      aria-hidden="true"
     >
       <path
         fill="currentColor"
