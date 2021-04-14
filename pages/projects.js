@@ -59,5 +59,6 @@ export async function getStaticProps({ preview = false }) {
       pageContent,
       projects,
     },
+    revalidate: 5,
   };
 }
