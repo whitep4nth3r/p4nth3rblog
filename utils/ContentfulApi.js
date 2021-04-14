@@ -1,4 +1,5 @@
 import { Config } from "./Config";
+import GitHub from "@utils/GitHub";
 
 const defaultOptions = {
   preview: false,
@@ -432,6 +433,7 @@ export default class ContentfulApi {
           link
           linkText
           order
+          gitHubRepoName
           image {
             url
             description
@@ -451,7 +453,22 @@ export default class ContentfulApi {
       ? response.data.projectCollection.items
       : [];
 
-    return projectCollection;
+    const mergeProjectsWithGitHubData = async (_) => {
+      const promises = projectCollection.map(async (project) => {
+        return {
+          ...project,
+          gitHubStats: await GitHub.getRepoForksAndStars(
+            project.gitHubRepoName,
+          ),
+        };
+      });
+
+      return await Promise.all(promises);
+    };
+
+    const fullData = await mergeProjectsWithGitHubData();
+
+    return fullData;
   }
 
   /*
@@ -526,7 +543,7 @@ export default class ContentfulApi {
       );
       return data;
     } catch (error) {
-      throw new Error("Could not fetch blog posts!");
+      throw new Error("Could not fetch data from Contentful!");
     }
   }
 }
