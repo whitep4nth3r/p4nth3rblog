@@ -524,16 +524,11 @@ export default class ContentfulApi {
       : process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
     const fetchOptions = {
-      spaceID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-      accessToken,
-      endpoint: fetchUrl,
       method: "POST",
       headers: {
         Authorization: "Bearer " + accessToken,
         "Content-Type": "application/json",
       },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
       body: JSON.stringify({ query }),
     };
 

@@ -22,14 +22,11 @@ export default class GitHub {
     const accessToken = process.env.GITHUB_ACCESS_TOKEN;
 
     const fetchOptions = {
-      endpoint: fetchUrl,
       method: "POST",
       headers: {
         Authorization: "bearer " + accessToken,
         "Content-Type": "application/json",
       },
-      redirect: "follow",
-      referrerPolicy: "no-referrer",
       body: JSON.stringify({ query }),
     };
 
