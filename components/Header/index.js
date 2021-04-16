@@ -62,8 +62,16 @@ export default function Header() {
               router.pathname === Config.pageMeta.blogIndexPage.slug &&
               link.path === Config.pageMeta.blogIndex.slug;
 
+            //TODO make this better?
+            const onUsesPath =
+              router.pathname.startsWith("/uses") &&
+              link.path.startsWith("/uses");
+
             const isActive =
-              onBlogPost || onBlogIndexPage || router.pathname === link.path;
+              onBlogPost ||
+              onBlogIndexPage ||
+              onUsesPath ||
+              router.pathname === link.path;
 
             const isActiveClass = isActive
               ? ` ${HeaderStyles.header__navListItem__active}`
