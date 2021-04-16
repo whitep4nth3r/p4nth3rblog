@@ -37,3 +37,7 @@ export function buildStructuredDataForBlogPost(post, options = defaultOptions) {
     },
   });
 }
+
+export function capitalizeFirstChar(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
