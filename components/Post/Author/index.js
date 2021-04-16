@@ -1,16 +1,21 @@
 import Image from "next/image";
 import AuthorStyles from "@styles/Author.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
+import Github from "./svg/Github";
+import Twitch from "./svg/Twitch";
+import Twitter from "./svg/Twitter";
+import Youtube from "./svg/Youtube";
 
 function renderYoutubeUrl(youtubeUrl) {
   return (
     <a
-      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
+      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__link}`}
       href={youtubeUrl}
       target="_blank"
       rel="nofollow noreferrer"
+      aria-label="Subscribe on YouTube"
     >
-      YouTube
+      <Youtube />
     </a>
   );
 }
@@ -18,12 +23,13 @@ function renderYoutubeUrl(youtubeUrl) {
 function renderTwitter(username) {
   return (
     <a
-      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
+      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__link}`}
       href={`https://twitter.com/${username}`}
       target="_blank"
       rel="nofollow noreferrer"
+      aria-label="Follow on Twitter"
     >
-      Twitter
+      <Twitter />
     </a>
   );
 }
@@ -31,12 +37,13 @@ function renderTwitter(username) {
 function renderTwitch(username) {
   return (
     <a
-      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
+      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__link}`}
       href={`https://twitch.tv/${username}`}
       target="_blank"
       rel="nofollow noreferrer"
+      aria-label="Follow on Twitch"
     >
-      Twitch
+      <Twitch />
     </a>
   );
 }
@@ -44,37 +51,20 @@ function renderTwitch(username) {
 function renderGitHub(username) {
   return (
     <a
-      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
+      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__link}`}
       href={`https://github.com/${username}`}
       target="_blank"
       rel="nofollow noreferrer"
+      aria-label="View code on GitHub"
     >
-      GitHub
-    </a>
-  );
-}
-
-function renderWebsite(url) {
-  return (
-    <a
-      className={`${TypographyStyles.inlineLink} ${AuthorStyles.author__linkText}`}
-      href={url}
-      target="_blank"
-      rel="nofollow noreferrer"
-    >
-      Website
+      <Github />
     </a>
   );
 }
 
 export default function Author(props) {
   const { author } = props;
-  const hasLinks =
-    author.twitterUsername ||
-    author.twitchUsername ||
-    author.gitHubUsername ||
-    author.youtubeUrl ||
-    author.websiteUrl;
+
   return (
     <div className={AuthorStyles.author}>
       <div className={AuthorStyles.author__imgContainer}>
@@ -86,18 +76,20 @@ export default function Author(props) {
           width={author.image.width}
         />
       </div>
-      <div className={AuthorStyles.author__detailsContainer}>
-        <h2 className={AuthorStyles.author__name}>{author.name}</h2>
-        <p className={AuthorStyles.author__description}>{author.description}</p>
-        {hasLinks && (
-          <div className={AuthorStyles.author__links}>
-            {author.twitterUsername && renderTwitter(author.twitterUsername)}
-            {author.twitchUsername && renderTwitch(author.twitchUsername)}
-            {author.gitHubUsername && renderGitHub(author.gitHubUsername)}
-            {author.websiteUrl && renderWebsite(author.websiteUrl)}
-            {author.youtubeUrl && renderYoutubeUrl(author.youtubeUrl)}
-          </div>
-        )}
+      <div>
+        <div className={AuthorStyles.author__detailsContainer}>
+          <h2 className={AuthorStyles.author__name}>{author.name}</h2>
+          <p className={AuthorStyles.author__description}>
+            {author.description}
+          </p>
+        </div>
+
+        <div className={AuthorStyles.author__links}>
+          {author.twitterUsername && renderTwitter(author.twitterUsername)}
+          {author.twitchUsername && renderTwitch(author.twitchUsername)}
+          {author.gitHubUsername && renderGitHub(author.gitHubUsername)}
+          {author.youtubeUrl && renderYoutubeUrl(author.youtubeUrl)}
+        </div>
       </div>
     </div>
   );
