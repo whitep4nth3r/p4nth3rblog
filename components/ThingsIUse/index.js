@@ -32,6 +32,9 @@ export default function ThingsIUse(props) {
 
   return (
     <section>
+      <p className={TypographyStyles.heading__h4}>
+        Viewing {things.length} {filter} things
+      </p>
       <div className={ThingsIUseStyles.categoryButtonContainer}>
         {categories.map((category) => {
           const isSelected = filter === category;
