@@ -471,14 +471,44 @@ export default class ContentfulApi {
     return fullData;
   }
 
+  static async getAllThingsIUseCategories() {
+    const query = `{
+      thingIUseCollection {
+        total
+        items {
+          categories
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const thingIUseCollection = response.data.thingIUseCollection.items
+      ? response.data.thingIUseCollection.items
+      : [];
+
+    const categories = new Set();
+
+    thingIUseCollection.map((thing) => {
+      return thing.categories.forEach((cat) => categories.add(cat));
+    });
+
+    return Array.from(categories);
+  }
+
   /*
    * Get all thingsIUse entries
    * This query is not paginated, because even with a limit of 2000,
    * the GQL complexity is only 4000
    */
-  static async getThingsIUse() {
+  static async getThingsIUse(category = "") {
+    const filter =
+      category !== ""
+        ? `, where: {categories_contains_some: "${category}"}`
+        : "";
+
     const query = `{
-      thingIUseCollection(order: name_ASC) {
+      thingIUseCollection(order: name_ASC${filter}) {
         total
         items {
           sys {

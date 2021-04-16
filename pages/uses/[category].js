@@ -8,8 +8,8 @@ import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ThingsIUse from "@components/ThingsIUse";
 
-export default function Uses(props) {
-  const { pageContent, preview, thingsIUse } = props;
+export default function UsesCategory(props) {
+  const { pageContent, preview, thingsIUse, categories, filter } = props;
 
   return (
     <>
@@ -29,14 +29,31 @@ export default function Uses(props) {
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </PageContentWrapper>
 
-          <ThingsIUse things={thingsIUse} />
+          <ThingsIUse
+            things={thingsIUse}
+            categories={categories}
+            filter={filter}
+          />
         </ContentWrapper>
       </MainLayout>
     </>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticPaths() {
+  const thingsIUseCategories = await ContentfulApi.getAllThingsIUseCategories();
+
+  const paths = thingsIUseCategories.map((category) => {
+    return { params: { category } };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params, preview = false }) {
   const pageContent = await ContentfulApi.getPageContentBySlug(
     Config.pageMeta.uses.slug,
     {
@@ -44,13 +61,17 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const thingsIUse = await ContentfulApi.getThingsIUse();
+  //TODO - make this one API call
+  const thingsIUse = await ContentfulApi.getThingsIUse(params.category);
+  const categories = await ContentfulApi.getAllThingsIUseCategories();
 
   return {
     props: {
       preview,
       pageContent,
       thingsIUse,
+      categories,
+      filter: params.category,
     },
   };
 }
