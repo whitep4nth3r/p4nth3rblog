@@ -1,4 +1,4 @@
-import { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import ThingsIUseStyles from "@styles/ThingsIUse.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
@@ -41,13 +41,9 @@ export default function ThingsIUse(props) {
             : ThingsIUseStyles.categoryButton;
 
           return (
-            <a
-              key={category}
-              className={buttonClasses}
-              href={`/uses/${category}`}
-            >
-              {category}
-            </a>
+            <Link href={`/uses/${category}`} key={category}>
+              <a className={buttonClasses}>{category}</a>
+            </Link>
           );
         })}
       </div>
