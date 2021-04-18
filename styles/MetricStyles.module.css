@@ -1,0 +1,59 @@
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metricsCard {
+  width: 100%;
+  padding: 1rem;
+  border: 0.125rem solid var(--color-background);
+  margin-bottom: 2rem;
+}
+
+.metricsCard__headerLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+}
+
+.metricsCard__headerLink:focus,
+.metricsCard__headerLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.metricsCard__headerText {
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+}
+
+.metricsCard__metric {
+  font-family: var(--font-family-main);
+  color: var(--color-background);
+  font-size: 3rem;
+  font-weight: var(--font-weight-normal);
+}
