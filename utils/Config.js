@@ -73,9 +73,9 @@ export const Config = {
       displayName: "Uses",
       path: "/uses",
     },
-    {
-      displayName: "Dashboard",
-      path: "/dashboard",
-    },
+    // {
+    //   displayName: "Dashboard",
+    //   path: "/dashboard",
+    // },
   ],
 };
