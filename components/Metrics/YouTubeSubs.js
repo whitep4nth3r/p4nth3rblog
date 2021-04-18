@@ -6,7 +6,7 @@ import MetricCard from "@components/Metrics/MetricCard";
 export default function YouTubeSubs() {
   const { data } = useSWR("/api/youtube", fetcher);
   const subscriberCount = format(data?.subscriberCount);
-  const link = "todo";
+  const link = "https://www.youtube.com/channel/UCiGFO97qgxZEbbg43mZSeyg";
   return (
     <MetricCard
       header="YouTube subscribers"
