@@ -2,13 +2,6 @@ export default async (_, res) => {
   const fetchUrl = `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials&scope=user_read`;
   const twitchId = "469006291";
 
-  const fetchOptions = {
-    headers: {
-      "Client-Id": process.env.TWITCH_CLIENT_ID,
-      Authorization: `Bearer ${tokenResponse.access_token}`,
-    },
-  };
-
   const getAccessToken = async () => {
     try {
       const response = await fetch(fetchUrl, {
@@ -25,6 +18,13 @@ export default async (_, res) => {
   const tokenResponse = await getAccessToken();
 
   if (tokenResponse.access_token) {
+    const fetchOptions = {
+      headers: {
+        "Client-Id": process.env.TWITCH_CLIENT_ID,
+        Authorization: `Bearer ${tokenResponse.access_token}`,
+      },
+    };
+
     const userResponse = await fetch(
       `https://api.twitch.tv/helix/users/follows?to_id=${twitchId}`,
       fetchOptions,
