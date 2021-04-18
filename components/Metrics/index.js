@@ -17,8 +17,8 @@ export default function Metrics() {
       <DevToViews />
       <GitHubFollowers />
       <GitHubStars />
-      {/* <YouTubeSubs /> */}
-      {/* <YouTubeViews /> */}
+      <YouTubeSubs />
+      <YouTubeViews />
     </div>
   );
 }
