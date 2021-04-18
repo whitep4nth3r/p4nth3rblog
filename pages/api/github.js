@@ -11,10 +11,12 @@ export default async (_, res) => {
     "https://api.github.com/users/whitep4nth3r",
     fetchOptions,
   );
+
   const userReposResponse = await fetch(
     "https://api.github.com/users/whitep4nth3r/repos?per_page=100",
     fetchOptions,
   );
+
   const user = await userResponse.json();
   const repositories = await userReposResponse.json();
   const mine = repositories.filter((repo) => !repo.fork);
