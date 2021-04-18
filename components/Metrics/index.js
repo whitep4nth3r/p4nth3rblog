@@ -11,14 +11,14 @@ import Styles from "@styles/MetricStyles.module.css";
 export default function Metrics() {
   return (
     <div className={Styles.metricsGrid}>
-      <GitHubStars />
-      <GitHubFollowers />
       <TwitchFollowers />
       <TwitchViews />
-      <YouTubeSubs />
-      <YouTubeViews />
       <DevToViews />
       <DevToFollowers />
+      <GitHubStars />
+      <GitHubFollowers />
+      <YouTubeSubs />
+      <YouTubeViews />
     </div>
   );
 }

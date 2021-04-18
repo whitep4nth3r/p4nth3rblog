@@ -40,6 +40,11 @@ export default async (_, res) => {
 
     const viewCount = await viewCountResponse.json();
 
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=1200, stale-while-revalidate=600",
+    );
+
     return res.status(200).json({
       followers: user.total,
       views: viewCount.data[0].view_count,
