@@ -1,3 +1,46 @@
+.metrics__title {
+  color: var(--color-background);
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.metrics__title:before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  animation: flash 4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metrics__title:before {
+    animation: none; /* or define an alternate animation */
+  }
+}
+
 .metricsGrid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);

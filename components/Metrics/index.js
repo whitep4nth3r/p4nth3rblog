@@ -10,15 +10,18 @@ import Styles from "@styles/MetricStyles.module.css";
 
 export default function Metrics() {
   return (
-    <div className={Styles.metricsGrid}>
-      <TwitchFollowers />
-      <TwitchViews />
-      <DevToFollowers />
-      <DevToViews />
-      <GitHubFollowers />
-      <GitHubStars />
-      <YouTubeSubs />
-      <YouTubeViews />
-    </div>
+    <>
+      <p className={Styles.metrics__title}>Updating in real time</p>
+      <div className={Styles.metricsGrid}>
+        <TwitchFollowers />
+        <TwitchViews />
+        <DevToFollowers />
+        <DevToViews />
+        <GitHubFollowers />
+        <GitHubStars />
+        <YouTubeSubs />
+        <YouTubeViews />
+      </div>
+    </>
   );
 }
