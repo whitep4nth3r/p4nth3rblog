@@ -76,11 +76,18 @@
   color: var(--color-background);
   font-size: 1.4rem;
   line-height: 1;
+  letter-spacing: 1px;
   transition: color var(--global-transition-time) ease-in-out;
   display: inline-block;
   text-decoration: none;
   font-weight: var(--font-weight-bold);
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .header__navListItem {
+    font-size: 1rem;
+  }
 }
 
 .header__navListItem.header__navListItem__active {
