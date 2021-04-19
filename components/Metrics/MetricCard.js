@@ -1,9 +1,13 @@
 import Styles from "@styles/MetricStyles.module.css";
 import ExternalLinkSvg from "./ExternalLinkSvg";
 
-export default function MetricCard({ header, link, metric }) {
+export default function MetricCard({ header, link, metric, hasUpdated }) {
+  const cardClass = hasUpdated
+    ? `${Styles.metricsCard} ${Styles.metricsCard__updated}`
+    : Styles.metricsCard;
+
   return (
-    <div className={Styles.metricsCard}>
+    <div className={cardClass}>
       <a
         aria-label={header}
         target="_blank"

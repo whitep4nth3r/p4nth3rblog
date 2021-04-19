@@ -62,6 +62,10 @@
   margin-bottom: 2rem;
 }
 
+.metricsCard__updated {
+  border-color: var(--color-primary);
+}
+
 .metricsCard__headerLink {
   color: var(--color-primary);
   text-decoration: none;
@@ -99,4 +103,8 @@
   color: var(--color-background);
   font-size: 3rem;
   font-weight: var(--font-weight-normal);
+}
+
+.metricsCard__updated .metricsCard__metric {
+  color: var(--color-secondary);
 }
