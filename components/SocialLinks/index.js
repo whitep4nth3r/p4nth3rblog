@@ -34,7 +34,7 @@ const socialLinksList = [
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/channel/UCiGFO97qgxZEbbg43mZSeyg",
+    url: "https://www.youtube.com/c/whitep4nth3r",
     ariaLabel: "Subscribe to whitep4nth3r on YouTube",
     svg: <Youtube />,
   },

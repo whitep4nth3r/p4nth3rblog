@@ -9,7 +9,7 @@ export default function YouTubeViews() {
   const { data } = useSWR("/api/youtube", fetcher);
   const viewCount = format(data?.viewCount);
   const dataCache = useRef(data?.viewCount);
-  const link = "https://www.youtube.com/channel/UCiGFO97qgxZEbbg43mZSeyg";
+  const link = "https://www.youtube.com/c/whitep4nth3r";
 
   useEffect(() => {
     if (data?.followers !== dataCache.current) {
