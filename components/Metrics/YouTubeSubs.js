@@ -9,7 +9,7 @@ export default function YouTubeSubs() {
   const { data } = useSWR("/api/youtube", fetcher);
   const subscriberCount = format(data?.subscriberCount);
   const dataCache = useRef(data?.subscriberCount);
-  const link = "https://www.youtube.com/c/whitep4nth3r";
+  const link = "https://www.youtube.com/whitep4nth3r";
 
   useEffect(() => {
     if (data?.followers !== dataCache.current) {
