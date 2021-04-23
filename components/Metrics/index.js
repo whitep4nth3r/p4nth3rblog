@@ -14,10 +14,10 @@ export default function Metrics() {
       <div className={Styles.metricsGrid}>
         <TwitchFollowers />
         <TwitchViews />
-        <GitHubFollowers />
-        <GitHubStars />
         <YouTubeSubs />
         <YouTubeViews />
+        <GitHubFollowers />
+        <GitHubStars />
         <TwitterFollowers />
       </div>
     </>
