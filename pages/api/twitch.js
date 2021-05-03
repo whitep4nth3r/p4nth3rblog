@@ -1,10 +1,10 @@
 export default async (_, res) => {
-  const fetchUrl = `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials&scope=user_read`;
+  const accessTokenFetchUrl = `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials&scope=user_read`;
   const twitchId = "469006291";
 
   const getAccessToken = async () => {
     try {
-      const response = await fetch(fetchUrl, {
+      const response = await fetch(accessTokenFetchUrl, {
         method: "POST",
         headers: { accept: "application/vnd.twitchtv.v5+json" },
       });
@@ -35,9 +35,14 @@ export default async (_, res) => {
       fetchOptions,
     );
 
-    const user = await userResponse.json();
+    const streamsResponse = await fetch(
+      `https://api.twitch.tv/helix/streams?user_id=${twitchId}`,
+      fetchOptions,
+    );
 
+    const user = await userResponse.json();
     const viewCount = await viewCountResponse.json();
+    const streams = await streamsResponse.json();
 
     res.setHeader(
       "Cache-Control",
@@ -47,6 +52,7 @@ export default async (_, res) => {
     return res.status(200).json({
       followers: user.total,
       views: viewCount.data[0].view_count,
+      isLiveOnTwitch: streams.data.length === 1,
     });
   }
 };

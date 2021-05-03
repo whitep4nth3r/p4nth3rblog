@@ -1,5 +1,8 @@
+import useSWR from "swr";
+import fetcher from "@utils/Fetcher";
 import { useState } from "react";
 import HeaderStyles from "@styles/Header.module.css";
+import ButtonStyles from "@styles/Button.module.css";
 import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
 import { useRouter } from "next/router";
@@ -7,6 +10,8 @@ import { Config } from "@utils/Config";
 import Logo from "./svg/Logo";
 
 export default function Header() {
+  const { data } = useSWR("/api/twitch", fetcher);
+  const isLiveOnTwitch = data?.isLiveOnTwitch;
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -26,6 +31,20 @@ export default function Header() {
 
   return (
     <header className={HeaderStyles.header}>
+      {isLiveOnTwitch && (
+        <div className={HeaderStyles.header__liveContainer}>
+          <a
+            className={ButtonStyles.button}
+            href="https://twitch.tv/whitep4nth3r"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={HeaderStyles.header__liveButtonText}>
+              I'm live on Twitch now →
+            </span>
+          </a>
+        </div>
+      )}
       <div className={HeaderStyles.header__logoContainer}>
         <Link href="/">
           <a
