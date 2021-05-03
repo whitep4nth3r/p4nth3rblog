@@ -1,6 +1,6 @@
 import Styles from "@styles/SocialCards.module.css";
 
-import TheClaw from "./svgs/claw";
+import YouTube from "./svgs/youtube";
 import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";
 
@@ -24,13 +24,13 @@ const socialCardList = [
     svg: <Twitch />,
   },
   {
-    name: "Discord",
-    title: "The Claw Discord",
+    name: "YouTube",
+    title: "YouTube",
     description:
-      "Join a group of tech streamers and friends who believe in creating an inclusive place to talk tech and have fun.",
-    url: "https://discord.gg/GQbXUVCneJ",
-    ctaLabel: "Join the Discord",
-    svg: <TheClaw />,
+      "Get your fix of front end web developer tips, highlights of live streams, and more.",
+    url: "https://youtube.com/whitep4nth3r",
+    ctaLabel: "Subscribe on YouTube",
+    svg: <YouTube />,
   },
 ];
 
