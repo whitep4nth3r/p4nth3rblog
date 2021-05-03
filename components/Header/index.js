@@ -90,6 +90,17 @@ export default function Header() {
               </li>
             );
           })}
+          <li className={HeaderStyles.header__navListItem}>
+            <a
+              href="https://www.bonfire.com/store/p4nth3rshop/"
+              className={HeaderStyles.header__navListItemLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Shop whitepanther merchandise"
+            >
+              Merch
+            </a>
+          </li>
         </ul>
       </nav>
 
