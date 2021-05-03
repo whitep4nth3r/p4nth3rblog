@@ -1,8 +1,13 @@
 import ContentfulApi from "@utils/ContentfulApi";
+import Link from "next/link";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
-import HeroBanner from "@components/HeroBanner";
+import PewPewPanther from "@components/PewPewPanther";
 import { Config } from "@utils/Config";
+import ContentWrapper from "@components/ContentWrapper";
+import NotFoundStyles from "@styles/NotFound.module.css";
+import TypographyStyles from "@styles/Typography.module.css";
+import ButtonStyles from "@styles/Button.module.css";
 
 export default function Panther404(props) {
   const { pageContent } = props;
@@ -14,9 +19,22 @@ export default function Panther404(props) {
         description={pageContent.description}
         url={Config.pageMeta.notFound.url}
       />
-      {pageContent.heroBanner !== null && (
-        <HeroBanner data={pageContent.heroBanner} />
-      )}
+
+      <ContentWrapper>
+        <div className={NotFoundStyles.container}>
+          <div className={NotFoundStyles.pantherContainer}>
+            <PewPewPanther />
+          </div>
+          <h1 className={TypographyStyles.heading__h1}>
+            Pew pew! That's a 404.
+          </h1>
+          <Link href="/">
+            <a className={`${ButtonStyles.button} ${NotFoundStyles.button}`}>
+              Take me home!
+            </a>
+          </Link>
+        </div>
+      </ContentWrapper>
     </MainLayout>
   );
 }
