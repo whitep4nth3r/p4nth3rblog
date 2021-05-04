@@ -193,6 +193,16 @@ export default class ContentfulApi {
               json
               links {
                 entries {
+                  inline {
+                    sys {
+                      id
+                    }
+                    __typename
+                    ... on BlogPost {
+                      title
+                      slug
+                    }
+                  }
                   block {
                     sys {
                       id
@@ -299,6 +309,16 @@ export default class ContentfulApi {
             json
             links {
               entries {
+                inline {
+                  sys {
+                    id
+                  }
+                  __typename
+                  ... on BlogPost {
+                    title
+                    slug
+                  }
+                }
                 block {
                   sys {
                     id

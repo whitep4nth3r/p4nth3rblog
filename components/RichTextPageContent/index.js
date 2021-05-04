@@ -1,5 +1,6 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
@@ -18,9 +19,19 @@ export function getRichTextRenderOptions(links, options) {
     links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
   );
 
-  const entryBlockMap = new Map(
-    links?.entries?.block?.map((entry) => [entry.sys.id, entry]),
-  );
+  const entryMap = new Map();
+
+  if (links.entries.block) {
+    for (const entry of links.entries.block) {
+      entryMap.set(entry.sys.id, entry);
+    }
+  }
+
+  if (links.entries.inline) {
+    for (const entry of links.entries.inline) {
+      entryMap.set(entry.sys.id, entry);
+    }
+  }
 
   return {
     renderMark: {
@@ -47,6 +58,27 @@ export function getRichTextRenderOptions(links, options) {
           {children}
         </a>
       ),
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        const entry = entryMap.get(node.data.target.sys.id);
+        const { __typename } = entry;
+
+        switch (__typename) {
+          case "BlogPost":
+            const { slug, title } = entry;
+
+            return (
+              <Link href={`/blog/${slug}`}>
+                <a
+                  className={`${TypographyStyles.inlineLink} ${TypographyStyles.inlineLink__linkedEntry}`}
+                >
+                  {title}
+                </a>
+              </Link>
+            );
+          default:
+            return null;
+        }
+      },
       [BLOCKS.HR]: (text) => (
         <hr className={RichTextPageContentStyles.page__hr} />
       ),
@@ -112,7 +144,7 @@ export function getRichTextRenderOptions(links, options) {
         </li>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = entryBlockMap.get(node.data.target.sys.id);
+        const entry = entryMap.get(node.data.target.sys.id);
         const { __typename } = entry;
 
         switch (__typename) {
