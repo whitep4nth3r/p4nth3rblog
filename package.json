@@ -18,6 +18,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-markdown": "^5.0.3",
+    "react-tooltip": "^4.2.18",
     "swr": "^0.5.5"
   },
   "license": "MIT",
