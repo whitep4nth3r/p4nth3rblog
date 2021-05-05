@@ -45,7 +45,13 @@ export default function Header() {
           </a>
         </div>
       )}
+
       <div className={HeaderStyles.header__logoContainer}>
+        <Link href="#main_content">
+          <a className={HeaderStyles.header__skipToMainContent}>
+            Skip to main content
+          </a>
+        </Link>
         <Link href="/">
           <a
             className={HeaderStyles.header__logoContainerLink}
