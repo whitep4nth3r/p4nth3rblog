@@ -201,6 +201,14 @@ export default class ContentfulApi {
                     ... on BlogPost {
                       title
                       slug
+                      excerpt
+                      featuredImage {
+                        url
+                        title
+                        width
+                        height
+                        description
+                      }
                     }
                   }
                   block {
@@ -317,6 +325,14 @@ export default class ContentfulApi {
                   ... on BlogPost {
                     title
                     slug
+                    excerpt
+                    featuredImage {
+                      url
+                      title
+                      width
+                      height
+                      description
+                    }
                   }
                 }
                 block {

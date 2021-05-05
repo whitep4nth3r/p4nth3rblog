@@ -1,0 +1,8 @@
+.container {
+  border-radius: 0 !important;
+  background-color: var(--color-foreground) !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  border: 0.125rem solid var(--color-primary) !important;
+  box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 40%) !important;
+}

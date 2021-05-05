@@ -104,7 +104,6 @@
 }
 
 .inlineLink__linkedEntry {
-  margin-left: 0.5rem;
   text-decoration-color: var(--color-tertiary);
   text-decoration-thickness: 0.125rem;
   font-weight: var(--font-weight-bold);

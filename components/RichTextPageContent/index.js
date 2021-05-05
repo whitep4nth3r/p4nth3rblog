@@ -1,8 +1,10 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import ReactTooltip from "react-tooltip";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
+import LinkPreviewStyles from "@styles/LinkPreview.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -11,6 +13,24 @@ import { slugifyString } from "@utils/Tools";
 const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
 const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"));
+
+function buildBlogPostLinkTooltipHTML(title, featuredImage, excerpt) {
+  return `
+    <div style="max-width: 320px;">
+      <img
+        style="width: 100%; height: auto; border-bottom: 0.125rem solid #ffb626;"
+        src="${featuredImage.url}?w=320&h=320"
+        alt="${featuredImage.description}"
+        height="${featuredImage.height}"
+        width="${featuredImage.width}"
+      />
+      <div style="padding: 1.5rem;">
+        <h2 style="padding-bottom: 1rem; border-bottom: 0.125rem solid #f11012; line-height: 1.2; font-size: 1.2rem; margin-bottom: 1rem; color: #ffb626; text-transform: uppercase; letter-spacing: 1px;">${title}</h2>
+        <p style="margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.6; font-weight: 400; color: #ffffff;">${excerpt}</p>
+      </div>
+    </div>
+  `;
+}
 
 export function getRichTextRenderOptions(links, options) {
   const { renderH2Links, renderNativeImg } = options;
@@ -64,16 +84,29 @@ export function getRichTextRenderOptions(links, options) {
 
         switch (__typename) {
           case "BlogPost":
-            const { slug, title } = entry;
+            const { slug, title, featuredImage, excerpt } = entry;
 
             return (
-              <Link href={`/blog/${slug}`}>
-                <a
-                  className={`${TypographyStyles.inlineLink} ${TypographyStyles.inlineLink__linkedEntry}`}
-                >
-                  {title}
-                </a>
-              </Link>
+              <>
+                <ReactTooltip />
+                <Link href={`/blog/${slug}`}>
+                  <a
+                    data-arrow-color="#ffb626"
+                    data-effect="solid"
+                    data-class={LinkPreviewStyles.container}
+                    data-html={true}
+                    data-type="dark"
+                    data-tip={buildBlogPostLinkTooltipHTML(
+                      title,
+                      featuredImage,
+                      excerpt,
+                    )}
+                    className={`${TypographyStyles.inlineLink} ${TypographyStyles.inlineLink__linkedEntry}`}
+                  >
+                    {title}
+                  </a>
+                </Link>
+              </>
             );
           default:
             return null;
