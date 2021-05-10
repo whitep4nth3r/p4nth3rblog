@@ -5,12 +5,10 @@ import ContentfulApi from "@utils/ContentfulApi";
 import RichTextPageContent from "@components/RichTextPageContent";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
-import ColorBg from "@components/ColorBg";
+import Faqs from "@components/Faqs";
 
-import Metrics from "@components/Metrics/";
-
-export default function Dashboard(props) {
-  const { pageContent, preview } = props;
+export default function FaqsPage(props) {
+  const { pageContent, preview, faqs } = props;
 
   return (
     <>
@@ -18,22 +16,17 @@ export default function Dashboard(props) {
         <PageMeta
           title={pageContent.title}
           description={pageContent.description}
-          url={Config.pageMeta.dashboard.url}
+          url={Config.pageMeta.faqs.url}
         />
 
-        {pageContent.body && (
-          <ContentWrapper>
+        <ContentWrapper>
+          {pageContent.body && (
             <PageContentWrapper>
               <RichTextPageContent richTextBodyField={pageContent.body} />
             </PageContentWrapper>
-          </ContentWrapper>
-        )}
-
-        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
-          <ContentWrapper>
-            <Metrics />
-          </ContentWrapper>
-        </ColorBg>
+          )}
+          <Faqs faqs={faqs} />
+        </ContentWrapper>
       </MainLayout>
     </>
   );
@@ -41,16 +34,19 @@ export default function Dashboard(props) {
 
 export async function getStaticProps({ preview = false }) {
   const pageContent = await ContentfulApi.getPageContentBySlug(
-    Config.pageMeta.dashboard.slug,
+    Config.pageMeta.faqs.slug,
     {
       preview: preview,
     },
   );
 
+  const faqs = await ContentfulApi.getAllFaqs();
+
   return {
     props: {
       preview,
       pageContent,
+      faqs,
     },
   };
 }
