@@ -7,7 +7,7 @@ import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
 import Faqs from "@components/Faqs";
 
-export default function Dashboard(props) {
+export default function Faqs(props) {
   const { pageContent, preview, faqs } = props;
 
   return (
@@ -16,7 +16,7 @@ export default function Dashboard(props) {
         <PageMeta
           title={pageContent.title}
           description={pageContent.description}
-          url={Config.pageMeta.dashboard.url}
+          url={Config.pageMeta.faqs.url}
         />
 
         <ContentWrapper>

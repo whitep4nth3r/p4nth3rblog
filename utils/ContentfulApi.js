@@ -609,8 +609,6 @@ export default class ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    //todo add order field and order by order field
-
     const query = `{
       faqCollection(limit: ${queryLimit}, skip: ${skip}, order: order_ASC) {
           total

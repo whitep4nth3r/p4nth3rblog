@@ -9,7 +9,7 @@ export default function Faqs(props) {
   const { faqs } = props;
 
   return (
-    <div>
+    <>
       {faqs.map((faq) => (
         <div key={faq.sys.id}>
           <div
@@ -32,6 +32,6 @@ export default function Faqs(props) {
           <RichTextPageContent richTextBodyField={faq.answer} />
         </div>
       ))}
-    </div>
+    </>
   );
 }
