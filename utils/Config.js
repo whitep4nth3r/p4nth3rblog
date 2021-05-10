@@ -47,6 +47,10 @@ export const Config = {
       url: `${SITE_URL}/uses`,
       slug: "/uses",
     },
+    faqs: {
+      url: `${SITE_URL}/faqs`,
+      slug: "/faqs",
+    },
     notFound: {
       url: SITE_URL,
       slug: "/404",
@@ -72,6 +76,10 @@ export const Config = {
     {
       displayName: "Uses",
       path: "/uses",
+    },
+    {
+      displayName: "FAQs",
+      path: "/faqs",
     },
     {
       displayName: "Dashboard",

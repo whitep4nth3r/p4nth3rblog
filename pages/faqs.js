@@ -5,12 +5,10 @@ import ContentfulApi from "@utils/ContentfulApi";
 import RichTextPageContent from "@components/RichTextPageContent";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
-import ColorBg from "@components/ColorBg";
-
-import Metrics from "@components/Metrics/";
+import Faqs from "@components/Faqs";
 
 export default function Dashboard(props) {
-  const { pageContent, preview } = props;
+  const { pageContent, preview, faqs } = props;
 
   return (
     <>
@@ -29,11 +27,9 @@ export default function Dashboard(props) {
           </ContentWrapper>
         )}
 
-        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
-          <ContentWrapper>
-            <Metrics />
-          </ContentWrapper>
-        </ColorBg>
+        <ContentWrapper>
+          <Faqs faqs={faqs} />
+        </ContentWrapper>
       </MainLayout>
     </>
   );
@@ -41,16 +37,19 @@ export default function Dashboard(props) {
 
 export async function getStaticProps({ preview = false }) {
   const pageContent = await ContentfulApi.getPageContentBySlug(
-    Config.pageMeta.dashboard.slug,
+    Config.pageMeta.faqs.slug,
     {
       preview: preview,
     },
   );
 
+  const faqs = await ContentfulApi.getAllFaqs();
+
   return {
     props: {
       preview,
       pageContent,
+      faqs,
     },
   };
 }
