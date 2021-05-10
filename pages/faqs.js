@@ -7,7 +7,7 @@ import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
 import Faqs from "@components/Faqs";
 
-export default function Faqs(props) {
+export default function FaqsPage(props) {
   const { pageContent, preview, faqs } = props;
 
   return (
