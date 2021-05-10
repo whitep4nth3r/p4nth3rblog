@@ -19,15 +19,12 @@ export default function Dashboard(props) {
           url={Config.pageMeta.dashboard.url}
         />
 
-        {pageContent.body && (
-          <ContentWrapper>
+        <ContentWrapper>
+          {pageContent.body && (
             <PageContentWrapper>
               <RichTextPageContent richTextBodyField={pageContent.body} />
             </PageContentWrapper>
-          </ContentWrapper>
-        )}
-
-        <ContentWrapper>
+          )}
           <Faqs faqs={faqs} />
         </ContentWrapper>
       </MainLayout>

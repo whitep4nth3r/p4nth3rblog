@@ -8,7 +8,7 @@
 }
 
 .heading__h2 {
-  font-size: clamp(2rem, 2.8vw, 1.8rem);
+  font-size: clamp(1.8rem, 2.8vw, 2rem);
   line-height: 1.4;
   margin-bottom: 2rem;
   font-weight: var(--font-weight-normal);
