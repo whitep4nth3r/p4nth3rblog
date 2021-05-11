@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 import TypographyStyles from "@styles/Typography.module.css";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
@@ -10,8 +10,21 @@ export default function Faqs(props) {
 
   return (
     <>
+      <ul className={RichTextPageContentStyles.page__ul}>
+        {faqs.map((faq) => (
+          <li
+            key={faq.sys.id}
+            className={`${TypographyStyles.bodyCopy} ${RichTextPageContentStyles.page__li}`}
+          >
+            <Link href={`#${slugifyString(faq.question)}`}>
+              <a className={TypographyStyles.inlineLink}>{faq.question}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
       {faqs.map((faq) => (
         <div key={faq.sys.id}>
+          <hr className={RichTextPageContentStyles.page__hr} />
           <div
             className={RichTextPageContentStyles.page__linkedHeaderContainer}
           >
