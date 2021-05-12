@@ -45,6 +45,14 @@ export default function PostList(props) {
                   renderers={ReactMarkdownRenderers(post.excerpt)}
                 />
               </div>
+              <Link href={`/blog/${post.slug}`}>
+                <a
+                  className={ContentListStyles.contentList__readMoreLink}
+                  aria-label={`Read ${post.title}`}
+                >
+                  Read more →
+                </a>
+              </Link>
             </article>
           </li>
         ))}

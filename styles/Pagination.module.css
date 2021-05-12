@@ -13,8 +13,11 @@
 
 .pagination__listItem {
   font-family: var(--font-family-main);
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
 }
 
 .pagination__listItem a {
