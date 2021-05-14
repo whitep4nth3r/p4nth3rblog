@@ -156,7 +156,7 @@ export default class ContentfulApi {
    * param: page (number)
    */
   static async getPaginatedBlogPosts(page) {
-    const queryLimit = 10;
+    const queryLimit = 9;
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
@@ -286,6 +286,10 @@ export default class ContentfulApi {
     return returnPosts;
   }
 
+  /*
+   * Get blog posts by topic
+   * param: page (number)
+   */
   static async getAllBlogPostsByTopic(topic) {
     let page = 1;
     let shouldQueryMorePosts = true;
@@ -422,6 +426,11 @@ export default class ContentfulApi {
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
+    /*
+     * This filter is run on the tags which are a direct copy of
+     * the linked topic references
+     * --> We cannot filter on type Array<Link> in GraphQL
+     */
     const topicFilter =
       topic.length > 0 ? `, where: {tags_contains_some: "${topic}"}` : "";
 
@@ -742,6 +751,10 @@ export default class ContentfulApi {
     return { faqs, total };
   }
 
+  /**
+   * Get full topic object from provided slug
+   * param: slug (string)
+   */
   static async getTopicFromSlug(slug) {
     const query = `
     {
@@ -764,6 +777,9 @@ export default class ContentfulApi {
       : "";
   }
 
+  /**
+   * Get all topics
+   */
   static async getAllTopics() {
     const query = `
     {
