@@ -24,7 +24,7 @@
   color: var(--color-background);
   text-decoration: none;
   border-radius: 1.4rem;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1rem;
   border: 0.125rem solid var(--color-secondary);
   background-color: var(--color-foreground);
   display: flex;

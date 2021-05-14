@@ -286,6 +286,25 @@ export default class ContentfulApi {
     return returnPosts;
   }
 
+  static async getAllBlogPostsByTopic(topic) {
+    let page = 1;
+    let shouldQueryMorePosts = true;
+    const returnPosts = [];
+
+    while (shouldQueryMorePosts) {
+      const response = await this.getPaginatedPostSummaries(page, topic);
+
+      if (response.items.length > 0) {
+        returnPosts.push(...response.items);
+      }
+
+      shouldQueryMorePosts = returnPosts.length < response.total;
+      page++;
+    }
+
+    return returnPosts;
+  }
+
   /*
    * Get blog post by slug
    * param: slug (string)
@@ -398,13 +417,16 @@ export default class ContentfulApi {
    * Get post summaries for blog index page
    * param: page (number)
    */
-  static async getPaginatedPostSummaries(page) {
+  static async getPaginatedPostSummaries(page, topic = "") {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
+    const topicFilter =
+      topic.length > 0 ? `, where: {tags_contains_some: "${topic}"}` : "";
+
     const query = `{
-        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC) {
+        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC${topicFilter}) {
           total
           items {
             sys {
@@ -718,6 +740,52 @@ export default class ContentfulApi {
       : [];
 
     return { faqs, total };
+  }
+
+  static async getTopicFromSlug(slug) {
+    const query = `
+    {
+      topicCollection(where: {slug: "${slug}"}, limit: 1) {
+        items {
+          name
+          slug 
+          sys {
+            id
+          }
+        }
+      }
+    }
+  `;
+
+    const response = await this.callContentful(query);
+
+    return response.data.topicCollection.items
+      ? response.data.topicCollection.items[0]
+      : "";
+  }
+
+  static async getAllTopics() {
+    const query = `
+    {
+      topicCollection {
+        items {
+          sys {
+            id
+          }
+          slug
+          name
+        }
+      }
+    }
+    `;
+
+    const response = await this.callContentful(query);
+
+    const topics = response.data.topicCollection.items
+      ? response.data.topicCollection.items
+      : [];
+
+    return topics;
   }
 
   /*
