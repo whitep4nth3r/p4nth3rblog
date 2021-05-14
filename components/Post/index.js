@@ -1,6 +1,6 @@
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
-import Tags from "@components/Post/Tags";
+import Topics from "@components/Topics";
 import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
 import Author from "@components/Post/Author";
 import ExternalUrl from "@components/Post/ExternalUrl";
@@ -23,7 +23,7 @@ export default function Post(props) {
         date={post.date}
         readingTime={post.readingTime}
       />
-      {post.tags !== null && <Tags tags={post.tags} />}
+      <Topics topics={post.topicsCollection.items} />
       <h1 className={TypographyStyles.heading__h1}>{post.title}</h1>
       <RichTextPageContent richTextBodyField={post.body} renderH2Links={true} />
       {post.author !== null && <Author author={post.author} />}

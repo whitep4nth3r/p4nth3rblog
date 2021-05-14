@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
-import Tags from "@components/Post/Tags";
+import Topics from "@components/Topics";
 import Pagination from "@components/PostList/Pagination";
 import ContentListStyles from "@styles/ContentList.module.css";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
@@ -38,7 +38,7 @@ export default function PostList(props) {
                   </h2>
                 </a>
               </Link>
-              {post.tags !== null && <Tags tags={post.tags} />}
+              <Topics topics={post.topicsCollection.items} />
               <div className={ContentListStyles.contentList__excerpt}>
                 <ReactMarkdown
                   children={post.excerpt}

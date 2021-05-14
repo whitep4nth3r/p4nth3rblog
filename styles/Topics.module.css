@@ -1,0 +1,53 @@
+.topics {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.topics__topic {
+  margin-right: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.topics__topicLink {
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: 1.4rem;
+  padding: 0.7rem 1rem;
+  border: 0.125rem solid var(--color-secondary);
+  background-color: var(--color-foreground);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topics__topicSelected,
+.topics__topicLink:focus,
+.topics__topicLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.topics__topicSvgContainer {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.25rem;
+}
+
+.topics__topicSvgContainer svg {
+  height: 100%;
+  width: 100%;
+}

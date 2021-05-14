@@ -47,6 +47,10 @@ export const Config = {
       url: `${SITE_URL}/uses`,
       slug: "/uses",
     },
+    topics: {
+      url: `${SITE_URL}/topics`,
+      slug: "/topics",
+    },
     faqs: {
       url: `${SITE_URL}/faqs`,
       slug: "/faqs",
