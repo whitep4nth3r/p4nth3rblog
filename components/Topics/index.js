@@ -49,7 +49,7 @@ export default function Topics(props) {
           <Link href={`/topics/${topic.slug}`}>
             <a
               className={TopicsStyles.topics__topicLink}
-              aria-label={`View all ${topic.name} posts`}
+              aria-label={`View all ${topic.name} articles`}
             >
               <span className={TopicsStyles.topics__topicSvgContainer}>
                 {getSvgForTopic(topic.slug)}

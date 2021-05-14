@@ -14,7 +14,10 @@ export default function PostGrid(props) {
         {posts.map((post) => (
           <li key={post.sys.id}>
             <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
-              <a className={PostGridStyles.post}>
+              <a
+                className={PostGridStyles.post}
+                aria-label={`Read ${post.title}`}
+              >
                 <script
                   type="application/ld+json"
                   dangerouslySetInnerHTML={{
