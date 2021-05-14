@@ -23,12 +23,12 @@ export default function Pagination(props) {
               >
                 <ChevronLeft />
               </span>
-              <span>Previous page</span>
+              <span>Prev</span>
             </span>
           )}
           {!prevDisabled && (
             <Link href={prevPageUrl}>
-              <a>
+              <a aria-label="Navigate to previous page">
                 <span
                   className={
                     PaginationStyles.pagination__chevronContainer__left
@@ -36,7 +36,7 @@ export default function Pagination(props) {
                 >
                   <ChevronLeft />
                 </span>
-                <span>Previous page</span>
+                <span>Prev</span>
               </a>
             </Link>
           )}
@@ -49,7 +49,7 @@ export default function Pagination(props) {
         <li className={PaginationStyles.pagination__listItem}>
           {nextDisabled && (
             <span className={PaginationStyles.pagination__listItem__disabled}>
-              <span>Next page</span>
+              <span>Next</span>
               <span
                 className={PaginationStyles.pagination__chevronContainer__right}
               >
@@ -59,8 +59,8 @@ export default function Pagination(props) {
           )}
           {!nextDisabled && (
             <Link href={nextPageUrl}>
-              <a>
-                <span>Next page</span>
+              <a aria-label="Navigate to next page">
+                <span>Next</span>
                 <span
                   className={
                     PaginationStyles.pagination__chevronContainer__right
