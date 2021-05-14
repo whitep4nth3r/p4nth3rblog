@@ -5,7 +5,7 @@ export default function Contentful() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 19 22"
     >
-      <g fill-rule="nonzero" fill="none">
+      <g fillRule="nonzero" fill="none">
         <path
           d="M6.2 15.35a5.79 5.79 0 0 1 0-8.2A2.263 2.263 0 1 0 3 3.95a10.46 10.46 0 0 0-3 7.3 10.64 10.64 0 0 0 3 7.3 2.263 2.263 0 0 0 3.2-3.2z"
           fill="#FFD85F"
