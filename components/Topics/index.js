@@ -45,7 +45,7 @@ export default function Topics(props) {
     <ul className={TopicsStyles.topics}>
       {topics.map((topic) => {
         const isSelectedClass =
-          topic.slug === selected.slug
+          selected !== undefined && topic.slug === selected.slug
             ? TopicsStyles.topics__topicSelected
             : "";
 
