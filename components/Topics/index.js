@@ -1,6 +1,5 @@
 import TopicsStyles from "@styles/Topics.module.css";
 import Link from "next/link";
-
 import Accessibility from "./svg/a11y";
 import Career from "./svg/career";
 import Contentful from "./svg/contentful";
@@ -40,25 +39,32 @@ function getSvgForTopic(slug) {
 }
 
 export default function Topics(props) {
-  const { topics } = props;
+  const { topics, selected } = props;
 
   return (
     <ul className={TopicsStyles.topics}>
-      {topics.map((topic) => (
-        <li className={TopicsStyles.topics__topic} key={topic.sys.id}>
-          <Link href={`/topics/${topic.slug}`}>
-            <a
-              className={TopicsStyles.topics__topicLink}
-              aria-label={`View all ${topic.name} articles`}
-            >
-              <span className={TopicsStyles.topics__topicSvgContainer}>
-                {getSvgForTopic(topic.slug)}
-              </span>
-              {topic.name}
-            </a>
-          </Link>
-        </li>
-      ))}
+      {topics.map((topic) => {
+        const isSelectedClass =
+          topic.slug === selected.slug
+            ? TopicsStyles.topics__topicSelected
+            : "";
+
+        return (
+          <li className={TopicsStyles.topics__topic} key={topic.sys.id}>
+            <Link href={`/topics/${topic.slug}`}>
+              <a
+                className={`${TopicsStyles.topics__topicLink} ${isSelectedClass}`}
+                aria-label={`View all ${topic.name} articles`}
+              >
+                <span className={TopicsStyles.topics__topicSvgContainer}>
+                  {getSvgForTopic(topic.slug)}
+                </span>
+                {topic.name}
+              </a>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }

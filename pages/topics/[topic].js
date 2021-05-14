@@ -24,12 +24,12 @@ export default function Topic(props) {
         />
 
         <LandingPageWrapper>
-          <p className={TypographyStyles.heading__h3}>Browse article topics</p>
-          <Topics topics={allTopics} />
-          <hr className={RichTextPageContentStyles.page__hr} />
           <h1 className={TypographyStyles.heading__h1}>
             Articles about {topic.name}
           </h1>
+          <p className={TypographyStyles.heading__h3}>Browse article topics</p>
+          <Topics topics={allTopics} selected={topic} />
+          <hr className={RichTextPageContentStyles.page__hr} />
           <PostGrid posts={blogPostsByTopic} />
           <div className={RecentPostListStyles.contentList__readMoreContainer}>
             <Link href={Config.pageMeta.blogIndex.slug}>
