@@ -172,6 +172,15 @@ export default class ContentfulApi {
             slug
             excerpt
             tags
+            topicsCollection {
+              items {
+                sys {
+                  id  
+                }
+                name
+                slug
+              }
+            }
             externalUrl
             author {
               name
@@ -295,6 +304,15 @@ export default class ContentfulApi {
           slug
           excerpt
           tags
+          topicsCollection {
+            items {
+              sys {
+                id  
+              }
+              name
+              slug
+            }
+          }
           externalUrl
           readingTime
           author {
@@ -397,6 +415,15 @@ export default class ContentfulApi {
             slug
             excerpt
             tags
+            topicsCollection {
+              items {
+                sys {
+                  id  
+                }
+                name
+                slug
+              }
+            }
             readingTime
             featuredImage {
               url
@@ -439,6 +466,15 @@ export default class ContentfulApi {
           slug
           excerpt
           tags
+          topicsCollection {
+            items {
+              sys {
+                id  
+              }
+              name
+              slug
+            }
+          }
           readingTime
         }
       }
