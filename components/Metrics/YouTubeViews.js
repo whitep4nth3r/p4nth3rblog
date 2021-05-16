@@ -27,7 +27,10 @@ export default function YouTubeViews() {
 
   return (
     <MetricCard
-      header="YouTube views"
+      ariaLabel={`white panther has ${viewCount} views on YouTube. Visit YouTube channel.`}
+      type="youtube"
+      headerSmall="Views"
+      headerLarge="Youtube Views"
       metric={viewCount}
       link={link}
       hasUpdated={hasUpdated}

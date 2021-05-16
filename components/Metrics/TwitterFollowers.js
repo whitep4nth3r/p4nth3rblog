@@ -27,7 +27,10 @@ export default function TwitchFollowers() {
 
   return (
     <MetricCard
-      header="Twitter followers"
+      ariaLabel={`white panther has ${followers} views on Twitter. Visit Twitter page.`}
+      type="twitter"
+      headerSmall="Followers"
+      headerLarge="Twitter Followers"
       metric={followers}
       link={link}
       hasUpdated={hasUpdated}

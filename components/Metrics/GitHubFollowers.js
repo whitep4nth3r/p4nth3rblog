@@ -27,7 +27,10 @@ export default function GitHubFollowers() {
 
   return (
     <MetricCard
-      header="GitHub followers"
+      ariaLabel={`white panther has ${followers} followers on GitHub. Visit GitHub profile.`}
+      type="github"
+      headerSmall="Followers"
+      headerLarge="GitHub Followers"
       metric={followers}
       link={link}
       hasUpdated={hasUpdated}

@@ -27,7 +27,10 @@ export default function TwitchViews() {
 
   return (
     <MetricCard
-      header="Twitch views"
+      ariaLabel={`white panther has ${views} views on Twitch. Visit Twitch page.`}
+      type="twitch"
+      headerSmall="Views"
+      headerLarge="Twitch Views"
       metric={views}
       link={link}
       hasUpdated={hasUpdated}

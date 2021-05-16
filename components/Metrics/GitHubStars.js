@@ -27,7 +27,10 @@ export default function GitHubStars() {
 
   return (
     <MetricCard
-      header="GitHub stars"
+      ariaLabel={`white panther has ${stars} stars on GitHub. Visit GitHub profile.`}
+      type="github"
+      headerSmall="Stars"
+      headerLarge="GitHub Stars"
       metric={stars}
       link={link}
       hasUpdated={hasUpdated}

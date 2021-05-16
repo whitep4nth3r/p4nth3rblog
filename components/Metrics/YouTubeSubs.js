@@ -27,7 +27,10 @@ export default function YouTubeSubs() {
 
   return (
     <MetricCard
-      header="YouTube subscribers"
+      ariaLabel={`white panther has ${subscriberCount} subscribers on YouTube. Visit YouTube channel.`}
+      type="youtube"
+      headerSmall="Subs"
+      headerLarge="Youtube Subs"
       metric={subscriberCount}
       link={link}
       hasUpdated={hasUpdated}
