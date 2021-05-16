@@ -28,7 +28,7 @@ export default function Topic(props) {
             Articles about {topic.name}
           </h1>
           <p className={TypographyStyles.heading__h3}>Browse article topics</p>
-          <Topics topics={allTopics} selected={topic} />
+          <Topics topics={allTopics} selected={topic} scroll={false} />
           <hr className={RichTextPageContentStyles.page__hr} />
           <PostGrid posts={blogPostsByTopic} />
           <div className={RecentPostListStyles.contentList__readMoreContainer}>

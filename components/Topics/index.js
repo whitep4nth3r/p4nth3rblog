@@ -39,7 +39,9 @@ function getSvgForTopic(slug) {
 }
 
 export default function Topics(props) {
-  const { topics, selected } = props;
+  const { topics, selected, scroll } = props;
+
+  const linkClickScroll = scroll !== undefined ? scroll : true;
 
   return (
     <ul className={TopicsStyles.topics}>
@@ -51,7 +53,7 @@ export default function Topics(props) {
 
         return (
           <li className={TopicsStyles.topics__topic} key={topic.sys.id}>
-            <Link href={`/topics/${topic.slug}`}>
+            <Link href={`/topics/${topic.slug}`} scroll={linkClickScroll}>
               <a
                 className={`${TopicsStyles.topics__topicLink} ${isSelectedClass}`}
                 aria-label={`View all ${topic.name} articles`}
