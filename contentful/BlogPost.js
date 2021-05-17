@@ -36,7 +36,6 @@ export default class ContentfulBlogPost extends ContentfulApi {
           title
           slug
           excerpt
-          tags
           topicsCollection {
             items {
               sys {
@@ -77,7 +76,6 @@ export default class ContentfulBlogPost extends ContentfulApi {
           title
           slug
           excerpt
-          tags
           topicsCollection {
             items {
               sys {
@@ -238,7 +236,6 @@ export default class ContentfulBlogPost extends ContentfulApi {
             title
             slug
             excerpt
-            tags
             topicsCollection {
               items {
                 sys {
@@ -357,13 +354,13 @@ export default class ContentfulBlogPost extends ContentfulApi {
    * Get blog posts by topic
    * param: page (number)
    */
-  static async getAllByTopic(topic) {
+  static async getAllByTopic(topicSlug) {
     let page = 1;
     let shouldQueryMorePosts = true;
     const returnPosts = [];
 
     while (shouldQueryMorePosts) {
-      const response = await this.getPaginatedSummaries(page, topic);
+      const response = await this.getPaginatedByTopic(page, topicSlug);
 
       if (response.items.length > 0) {
         returnPosts.push(...response.items);
@@ -376,25 +373,79 @@ export default class ContentfulBlogPost extends ContentfulApi {
     return returnPosts;
   }
 
-  /*
-   * Get post summaries for blog index page
-   * param: page (number)
-   */
-  static async getPaginatedSummaries(page, topic = "") {
+  static async getPaginatedByTopic(page, topicSlug) {
+    const queryLimit = 1;
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
-    /*
-     * This filter is run on the tags which are a direct copy of
-     * the linked topic references
-     * --> We cannot filter on type Array<Link> in GraphQL
-     */
-    const topicFilter =
-      topic.length > 0 ? `, where: {tags_contains_some: "${topic}"}` : "";
+    const query = `{
+      topicCollection(where: { slug: "${topicSlug}" }, skip: ${skip}, limit: ${queryLimit}) {
+        items {
+          linkedFrom {
+            blogPostCollection {
+              total
+              items {
+                sys {
+                  id
+                }
+                slug
+                title
+                date
+                excerpt
+                author {
+                  name
+                  description
+                  image {
+                    url
+                  }
+                }
+                topicsCollection {
+                  items {
+                    sys {
+                      id  
+                    }
+                    name
+                    slug
+                  }
+                }
+                featuredImage {
+                  sys {
+                    id
+                  }
+                  height
+                  width
+                  description
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query);
+
+    const results = response.data.topicCollection.items[0].linkedFrom
+      .blogPostCollection
+      ? response.data.topicCollection.items[0].linkedFrom.blogPostCollection
+      : { total: 0, items: [] };
+
+    return results;
+  }
+
+  /*
+   * Get post summaries for blog index page
+   * param: page (number)
+   */
+  static async getPaginatedSummaries(page) {
+    const skipMultiplier = page === 1 ? 0 : page - 1;
+    const skip =
+      skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
     const query = `{
-        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC${topicFilter}) {
+        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC) {
           total
           items {
             sys {
@@ -404,7 +455,6 @@ export default class ContentfulBlogPost extends ContentfulApi {
             title
             slug
             excerpt
-            tags
             topicsCollection {
               items {
                 sys {

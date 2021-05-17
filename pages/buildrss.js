@@ -30,13 +30,13 @@ export default function buildRss(props) {
   );
 }
 
-function buildTags(tags) {
-  if (!tags) {
+function buildCategories(topics) {
+  if (!topics) {
     return;
   }
-  return tags
-    .map((tag) => {
-      return `<category>${tag}</category>`;
+  return topics
+    .map((topic) => {
+      return `<category>${topic.name}</category>`;
     })
     .join("");
 }
@@ -64,7 +64,7 @@ function buildRssItems(posts) {
           <link>https://${Config.site.domain}/blog/${post.slug}</link>
           <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
           <pubDate>${post.date}</pubDate>
-          ${buildTags(post.tags)}
+          ${buildCategories(post.topicsCollection.items)}
           ${buildContent(post.body)}
         </item>
         `;
