@@ -1,5 +1,6 @@
 import ReactDOMServer from "react-dom/server";
 import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -72,7 +73,7 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.buildRss.slug,
   );
 

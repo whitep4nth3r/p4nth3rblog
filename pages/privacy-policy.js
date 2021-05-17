@@ -1,9 +1,8 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
-import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
@@ -35,7 +34,7 @@ export default function privacyPolicy(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.privacyPolicy.slug,
     {
       preview: preview,

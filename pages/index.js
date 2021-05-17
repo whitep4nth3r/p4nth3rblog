@@ -1,5 +1,6 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
+import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulApi from "@contentful/Api";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
@@ -49,7 +50,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.home.slug,
     {
       preview: preview,

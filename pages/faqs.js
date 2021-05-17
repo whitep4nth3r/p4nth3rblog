@@ -2,7 +2,7 @@ import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
 import ContentfulFaqs from "@contentful/Faqs";
-import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
 import RichTextPageContent from "@components/RichTextPageContent";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
@@ -34,7 +34,7 @@ export default function FaqsPage(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.faqs.slug,
     {
       preview: preview,

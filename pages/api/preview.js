@@ -3,6 +3,7 @@
  */
 
 import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
 
 export default async function preview(req, res) {
   /*
@@ -38,9 +39,12 @@ export default async function preview(req, res) {
       });
       break;
     case "pageContent":
-      preview = await ContentfulApi.getPageContentBySlug(req.query.slug, {
-        preview: true,
-      });
+      preview = await ContentfulPageContent.getBySlug(
+        req.query.slug,
+        {
+          preview: true,
+        },
+      );
       break;
     default:
       preview = null;

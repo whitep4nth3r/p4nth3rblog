@@ -1,4 +1,5 @@
 import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import PostList from "@components/PostList";
@@ -66,7 +67,7 @@ export async function getStaticProps({ params, preview = false }) {
   const totalPages = Math.ceil(
     postSummaries.total / Config.pagination.pageSize,
   );
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.blogIndex.slug,
     {
       preview: preview,
