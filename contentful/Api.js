@@ -386,43 +386,7 @@ export default class ContentfulApi {
     return paginatedPostSummaries;
   }
 
-  /*
-   * Get most recent post summaries for home page (not paginated)
-   */
-  static async getRecentPostList() {
-    const query = `{
-      blogPostCollection(limit: ${Config.pagination.recentPostsSize}, order: date_DESC) {
-        items {
-          sys {
-            id
-          }
-          date
-          title
-          slug
-          excerpt
-          tags
-          topicsCollection {
-            items {
-              sys {
-                id  
-              }
-              name
-              slug
-            }
-          }
-          readingTime
-        }
-      }
-    }`;
-
-    const response = await this.callContentful(query);
-
-    const recentPosts = response.data.blogPostCollection.items
-      ? response.data.blogPostCollection.items
-      : [];
-
-    return recentPosts;
-  }
+  
 
   /*
    * Call the Contentful GraphQL Api
