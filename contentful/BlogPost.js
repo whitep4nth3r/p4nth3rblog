@@ -222,7 +222,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
    * Get blog posts by page
    * param: page (number)
    */
-  static async getPaginatedBlogPosts(page) {
+  static async getPaginated(page) {
     const queryLimit = 9;
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
@@ -340,7 +340,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
     const returnPosts = [];
 
     while (shouldQueryMorePosts) {
-      const response = await this.getPaginatedBlogPosts(page);
+      const response = await this.getPaginated(page);
 
       if (response.posts.length > 0) {
         returnPosts.push(...response.posts);
