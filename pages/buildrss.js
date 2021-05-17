@@ -1,6 +1,6 @@
 import ReactDOMServer from "react-dom/server";
-import ContentfulApi from "@contentful/Api";
 import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -77,7 +77,7 @@ export async function getStaticProps() {
     Config.pageMeta.buildRss.slug,
   );
 
-  const posts = await ContentfulApi.getAllBlogPosts();
+  const posts = await ContentfulBlogPost.getAll();
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0"

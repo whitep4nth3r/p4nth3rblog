@@ -1,4 +1,4 @@
-import ContentfulApi from "@contentful/Api";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import ContentfulPageContent from "@contentful/PageContent";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
@@ -45,7 +45,7 @@ export default function BlogIndex(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const postSummaries = await ContentfulApi.getPaginatedPostSummaries(1);
+  const postSummaries = await ContentfulBlogPost.getPaginatedSummaries(1);
   const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.blogIndex.slug,
     {

@@ -1,5 +1,4 @@
 import { getServerSideSitemap } from "next-sitemap";
-import ContentfulApi from "@contentful/Api";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
 
@@ -7,7 +6,7 @@ export const getServerSideProps = async (ctx) => {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  const blogPostSlugs = await ContentfulApi.getAllPostSlugs();
+  const blogPostSlugs = await ContentfulBlogPost.getAllSlugs();
 
   const blogPostFields = blogPostSlugs.map((slug) => {
     return {

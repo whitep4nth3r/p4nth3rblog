@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageMeta from "@components/PageMeta";
 import ContentfulApi from "@contentful/Api";
 import ContentfulTopics from "@contentful/Topics";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import MainLayout from "@layouts/main";
 import PostGrid from "@components/PostGrid";
 import Topics from "@components/Topics";
@@ -57,7 +58,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const blogPostsByTopic = await ContentfulApi.getAllBlogPostsByTopic(
+  const blogPostsByTopic = await ContentfulBlogPost.getAllByTopic(
     params.topic,
   );
 
