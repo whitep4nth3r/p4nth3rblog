@@ -41,7 +41,7 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const faqs = await ContentfulFaqs.getAllFaqs();
+  const faqs = await ContentfulFaqs.getAll();
 
   return {
     props: {

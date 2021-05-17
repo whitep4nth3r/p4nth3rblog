@@ -4,13 +4,13 @@ export default class ContentfulFaqs extends ContentfulApi {
   /*
    * Get all faqs
    */
-  static async getAllFaqs() {
+  static async getAll() {
     let page = 1;
     let shouldQueryMoreFaqs = true;
     const returnFaqs = [];
 
     while (shouldQueryMoreFaqs) {
-      const response = await this.getPaginatedFaqs(page);
+      const response = await this.getPaginated(page);
 
       if (response.faqs.length > 0) {
         returnFaqs.push(...response.faqs);
@@ -27,7 +27,7 @@ export default class ContentfulFaqs extends ContentfulApi {
    * Get faqs by page
    * param: page (number)
    */
-  static async getPaginatedFaqs(page) {
+  static async getPaginated(page) {
     const queryLimit = 10;
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;

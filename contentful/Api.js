@@ -1,5 +1,4 @@
 import { Config } from "../utils/Config";
-import GitHub from "@utils/GitHub";
 
 const defaultOptions = {
   preview: false,
@@ -518,60 +517,6 @@ export default class ContentfulApi {
       : [];
 
     return recentPosts;
-  }
-
-  /*
-   * Get all project entries
-   */
-  static async getProjects() {
-    const query = `{
-      projectCollection(order: [order_ASC]) {
-        total
-        items {
-          sys {
-            id
-          }
-          name
-          description
-          link
-          linkText
-          order
-          gitHubRepoName
-          image {
-            url
-            description
-            height
-            width
-            sys {
-              id
-            }
-          }
-        }
-      }
-    }`;
-
-    const response = await this.callContentful(query);
-
-    const projectCollection = response.data.projectCollection.items
-      ? response.data.projectCollection.items
-      : [];
-
-    const mergeProjectsWithGitHubData = async (_) => {
-      const promises = projectCollection.map(async (project) => {
-        return {
-          ...project,
-          gitHubStats: await GitHub.getRepoForksAndStars(
-            project.gitHubRepoName,
-          ),
-        };
-      });
-
-      return await Promise.all(promises);
-    };
-
-    const fullData = await mergeProjectsWithGitHubData();
-
-    return fullData;
   }
 
   static async getAllThingsIUseCategories() {

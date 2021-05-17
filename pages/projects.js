@@ -1,6 +1,7 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import ContentfulApi from "@contentful/Api";
+import ContentfulProjects from "@contentful/Projects";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";
@@ -51,7 +52,7 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const projects = await ContentfulApi.getProjects();
+  const projects = await ContentfulProjects.getAll();
 
   return {
     props: {
