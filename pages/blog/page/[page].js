@@ -1,4 +1,6 @@
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import PostList from "@components/PostList";
@@ -44,7 +46,7 @@ export default function BlogIndexPage(props) {
 }
 
 export async function getStaticPaths() {
-  const totalPosts = await ContentfulApi.getTotalPostsNumber();
+  const totalPosts = await ContentfulBlogPost.getTotal();
   const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
 
   const paths = [];
@@ -60,13 +62,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const postSummaries = await ContentfulApi.getPaginatedPostSummaries(
+  const postSummaries = await ContentfulBlogPost.getPaginatedSummaries(
     params.page,
   );
   const totalPages = Math.ceil(
     postSummaries.total / Config.pagination.pageSize,
   );
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.blogIndex.slug,
     {
       preview: preview,

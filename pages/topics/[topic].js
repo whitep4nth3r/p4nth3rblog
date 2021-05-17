@@ -1,7 +1,9 @@
 import { Config } from "@utils/Config";
 import Link from "next/link";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
+import ContentfulTopics from "@contentful/Topics";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import MainLayout from "@layouts/main";
 import PostGrid from "@components/PostGrid";
 import Topics from "@components/Topics";
@@ -43,7 +45,7 @@ export default function Topic(props) {
 }
 
 export async function getStaticPaths() {
-  const topics = await ContentfulApi.getAllTopics();
+  const topics = await ContentfulTopics.getAll();
 
   const paths = topics.map((topic) => {
     return { params: { topic: topic.slug } };
@@ -56,12 +58,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const blogPostsByTopic = await ContentfulApi.getAllBlogPostsByTopic(
+  const blogPostsByTopic = await ContentfulBlogPost.getAllByTopic(
     params.topic,
   );
 
-  const topic = await ContentfulApi.getTopicFromSlug(params.topic);
-  const allTopics = await ContentfulApi.getAllTopics();
+  const topic = await ContentfulTopics.getTopicFromSlug(params.topic);
+  const allTopics = await ContentfulTopics.getAll();
 
   return {
     props: {

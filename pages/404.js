@@ -1,4 +1,4 @@
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
 import Link from "next/link";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -40,7 +40,7 @@ export default function Panther404(props) {
 }
 
 export async function getStaticProps() {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.notFound.slug,
   );
 

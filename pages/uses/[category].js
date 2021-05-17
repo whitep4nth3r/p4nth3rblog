@@ -1,6 +1,7 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulThingsIUse from "@contentful/ThingsIUse";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";
@@ -42,7 +43,7 @@ export default function UsesCategory(props) {
 }
 
 export async function getStaticPaths() {
-  const thingsIUseCategories = await ContentfulApi.getAllThingsIUseCategories();
+  const thingsIUseCategories = await ContentfulThingsIUse.getCategories();
 
   const paths = thingsIUseCategories.map((category) => {
     return { params: { category } };
@@ -55,7 +56,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.uses.slug,
     {
       preview: preview,
@@ -63,8 +64,8 @@ export async function getStaticProps({ params, preview = false }) {
   );
 
   //TODO - make this one API call
-  const thingsIUse = await ContentfulApi.getThingsIUse(params.category);
-  const categories = await ContentfulApi.getAllThingsIUseCategories();
+  const thingsIUse = await ContentfulThingsIUse.getAll(params.category);
+  const categories = await ContentfulThingsIUse.getCategories();
 
   return {
     props: {

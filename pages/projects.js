@@ -1,6 +1,7 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulProjects from "@contentful/Projects";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";
@@ -44,14 +45,14 @@ export default function Projects(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.projects.slug,
     {
       preview: preview,
     },
   );
 
-  const projects = await ContentfulApi.getProjects();
+  const projects = await ContentfulProjects.getAll();
 
   return {
     props: {

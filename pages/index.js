@@ -1,6 +1,8 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
+import ContentfulApi from "@contentful/Api";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
@@ -49,14 +51,14 @@ export default function Home(props) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.home.slug,
     {
       preview: preview,
     },
   );
 
-  const recentPosts = await ContentfulApi.getRecentPostList();
+  const recentPosts = await ContentfulBlogPost.getRecent();
 
   return {
     props: {

@@ -44,7 +44,7 @@ export default function ThingsIUse(props) {
             : ThingsIUseStyles.categoryButton;
 
           return (
-            <Link href={`/uses/${category}`} key={category}>
+            <Link href={`/uses/${category}`} key={category} scroll={false}>
               <a className={buttonClasses}>{category}</a>
             </Link>
           );

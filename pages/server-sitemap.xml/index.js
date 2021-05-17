@@ -1,12 +1,12 @@
 import { getServerSideSitemap } from "next-sitemap";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
 
 export const getServerSideProps = async (ctx) => {
   // Method to source urls from cms
   // const urls = await fetch('https//example.com/api')
 
-  const blogPostSlugs = await ContentfulApi.getAllPostSlugs();
+  const blogPostSlugs = await ContentfulBlogPost.getAllSlugs();
 
   const blogPostFields = blogPostSlugs.map((slug) => {
     return {
@@ -15,7 +15,7 @@ export const getServerSideProps = async (ctx) => {
     };
   });
 
-  const totalPosts = await ContentfulApi.getTotalPostsNumber();
+  const totalPosts = await ContentfulBlogPost.getTotal();
   const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
 
   const blogIndexPageFields = [];

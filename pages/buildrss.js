@@ -1,5 +1,6 @@
 import ReactDOMServer from "react-dom/server";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -72,11 +73,11 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.buildRss.slug,
   );
 
-  const posts = await ContentfulApi.getAllBlogPosts();
+  const posts = await ContentfulBlogPost.getAll();
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0"

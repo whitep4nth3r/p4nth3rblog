@@ -2,7 +2,9 @@
  * https://nextjs.org/docs/advanced-features/preview-mode
  */
 
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 
 export default async function preview(req, res) {
   /*
@@ -33,12 +35,12 @@ export default async function preview(req, res) {
   switch (req.query.contentType) {
     case "blogPost":
       redirectPrefix = "/blog/";
-      preview = await ContentfulApi.getPostBySlug(req.query.slug, {
+      preview = await ContentfulBlogPost.getBySlug(req.query.slug, {
         preview: true,
       });
       break;
     case "pageContent":
-      preview = await ContentfulApi.getPageContentBySlug(req.query.slug, {
+      preview = await ContentfulPageContent.getBySlug(req.query.slug, {
         preview: true,
       });
       break;
