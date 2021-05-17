@@ -214,114 +214,6 @@ export default class ContentfulApi {
   }
 
   /*
-   * Get blog post by slug
-   * param: slug (string)
-   */
-
-  static async getPostBySlug(slug, options = defaultOptions) {
-    const query = `{
-      blogPostCollection(limit: 1, where: {slug: "${slug}"}, preview: ${options.preview}) {
-        total
-        items {
-          sys {
-            id
-          }
-          date
-          title
-          slug
-          excerpt
-          tags
-          topicsCollection {
-            items {
-              sys {
-                id  
-              }
-              name
-              slug
-            }
-          }
-          externalUrl
-          readingTime
-          author {
-            name
-            description
-            twitchUsername
-            twitterUsername
-            gitHubUsername
-            websiteUrl
-            youtubeUrl
-            image {
-              url
-              title
-              width
-              height
-              description
-            }
-          }
-          body {
-            json
-            links {
-              entries {
-                inline {
-                  sys {
-                    id
-                  }
-                  __typename
-                  ... on BlogPost {
-                    title
-                    slug
-                    excerpt
-                    featuredImage {
-                      url
-                      title
-                      width
-                      height
-                      description
-                    }
-                  }
-                }
-                block {
-                  sys {
-                    id
-                  }
-                  __typename
-                  ... on VideoEmbed {
-                    title
-                    embedUrl
-                  }
-                  ... on CodeBlock {
-                    description
-                    language
-                    code
-                  }
-                }
-              }
-              assets {
-                block {
-                  sys {
-                    id
-                  }
-                  url
-                  title
-                  width
-                  height
-                  description
-                }
-              }
-            }
-          }
-        }
-      }
-    }`;
-
-    const response = await this.callContentful(query, options);
-    const post = response.data.blogPostCollection.items
-      ? response.data.blogPostCollection.items
-      : [];
-    return post.pop();
-  }
-
-  /*
    * Get post summaries for blog index page
    * param: page (number)
    */
@@ -385,8 +277,6 @@ export default class ContentfulApi {
 
     return paginatedPostSummaries;
   }
-
-  
 
   /*
    * Call the Contentful GraphQL Api
