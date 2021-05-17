@@ -1,6 +1,7 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import ContentfulApi from "@contentful/Api";
+import ContentfulThingsIUse from "@contentful/ThingsIUse";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";
@@ -45,8 +46,8 @@ export async function getStaticProps({ preview = false }) {
   );
 
   //TODO - make this one API call
-  const thingsIUse = await ContentfulApi.getThingsIUse();
-  const categories = await ContentfulApi.getAllThingsIUseCategories();
+  const thingsIUse = await ContentfulThingsIUse.getAll();
+  const categories = await ContentfulThingsIUse.getCategories();
 
   return {
     props: {
