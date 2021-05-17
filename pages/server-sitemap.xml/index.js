@@ -1,5 +1,6 @@
 import { getServerSideSitemap } from "next-sitemap";
 import ContentfulApi from "@contentful/Api";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
 
 export const getServerSideProps = async (ctx) => {
@@ -15,7 +16,7 @@ export const getServerSideProps = async (ctx) => {
     };
   });
 
-  const totalPosts = await ContentfulApi.getTotalPostsNumber();
+  const totalPosts = await ContentfulBlogPost.getTotal();
   const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
 
   const blogIndexPageFields = [];

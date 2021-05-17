@@ -6,26 +6,6 @@ export const defaultOptions = {
 
 export default class ContentfulApi {
   /*
-   * Get the total number of blog posts
-   */
-  static async getTotalPostsNumber() {
-    const query = `
-      {
-        blogPostCollection {
-          total
-        }
-      }
-    `;
-
-    const response = await this.callContentful(query);
-    const totalPosts = response.data.blogPostCollection.total
-      ? response.data.blogPostCollection.total
-      : 0;
-
-    return totalPosts;
-  }
-
-  /*
    * Get blog post slugs by page
    * param: page (number)
    */

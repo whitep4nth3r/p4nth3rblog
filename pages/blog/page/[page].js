@@ -1,5 +1,6 @@
 import ContentfulApi from "@contentful/Api";
 import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import PostList from "@components/PostList";
@@ -45,7 +46,7 @@ export default function BlogIndexPage(props) {
 }
 
 export async function getStaticPaths() {
-  const totalPosts = await ContentfulApi.getTotalPostsNumber();
+  const totalPosts = await ContentfulBlogPost.getTotal();
   const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
 
   const paths = [];
