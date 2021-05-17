@@ -376,6 +376,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
   /**
    * TODO: limit blog post collection and paginate that result?
    * Can we order blogPosts by date_DESC?
+   *
    */
   static async getPaginatedByTopic(page, topicSlug) {
     const queryLimit = 1;
