@@ -519,62 +519,6 @@ export default class ContentfulApi {
     return recentPosts;
   }
 
-  
-
-
-  /**
-   * Get full topic object from provided slug
-   * param: slug (string)
-   */
-  static async getTopicFromSlug(slug) {
-    const query = `
-    {
-      topicCollection(where: {slug: "${slug}"}, limit: 1) {
-        items {
-          name
-          slug 
-          sys {
-            id
-          }
-        }
-      }
-    }
-  `;
-
-    const response = await this.callContentful(query);
-
-    return response.data.topicCollection.items
-      ? response.data.topicCollection.items[0]
-      : "";
-  }
-
-  /**
-   * Get all topics
-   */
-  static async getAllTopics() {
-    const query = `
-    {
-      topicCollection {
-        items {
-          sys {
-            id
-          }
-          slug
-          name
-        }
-      }
-    }
-    `;
-
-    const response = await this.callContentful(query);
-
-    const topics = response.data.topicCollection.items
-      ? response.data.topicCollection.items
-      : [];
-
-    return topics;
-  }
-
   /*
    * Call the Contentful GraphQL Api
    * param: query (string)
