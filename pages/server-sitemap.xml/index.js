@@ -1,5 +1,5 @@
 import { getServerSideSitemap } from "next-sitemap";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import { Config } from "@utils/Config";
 
 export const getServerSideProps = async (ctx) => {

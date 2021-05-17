@@ -1,5 +1,5 @@
 import ReactDOMServer from "react-dom/server";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";

@@ -1,6 +1,6 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import HeroBanner from "@components/HeroBanner";

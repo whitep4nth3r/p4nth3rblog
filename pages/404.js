@@ -1,4 +1,4 @@
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import Link from "next/link";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";

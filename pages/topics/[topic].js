@@ -1,7 +1,7 @@
 import { Config } from "@utils/Config";
 import Link from "next/link";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import MainLayout from "@layouts/main";
 import PostGrid from "@components/PostGrid";
 import Topics from "@components/Topics";

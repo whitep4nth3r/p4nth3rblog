@@ -1,4 +1,4 @@
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 import Post from "@components/Post";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";

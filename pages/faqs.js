@@ -1,7 +1,8 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulFaqs from "@contentful/Faqs";
+import ContentfulApi from "@contentful/Api";
 import RichTextPageContent from "@components/RichTextPageContent";
 import PageContentWrapper from "@components/PageContentWrapper";
 import ContentWrapper from "@components/ContentWrapper";
@@ -40,7 +41,7 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const faqs = await ContentfulApi.getAllFaqs();
+  const faqs = await ContentfulFaqs.getAllFaqs();
 
   return {
     props: {

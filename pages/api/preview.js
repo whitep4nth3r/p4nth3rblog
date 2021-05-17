@@ -2,7 +2,7 @@
  * https://nextjs.org/docs/advanced-features/preview-mode
  */
 
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
 
 export default async function preview(req, res) {
   /*
