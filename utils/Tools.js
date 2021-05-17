@@ -14,6 +14,10 @@ const defaultOptions = {
   isPostList: false,
 };
 
+function processTopics(topics) {
+  return topics.map((topic) => topic.name).join(",");
+}
+
 export function buildStructuredDataForBlogPost(post, options = defaultOptions) {
   return JSON.stringify({
     "@context": "https://schema.org/",
@@ -28,7 +32,7 @@ export function buildStructuredDataForBlogPost(post, options = defaultOptions) {
       : post.body.links?.assets?.block?.map((asset) => asset.url),
     dateCreated: post.date,
     description: post.excerpt,
-    keywords: post.tags.join(","),
+    keywords: processTopics(post.topicsCollection.items),
     author: {
       "@type": "Person",
       name: post.author.name,
