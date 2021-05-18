@@ -352,7 +352,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
 
   /*
    * Get blog posts by topic
-   * param: page (number)
+   * param: topicSlug (string)
    */
   static async getAllByTopic(topicSlug) {
     let page = 1;
@@ -373,22 +373,21 @@ export default class ContentfulBlogPost extends ContentfulApi {
     return returnPosts;
   }
 
-  /**
-   * TODO: limit blog post collection and paginate that result?
-   * Can we order blogPosts by date_DESC?
-   *
+  /*
+   * Get blog posts by topic
+   * param: page (number)
+   * param: topicSlug (string)
    */
   static async getPaginatedByTopic(page, topicSlug) {
-    const queryLimit = 1;
+    const queryLimit = 5;
     const skipMultiplier = page === 1 ? 0 : page - 1;
-    const skip =
-      skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
+    const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
     const query = `{
-      topicCollection(where: { slug: "${topicSlug}" }, skip: ${skip}, limit: ${queryLimit}) {
+      topicCollection(where: { slug: "${topicSlug}" },  limit: 1) {
         items {
           linkedFrom {
-            blogPostCollection {
+            blogPostCollection(limit: ${queryLimit}, skip: ${skip}) {
               total
               items {
                 sys {
