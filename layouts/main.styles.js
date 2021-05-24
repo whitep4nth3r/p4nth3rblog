@@ -71,4 +71,9 @@ export default css.global`
   .token.constant {
     color: #fc92b6 !important;
   }
+
+  .twitter-tweet {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 `;

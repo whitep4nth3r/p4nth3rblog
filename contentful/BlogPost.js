@@ -130,6 +130,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     id
                   }
                   __typename
+                  ... on TweetEmbed {
+                    tweetId
+                  }
                   ... on VideoEmbed {
                     title
                     embedUrl
