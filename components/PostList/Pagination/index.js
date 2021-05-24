@@ -6,29 +6,11 @@ import ChevronRight from "./svg/ChevronRight";
 export default function Pagination(props) {
   const { totalPages, currentPage, prevDisabled, nextDisabled } = props;
 
-  function renderPageNumbers(totalPages) {
-    const pageNumbers = [];
-
-    for (let i = 1; i <= totalPages; i++) {
-      const isActiveClass =
-        currentPage === i
-          ? ` ${PaginationStyles.pagination__listItem__active}`
-          : "";
-
-      pageNumbers.push(
-        <li
-          key={`page-${i}`}
-          className={PaginationStyles.pagination__listItem + isActiveClass}
-        >
-          <Link href={`/blog?page=${i}`}>
-            <a>Page {i}</a>
-          </Link>
-        </li>,
-      );
-    }
-
-    return pageNumbers;
-  }
+  const prevPageUrl =
+    currentPage === "2"
+      ? "/blog"
+      : `/blog/page/${parseInt(currentPage, 10) - 1}`;
+  const nextPageUrl = `/blog/page/${parseInt(currentPage, 10) + 1}`;
 
   return (
     <div className={PaginationStyles.pagination}>
@@ -41,12 +23,12 @@ export default function Pagination(props) {
               >
                 <ChevronLeft />
               </span>
-              <span>Previous page</span>
+              <span>Prev</span>
             </span>
           )}
           {!prevDisabled && (
-            <Link href={`/blog?page=${currentPage - 1}`}>
-              <a>
+            <Link href={prevPageUrl}>
+              <a aria-label="Navigate to previous page">
                 <span
                   className={
                     PaginationStyles.pagination__chevronContainer__left
@@ -54,16 +36,20 @@ export default function Pagination(props) {
                 >
                   <ChevronLeft />
                 </span>
-                <span>Previous page</span>
+                <span>Prev</span>
               </a>
             </Link>
           )}
         </li>
-        {renderPageNumbers(totalPages)}
+        <li
+          className={`${PaginationStyles.pagination__listItem} ${PaginationStyles.pagination__listItem__pageDescriptor}`}
+        >
+          Page {currentPage} of {totalPages}
+        </li>
         <li className={PaginationStyles.pagination__listItem}>
           {nextDisabled && (
             <span className={PaginationStyles.pagination__listItem__disabled}>
-              <span>Next page</span>
+              <span>Next</span>
               <span
                 className={PaginationStyles.pagination__chevronContainer__right}
               >
@@ -72,9 +58,9 @@ export default function Pagination(props) {
             </span>
           )}
           {!nextDisabled && (
-            <Link href={`/blog?page=${currentPage + 1}`}>
-              <a>
-                <span>Next page</span>
+            <Link href={nextPageUrl}>
+              <a aria-label="Navigate to next page">
+                <span>Next</span>
                 <span
                   className={
                     PaginationStyles.pagination__chevronContainer__right

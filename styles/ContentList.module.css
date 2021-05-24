@@ -47,3 +47,23 @@
   font-family: var(--font-family-main);
   color: var(--color-foreground);
 }
+
+.contentList__readMoreLink {
+  letter-spacing: 1px;
+  color: var(--color-foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+}
+
+.contentList__readMoreLink:focus,
+.contentList__readMoreLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}

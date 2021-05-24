@@ -17,13 +17,16 @@ export const Config = {
       url: SITE_URL,
       slug: "/",
     },
-    about: {
-      url: `${SITE_URL}/about`,
-      slug: "/about",
+    dashboard: {
+      url: `${SITE_URL}/dashboard`,
+      slug: "/dashboard",
     },
     blogIndex: {
       url: `${SITE_URL}/blog`,
       slug: "/blog",
+    },
+    blogIndexPage: {
+      slug: "/blog/page/[page]",
     },
     post: {
       slug: "/blog/[slug]",
@@ -36,9 +39,21 @@ export const Config = {
       url: `${SITE_URL}/privacy-policy`,
       slug: "/privacy-policy",
     },
+    projects: {
+      url: `${SITE_URL}/projects`,
+      slug: "/projects",
+    },
     uses: {
       url: `${SITE_URL}/uses`,
       slug: "/uses",
+    },
+    topics: {
+      url: `${SITE_URL}/topics`,
+      slug: "/topics",
+    },
+    faqs: {
+      url: `${SITE_URL}/faqs`,
+      slug: "/faqs",
     },
     notFound: {
       url: SITE_URL,
@@ -47,7 +62,7 @@ export const Config = {
   },
   pagination: {
     pageSize: 6,
-    recentPostsSize: 3,
+    recentPostsSize: 6,
   },
   menuLinks: [
     {
@@ -59,8 +74,20 @@ export const Config = {
       path: "/blog",
     },
     {
+      displayName: "Projects",
+      path: "/projects",
+    },
+    {
       displayName: "Uses",
       path: "/uses",
+    },
+    {
+      displayName: "FAQs",
+      path: "/faqs",
+    },
+    {
+      displayName: "Dashboard",
+      path: "/dashboard",
     },
   ],
 };

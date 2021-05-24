@@ -1,7 +1,9 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
+import LinkPreviewStyles from "@styles/LinkPreview.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -11,6 +13,28 @@ const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
 const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"));
 
+const DynamicTweetEmbed = dynamic(() => import("./TweetEmbed"));
+
+const ReactTooltip = dynamic(() => import("react-tooltip"), { ssr: false });
+
+function buildBlogPostLinkTooltipHTML(title, featuredImage, excerpt) {
+  return `
+    <span style="display: block; max-width: 320px;">
+      <img
+        style="width: 100%; height: auto; border-bottom: 0.125rem solid #ffb626;"
+        src="${featuredImage.url}?w=320&h=320"
+        alt="${featuredImage.description}"
+        height="${featuredImage.height}"
+        width="${featuredImage.width}"
+      />
+      <span style="display: block; padding: 1.5rem;">
+        <h2 style="padding-bottom: 1rem; border-bottom: 0.125rem solid #f11012; line-height: 1.2; font-size: 1.2rem; margin-bottom: 1rem; color: #ffb626; text-transform: uppercase; letter-spacing: 1px;">${title}</h2>
+        <p style="margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.6; font-weight: 400; color: #ffffff;">${excerpt}</p>
+      </span>
+    </span>
+  `;
+}
+
 export function getRichTextRenderOptions(links, options) {
   const { renderH2Links, renderNativeImg } = options;
 
@@ -18,9 +42,19 @@ export function getRichTextRenderOptions(links, options) {
     links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
   );
 
-  const entryBlockMap = new Map(
-    links?.entries?.block?.map((entry) => [entry.sys.id, entry]),
-  );
+  const entryMap = new Map();
+
+  if (links.entries.block) {
+    for (const entry of links.entries.block) {
+      entryMap.set(entry.sys.id, entry);
+    }
+  }
+
+  if (links.entries.inline) {
+    for (const entry of links.entries.inline) {
+      entryMap.set(entry.sys.id, entry);
+    }
+  }
 
   return {
     renderMark: {
@@ -42,11 +76,45 @@ export function getRichTextRenderOptions(links, options) {
           className={TypographyStyles.inlineLink}
           href={node.data.uri}
           target="_blank"
-          rel="nofollow"
+          rel="nofollow noreferrer"
         >
           {children}
         </a>
       ),
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        const entry = entryMap.get(node.data.target.sys.id);
+        const { __typename } = entry;
+
+        switch (__typename) {
+          case "BlogPost":
+            const { slug, title, featuredImage, excerpt } = entry;
+
+            return (
+              <>
+                <ReactTooltip wrapper="span" />
+                <Link href={`/blog/${slug}`}>
+                  <a
+                    data-arrow-color="#ffb626"
+                    data-effect="solid"
+                    data-class={LinkPreviewStyles.container}
+                    data-html={true}
+                    data-type="dark"
+                    data-tip={buildBlogPostLinkTooltipHTML(
+                      title,
+                      featuredImage,
+                      excerpt,
+                    )}
+                    className={`${TypographyStyles.inlineLink} ${TypographyStyles.inlineLink__linkedEntry}`}
+                  >
+                    {title}
+                  </a>
+                </Link>
+              </>
+            );
+          default:
+            return null;
+        }
+      },
       [BLOCKS.HR]: (text) => (
         <hr className={RichTextPageContentStyles.page__hr} />
       ),
@@ -112,10 +180,14 @@ export function getRichTextRenderOptions(links, options) {
         </li>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = entryBlockMap.get(node.data.target.sys.id);
+        const entry = entryMap.get(node.data.target.sys.id);
         const { __typename } = entry;
 
         switch (__typename) {
+          case "TweetEmbed":
+            const { tweetId } = entry;
+
+            return <DynamicTweetEmbed tweetId={tweetId} />;
           case "VideoEmbed":
             const { embedUrl, title } = entry;
 

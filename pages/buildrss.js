@@ -1,5 +1,6 @@
 import ReactDOMServer from "react-dom/server";
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulPageContent from "@contentful/PageContent";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -29,13 +30,13 @@ export default function buildRss(props) {
   );
 }
 
-function buildTags(tags) {
-  if (!tags) {
+function buildCategories(topics) {
+  if (!topics) {
     return;
   }
-  return tags
-    .map((tag) => {
-      return `<category>${tag}</category>`;
+  return topics
+    .map((topic) => {
+      return `<category>${topic.name}</category>`;
     })
     .join("");
 }
@@ -63,7 +64,7 @@ function buildRssItems(posts) {
           <link>https://${Config.site.domain}/blog/${post.slug}</link>
           <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
           <pubDate>${post.date}</pubDate>
-          ${buildTags(post.tags)}
+          ${buildCategories(post.topicsCollection.items)}
           ${buildContent(post.body)}
         </item>
         `;
@@ -72,11 +73,11 @@ function buildRssItems(posts) {
 }
 
 export async function getStaticProps() {
-  const pageContent = await ContentfulApi.getPageContentBySlug(
+  const pageContent = await ContentfulPageContent.getBySlug(
     Config.pageMeta.buildRss.slug,
   );
 
-  const posts = await ContentfulApi.getAllBlogPosts();
+  const posts = await ContentfulBlogPost.getAll();
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0"

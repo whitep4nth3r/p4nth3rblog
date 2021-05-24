@@ -69,3 +69,8 @@
   height: auto;
   margin: 1rem 0 2rem 0;
 }
+
+.page__tweet {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}

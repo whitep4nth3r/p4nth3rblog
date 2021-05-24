@@ -32,6 +32,10 @@ export default function PageMeta(props) {
 
       <meta property="og:image" content={OpenGraph.generateImageUrl(title)} />
       <meta
+        property="og:image:alt"
+        content={`An image with a patterned whitepanther tattoo background, with a panther logo above the title of the page, which is ${title}`}
+      ></meta>
+      <meta
         property="twitter:image"
         content={OpenGraph.generateImageUrl(title)}
       />
@@ -45,6 +49,8 @@ export default function PageMeta(props) {
         name="twitter:creator"
         content={`@${Config.pageMeta.openGraph.twitterUser}`}
       />
+
+      <meta name="monetization" content="$ilp.uphold.com/J7y7wkRezRYL" />
 
       <link rel="icon" href="/favicon.ico" />
 

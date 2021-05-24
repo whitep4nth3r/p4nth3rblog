@@ -16,7 +16,7 @@ export default function ReactMarkdownRenderers(markdown) {
       <a
         href={href}
         target="_blank"
-        rel="nofollow"
+        rel="nofollow noreferrer"
         className={TypographyStyles.inlineLink}
       >
         {children}

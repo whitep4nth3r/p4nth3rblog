@@ -1,0 +1,124 @@
+.projects {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.projects__project {
+  background-color: var(--color-background);
+  border: 0.25rem solid var(--color-foreground);
+  box-shadow: 0.5rem 0.5rem 0 0 var(--color-tertiary);
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projects__detailsContainer {
+  padding: 2rem 1rem 2rem 1rem;
+  display: grid;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.projects__projectTitle {
+  letter-spacing: 1px;
+  color: var(--color-foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-family: var(--font-family-main);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.projects__projectDescription {
+  color: var(--color-foreground);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-family: var(--font-family-main);
+}
+
+.projects__projectLink {
+  letter-spacing: 1px;
+  color: var(--color-foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+}
+
+.projects__projectLink:focus,
+.projects__projectLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.projects__gitHubDetailsLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  letter-spacing: 1px;
+  color: var(--color-foreground);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.projects__gitHubDetailsLink:focus,
+.projects__gitHubDetailsLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.projects__gitHubDetailsInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #6a737d;
+}
+
+.projects__gitHubStatIconContainer {
+  margin-right: 0.5rem;
+}
+
+.projects__gitHubDetailsInner__cta {
+  color: var(--color-foreground);
+}

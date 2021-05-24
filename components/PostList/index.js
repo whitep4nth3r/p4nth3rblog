@@ -1,68 +1,36 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { Config } from "@utils/Config";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import PublishedDate from "@components/Post/PublishedDate";
-import Tags from "@components/Post/Tags";
+import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
+import Topics from "@components/Topics";
 import Pagination from "@components/PostList/Pagination";
-import ContentfulApi from "@utils/ContentfulApi";
-import TypographyStyles from "@styles/Typography.module.css";
 import ContentListStyles from "@styles/ContentList.module.css";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
-
-function shouldDisablePrev(newCurrentPage) {
-  return newCurrentPage === 1;
-}
-
-function shouldDisableNext(totalPages, newCurrentPage) {
-  return newCurrentPage === totalPages;
-}
+import { Config } from "@utils/Config";
+import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
 export default function PostList(props) {
-  const { posts, totalPosts } = props;
-
-  const router = useRouter();
-
-  const currentPageParam =
-    router.query.page !== undefined ? parseInt(router.query.page, 10) : 1;
-
-  const [postsToDisplay, setPostsToDisplay] = useState(posts);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [nextDisabled, setNextDisabled] = useState(false);
-  const [prevDisabled, setPrevDisabled] = useState(true);
-
-  const totalPages = Math.ceil(totalPosts / Config.pagination.pageSize);
-
-  useEffect(() => {
-    setCurrentPage(currentPageParam);
-
-    async function updatePosts() {
-      const newPosts = await ContentfulApi.getPaginatedPostSummaries(
-        currentPageParam,
-      );
-
-      setPostsToDisplay(newPosts);
-    }
-
-    updatePosts();
-    setNextDisabled(shouldDisableNext(totalPages, currentPageParam));
-    setPrevDisabled(shouldDisablePrev(currentPageParam));
-  }, [
-    setCurrentPage,
-    currentPageParam,
-    setPostsToDisplay,
-    setNextDisabled,
-    setPrevDisabled,
-  ]);
+  const { posts, currentPage, totalPages } = props;
+  const nextDisabled = parseInt(currentPage, 10) === parseInt(totalPages, 10);
+  const prevDisabled = parseInt(currentPage, 10) === 1;
 
   return (
     <>
       <ol className={ContentListStyles.contentList}>
-        {postsToDisplay.map((post) => (
+        {posts.map((post) => (
           <li key={post.sys.id}>
             <article className={ContentListStyles.contentList__post}>
-              <PublishedDate date={post.date} />
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: buildStructuredDataForBlogPost(post, {
+                    isPostList: true,
+                  }),
+                }}
+              />
+              <PublishedDateAndReadingTime
+                date={post.date}
+                readingTime={post.readingTime}
+              />
               <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
                 <a className={ContentListStyles.contentList__titleLink}>
                   <h2 className={ContentListStyles.contentList__title}>
@@ -70,13 +38,21 @@ export default function PostList(props) {
                   </h2>
                 </a>
               </Link>
-              {post.tags !== null && <Tags tags={post.tags} />}
+              <Topics topics={post.topicsCollection.items} />
               <div className={ContentListStyles.contentList__excerpt}>
                 <ReactMarkdown
                   children={post.excerpt}
                   renderers={ReactMarkdownRenderers(post.excerpt)}
                 />
               </div>
+              <Link href={`/blog/${post.slug}`}>
+                <a
+                  className={ContentListStyles.contentList__readMoreLink}
+                  aria-label={`Read ${post.title}`}
+                >
+                  Read more →
+                </a>
+              </Link>
             </article>
           </li>
         ))}
@@ -85,7 +61,6 @@ export default function PostList(props) {
       <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
         nextDisabled={nextDisabled}
         prevDisabled={prevDisabled}
       />

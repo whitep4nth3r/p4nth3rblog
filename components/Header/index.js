@@ -1,5 +1,8 @@
+import useSWR from "swr";
+import fetcher from "@utils/Fetcher";
 import { useState } from "react";
 import HeaderStyles from "@styles/Header.module.css";
+import ButtonStyles from "@styles/Button.module.css";
 import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
 import { useRouter } from "next/router";
@@ -7,8 +10,12 @@ import { Config } from "@utils/Config";
 import Logo from "./svg/Logo";
 
 export default function Header() {
+  const { data } = useSWR("/api/twitch", fetcher);
+  const isLiveOnTwitch = data?.isLiveOnTwitch;
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const showSocialLinks = router.pathname !== "/";
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
@@ -24,7 +31,28 @@ export default function Header() {
 
   return (
     <header className={HeaderStyles.header}>
+      {isLiveOnTwitch && (
+        <div className={HeaderStyles.header__liveContainer}>
+          <a
+            className={ButtonStyles.button}
+            href="https://twitch.tv/whitep4nth3r"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={HeaderStyles.header__liveButtonText}>
+              I'm live on Twitch now →
+            </span>
+          </a>
+        </div>
+      )}
+
       <div className={HeaderStyles.header__logoContainer}>
+        <a
+          href="#main_content"
+          className={HeaderStyles.header__skipToMainContent}
+        >
+          Skip to main content
+        </a>
         <Link href="/">
           <a
             className={HeaderStyles.header__logoContainerLink}
@@ -52,9 +80,23 @@ export default function Header() {
 
         <ul className={navLinksClasses}>
           {Config.menuLinks.map((link) => {
+            const onBlogPost =
+              router.pathname === Config.pageMeta.post.slug &&
+              link.path === Config.pageMeta.blogIndex.slug;
+
+            const onBlogIndexPage =
+              router.pathname === Config.pageMeta.blogIndexPage.slug &&
+              link.path === Config.pageMeta.blogIndex.slug;
+
+            //TODO make this better?
+            const onUsesPath =
+              router.pathname.startsWith("/uses") &&
+              link.path.startsWith("/uses");
+
             const isActive =
-              (router.pathname === Config.pageMeta.post.slug &&
-                link.path === Config.pageMeta.blogIndex.slug) ||
+              onBlogPost ||
+              onBlogIndexPage ||
+              onUsesPath ||
               router.pathname === link.path;
 
             const isActiveClass = isActive
@@ -74,10 +116,21 @@ export default function Header() {
               </li>
             );
           })}
+          <li className={HeaderStyles.header__navListItem}>
+            <a
+              href="https://www.bonfire.com/store/p4nth3rshop/"
+              className={HeaderStyles.header__navListItemLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Shop whitepanther merchandise"
+            >
+              Merch
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <SocialLinks />
+      {showSocialLinks && <SocialLinks />}
     </header>
   );
 }

@@ -1,21 +1,23 @@
 .pagination {
-  margin: 2rem auto;
+  margin: 2rem auto 4rem auto;
 }
 
 .pagination__list {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding: 0;
 }
 
 .pagination__listItem {
   font-family: var(--font-family-main);
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-decoration: none;
-  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
 }
 
 .pagination__listItem a {
@@ -59,7 +61,7 @@
   display: flex;
 }
 
-.pagination__listItem__active a {
+.pagination__listItem__pageDescriptor {
   text-decoration: underline;
   text-decoration-color: var(--color-secondary);
   text-underline-offset: 0.5rem;

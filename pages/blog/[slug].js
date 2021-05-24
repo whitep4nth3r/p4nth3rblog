@@ -1,4 +1,5 @@
-import ContentfulApi from "@utils/ContentfulApi";
+import ContentfulApi from "@contentful/Api";
+import ContentfulBlogPost from "@contentful/BlogPost";
 import Post from "@components/Post";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
@@ -25,7 +26,7 @@ export default function PostWrapper(props) {
 }
 
 export async function getStaticPaths() {
-  const blogPostSlugs = await ContentfulApi.getAllPostSlugs();
+  const blogPostSlugs = await ContentfulBlogPost.getAllSlugs();
 
   const paths = blogPostSlugs.map((slug) => {
     return { params: { slug } };
@@ -38,7 +39,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const post = await ContentfulApi.getPostBySlug(params.slug, {
+  const post = await ContentfulBlogPost.getBySlug(params.slug, {
     preview: preview,
   });
 

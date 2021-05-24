@@ -1,0 +1,13 @@
+.pantherContainer {
+  width: 10rem;
+  display: block;
+  margin: 0 auto 2rem auto;
+}
+
+.container {
+  text-align: center;
+}
+
+.button {
+  margin: 0 auto 2rem auto;
+}

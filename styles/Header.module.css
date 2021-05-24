@@ -6,11 +6,77 @@
   align-content: center;
 }
 
-.header__logoContainer {
+.header__skipToMainContent {
   display: flex;
   justify-content: center;
+  color: var(--color-foreground);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.header__skipToMainContent:visited {
+  color: var(--color-foreground);
+}
+
+.header__skipToMainContent:focus {
+  color: var(--color-background);
+  outline-width: 0;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow var(--global-transition-time) ease 0s,
+    color ease-in-out 0.2s;
+}
+
+.header__skipToMainContent:focus:active {
+  outline-width: 0;
+  box-shadow: unset;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.header__liveButtonText:before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  background-color: var(--color-tertiary);
+  border-radius: 50%;
+  animation: flash 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__liveButtonText:before {
+    animation: none; /* or define an alternate animation */
+  }
+}
+
+.header__liveContainer {
+  padding: 1.5rem 1rem 0 1rem;
+  text-align: center;
+  border-bottom: 0.25rem solid var(--color-tertiary);
+  background-color: var(--color-secondary);
+}
+
+.header__logoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--color-foreground);
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 .header__logoContainerLink {
@@ -41,7 +107,7 @@
   justify-content: center;
   background-color: var(--color-foreground);
   padding: 0.5rem 1rem;
-  border-bottom: 0.5rem solid var(--color-tertiary);
+  border-bottom: 0.25rem solid var(--color-tertiary);
 }
 
 .header__navList {
@@ -76,11 +142,18 @@
   color: var(--color-background);
   font-size: 1.4rem;
   line-height: 1;
+  letter-spacing: 1px;
   transition: color var(--global-transition-time) ease-in-out;
   display: inline-block;
   text-decoration: none;
   font-weight: var(--font-weight-bold);
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .header__navListItem {
+    font-size: 1rem;
+  }
 }
 
 .header__navListItem.header__navListItem__active {

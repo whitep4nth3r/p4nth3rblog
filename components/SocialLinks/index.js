@@ -3,6 +3,7 @@ import Discord from "./svgs/discord";
 import Twitch from "./svgs/twitch";
 import Twitter from "./svgs/twitter";
 import GitHub from "./svgs/github";
+import Youtube from "./svgs/youtube";
 import Feed from "./svgs/feed";
 import { Config } from "@utils/Config";
 
@@ -32,6 +33,12 @@ const socialLinksList = [
     svg: <Twitter />,
   },
   {
+    name: "YouTube",
+    url: "https://www.youtube.com/whitep4nth3r",
+    ariaLabel: "Subscribe to whitep4nth3r on YouTube",
+    svg: <Youtube />,
+  },
+  {
     name: "RSS Feed",
     url: "feed.xml",
     ariaLabel: `View the RSS feed of ${Config.site.domain}`,
@@ -56,7 +63,7 @@ export default function SocialLinks(props) {
               href={link.url}
               aria-label={link.ariaLabel}
               target="_blank"
-              rel="nofollow"
+              rel="nofollow noreferrer"
             >
               {link.svg}
             </a>
