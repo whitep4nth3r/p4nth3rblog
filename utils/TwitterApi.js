@@ -37,9 +37,29 @@ export default class TwitterApi {
     }
   }
 
-  static async getLatestTweet() {
-    const metrics = await TwitterApi.getPublicMetrics();
+  // REFACTOR AND CONSOLIDATE!
+
+  static async getTweetById(tweetId) {
     const profile = await TwitterApi.getProfilePicture();
+    const metrics = await TwitterApi.getPublicMetrics();
+
+    const latestTweet = await fetch(
+      `https://api.twitter.com/2/tweets/${tweetId}?expansions=attachments.media_keys,referenced_tweets.id&tweet.fields=created_at,entities,public_metrics&media.fields=url,preview_image_url,height,width,duration_ms`,
+      TwitterApi.getFetchOptions(),
+    ).then((response) => response.json());
+
+    console.log(latestTweet);
+
+    return {
+      tweet: latestTweet,
+      metrics,
+      profileImgUrl: profile.profile_image_url,
+    };
+  }
+
+  static async getLatestTweet() {
+    const profile = await TwitterApi.getProfilePicture();
+    const metrics = await TwitterApi.getPublicMetrics();
 
     try {
       const tweets = await fetch(

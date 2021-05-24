@@ -31,7 +31,7 @@ function formatUrlForShortDisplay(url) {
  *
  *
  * - video media - not possible with api v2?
- * - render multiple entities - do we really want to do this?
+ * - render multiple entities - do we really want to do this? - NO - expand only the last entity
  * - check gifs - not possible with api v2?
  *
  *

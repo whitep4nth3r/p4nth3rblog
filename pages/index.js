@@ -60,15 +60,17 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const latestTweet = await TwitterApi.getLatestTweet();
+  // const latestTweet = await TwitterApi.getLatestTweet();
   const recentPosts = await ContentfulBlogPost.getRecent();
+
+  const thisTweet = await TwitterApi.getTweetById("1363946822960562176");
 
   return {
     props: {
       preview,
       pageContent,
       recentPosts,
-      latestTweet,
+      latestTweet: thisTweet,
     },
     revalidate: 2,
   };
