@@ -13,6 +13,8 @@ const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
 const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"));
 
+const DynamicTweetEmbed = dynamic(() => import("./TweetEmbed"));
+
 const ReactTooltip = dynamic(() => import("react-tooltip"), { ssr: false });
 
 function buildBlogPostLinkTooltipHTML(title, featuredImage, excerpt) {
@@ -182,6 +184,10 @@ export function getRichTextRenderOptions(links, options) {
         const { __typename } = entry;
 
         switch (__typename) {
+          case "TweetEmbed":
+            const { tweetId } = entry;
+
+            return <DynamicTweetEmbed tweetId={tweetId} />;
           case "VideoEmbed":
             const { embedUrl, title } = entry;
 

@@ -2,7 +2,6 @@ import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
-import ContentfulApi from "@contentful/Api";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
