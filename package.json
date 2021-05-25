@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
-    "start": "next start"
+    "postbuild": "next-sitemap && node ./scripts/build-search.js",
+    "start": "next start",
+    "search": "node test.js"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "comma-number": "^2.0.1",
+    "dotenv": "^10.0.0",
     "googleapis": "^71.0.0",
     "next": "^10.0.0",
     "prismjs": "^1.23.0",
