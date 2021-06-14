@@ -64,7 +64,7 @@ export default function Search() {
               translations={{
                 submitTitle: "Submit search",
                 resetTitle: "Clear search",
-                placeholder: "Search blog posts",
+                placeholder: "Search articles",
               }}
               onReset={() => {
                 searchBoxOnChange("");
