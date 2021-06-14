@@ -76,4 +76,121 @@ export default css.global`
     margin-left: auto !important;
     margin-right: auto !important;
   }
+
+  .ais-SearchHolder {
+    position: relative;
+  }
+
+  .ais-SearchBox {
+    margin-bottom: 4rem;
+  }
+
+  .ais-SearchBox-form {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ais-SearchBox-input {
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: var(--font-family-main);
+    color: var(--color-foreground);
+    border-radius: 0;
+    border: 0.125rem solid var(--color-foreground);
+    transition: box-shadow 0.2s ease 0s;
+  }
+
+  .ais-SearchBox-input::placeholder {
+    font-family: var(--font-family-main);
+    color: var(--color-foreground);
+  }
+
+  .ais-SearchBox-submit {
+    border-radius: 0;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0.125rem solid var(--color-foreground);
+    transition: box-shadow 0.2s ease 0s;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .ais-SearchBox-submit svg {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .ais-SearchBox-submit svg path {
+    fill: var(--color-background);
+  }
+
+  .ais-SearchBox-reset {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border: 0.125rem solid var(--color-foreground);
+    background-color: var(--color-background);
+    border-radius: 0;
+    font-size: 1rem;
+    font-family: var(--font-family-main);
+    cursor: pointer;
+  }
+
+  .ais-SearchBox-reset:after {
+    content: " Clear results";
+  }
+
+  .ais-SearchBox-input:focus,
+  .ais-SearchBox-submit:focus,
+  .ais-SearchBox-reset:focus {
+    outline-width: 0;
+    box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  }
+
+  .ais-Hits {
+    background-color: var(--color-background);
+    position: absolute;
+    top: 8.5rem;
+    width: 100%;
+  }
+
+  .ais-Hits-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ais-Hits-item {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    border: 0.25rem solid var(--color-tertiary);
+    box-shadow: 0.5rem 0.5rem 0 0 var(--color-primary);
+    padding: 2rem 2rem 0.5rem 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .ais-Hits-link {
+    color: var(--color-background);
+    text-decoration: none;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-family: var(--font-family-main);
+    display: block;
+    transition: all 0.1s ease 0s;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .ais-Hits-link:hover,
+  .ais-Hits-link:focus {
+    outline-width: 0;
+    box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  }
 `;

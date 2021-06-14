@@ -41,7 +41,11 @@ const algoliasearch = require("algoliasearch/lite");
             slug
             topicsCollection {
               items {
+                sys {
+                  id
+                }
                 name
+                slug
               }
             }
             body {
@@ -123,9 +127,7 @@ const algoliasearch = require("algoliasearch/lite");
         title: post.title,
         excerpt: post.excerpt,
         slug: post.slug,
-        topics: post.topicsCollection.items
-          .map((topic) => topic.name)
-          .join(" "),
+        topics: post.topicsCollection.items,
         body: mergeBodyNodes(post.body.json.content),
       };
     });
