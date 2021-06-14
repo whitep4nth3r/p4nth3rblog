@@ -39,6 +39,8 @@ const algoliasearch = require("algoliasearch/lite");
             title
             excerpt
             slug
+            date
+            readingTime
             topicsCollection {
               items {
                 sys {
@@ -128,6 +130,8 @@ const algoliasearch = require("algoliasearch/lite");
         excerpt: post.excerpt,
         slug: post.slug,
         topics: post.topicsCollection.items,
+        date: post.date,
+        readingTime: post.readingTime,
         body: mergeBodyNodes(post.body.json.content),
       };
     });

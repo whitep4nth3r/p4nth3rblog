@@ -136,6 +136,10 @@ export default css.global`
     position: absolute;
     top: 8.5rem;
     width: 100%;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    border: 0.25rem solid var(--color-tertiary);
+    box-shadow: 0.5rem 0.5rem 0 0 var(--color-primary);
   }
 
   .ais-Hits-list {
@@ -144,25 +148,26 @@ export default css.global`
   }
 
   .ais-Hits-item {
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-    border: 0.25rem solid var(--color-tertiary);
-    box-shadow: 0.5rem 0.5rem 0 0 var(--color-primary);
     padding: 2rem 2rem 0.5rem 2rem;
-    margin-bottom: 1rem;
+  }
+
+  .ais-Hits-item span,
+  .ais-Hits-item time {
+    color: var(--color-background);
   }
 
   .ais-Hits-link {
-    color: var(--color-background);
     text-decoration: none;
-    font-size: 1.4rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
     font-family: var(--font-family-main);
     display: block;
     transition: all 0.1s ease 0s;
     border-radius: 0;
     cursor: pointer;
+    color: var(--color-background);
+    font-weight: var(--font-weight-normal);
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 2rem;
   }
 
   .ais-Hits-link:hover,
@@ -180,5 +185,14 @@ export default css.global`
     width: 1px;
     height: 1px;
     overflow: hidden;
+  }
+
+  .ais-Hits-excerpt p {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: var(--font-weight-light);
+    font-family: var(--font-family-main);
+    color: var(--color-background);
   }
 `;

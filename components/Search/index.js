@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import Topics from "@components/Topics";
 import Link from "next/link";
-
+import ReactMarkdown from "react-markdown";
+import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
+import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
 /**
  * Styles are in main.styles.json
  */
@@ -16,10 +18,20 @@ const searchClient = algoliasearch(
 const Hit = (props) => {
   return (
     <>
+      <PublishedDateAndReadingTime
+        date={props.hit.date}
+        readingTime={props.hit.readingTime}
+      />
       <Link href={`/blog/${props.hit.slug}`}>
         <a className="ais-Hits-link">{props.hit.title}</a>
       </Link>
       <Topics topics={props.hit.topics} />
+      <div className="ais-Hits-excerpt">
+        <ReactMarkdown
+          children={props.hit.excerpt}
+          renderers={ReactMarkdownRenderers(props.hit.excerpt)}
+        />
+      </div>
     </>
   );
 };
