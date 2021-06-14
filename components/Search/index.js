@@ -29,29 +29,36 @@ export default function Search() {
 
   useEffect(() => {
     /**
-     * Cannot access the clear button onClick as it is dynamically generated
-     * by the <InstantSearch /> component, so we fallback to pure JS
+     * To add a form label for a11y appropriately
      */
-    const clearButton = document.querySelector(".ais-SearchBox-reset");
-    clearButton.addEventListener("click", () => {
-      clearSearchBox();
-    });
+    const searchInput = document.querySelector(".ais-SearchBox-input");
+    searchInput.id = "algolia_search";
   });
 
   function searchBoxOnChange(value) {
     setSearchTerm(value);
   }
 
-  function clearSearchBox() {
-    setSearchTerm("");
-  }
-
   return (
     <>
       {searchClient && (
         <div className="ais-SearchHolder">
+          <label className="ais-SearchLabel" htmlFor="algolia_search">
+            Search blog posts
+          </label>
           <InstantSearch searchClient={searchClient} indexName="p4nth3rblog">
-            <SearchBox onChange={(e) => searchBoxOnChange(e.target.value)} />
+            <SearchBox
+              onChange={(e) => searchBoxOnChange(e.target.value)}
+              translations={{
+                submitTitle: "Submit search",
+                resetTitle: "Clear search",
+                placeholder: "Search blog posts",
+              }}
+              onReset={() => {
+                searchBoxOnChange("");
+              }}
+              reset="Clear results"
+            />
             {searchTerm.length >= 3 && <Hits hitComponent={Hit} />}
           </InstantSearch>
         </div>

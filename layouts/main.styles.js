@@ -86,11 +86,9 @@ export default css.global`
   }
 
   .ais-SearchBox-form {
-    display: grid;
-    grid-template-columns: 5fr 1fr;
+    display: block;
     position: relative;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
   }
 
   .ais-SearchBox-input {
@@ -101,6 +99,7 @@ export default css.global`
     border-radius: 0;
     border: 0.125rem solid var(--color-foreground);
     transition: box-shadow 0.2s ease 0s;
+    width: 100%;
   }
 
   .ais-SearchBox-input::placeholder {
@@ -109,26 +108,7 @@ export default css.global`
   }
 
   .ais-SearchBox-submit {
-    border-radius: 0;
-    background-color: var(--color-foreground);
-    color: var(--color-background);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 0.125rem solid var(--color-foreground);
-    transition: box-shadow 0.2s ease 0s;
-    height: 100%;
-    cursor: pointer;
-  }
-
-  .ais-SearchBox-submit svg {
-    height: 1.2rem;
-    width: 1.2rem;
-  }
-
-  .ais-SearchBox-submit svg path {
-    fill: var(--color-background);
+    display: none;
   }
 
   .ais-SearchBox-reset {
@@ -141,10 +121,7 @@ export default css.global`
     font-size: 1rem;
     font-family: var(--font-family-main);
     cursor: pointer;
-  }
-
-  .ais-SearchBox-reset:after {
-    content: " Clear results";
+    width: 100%;
   }
 
   .ais-SearchBox-input:focus,
@@ -192,5 +169,16 @@ export default css.global`
   .ais-Hits-link:focus {
     outline-width: 0;
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  }
+
+  /* https://webaim.org/techniques/css/invisiblecontent/ */
+
+  .ais-SearchLabel {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 `;

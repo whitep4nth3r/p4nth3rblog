@@ -1,4 +1,4 @@
-import ContentfulApi from "@contentful/Api";
+import dynamic from "next/dynamic";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
@@ -9,7 +9,10 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
-import Search from "@components/Search";
+
+const DynamicSearch = dynamic(() => import("@components/Search"), {
+  ssr: false,
+});
 
 export default function BlogIndexPage(props) {
   const {
@@ -34,7 +37,7 @@ export default function BlogIndexPage(props) {
 
       <ContentWrapper>
         <PageContentWrapper>
-          <Search />
+          <DynamicSearch />
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
         <PostList

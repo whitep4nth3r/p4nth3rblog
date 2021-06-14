@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import ContentfulPageContent from "@contentful/PageContent";
 import { Config } from "@utils/Config";
@@ -8,7 +9,10 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
-import Search from "@components/Search";
+
+const DynamicSearch = dynamic(() => import("@components/Search"), {
+  ssr: false,
+});
 
 export default function BlogIndex(props) {
   const {
@@ -33,7 +37,7 @@ export default function BlogIndex(props) {
 
       <ContentWrapper>
         <PageContentWrapper>
-          <Search />
+          <DynamicSearch />
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
         <PostList
