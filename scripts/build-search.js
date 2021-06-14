@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 const fetch = require("node-fetch");
+const algoliasearch = require("algoliasearch/lite");
 
 (async function () {
   dotenv.config();
@@ -78,9 +79,75 @@ const fetch = require("node-fetch");
     return returnPosts;
   }
 
+  function mergeBodyNodes(contentNodes) {
+    const paragraphs = contentNodes.map((node) => {
+      return node.content.map((innerNode) => {
+        switch (innerNode.nodeType) {
+          case "text":
+          case "heading-2":
+          case "heading-3":
+            return innerNode.value.trim();
+          case "list-item":
+            return innerNode.content[0].content
+              .map((innerInnerNode) => {
+                switch (innerInnerNode.nodeType) {
+                  case "text":
+                    return innerInnerNode.value.trim();
+                  case "hyperlink":
+                    return innerInnerNode.content[0].value.trim();
+                  default:
+                    return "";
+                }
+              })
+              .join(" ");
+          case "hyperlink":
+            return innerNode.content[0].value.trim();
+          default:
+            return "";
+        }
+      });
+    });
+
+    //TODO the formatting is not so good with extra commas etc.
+
+    const returnNodes = paragraphs.filter((para) => para.length > 0).join(" ");
+
+    return returnNodes;
+  }
+
+  function transformPostsToSearchObjects(posts) {
+    const transformed = posts.map((post) => {
+      return {
+        objectID: post.sys.id,
+        title: post.title,
+        excerpt: post.excerpt,
+        topics: post.topicsCollection.items
+          .map((topic) => topic.name)
+          .join(" "),
+        body: mergeBodyNodes(post.body.json.content),
+      };
+    });
+
+    return transformed;
+  }
+
   try {
     const posts = await getAll();
-    console.log(posts);
+    const transformed = transformPostsToSearchObjects(posts);
+
+    if (posts.length > 0) {
+      const client = algoliasearch(
+        process.env.ALGOLIA_APP_ID,
+        process.env.ALGOLIA_SEARCH_ADMIN_KEY,
+      );
+
+      const index = client.initIndex("p4nth3rblog");
+      await index.saveObjects(transformed).then(({ objectIDs }) => {
+        console.log(
+          `🎉 Sucessfully added or updated ${transformed.length} records to search`,
+        );
+      });
+    }
   } catch (error) {
     console.log(error);
   }
