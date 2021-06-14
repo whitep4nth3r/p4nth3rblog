@@ -38,6 +38,7 @@ const algoliasearch = require("algoliasearch/lite");
             }
             title
             excerpt
+            slug
             topicsCollection {
               items {
                 name
@@ -121,6 +122,7 @@ const algoliasearch = require("algoliasearch/lite");
         objectID: post.sys.id,
         title: post.title,
         excerpt: post.excerpt,
+        slug: post.slug,
         topics: post.topicsCollection.items
           .map((topic) => topic.name)
           .join(" "),
@@ -137,7 +139,7 @@ const algoliasearch = require("algoliasearch/lite");
 
     if (posts.length > 0) {
       const client = algoliasearch(
-        process.env.ALGOLIA_APP_ID,
+        process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
         process.env.ALGOLIA_SEARCH_ADMIN_KEY,
       );
 

@@ -8,6 +8,7 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
+import Search from "@components/Search";
 
 export default function BlogIndex(props) {
   const {
@@ -32,6 +33,7 @@ export default function BlogIndex(props) {
 
       <ContentWrapper>
         <PageContentWrapper>
+          <Search />
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
         <PostList
