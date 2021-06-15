@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
