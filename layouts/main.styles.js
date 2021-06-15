@@ -136,7 +136,7 @@ export default css.global`
   .ais-Hits {
     background-color: var(--color-background);
     position: absolute;
-    top: 8.5rem;
+    top: 11.5rem;
     width: 100%;
     background-color: var(--color-foreground);
     color: var(--color-background);
