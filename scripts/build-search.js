@@ -91,8 +91,6 @@ const algoliasearch = require("algoliasearch/lite");
       return node.content.map((innerNode) => {
         switch (innerNode.nodeType) {
           case "text":
-          case "heading-2":
-          case "heading-3":
             return innerNode.value.trim();
           case "list-item":
             return innerNode.content[0].content
@@ -101,39 +99,44 @@ const algoliasearch = require("algoliasearch/lite");
                   case "text":
                     return innerInnerNode.value.trim();
                   case "hyperlink":
-                    return innerInnerNode.content[0].value.trim();
+                    return `${innerInnerNode.content[0].value.trim()} (${
+                      innerInnerNode.data.uri
+                    })`;
                   default:
                     return "";
                 }
               })
               .join(" ");
           case "hyperlink":
-            return innerNode.content[0].value.trim();
+            return `${innerNode.content[0].value.trim()} (${
+              innerNode.data.uri
+            })`;
           default:
             return "";
         }
       });
     });
 
-    //TODO the formatting is not so good with extra commas etc.
-
-    const returnNodes = paragraphs.filter((para) => para.length > 0).join(" ");
-
-    return returnNodes;
+    const returnNodesAsString = paragraphs
+      .filter((para) => para.length > 0)
+      .join(" ");
+    return returnNodesAsString;
   }
 
   function transformPostsToSearchObjects(posts) {
-    const transformed = posts.map((post) => {
-      return {
-        objectID: post.sys.id,
-        title: post.title,
-        excerpt: post.excerpt,
-        slug: post.slug,
-        topicsCollection: { items: post.topicsCollection.items },
-        date: post.date,
-        readingTime: post.readingTime,
-        body: mergeBodyNodes(post.body.json.content),
-      };
+    const transformed = posts.map((post, index) => {
+      if (index === 0) {
+        return {
+          objectID: post.sys.id,
+          title: post.title,
+          excerpt: post.excerpt,
+          slug: post.slug,
+          topicsCollection: { items: post.topicsCollection.items },
+          date: post.date,
+          readingTime: post.readingTime,
+          body: mergeBodyNodes(post.body.json.content),
+        };
+      }
     });
 
     return transformed;
@@ -152,7 +155,7 @@ const algoliasearch = require("algoliasearch/lite");
       const index = client.initIndex("p4nth3rblog");
       await index.saveObjects(transformed).then(({ objectIDs }) => {
         console.log(
-          `🎉 Sucessfully added or updated ${transformed.length} records to search`,
+          `🎉 Sucessfully added ${transformed.length} records to Algolia search`,
         );
       });
     }
