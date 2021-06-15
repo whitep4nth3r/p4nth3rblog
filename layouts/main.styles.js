@@ -92,6 +92,7 @@ export default css.global`
   }
 
   .ais-SearchBox-input {
+    -webkit-appearance: none;
     padding: 1rem;
     font-size: 1rem;
     font-family: var(--font-family-main);
@@ -128,6 +129,7 @@ export default css.global`
   .ais-SearchBox-submit:focus,
   .ais-SearchBox-reset:focus {
     outline-width: 0;
+    outline-color: transparent;
     -webkit-appearance: none;
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
   }
