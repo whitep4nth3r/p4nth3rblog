@@ -128,8 +128,7 @@ export default css.global`
   .ais-SearchBox-input:focus,
   .ais-SearchBox-submit:focus,
   .ais-SearchBox-reset:focus {
-    outline-width: 0;
-    outline-color: transparent;
+    outline: none;
     -webkit-appearance: none;
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
   }
@@ -175,7 +174,7 @@ export default css.global`
 
   .ais-Hits-link:hover,
   .ais-Hits-link:focus {
-    outline-width: 0;
+    outline: none;
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
   }
 
