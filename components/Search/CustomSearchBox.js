@@ -1,7 +1,28 @@
 import { connectSearchBox } from "react-instantsearch-dom";
+import { useEffect, useState } from "react";
 import Styles from "@styles/InstantSearch.module.css";
+import { getRandomEntry } from "@whitep4nth3r/get-random-entry";
+
+const placeholders = [
+  "web accessibility",
+  "css tips",
+  "graphql",
+  "jamstack",
+  "javascript tutorial",
+  "next.js",
+  "nodejs",
+  "serverless functions",
+  "twitch streaming",
+];
 
 function SearchBox({ currentRefinement, isSearchStalled, refine }) {
+  const [placeholder, setPlaceholder] = useState(getRandomEntry(placeholders));
+
+  useEffect(() => {
+    setPlaceholder(getRandomEntry(placeholders));
+    return () => {};
+  }, [setPlaceholder]);
+
   return (
     <form
       noValidate
@@ -16,7 +37,7 @@ function SearchBox({ currentRefinement, isSearchStalled, refine }) {
         className={Styles.instantSearch__input}
         id="algolia_search"
         type="search"
-        placeholder="javascript tutorials"
+        placeholder={placeholder}
         onChange={(event) => refine(event.currentTarget.value)}
       />
     </form>

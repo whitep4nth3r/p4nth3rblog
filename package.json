@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
+    "@whitep4nth3r/get-random-entry": "^0.0.2",
     "algoliasearch": "^4.9.2",
     "comma-number": "^2.0.1",
     "dotenv": "^10.0.0",
