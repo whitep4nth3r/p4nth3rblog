@@ -5,7 +5,6 @@ import Styles from "@styles/InstantSearch.module.css";
 function Hits(props) {
   const { searchState, searchResults } = props;
   const validQuery = searchState.query?.length >= 3;
-  console.log(searchResults);
 
   return (
     <div className={Styles.instantSearch__hits}>
