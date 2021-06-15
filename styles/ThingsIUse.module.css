@@ -36,13 +36,13 @@
 }
 
 .categoryButton:active {
-  outline-width: 0;
+  outline: none;
   box-shadow: unset;
 }
 
 .categoryButton:hover,
 .categoryButton:focus {
-  outline-width: 0;
+  outline: none;
   box-shadow: var(--color-primary) 0 0 0 0.25rem;
   transition: box-shadow 0.2s ease 0s;
 }
@@ -156,7 +156,7 @@
 }
 
 .thing__link:focus {
-  outline-width: 0;
+  outline: none;
   color: var(--color-foreground);
   background-color: var(--color-primary);
   box-shadow: var(--color-foreground) 0 0 0 0.25rem;
