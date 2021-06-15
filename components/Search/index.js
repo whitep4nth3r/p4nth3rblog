@@ -1,6 +1,11 @@
 import algoliasearch from "algoliasearch/lite";
 import { useState, useEffect } from "react";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  // SearchBox,
+  Hits,
+  connectSearchBox,
+} from "react-instantsearch-dom";
 import Topics from "@components/Topics";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -14,6 +19,20 @@ const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,
 );
+
+const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => (
+  <form noValidate action="" role="search">
+    <input
+      type="search"
+      value={currentRefinement}
+      onChange={(event) => refine(event.currentTarget.value)}
+    />
+    <button onClick={() => refine("")}>Reset query</button>
+    {isSearchStalled ? "My search is stalled" : ""}
+  </form>
+);
+
+const CustomSearchBox = connectSearchBox(SearchBox);
 
 const Hit = (props) => {
   return (
@@ -59,7 +78,8 @@ export default function Search() {
             Search articles
           </label>
           <InstantSearch searchClient={searchClient} indexName="p4nth3rblog">
-            <SearchBox
+            <CustomSearchBox />
+            {/* <SearchBox
               onChange={(e) => searchBoxOnChange(e.target.value)}
               translations={{
                 submitTitle: "Submit search",
@@ -70,7 +90,7 @@ export default function Search() {
                 searchBoxOnChange("");
               }}
               reset="Clear results"
-            />
+            /> */}
             {searchTerm.length >= 3 && <Hits hitComponent={Hit} />}
           </InstantSearch>
         </div>
