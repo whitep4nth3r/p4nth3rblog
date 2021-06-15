@@ -56,7 +56,7 @@ export default function Search() {
       {searchClient && (
         <div className="ais-SearchHolder">
           <label className="ais-SearchLabel" htmlFor="algolia_search">
-            Search blog posts
+            Search articles
           </label>
           <InstantSearch searchClient={searchClient} indexName="p4nth3rblog">
             <SearchBox
@@ -64,7 +64,7 @@ export default function Search() {
               translations={{
                 submitTitle: "Submit search",
                 resetTitle: "Clear search",
-                placeholder: "Search articles",
+                placeholder: "javascript tutorial",
               }}
               onReset={() => {
                 searchBoxOnChange("");

@@ -104,7 +104,7 @@ export default css.global`
 
   .ais-SearchBox-input::placeholder {
     font-family: var(--font-family-main);
-    color: var(--color-foreground);
+    color: var(--color-muted);
   }
 
   .ais-SearchBox-submit {
@@ -128,6 +128,7 @@ export default css.global`
   .ais-SearchBox-submit:focus,
   .ais-SearchBox-reset:focus {
     outline-width: 0;
+    -webkit-appearance: none;
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
   }
 
@@ -176,15 +177,13 @@ export default css.global`
     box-shadow: var(--color-primary) 0 0 0 0.25rem;
   }
 
-  /* https://webaim.org/techniques/css/invisiblecontent/ */
-
   .ais-SearchLabel {
-    position: absolute;
-    left: -10000px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-family-main);
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
   }
 
   .ais-Hits-excerpt p {
