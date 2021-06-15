@@ -129,7 +129,7 @@ const algoliasearch = require("algoliasearch/lite");
         title: post.title,
         excerpt: post.excerpt,
         slug: post.slug,
-        topics: post.topicsCollection.items,
+        topicsCollection: { items: post.topicsCollection.items },
         date: post.date,
         readingTime: post.readingTime,
         body: mergeBodyNodes(post.body.json.content),
