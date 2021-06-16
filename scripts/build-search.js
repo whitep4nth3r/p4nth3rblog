@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 const algoliasearch = require("algoliasearch/lite");
+const richTextPlainTextRenderer = require("@contentful/rich-text-plain-text-renderer");
 
 async function callContentful(query) {
   try {
@@ -83,41 +84,6 @@ async function getAll() {
   return returnPosts;
 }
 
-function mergeBodyNodes(contentNodes) {
-  const paragraphs = contentNodes.map((node) => {
-    return node.content.map((innerNode) => {
-      switch (innerNode.nodeType) {
-        case "text":
-          return innerNode.value.trim();
-        case "list-item":
-          return innerNode.content[0].content
-            .map((innerInnerNode) => {
-              switch (innerInnerNode.nodeType) {
-                case "text":
-                  return innerInnerNode.value.trim();
-                case "hyperlink":
-                  return `${innerInnerNode.content[0].value.trim()} (${
-                    innerInnerNode.data.uri
-                  })`;
-                default:
-                  return "";
-              }
-            })
-            .join(" ");
-        case "hyperlink":
-          return `${innerNode.content[0].value.trim()} (${innerNode.data.uri})`;
-        default:
-          return "";
-      }
-    });
-  });
-
-  const returnNodesAsString = paragraphs
-    .filter((para) => para.length > 0)
-    .join(" ");
-  return returnNodesAsString;
-}
-
 function transformPostsToSearchObjects(posts) {
   const transformed = posts.map((post) => {
     return {
@@ -128,7 +94,7 @@ function transformPostsToSearchObjects(posts) {
       topicsCollection: { items: post.topicsCollection.items },
       date: post.date,
       readingTime: post.readingTime,
-      body: mergeBodyNodes(post.body.json.content),
+      body: richTextPlainTextRenderer.documentToPlainTextString(post.body.json),
     };
   });
 
