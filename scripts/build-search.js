@@ -115,11 +115,15 @@ function transformPostsToSearchObjects(posts) {
       );
 
       const index = client.initIndex("p4nth3rblog");
-      await index.saveObjects(transformed).then(({ objectIDs }) => {
-        console.log(
-          `🎉 Sucessfully added ${transformed.length} records to Algolia search`,
-        );
-      });
+      const algoliaResponse = await index.saveObjects(transformed);
+
+      console.log(
+        `🎉 Sucessfully added ${
+          transformed.length
+        } records to Algolia search. Object IDs:\n${algoliaResponse.objectIDs.join(
+          "\n",
+        )}`,
+      );
     }
   } catch (error) {
     console.log(error);
