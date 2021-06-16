@@ -1,10 +1,10 @@
 import SocialLinksStyles from "@styles/SocialLinks.module.css";
-import Discord from "./svgs/discord";
-import Twitch from "./svgs/twitch";
-import Twitter from "./svgs/twitter";
-import GitHub from "./svgs/github";
-import Youtube from "./svgs/youtube";
-import Feed from "./svgs/feed";
+import Discord from "./svg/discord";
+import Twitch from "./svg/twitch";
+import Twitter from "./svg/twitter";
+import GitHub from "./svg/github";
+import Youtube from "./svg/youtube";
+import Feed from "./svg/feed";
 import { Config } from "@utils/Config";
 
 const socialLinksList = [

@@ -11,10 +11,15 @@ import ColorBg from "@components/ColorBg";
 import LandingPageWrapper from "@components/LandingPageWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import SocialCards from "@components/SocialCards";
+import TwitchSchedule from "@components/TwitchSchedule";
+import fetcher from "@utils/Fetcher";
 
-export default function Home(props) {
-  const { pageContent, recentPosts, preview } = props;
-
+export default function Home({
+  pageContent,
+  recentPosts,
+  preview,
+  twitchData,
+}) {
   return (
     <>
       <MainLayout preview={preview}>
@@ -28,6 +33,9 @@ export default function Home(props) {
           <HeroBanner data={pageContent.heroBanner} />
         )}
 
+        <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
+          <TwitchSchedule schedule={twitchData.schedule} />
+        </ColorBg>
         <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
@@ -39,7 +47,7 @@ export default function Home(props) {
             <SocialCards />
           </LandingPageWrapper>
         </ColorBg>
-        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
+        <ColorBg borderTopColor="#f11012">
           <LandingPageWrapper>
             <RecentPostList
               posts={recentPosts}
@@ -62,11 +70,17 @@ export async function getStaticProps({ preview = false }) {
 
   const recentPosts = await ContentfulBlogPost.getRecent();
 
+  const twitchData = await fetcher(
+    `${process.env.NEXT_PUBLIC_DOMAIN}/api/twitch`,
+  );
+
   return {
     props: {
       preview,
       pageContent,
       recentPosts,
+      twitchData,
     },
+    revalidate: 10,
   };
 }

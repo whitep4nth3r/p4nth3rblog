@@ -40,9 +40,15 @@ export default async (_, res) => {
       fetchOptions,
     );
 
+    const scheduleResponse = await fetch(
+      `https://api.twitch.tv/helix/schedule?broadcaster_id=${twitchId}`,
+      fetchOptions,
+    );
+
     const user = await userResponse.json();
     const viewCount = await viewCountResponse.json();
     const streams = await streamsResponse.json();
+    const schedule = await scheduleResponse.json();
 
     res.setHeader(
       "Cache-Control",
@@ -53,6 +59,7 @@ export default async (_, res) => {
       followers: user.total,
       views: viewCount.data[0].view_count,
       isLiveOnTwitch: streams.data.length === 1,
+      schedule,
     });
   }
 };

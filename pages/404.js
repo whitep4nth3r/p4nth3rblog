@@ -37,7 +37,7 @@ export default function Panther404({ recentPosts, pageContent }) {
           </Link>
         </div>
       </ContentWrapper>
-      <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
+      <ColorBg borderTopColor="#f11012">
         <LandingPageWrapper>
           <RecentPostList
             posts={recentPosts}
