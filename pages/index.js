@@ -18,7 +18,7 @@ export default function Home({
   pageContent,
   recentPosts,
   preview,
-  twitchData,
+  // twitchData,
 }) {
   return (
     <>
@@ -34,7 +34,7 @@ export default function Home({
         )}
 
         <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
-          <TwitchSchedule schedule={twitchData.schedule} />
+          {/* <TwitchSchedule schedule={twitchData.schedule} /> */}
         </ColorBg>
         <ContentWrapper>
           <PageContentWrapper>
@@ -70,16 +70,14 @@ export async function getStaticProps({ preview = false }) {
 
   const recentPosts = await ContentfulBlogPost.getRecent();
 
-  const twitchData = await fetcher(
-    `${process.env.NEXT_PUBLIC_DOMAIN}/api/twitch`,
-  );
+  // const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
   return {
     props: {
       preview,
       pageContent,
       recentPosts,
-      twitchData,
+      // twitchData,
     },
     revalidate: 10,
   };
