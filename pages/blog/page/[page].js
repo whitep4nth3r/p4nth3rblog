@@ -1,4 +1,3 @@
-import ContentfulApi from "@contentful/Api";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import { Config } from "@utils/Config";
@@ -9,6 +8,7 @@ import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import HeroBanner from "@components/HeroBanner";
+import Search from "@components/Search";
 
 export default function BlogIndexPage(props) {
   const {
@@ -33,6 +33,7 @@ export default function BlogIndexPage(props) {
 
       <ContentWrapper>
         <PageContentWrapper>
+          <Search />
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
         <PostList
