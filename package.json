@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap && node ./scripts/build-search.js",
-    "start": "next start",
-    "search": "node test.js"
+    "start": "next start"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
