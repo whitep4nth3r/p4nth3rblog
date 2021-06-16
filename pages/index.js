@@ -6,9 +6,9 @@ import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
-import LandingPageWrapper from "@components/LandingPageWrapper";
 import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
+import LandingPageWrapper from "@components/LandingPageWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import SocialCards from "@components/SocialCards";
 
@@ -41,7 +41,10 @@ export default function Home(props) {
         </ColorBg>
         <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
           <LandingPageWrapper>
-            <RecentPostList posts={recentPosts} />
+            <RecentPostList
+              posts={recentPosts}
+              title="I build stuff, learn things, and write about it."
+            />
           </LandingPageWrapper>
         </ColorBg>
       </MainLayout>

@@ -5,13 +5,10 @@ import RecentPost from "./RecentPost";
 
 import { Config } from "@utils/Config";
 
-export default function RecentPostList(props) {
-  const { posts } = props;
+export default function RecentPostList({ posts, title }) {
   return (
     <>
-      <h2 className={RecentPostListStyles.recentPostList__header}>
-        I build stuff, learn things, and write about it.
-      </h2>
+      <h2 className={RecentPostListStyles.recentPostList__header}>{title}</h2>
       <ol className={RecentPostListStyles.contentList}>
         {posts.map((post) => (
           <li key={post.sys.id}>
