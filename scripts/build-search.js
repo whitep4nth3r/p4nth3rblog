@@ -125,18 +125,16 @@ const algoliasearch = require("algoliasearch/lite");
 
   function transformPostsToSearchObjects(posts) {
     const transformed = posts.map((post, index) => {
-      if (index === 0) {
-        return {
-          objectID: post.sys.id,
-          title: post.title,
-          excerpt: post.excerpt,
-          slug: post.slug,
-          topicsCollection: { items: post.topicsCollection.items },
-          date: post.date,
-          readingTime: post.readingTime,
-          body: mergeBodyNodes(post.body.json.content),
-        };
-      }
+      return {
+        objectID: post.sys.id,
+        title: post.title,
+        excerpt: post.excerpt,
+        slug: post.slug,
+        topicsCollection: { items: post.topicsCollection.items },
+        date: post.date,
+        readingTime: post.readingTime,
+        body: mergeBodyNodes(post.body.json.content),
+      };
     });
 
     return transformed;
