@@ -124,7 +124,7 @@ const algoliasearch = require("algoliasearch/lite");
   }
 
   function transformPostsToSearchObjects(posts) {
-    const transformed = posts.map((post, index) => {
+    const transformed = posts.map((post) => {
       return {
         objectID: post.sys.id,
         title: post.title,
