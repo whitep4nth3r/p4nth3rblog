@@ -7,20 +7,22 @@ function Hits(props) {
   const validQuery = searchState.query?.length >= 3;
 
   return (
-    <div className={Styles.instantSearch__hits}>
+    <>
       {searchResults?.hits && validQuery && (
-        <ol className={Styles.instantSearch__hitsList}>
-          {searchResults.hits.map((hit) => (
-            <li
-              key={hit.objectID}
-              className={Styles.instantSearch__hitsListItem}
-            >
-              <RecentPost post={hit} />
-            </li>
-          ))}
-        </ol>
+        <div className={Styles.instantSearch__hits}>
+          <ol className={Styles.instantSearch__hitsList}>
+            {searchResults.hits.map((hit) => (
+              <li
+                key={hit.objectID}
+                className={Styles.instantSearch__hitsListItem}
+              >
+                <RecentPost post={hit} />
+              </li>
+            ))}
+          </ol>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
