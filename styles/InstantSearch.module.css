@@ -43,7 +43,6 @@
 }
 
 .instantSearch__hits {
-  background-color: var(--color-background);
   position: absolute;
   top: 7rem;
   width: 100%;
@@ -58,4 +57,13 @@
 
 .instantSearch__hitsListItem {
   padding: 0 1rem;
+}
+
+.instantSearch__noResults {
+  color: var(--color-background);
+  padding: 1rem;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-normal);
 }
