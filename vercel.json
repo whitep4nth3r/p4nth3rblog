@@ -5,7 +5,6 @@
     "GOOGLE_CLIENT_ID": "@google-client-id",
     "TWITCH_CLIENT_ID": "@twitch-client-id",
     "TWITCH_CLIENT_SECRET": "@twitch-client-secret",
-    "GITHUB_ACCESS_TOKEN": "@gh-access-token",
-    "NEXT_PUBLIC_DOMAIN": "@next-public-domain"
+    "GITHUB_ACCESS_TOKEN": "@gh-access-token"
   }
 }
