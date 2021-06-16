@@ -4,6 +4,7 @@ import Accessibility from "./svg/a11y";
 import Career from "./svg/career";
 import Contentful from "./svg/contentful";
 import Css from "./svg/css";
+import GraphQL from "./svg/graphql";
 import Jamstack from "./svg/jamstack";
 import JavaScript from "./svg/javascript";
 import NodeJs from "./svg/nodejs";
@@ -21,6 +22,8 @@ function getSvgForTopic(slug) {
       return <Contentful />;
     case "css":
       return <Css />;
+    case "graphql":
+      return <GraphQL />;
     case "jamstack":
       return <Jamstack />;
     case "javascript":
