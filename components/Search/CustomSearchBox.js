@@ -1,7 +1,6 @@
 import { connectSearchBox } from "react-instantsearch-dom";
-import { useEffect, useState } from "react";
-import Styles from "@styles/InstantSearch.module.css";
 import { getRandomEntry } from "@whitep4nth3r/get-random-entry";
+import Styles from "@styles/InstantSearch.module.css";
 
 const placeholders = [
   "web accessibility",
@@ -15,14 +14,7 @@ const placeholders = [
   "twitch streaming",
 ];
 
-function SearchBox({ currentRefinement, isSearchStalled, refine }) {
-  const [placeholder, setPlaceholder] = useState(getRandomEntry(placeholders));
-
-  useEffect(() => {
-    setPlaceholder(getRandomEntry(placeholders));
-    return () => {};
-  }, [setPlaceholder]);
-
+function SearchBox({ refine }) {
   return (
     <form
       noValidate
@@ -37,8 +29,8 @@ function SearchBox({ currentRefinement, isSearchStalled, refine }) {
         className={Styles.instantSearch__input}
         id="algolia_search"
         type="search"
-        placeholder={placeholder}
-        onChange={(event) => refine(event.currentTarget.value)}
+        placeholder={getRandomEntry(placeholders)}
+        onChange={(e) => refine(e.currentTarget.value)}
       />
     </form>
   );
