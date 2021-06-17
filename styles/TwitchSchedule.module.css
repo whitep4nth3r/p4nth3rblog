@@ -5,7 +5,7 @@
 }
 
 .twitchSchedule__title {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   letter-spacing: 1px;
   color: var(--color-background);
   text-decoration: none;
@@ -33,13 +33,12 @@
 .twitchSchedule__item {
   padding-top: 1rem;
   text-decoration: none;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
   border-bottom: 0.125rem solid var(--color-tertiary);
 }
 
 .twitchSchedule__item:last-of-type {
   border-bottom-width: 0;
-  margin-bottom: 2rem;
 }
 
 .twitchSchedule__item:focus {
@@ -126,7 +125,6 @@
   }
 
   .twitchSchedule__item {
-    margin-bottom: 1rem;
     border-bottom-width: 0;
   }
 

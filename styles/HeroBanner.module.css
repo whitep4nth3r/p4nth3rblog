@@ -50,7 +50,7 @@
 }
 
 .heroBanner__headline {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
   margin-bottom: 3rem;
   font-weight: var(--font-weight-bold);
