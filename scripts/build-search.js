@@ -119,7 +119,7 @@ function transformPostsToSearchObjects(posts) {
 
       console.log(
         `🎉 Sucessfully added ${
-          transformed.length
+          algoliaResponse.objectIDs.length
         } records to Algolia search. Object IDs:\n${algoliaResponse.objectIDs.join(
           "\n",
         )}`,
