@@ -1,11 +1,72 @@
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .twitchSchedule {
   padding: 2rem 2rem 0 2rem;
   margin: auto;
   max-width: var(--landing-wrapper-max-width);
 }
 
-.twitchSchedule__title {
+.twitchSchedule__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.125rem solid var(--color-tertiary);
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.twitchSchedule__liveNow {
+  background-color: var(--color-background);
+  color: var(--color-black);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-main);
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+  border: 0.25rem solid var(--color-tertiary);
+}
+
+.twitchSchedule__liveNowText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.twitchSchedule__liveNowText:before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  background-color: var(--color-tertiary);
+  border-radius: 50%;
+  animation: flash 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twitchSchedule__liveNowText:before {
+    animation: none;
+  }
+}
+
+.twitchSchedule__title {
   letter-spacing: 1px;
   color: var(--color-background);
   text-decoration: none;
@@ -15,10 +76,9 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   font-size: 1rem;
-  line-height: 1.6;
-  padding-bottom: 0.5rem;
-  border-bottom: 0.125rem solid var(--color-tertiary);
+  line-height: 1;
 }
 
 .twitchSchedule__titleIcon {
@@ -147,5 +207,19 @@
   .twitchSchedule__title svg {
     height: 2rem;
     width: 2rem;
+  }
+
+  .twitchSchedule__header {
+    flex-direction: row;
+    height: 4rem;
+    padding-bottom: 0;
+  }
+
+  .twitchSchedule__liveNow {
+    display: inline-block;
+    margin-left: 1rem;
+    width: unset;
+    order: 2;
+    margin-bottom: 0;
   }
 }

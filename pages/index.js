@@ -69,7 +69,6 @@ export async function getStaticProps({ preview = false }) {
   );
 
   const recentPosts = await ContentfulBlogPost.getRecent();
-
   const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
   return {

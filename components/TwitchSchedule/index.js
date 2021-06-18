@@ -1,3 +1,5 @@
+import useSWR from "swr";
+import fetcher from "@utils/Fetcher";
 import {
   formatTwitchScheduleTimeSlot,
   formatDateForTwitchDisplay,
@@ -9,22 +11,40 @@ import Twitch from "./svg/twitch";
 import { useEffect, useState } from "react";
 
 export default function TwitchSchedule({ schedule }) {
+  const { data } = useSWR("/api/twitch", fetcher);
+  const isLiveOnTwitch = data?.isLiveOnTwitch;
+
   const [timezone, setTimezone] = useState("Europe/London");
   useEffect(() => {
-    const _timezone = Intl.DateTimeFormat().resolvedOptions();
-    setTimezone(_timezone.timeZone);
+    const _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    setTimezone(_timezone);
   }, [setTimezone]);
 
   return (
     <>
       {schedule.data && (
         <div className={Styles.twitchSchedule}>
-          <h2 className={Styles.twitchSchedule__title}>
-            <span className={Styles.twitchSchedule__titleIcon}>
-              <Twitch />
-            </span>{" "}
-            Catch me on Twitch
-          </h2>
+          <div className={Styles.twitchSchedule__header}>
+            {isLiveOnTwitch && (
+              <a
+                href="https://twitch.tv/whitep4nth3r"
+                target="_blank"
+                rel="nofollow noopener"
+                className={Styles.twitchSchedule__liveNow}
+                aria-label="Come hang out on Twitch. I'm live now!"
+              >
+                <span className={Styles.twitchSchedule__liveNowText}>
+                  Live now
+                </span>
+              </a>
+            )}
+            <h2 className={Styles.twitchSchedule__title}>
+              <span className={Styles.twitchSchedule__titleIcon}>
+                <Twitch />
+              </span>{" "}
+              Catch me on Twitch{" "}
+            </h2>
+          </div>
           {schedule.data.vacation && (
             <h3 className={Styles.twitchSchedule__vacation}>
               I'm on vacation until{" "}
