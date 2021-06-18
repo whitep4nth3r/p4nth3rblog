@@ -1,13 +1,20 @@
 import {
   formatTwitchScheduleTimeSlot,
-  formatPublishedDateForTwitchDisplay,
-  formatPublishedDateForDateTime,
-  formatPublishedDateForDisplay,
+  formatDateForTwitchDisplay,
+  formatDateForDateTime,
+  formatDateForDisplay,
 } from "@utils/Date";
 import Styles from "@styles/TwitchSchedule.module.css";
 import Twitch from "./svg/twitch";
+import { useEffect, useState } from "react";
 
 export default function TwitchSchedule({ schedule }) {
+  const [timezone, setTimezone] = useState("Europe/London");
+  useEffect(() => {
+    const _timezone = Intl.DateTimeFormat().resolvedOptions();
+    setTimezone(_timezone.timeZone);
+  }, [setTimezone]);
+
   return (
     <>
       {schedule.data && (
@@ -21,8 +28,8 @@ export default function TwitchSchedule({ schedule }) {
           {schedule.data.vacation && (
             <h3 className={Styles.twitchSchedule__vacation}>
               I'm on vacation until{" "}
-              {formatPublishedDateForDisplay(schedule.data.vacation.end_time)}.
-              See you soon!
+              {formatDateForDisplay(schedule.data.vacation.end_time)}. See you
+              soon!
             </h3>
           )}
           <div className={Styles.twitchSchedule__grid}>
@@ -44,15 +51,15 @@ export default function TwitchSchedule({ schedule }) {
                     segment.end_time,
                   )}
                   <span className={Styles.twitchSchedule__itemTimeZone}>
-                    UTC+1
+                    {timezone}
                   </span>
                 </p>
 
                 <time
                   className={Styles.twitchSchedule__itemDate}
-                  dateTime={formatPublishedDateForDateTime(segment.start_time)}
+                  dateTime={formatDateForDateTime(segment.start_time)}
                 >
-                  {formatPublishedDateForTwitchDisplay(segment.start_time)}
+                  {formatDateForTwitchDisplay(segment.start_time)}
                 </time>
 
                 <p className={Styles.twitchSchedule__itemCat}>

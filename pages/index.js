@@ -79,6 +79,6 @@ export async function getStaticProps({ preview = false }) {
       recentPosts,
       twitchData,
     },
-    revalidate: 10,
+    revalidate: 1,
   };
 }

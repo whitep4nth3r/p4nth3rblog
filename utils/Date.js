@@ -28,7 +28,7 @@ function addLeadingZero(num) {
   return num;
 }
 
-export function formatPublishedDateForDateTime(dateString) {
+export function formatDateForDateTime(dateString) {
   const timestamp = Date.parse(dateString);
   const date = new Date(timestamp);
   return `${date.getFullYear()}-${addLeadingZero(
@@ -36,7 +36,7 @@ export function formatPublishedDateForDateTime(dateString) {
   )}-${date.getDate()}`;
 }
 
-export function formatPublishedDateForDisplay(dateString) {
+export function formatDateForDisplay(dateString) {
   const timestamp = Date.parse(dateString);
   const date = new Date(timestamp);
   return `${date.getDate()} ${getMonthStringFromInt(
@@ -44,7 +44,7 @@ export function formatPublishedDateForDisplay(dateString) {
   )} ${date.getFullYear()}`;
 }
 
-export function formatPublishedDateForTwitchDisplay(dateString) {
+export function formatDateForTwitchDisplay(dateString) {
   const timestamp = Date.parse(dateString);
   const date = new Date(timestamp);
   return `${getDayStringFromInt(

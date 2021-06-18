@@ -1,7 +1,7 @@
 import Styles from "@styles/PublishedDateAndReadingTime.module.css";
 import {
-  formatPublishedDateForDateTime,
-  formatPublishedDateForDisplay,
+  formatDateForDateTime,
+  formatDateForDisplay,
 } from "@utils/Date";
 
 export default function PublishedDate(props) {
@@ -11,9 +11,9 @@ export default function PublishedDate(props) {
     <div className={Styles.container}>
       <time
         className={Styles.publishedDate}
-        dateTime={formatPublishedDateForDateTime(date)}
+        dateTime={formatDateForDateTime(date)}
       >
-        {formatPublishedDateForDisplay(date)}
+        {formatDateForDisplay(date)}
       </time>
       <span className={Styles.divider}>•</span>
       <span className={Styles.readingTime}>{readingTime} min read</span>
