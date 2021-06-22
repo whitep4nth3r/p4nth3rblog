@@ -2,6 +2,7 @@ export default function GitHub() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
       height="44"
       width="44"
       viewBox="0 0 496 512"
