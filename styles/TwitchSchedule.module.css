@@ -115,9 +115,11 @@
   text-transform: uppercase;
   font-family: var(--font-family-main);
   font-weight: var(--font-weight-bold);
-  display: block;
   font-size: 1rem;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .twitchSchedule__itemCat {
@@ -143,10 +145,12 @@
   font-size: 1.4rem;
   line-height: 1.4;
   margin-bottom: 2rem;
-  display: block;
   color: var(--color-primary);
   font-family: var(--font-family-main);
   font-weight: var(--font-weight-bold);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .twitchSchedule__itemTimeZone {
@@ -221,5 +225,9 @@
     width: unset;
     order: 2;
     margin-bottom: 0;
+  }
+
+  .twitchSchedule__itemTitle {
+    height: 4rem;
   }
 }
