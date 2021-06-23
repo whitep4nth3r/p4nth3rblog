@@ -117,7 +117,7 @@
   font-weight: var(--font-weight-bold);
   display: block;
   font-size: 1rem;
-  line-height: 1;
+  line-height: 1.6;
 }
 
 .twitchSchedule__itemCat {
