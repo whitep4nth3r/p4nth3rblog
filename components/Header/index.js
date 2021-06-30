@@ -76,10 +76,15 @@ export default function Header() {
               router.pathname.startsWith("/uses") &&
               link.path.startsWith("/uses");
 
+            const onTalksPath =
+              router.pathname.startsWith("/talks") &&
+              link.path.startsWith("/talks");
+
             const isActive =
               onBlogPost ||
               onBlogIndexPage ||
               onUsesPath ||
+              onTalksPath ||
               router.pathname === link.path;
 
             const isActiveClass = isActive

@@ -400,6 +400,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                 title
                 date
                 excerpt
+                readingTime
                 author {
                   name
                   description

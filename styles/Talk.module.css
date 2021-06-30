@@ -1,0 +1,11 @@
+.talk__speakerDeck__img {
+  border: 0.25rem solid var(--color-primary);
+  margin-bottom: 2rem;
+}
+
+.talk__speakerDeck__link {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  display: block;
+  text-align: center;
+}

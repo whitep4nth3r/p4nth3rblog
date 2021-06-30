@@ -1,7 +1,7 @@
 import Link from "next/link";
 import RecentPostListStyles from "@styles/RecentPostList.module.css";
 import ReactMarkdown from "react-markdown";
-import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
+import PublishedDateAndReadingTime from "@components/PublishedDateAndReadingTime";
 import Topics from "@components/Topics";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 
