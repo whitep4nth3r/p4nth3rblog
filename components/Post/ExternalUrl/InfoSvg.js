@@ -4,6 +4,7 @@ export default function InfoSvg() {
       aria-hidden="true"
       focusable="false"
       role="img"
+      aria-label="Info icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 512 512"
       height="32"

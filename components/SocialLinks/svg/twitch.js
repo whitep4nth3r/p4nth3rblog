@@ -3,6 +3,7 @@ export default function Twitch() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       role="img"
+      aria-label="Twitch icon"
       height="44"
       width="44"
       viewBox="0 0 512 512"

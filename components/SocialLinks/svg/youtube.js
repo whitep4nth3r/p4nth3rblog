@@ -3,6 +3,7 @@ export default function Youtube() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       role="img"
+      aria-label="YouTube icon"
       height="44"
       width="44"
       viewBox="0 0 512 512"
