@@ -76,7 +76,6 @@ export default class ContentfulTalk extends ContentfulApi {
    * Get talk by slug
    * param: slug (string)
    */
-
   static async getBySlug(slug, options = defaultOptions) {
     const query = `{
       talkCollection(limit: 1, where: {slug: "${slug}"}) {
@@ -188,7 +187,7 @@ export default class ContentfulTalk extends ContentfulApi {
 
     const response = await this.callContentful(query);
 
-    const { total } = response.data.blogPostCollection;
+    const { total } = response.data.talkCollection;
     const talks = response.data.talkCollection.items
       ? response.data.talkCollection.items
       : [];
@@ -201,21 +200,21 @@ export default class ContentfulTalk extends ContentfulApi {
    */
   static async getAll() {
     let page = 1;
-    let shouldQueryMorePosts = true;
-    const returnPosts = [];
+    let shouldQueryMoreTalks = true;
+    const returnTalks = [];
 
-    while (shouldQueryMorePosts) {
+    while (shouldQueryMoreTalks) {
       const response = await this.getPaginated(page);
 
-      if (response.posts.length > 0) {
-        returnPosts.push(...response.posts);
+      if (response.talks.length > 0) {
+        returnTalks.push(...response.talks);
       }
 
-      shouldQueryMorePosts = returnPosts.length < response.total;
+      shouldQueryMoreTalks = returnTalks.length < response.total;
       page++;
     }
 
-    return returnPosts;
+    return returnTalks;
   }
 
   /*

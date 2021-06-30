@@ -1,6 +1,7 @@
 import ReactDOMServer from "react-dom/server";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
+import ContentfulTalk from "@contentful/Talk";
 import fs from "fs";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
@@ -10,6 +11,7 @@ import RichTextPageContent from "@components/RichTextPageContent";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { getRichTextRenderOptions } from "@components/RichTextPageContent";
 import { Config } from "@utils/Config";
+import { sortItemsByDate } from "@utils/Date";
 
 export default function buildRss(props) {
   const { pageContent } = props;
@@ -53,19 +55,23 @@ function buildContent(postBody) {
   ]]></content:encoded>`;
 }
 
-function buildRssItems(posts) {
-  return posts
-    .map((post) => {
+function buildRssItems(items) {
+  return items
+    .map((item) => {
+      const isTalk = item.speakerDeckLink;
+      const urlSlug = isTalk ? "talks" : "blog";
+      const contentBody = isTalk ? item.transcript : item.body;
+
       return `
         <item>
-          <title>${post.title}</title>
-          <description>${post.excerpt}</description>
+          <title>${item.title}</title>
+          <description>${item.excerpt}</description>
           <author>${Config.site.email} (${Config.site.owner})</author>
-          <link>https://${Config.site.domain}/blog/${post.slug}</link>
-          <guid>https://${Config.site.domain}/blog/${post.slug}</guid>
-          <pubDate>${post.date}</pubDate>
-          ${buildCategories(post.topicsCollection.items)}
-          ${buildContent(post.body)}
+          <link>https://${Config.site.domain}/${urlSlug}/${item.slug}</link>
+          <guid>https://${Config.site.domain}/${urlSlug}/${item.slug}</guid>
+          <pubDate>${item.date}</pubDate>
+          ${buildCategories(item.topicsCollection.items)}
+          ${buildContent(contentBody)}
         </item>
         `;
     })
@@ -78,6 +84,9 @@ export async function getStaticProps() {
   );
 
   const posts = await ContentfulBlogPost.getAll();
+  const talks = await ContentfulTalk.getAll();
+  const allItems = posts.concat(talks);
+  const sortedItems = allItems.sort(sortItemsByDate);
 
   const feedString = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0"
@@ -90,7 +99,7 @@ export async function getStaticProps() {
       }/feed.xml" rel="self" type="application/rss+xml" />
       <link>https://${Config.site.domain}</link>
       <description>${Config.site.feedDescription}</description>
-      ${buildRssItems(posts)}
+      ${buildRssItems(sortedItems)}
     </channel>
     </rss>`;
 

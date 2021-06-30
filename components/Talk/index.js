@@ -41,7 +41,7 @@ export default function Talk(props) {
         embedUrl={talk.recording.embedUrl}
         title={talk.recording.title}
       />
-      <h1 className={TypographyStyles.heading__h2}>Talk transcript</h1>
+      <h2 className={TypographyStyles.heading__h2}>Talk transcript</h2>
       <RichTextPageContent
         richTextBodyField={talk.transcript}
         renderH2Links={true}
