@@ -1,3 +1,13 @@
+export function sortItemsByDate(a, b) {
+  const a_timestamp = Date.parse(a.date);
+  const a_date = new Date(a_timestamp);
+
+  const b_timestamp = Date.parse(b.date);
+  const b_date = new Date(b_timestamp);
+
+  return b_date - a_date;
+}
+
 function getMonthStringFromInt(int) {
   const months = [
     "Jan",

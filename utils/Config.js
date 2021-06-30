@@ -21,6 +21,10 @@ export const Config = {
       url: `${SITE_URL}/dashboard`,
       slug: "/dashboard",
     },
+    talksIndex: {
+      url: `${SITE_URL}/talks`,
+      slug: "/talks",
+    },
     blogIndex: {
       url: `${SITE_URL}/blog`,
       slug: "/blog",
@@ -76,6 +80,10 @@ export const Config = {
     {
       displayName: "Projects",
       path: "/projects",
+    },
+    {
+      displayName: "Talks",
+      path: "/talks",
     },
     {
       displayName: "Uses",

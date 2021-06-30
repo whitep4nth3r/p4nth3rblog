@@ -1,56 +1,55 @@
 import Link from "next/link";
-import PublishedDateAndReadingTime from "@components/PublishedDateAndReadingTime";
+import Image from "next/image";
 import Topics from "@components/Topics";
 import Pagination from "@components/Pagination";
 import ContentListStyles from "@styles/ContentList.module.css";
 import ReactMarkdown from "react-markdown";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
+import TalkStyles from "@styles/Talk.module.css";
 import { Config } from "@utils/Config";
-import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
-export default function PostList(props) {
-  const { posts, currentPage, totalPages } = props;
+export default function TalkList(props) {
+  const { talks, currentPage, totalPages } = props;
   const nextDisabled = parseInt(currentPage, 10) === parseInt(totalPages, 10);
   const prevDisabled = parseInt(currentPage, 10) === 1;
 
   return (
     <>
       <ol className={ContentListStyles.contentList}>
-        {posts.map((post) => (
-          <li key={post.sys.id}>
+        {talks.map((talk) => (
+          <li key={talk.sys.id}>
             <article className={ContentListStyles.contentList__post}>
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: buildStructuredDataForBlogPost(post, {
-                    isPostList: true,
-                  }),
-                }}
-              />
-              <PublishedDateAndReadingTime
-                date={post.date}
-                readingTime={post.readingTime}
-              />
-              <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
+              <Link href={`${Config.pageMeta.talksIndex.slug}/${talk.slug}`}>
                 <a className={ContentListStyles.contentList__titleLink}>
                   <h2 className={ContentListStyles.contentList__title}>
-                    {post.title}
+                    {talk.title}
                   </h2>
                 </a>
               </Link>
-              <Topics topics={post.topicsCollection.items} />
-              <div className={ContentListStyles.contentList__excerpt}>
-                <ReactMarkdown
-                  children={post.excerpt}
-                  renderers={ReactMarkdownRenderers(post.excerpt)}
+
+              <div className={TalkStyles.talk__speakerDeck__img}>
+                <Image
+                  src={talk.speakerDeckLink.image.url}
+                  alt={talk.speakerDeckLink.image.description}
+                  height={talk.speakerDeckLink.image.height}
+                  width={talk.speakerDeckLink.image.width}
+                  layout="responsive"
                 />
               </div>
-              <Link href={`/blog/${post.slug}`}>
+
+              <Topics topics={talk.topicsCollection.items} />
+              <div className={ContentListStyles.contentList__excerpt}>
+                <ReactMarkdown
+                  children={talk.excerpt}
+                  renderers={ReactMarkdownRenderers(talk.excerpt)}
+                />
+              </div>
+              <Link href={`/talks/${talk.slug}`}>
                 <a
                   className={ContentListStyles.contentList__readMoreLink}
-                  aria-label={`Read ${post.title}`}
+                  aria-label={`View ${talk.title}`}
                 >
-                  Read more →
+                  View talk →
                 </a>
               </Link>
             </article>

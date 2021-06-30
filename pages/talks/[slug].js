@@ -1,33 +1,32 @@
-import ContentfulBlogPost from "@contentful/BlogPost";
-import Post from "@components/Post";
+import ContentfulTalk from "@contentful/Talk";
+import Talk from "@components/Talk";
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 
-export default function PostWrapper(props) {
-  const { post, preview } = props;
+export default function TalkWrapper(props) {
+  const { talk, preview } = props;
 
   return (
     <MainLayout preview={preview}>
       <PageMeta
-        title={post.title}
-        description={post.excerpt}
-        url={`${Config.pageMeta.blogIndex.url}/${post.slug}`}
-        canonical={post.externalUrl ? post.externalUrl : false}
+        title={talk.title}
+        description={talk.excerpt}
+        url={`${Config.pageMeta.talksIndex.url}/${talk.slug}`}
       />
 
       <ContentWrapper>
-        <Post post={post} />
+        <Talk talk={talk} />
       </ContentWrapper>
     </MainLayout>
   );
 }
 
 export async function getStaticPaths() {
-  const blogPostSlugs = await ContentfulBlogPost.getAllSlugs();
+  const talkSlugs = await ContentfulTalk.getAllSlugs();
 
-  const paths = blogPostSlugs.map((slug) => {
+  const paths = talkSlugs.map((slug) => {
     return { params: { slug } };
   });
 
@@ -38,11 +37,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const post = await ContentfulBlogPost.getBySlug(params.slug, {
+  const talk = await ContentfulTalk.getBySlug(params.slug, {
     preview: preview,
   });
 
-  if (!post) {
+  if (!talk) {
     return {
       notFound: true,
     };
@@ -51,7 +50,7 @@ export async function getStaticProps({ params, preview = false }) {
   return {
     props: {
       preview,
-      post,
+      talk,
     },
   };
 }

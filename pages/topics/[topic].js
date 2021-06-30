@@ -1,20 +1,21 @@
 import { Config } from "@utils/Config";
 import Link from "next/link";
 import PageMeta from "@components/PageMeta";
-import ContentfulApi from "@contentful/Api";
+import ContentfulTalk from "@contentful/Talk";
 import ContentfulTopics from "@contentful/Topics";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import MainLayout from "@layouts/main";
-import PostGrid from "@components/PostGrid";
+import ItemsByTopic from "@components/ItemsByTopic";
 import Topics from "@components/Topics";
 import LandingPageWrapper from "@components/LandingPageWrapper";
 import TypographyStyles from "@styles/Typography.module.css";
 import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import RecentPostListStyles from "@styles/RecentPostList.module.css";
 import ButtonStyles from "@styles/Button.module.css";
+import { sortItemsByDate } from "@utils/Date";
 
 export default function Topic(props) {
-  const { topic, blogPostsByTopic, allTopics } = props;
+  const { topic, sortedItemsByTopic, allTopics } = props;
 
   return (
     <>
@@ -32,7 +33,7 @@ export default function Topic(props) {
           <p className={TypographyStyles.heading__h3}>Browse article topics</p>
           <Topics topics={allTopics} selected={topic} scroll={false} />
           <hr className={RichTextPageContentStyles.page__hr} />
-          <PostGrid posts={blogPostsByTopic} />
+          <ItemsByTopic items={sortedItemsByTopic} />
           <div className={RecentPostListStyles.contentList__readMoreContainer}>
             <Link href={Config.pageMeta.blogIndex.slug}>
               <a className={ButtonStyles.button}>View recent articles →</a>
@@ -58,16 +59,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const blogPostsByTopic = await ContentfulBlogPost.getAllByTopic(
-    params.topic,
-  );
+  const blogPostsByTopic = await ContentfulBlogPost.getAllByTopic(params.topic);
+  const talksByTopic = await ContentfulTalk.getAllByTopic(params.topic);
+  const itemsByTopic = blogPostsByTopic.concat(talksByTopic);
+
+  const sortedItemsByTopic = itemsByTopic.sort(sortItemsByDate);
 
   const topic = await ContentfulTopics.getTopicFromSlug(params.topic);
   const allTopics = await ContentfulTopics.getAll();
 
   return {
     props: {
-      blogPostsByTopic,
+      sortedItemsByTopic,
       topic,
       allTopics,
     },
