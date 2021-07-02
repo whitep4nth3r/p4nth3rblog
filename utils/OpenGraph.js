@@ -7,13 +7,16 @@ export default class OpenGraph {
   static getRandomPanther() {
     const panthers = [
       "cool",
+      "coffee",
       "dolla",
       "fire",
       "heart",
       "lol",
       "majick",
       "pewpew",
+      "rap",
       "star",
+      "tattoo",
     ];
     return panthers[Math.floor(Math.random() * panthers.length)];
   }
