@@ -5,31 +5,33 @@ import PublishedDateAndReadingTime from "@components/PublishedDateAndReadingTime
 import Topics from "@components/Topics";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 
-export default function RecentPost({ post }) {
+export default function RecentPost({ item, isTalk }) {
+  const baseSlug = isTalk ? "talks" : "blog";
   return (
     <article className={RecentPostListStyles.contentList__post}>
       <PublishedDateAndReadingTime
-        date={post.date}
-        readingTime={post.readingTime}
+        date={item.date}
+        readingTime={item.readingTime || item.watchTime}
+        isTalk={isTalk}
       />
-      <Link href={`/blog/${post.slug}`}>
+      <Link href={`/${baseSlug}/${item.slug}`}>
         <a className={RecentPostListStyles.contentList__link}>
           <h2 className={RecentPostListStyles.contentList__title}>
-            {post.title}
+            {item.title}
           </h2>
         </a>
       </Link>
-      <Topics topics={post.topicsCollection.items} />
+      <Topics topics={item.topicsCollection.items} />
       <div className={RecentPostListStyles.contentList__excerpt}>
         <ReactMarkdown
-          children={post.excerpt}
-          renderers={ReactMarkdownRenderers(post.excerpt)}
+          children={item.excerpt}
+          renderers={ReactMarkdownRenderers(item.excerpt)}
         />
       </div>
-      <Link href={`/blog/${post.slug}`}>
+      <Link href={`/${baseSlug}/${item.slug}`}>
         <a
           className={RecentPostListStyles.contentList__readMoreLink}
-          aria-label={`Read ${post.title}`}
+          aria-label={`Read ${item.title}`}
         >
           Read more
         </a>

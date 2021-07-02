@@ -14,14 +14,17 @@ function Hits({ searchState, searchResults }) {
       )}
       {searchResults?.hits.length > 0 && validQuery && (
         <ol className={Styles.instantSearch__hitsList}>
-          {searchResults.hits.map((hit) => (
-            <li
-              key={hit.objectID}
-              className={Styles.instantSearch__hitsListItem}
-            >
-              <RecentPost post={hit} />
-            </li>
-          ))}
+          {searchResults.hits.map((hit) => {
+            const isTalk = hit.watchTime;
+            return (
+              <li
+                key={hit.objectID}
+                className={Styles.instantSearch__hitsListItem}
+              >
+                <RecentPost item={hit} isTalk={isTalk} />
+              </li>
+            );
+          })}
         </ol>
       )}
     </div>

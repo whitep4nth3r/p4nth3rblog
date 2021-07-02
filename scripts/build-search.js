@@ -22,7 +22,7 @@ async function callContentful(query) {
   }
 }
 
-async function getPaginated(page) {
+async function getPaginatedPosts(page) {
   const queryLimit = 100;
   const skipMultiplier = page === 1 ? 0 : page - 1;
   const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
@@ -65,13 +65,13 @@ async function getPaginated(page) {
   return { posts, total };
 }
 
-async function getAll() {
+async function getAllPosts() {
   let page = 1;
   let shouldQueryMorePosts = true;
   const returnPosts = [];
 
   while (shouldQueryMorePosts) {
-    const response = await getPaginated(page);
+    const response = await getPaginatedPosts(page);
 
     if (response.posts.length > 0) {
       returnPosts.push(...response.posts);
@@ -101,12 +101,96 @@ function transformPostsToSearchObjects(posts) {
   return transformed;
 }
 
+async function getPaginatedTalks(page) {
+  const queryLimit = 100;
+  const skipMultiplier = page === 1 ? 0 : page - 1;
+  const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
+
+  const query = `{
+      talkCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+        total
+        items {
+          sys {
+            id
+          }
+          title
+          excerpt
+          slug
+          date
+          watchTime
+          topicsCollection {
+            items {
+              sys {
+                id
+              }
+              name
+              slug
+            }
+          }
+          transcript {
+            json
+          }
+        }
+      }
+    }`;
+
+  const response = await callContentful(query);
+
+  const { total } = response.data.talkCollection;
+  const talks = response.data.talkCollection.items
+    ? response.data.talkCollection.items
+    : [];
+
+  return { talks, total };
+}
+
+async function getAllTalks() {
+  let page = 1;
+  let shouldQueryMoreTalks = true;
+  const returnTalks = [];
+
+  while (shouldQueryMoreTalks) {
+    const response = await getPaginatedTalks(page);
+
+    if (response.talks.length > 0) {
+      returnTalks.push(...response.talks);
+    }
+
+    shouldQueryMoreTalks = returnTalks.length < response.total;
+    page++;
+  }
+
+  return returnTalks;
+}
+
+function transformTalksToSearchObjects(talks) {
+  const transformed = talks.map((talk) => {
+    return {
+      objectID: talk.sys.id,
+      title: talk.title,
+      excerpt: talk.excerpt,
+      slug: talk.slug,
+      topicsCollection: { items: talk.topicsCollection.items },
+      date: talk.date,
+      watchTime: talk.watchTime,
+      body: richTextPlainTextRenderer.documentToPlainTextString(
+        talk.transcript.json,
+      ),
+    };
+  });
+
+  return transformed;
+}
+
 (async function () {
   dotenv.config();
 
   try {
-    const posts = await getAll();
-    const transformed = transformPostsToSearchObjects(posts);
+    const posts = await getAllPosts();
+    const talks = await getAllTalks();
+    const transformedPosts = transformPostsToSearchObjects(posts);
+    const transformedTalks = transformTalksToSearchObjects(talks);
+    const transformed = transformedPosts.concat(transformedTalks);
 
     if (posts.length > 0) {
       const client = algoliasearch(

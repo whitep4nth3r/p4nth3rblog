@@ -12,7 +12,7 @@ export default function RecentPostList({ posts, title }) {
       <ol className={RecentPostListStyles.contentList}>
         {posts.map((post) => (
           <li key={post.sys.id}>
-            <RecentPost post={post} />
+            <RecentPost item={post} />
           </li>
         ))}
       </ol>
