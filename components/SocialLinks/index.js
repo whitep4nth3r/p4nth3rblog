@@ -6,6 +6,7 @@ import GitHub from "./svg/github";
 import Youtube from "./svg/youtube";
 import Dev from "./svg/dev";
 import Feed from "./svg/feed";
+import Polywork from "./svg/polywork";
 import { Config } from "@utils/Config";
 
 const socialLinksList = [
@@ -44,6 +45,12 @@ const socialLinksList = [
     url: "https://dev.to/whitep4nth3r",
     ariaLabel: "My DEV Community Profile",
     svg: <Dev />,
+  },
+  {
+    name: "Polywokr",
+    url: "https://www.polywork.com/whitep4nth3r",
+    ariaLabel: "My Polywork Profile",
+    svg: <Polywork />,
   },
   {
     name: "RSS Feed",
