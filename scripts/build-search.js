@@ -23,7 +23,7 @@ async function callContentful(query) {
 }
 
 async function getPaginatedPosts(page) {
-  const queryLimit = 100;
+  const queryLimit = 9;
   const skipMultiplier = page === 1 ? 0 : page - 1;
   const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
@@ -50,6 +50,19 @@ async function getPaginatedPosts(page) {
           }
           body {
             json
+            links {
+              entries {
+                block {
+                  sys {
+                    id
+                  }
+                  __typename
+                  ... on CodeBlock {
+                    code
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -84,6 +97,12 @@ async function getAllPosts() {
   return returnPosts;
 }
 
+function transformCodeBlocks(codeBlocks) {
+  return codeBlocks.map((block) => {
+    return block.code;
+  });
+}
+
 function transformPostsToSearchObjects(posts) {
   const transformed = posts.map((post) => {
     return {
@@ -95,6 +114,7 @@ function transformPostsToSearchObjects(posts) {
       date: post.date,
       readingTime: post.readingTime,
       body: richTextPlainTextRenderer.documentToPlainTextString(post.body.json),
+      codeBlocks: transformCodeBlocks(post.body.links?.entries?.block),
     };
   });
 
