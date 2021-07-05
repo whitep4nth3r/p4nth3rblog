@@ -58,6 +58,7 @@ export default function TwitchSchedule({ schedule }) {
                 href="https://twitch.tv/whitep4nth3r/schedule"
                 target="_blank"
                 title="View my Twitch schedule"
+                rel="nofollow noopener"
                 key={segment.id}
                 className={Styles.twitchSchedule__item}
               >
