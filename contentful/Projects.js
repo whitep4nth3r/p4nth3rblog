@@ -1,4 +1,5 @@
 import ContentfulApi from "@contentful/Api";
+import GraphQLFragments from "@contentful/GraphQLFragments";
 import GitHub from "@utils/GitHub";
 
 export default class ContentfulProjects extends ContentfulApi {
@@ -20,13 +21,7 @@ export default class ContentfulProjects extends ContentfulApi {
           order
           gitHubRepoName
           image {
-            url
-            description
-            height
-            width
-            sys {
-              id
-            }
+            ${GraphQLFragments.imageAsset()}
           }
         }
       }

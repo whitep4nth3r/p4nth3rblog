@@ -1,4 +1,5 @@
 import ContentfulApi from "@contentful/Api";
+import GraphQLFragments from "@contentful/GraphQLFragments";
 import { Config } from "../utils/Config";
 
 export default class ContentfulTalk extends ContentfulApi {
@@ -96,29 +97,14 @@ export default class ContentfulTalk extends ContentfulApi {
             link
             title
             image {
-              sys {
-                id
-              }
-              url
-              title
-              width
-              height
-              description
+              ${GraphQLFragments.imageAsset()}
             }
           }
           recording {
             embedUrl
             title
           }
-          topicsCollection {
-            items {
-              sys {
-                id
-              }
-              slug
-              name
-            }
-          }
+          ${GraphQLFragments.topicsCollection()}
         }
       }
     }`;
@@ -158,29 +144,14 @@ export default class ContentfulTalk extends ContentfulApi {
               link
               title
               image {
-                sys {
-                  id
-                }
-                url
-                title
-                width
-                height
-                description
+                ${GraphQLFragments.imageAsset()}
               }
             }
             recording {
               embedUrl
               title
             }
-            topicsCollection {
-              items {
-                sys {
-                  id
-                }
-                slug
-                name
-              }
-            }
+            ${GraphQLFragments.topicsCollection()}
           }
         }
       }`;
@@ -227,7 +198,9 @@ export default class ContentfulTalk extends ContentfulApi {
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
     const query = `{
-        talkCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC) {
+        talkCollection(limit: ${
+          Config.pagination.pageSize
+        }, skip: ${skip}, order: date_DESC) {
           total
           items {
             sys {
@@ -240,25 +213,10 @@ export default class ContentfulTalk extends ContentfulApi {
             excerpt
             speakerDeckLink {
               image {
-                sys {
-                  id
-                }
-                url
-                title
-                width
-                height
-                description
+                ${GraphQLFragments.imageAsset()}
               }
             }
-            topicsCollection {
-              items {
-                sys {
-                  id
-                }
-                slug
-                name
-              }
-            }
+            ${GraphQLFragments.topicsCollection()}
           }
         }
       }`;
@@ -320,25 +278,10 @@ export default class ContentfulTalk extends ContentfulApi {
                 date
                 excerpt
                 watchTime
-                topicsCollection {
-                  items {
-                    sys {
-                      id  
-                    }
-                    name
-                    slug
-                  }
-                }
+                ${GraphQLFragments.topicsCollection()}
                 speakerDeckLink {
                   image {
-                    sys {
-                      id
-                    }
-                    url
-                    title
-                    width
-                    height
-                    description
+                    ${GraphQLFragments.imageAsset()}
                   }
                 }
               }
