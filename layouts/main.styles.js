@@ -76,4 +76,56 @@ export default css.global`
     margin-left: auto !important;
     margin-right: auto !important;
   }
+
+  .web-vitals {
+    overflow: hidden;
+    font-family: var(--font-family-body);
+    color: var(--color-background);
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .web-vitals a {
+    color: var(--color-background);
+    font-weight: bold;
+    color: inherit;
+    transition: color var(--global-transition-time) ease-in-out;
+    text-decoration: underline;
+    text-underline-offset: 0.125rem;
+    text-decoration-thickness: 0.125rem;
+  }
+
+  .web-vitals a:visited {
+    color: var(--color-background);
+  }
+
+  .web-vitals a:hover {
+    color: var(--color-background);
+  }
+
+  .web-vitals a:focus {
+    outline: none;
+    box-shadow: var(--color-primary) 0 0 0 0.25rem;
+    transition: box-shadow var(--global-transition-time) ease 0s;
+  }
+
+  .web-vitals dl {
+    margin: 0;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .web-vitals p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .web-vitals div {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  }
+
+  .web-vitals dd {
+    text-align: right;
+    margin-left: 1em;
+  }
 `;

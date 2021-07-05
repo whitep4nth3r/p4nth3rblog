@@ -1,15 +1,21 @@
+import Link from "next/link";
+import dynamic from "next/dynamic";
 import SocialLinks from "@components/SocialLinks";
 import FooterStyles from "@styles/Footer.module.css";
 import ButtonStyles from "@styles/Button.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
-import Link from "next/link";
 import { Config } from "@utils/Config";
+
+const DynamicCWV = dynamic(() => import("../CoreWebVitals"), {
+  ssr: false,
+});
 
 export default function Footer() {
   const date = new Date();
 
   return (
     <footer className={FooterStyles.footer}>
+      <DynamicCWV />
       <div className={FooterStyles.footer__socialLinksContainer}>
         <SocialLinks fillColor="#ffffff" />
       </div>

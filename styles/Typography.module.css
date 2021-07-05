@@ -110,11 +110,11 @@
 }
 
 .inlineLink:visited {
-  color: var(--color-foreground);
+  color: inherit;
 }
 
 .inlineLink:hover {
-  color: var(--color-foreground);
+  color: inherit;
 }
 
 .inlineLink:focus {

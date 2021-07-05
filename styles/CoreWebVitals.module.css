@@ -1,0 +1,35 @@
+.cwv {
+  max-width: 32em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.cwv__container {
+  min-height: 10.5rem;
+}
+
+.cwv__header {
+  letter-spacing: 1px;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+}
+
+.cwv__text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-light);
+  font-family: var(--font-family-main);
+  color: var(--color-background);
+  word-break: break-word;
+}
