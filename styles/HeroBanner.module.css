@@ -43,7 +43,6 @@
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
-  margin-bottom: 3rem;
   box-shadow: 0.5rem 0.5rem 0 0 var(--color-tertiary);
   border: 0.25rem solid var(--color-primary);
   background-color: var(--color-foreground);
@@ -73,4 +72,5 @@
 .heroBanner__ctaContainer {
   display: flex;
   align-self: flex-start;
+  margin-top: 3rem;
 }

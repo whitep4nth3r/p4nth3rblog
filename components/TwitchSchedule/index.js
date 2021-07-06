@@ -62,9 +62,16 @@ export default function TwitchSchedule({ schedule }) {
                 key={segment.id}
                 className={Styles.twitchSchedule__item}
               >
-                <h3 className={Styles.twitchSchedule__itemTitle}>
-                  {segment.title}
-                </h3>
+                <time
+                  className={Styles.twitchSchedule__itemDate}
+                  dateTime={formatDateForDateTime(segment.start_time)}
+                >
+                  {formatDateForTwitchDisplay(segment.start_time)}
+                </time>
+
+                <p className={Styles.twitchSchedule__itemCat}>
+                  {segment.category.name}
+                </p>
 
                 <p className={Styles.twitchSchedule__itemTime}>
                   {formatTwitchScheduleTimeSlot(
@@ -76,16 +83,9 @@ export default function TwitchSchedule({ schedule }) {
                   </span>
                 </p>
 
-                <time
-                  className={Styles.twitchSchedule__itemDate}
-                  dateTime={formatDateForDateTime(segment.start_time)}
-                >
-                  {formatDateForTwitchDisplay(segment.start_time)}
-                </time>
-
-                <p className={Styles.twitchSchedule__itemCat}>
-                  {segment.category.name}
-                </p>
+                <h3 className={Styles.twitchSchedule__itemTitle}>
+                  {segment.title}
+                </h3>
                 {segment.canceled_until && (
                   <p className={Styles.twitchSchedule__itemCancelled}>
                     Cancelled
