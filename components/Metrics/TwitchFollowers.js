@@ -1,6 +1,6 @@
 import useSWR from "swr";
-import { useState, useEffect, useRef } from "react";
 import fetcher from "@utils/Fetcher";
+import { useState, useEffect, useRef } from "react";
 import format from "comma-number";
 import MetricCard from "@components/Metrics/MetricCard";
 

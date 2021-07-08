@@ -7,7 +7,6 @@
   min-height: 28rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
   border-bottom: 0.25rem solid var(--color-tertiary);
   background-color: var(--color-foreground);
 }
@@ -44,14 +43,13 @@
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
-  margin-bottom: 3rem;
   box-shadow: 0.5rem 0.5rem 0 0 var(--color-tertiary);
   border: 0.25rem solid var(--color-primary);
   background-color: var(--color-foreground);
 }
 
 .heroBanner__headline {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
   margin-bottom: 3rem;
   font-weight: var(--font-weight-bold);
@@ -74,4 +72,5 @@
 .heroBanner__ctaContainer {
   display: flex;
   align-self: flex-start;
+  margin-top: 3rem;
 }

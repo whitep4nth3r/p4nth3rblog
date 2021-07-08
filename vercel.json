@@ -3,7 +3,6 @@
     "GOOGLE_PRIVATE_KEY": "@google-private-key",
     "GOOGLE_CLIENT_EMAIL": "@google-client-email",
     "GOOGLE_CLIENT_ID": "@google-client-id",
-    "DEVTO_API_KEY": "@devto-api-key",
     "TWITCH_CLIENT_ID": "@twitch-client-id",
     "TWITCH_CLIENT_SECRET": "@twitch-client-secret",
     "GITHUB_ACCESS_TOKEN": "@gh-access-token"

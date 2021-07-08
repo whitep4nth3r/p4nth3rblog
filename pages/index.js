@@ -7,15 +7,17 @@ import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
-import LandingPageWrapper from "@components/LandingPageWrapper";
 import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
+import LandingPageWrapper from "@components/LandingPageWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import LatestTweet from "@components/LatestTweet";
 import SocialCards from "@components/SocialCards";
+import TwitchSchedule from "@components/TwitchSchedule";
+import fetcher from "@utils/Fetcher";
 
 export default function Home(props) {
-  const { pageContent, recentPosts, preview, latestTweet } = props;
+  const { pageContent, recentPosts, preview, twitchData, latestTweet } = props;
 
   return (
     <>
@@ -30,6 +32,9 @@ export default function Home(props) {
           <HeroBanner data={pageContent.heroBanner} />
         )}
 
+        <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
+          <TwitchSchedule schedule={twitchData.schedule} />
+        </ColorBg>
         <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
@@ -42,9 +47,12 @@ export default function Home(props) {
             <SocialCards />
           </LandingPageWrapper>
         </ColorBg>
-        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
+        <ColorBg borderTopColor="#f11012">
           <LandingPageWrapper>
-            <RecentPostList posts={recentPosts} />
+            <RecentPostList
+              posts={recentPosts}
+              title="I build stuff, learn things, and write about it."
+            />
           </LandingPageWrapper>
         </ColorBg>
       </MainLayout>
@@ -62,6 +70,7 @@ export async function getStaticProps({ preview = false }) {
 
   // const latestTweet = await TwitterApi.getLatestTweet();
   const recentPosts = await ContentfulBlogPost.getRecent();
+  const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
   const thisTweet = await TwitterApi.getTweetById("1363946822960562176");
 
@@ -71,7 +80,8 @@ export async function getStaticProps({ preview = false }) {
       pageContent,
       recentPosts,
       latestTweet: thisTweet,
+      twitchData,
     },
-    revalidate: 2,
+    revalidate: 1,
   };
 }

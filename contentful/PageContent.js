@@ -1,4 +1,5 @@
 import ContentfulApi, { defaultOptions } from "@contentful/Api";
+import GraphQLFragments from "@contentful/GraphQLFragments";
 
 export default class ContentfulPageContent extends ContentfulApi {
   /*
@@ -8,7 +9,9 @@ export default class ContentfulPageContent extends ContentfulApi {
   static async getBySlug(slug, options = defaultOptions) {
     const query = `
     {
-      pageContentCollection(limit: 1, where: {slug: "${slug}"}, preview: ${options.preview}) {
+      pageContentCollection(limit: 1, where: {slug: "${slug}"}, preview: ${
+      options.preview
+    }) {
         items {
           sys {
             id
@@ -20,11 +23,7 @@ export default class ContentfulPageContent extends ContentfulApi {
             externalLink
             ctaText
             image {
-              url
-              title
-              description
-              width
-              height
+              ${GraphQLFragments.imageAsset()}
             }
           }
           title
@@ -39,29 +38,11 @@ export default class ContentfulPageContent extends ContentfulApi {
                     id
                   }
                   __typename
-                  ... on VideoEmbed {
-                    title
-                    embedUrl
-                  }
-                  ... on CodeBlock {
-                    description
-                    language
-                    code
-                  }
+                  ${GraphQLFragments.videoEmbed()}
+                  ${GraphQLFragments.codeBlock()}
                 }
               }
-              assets {
-                block {
-                  sys {
-                    id
-                  }
-                  url
-                  title
-                  width
-                  height
-                  description
-                }
-              }
+              ${GraphQLFragments.linkedAssets()}
             }
           }
         }

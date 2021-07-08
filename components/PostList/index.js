@@ -1,9 +1,9 @@
-import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import PublishedDateAndReadingTime from "@components/Post/PublishedDateAndReadingTime";
+import PublishedDateAndReadingTime from "@components/PublishedDateAndReadingTime";
 import Topics from "@components/Topics";
-import Pagination from "@components/PostList/Pagination";
+import Pagination from "@components/Pagination";
 import ContentListStyles from "@styles/ContentList.module.css";
+import ReactMarkdown from "react-markdown";
 import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 import { Config } from "@utils/Config";
 import { buildStructuredDataForBlogPost } from "@utils/Tools";

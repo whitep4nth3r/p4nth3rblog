@@ -118,13 +118,13 @@
 }
 
 .inlineLink:focus {
-  outline-width: 0;
+  outline: none;
   box-shadow: var(--color-primary) 0 0 0 0.25rem;
   transition: box-shadow var(--global-transition-time) ease 0s;
 }
 
 .inlineLink:focus:active {
-  outline-width: 0;
+  outline: none;
   box-shadow: unset;
 }
 

@@ -1,4 +1,5 @@
 import ContentfulApi, { defaultOptions } from "@contentful/Api";
+import GraphQLFragments from "@contentful/GraphQLFragments";
 import { Config } from "../utils/Config";
 
 export default class ContentfulBlogPost extends ContentfulApi {
@@ -27,7 +28,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
    */
   static async getRecent() {
     const query = `{
-      blogPostCollection(limit: ${Config.pagination.recentPostsSize}, order: date_DESC) {
+      blogPostCollection(limit: ${
+        Config.pagination.recentPostsSize
+      }, order: date_DESC) {
         items {
           sys {
             id
@@ -36,16 +39,8 @@ export default class ContentfulBlogPost extends ContentfulApi {
           title
           slug
           excerpt
-          topicsCollection {
-            items {
-              sys {
-                id  
-              }
-              name
-              slug
-            }
-          }
           readingTime
+          ${GraphQLFragments.topicsCollection()}
         }
       }
     }`;
@@ -66,7 +61,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
 
   static async getBySlug(slug, options = defaultOptions) {
     const query = `{
-      blogPostCollection(limit: 1, where: {slug: "${slug}"}, preview: ${options.preview}) {
+      blogPostCollection(limit: 1, where: {slug: "${slug}"}, preview: ${
+      options.preview
+    }) {
         total
         items {
           sys {
@@ -76,33 +73,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
           title
           slug
           excerpt
-          topicsCollection {
-            items {
-              sys {
-                id  
-              }
-              name
-              slug
-            }
-          }
-          externalUrl
           readingTime
-          author {
-            name
-            description
-            twitchUsername
-            twitterUsername
-            gitHubUsername
-            websiteUrl
-            youtubeUrl
-            image {
-              url
-              title
-              width
-              height
-              description
-            }
-          }
+          externalUrl
+          ${GraphQLFragments.topicsCollection()}
+          ${GraphQLFragments.authorFull()}
           body {
             json
             links {
@@ -116,13 +90,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     title
                     slug
                     excerpt
-                    featuredImage {
-                      url
-                      title
-                      width
-                      height
-                      description
-                    }
+                    ${GraphQLFragments.featuredImage()}
                   }
                 }
                 block {
@@ -130,32 +98,12 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     id
                   }
                   __typename
-                  ... on TweetEmbed {
-                    tweetId
-                  }
-                  ... on VideoEmbed {
-                    title
-                    embedUrl
-                  }
-                  ... on CodeBlock {
-                    description
-                    language
-                    code
-                  }
+                  ${GraphQLFragments.tweetEmbed()}
+                  ${GraphQLFragments.videoEmbed()}
+                  ${GraphQLFragments.codeBlock()}
                 }
               }
-              assets {
-                block {
-                  sys {
-                    id
-                  }
-                  url
-                  title
-                  width
-                  height
-                  description
-                }
-              }
+              ${GraphQLFragments.linkedAssets()}
             }
           }
         }
@@ -239,32 +187,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
             title
             slug
             excerpt
-            topicsCollection {
-              items {
-                sys {
-                  id  
-                }
-                name
-                slug
-              }
-            }
             externalUrl
-            author {
-              name
-              description
-              twitchUsername
-              twitterUsername
-              gitHubUsername
-              websiteUrl
-              youtubeUrl
-              image {
-                url
-                title
-                width
-                height
-                description
-              }
-            }
+            ${GraphQLFragments.topicsCollection()}
+            ${GraphQLFragments.authorFull()}
             body {
               json
               links {
@@ -278,13 +203,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                       title
                       slug
                       excerpt
-                      featuredImage {
-                        url
-                        title
-                        width
-                        height
-                        description
-                      }
+                      ${GraphQLFragments.featuredImage()}
                     }
                   }
                   block {
@@ -292,29 +211,11 @@ export default class ContentfulBlogPost extends ContentfulApi {
                       id
                     }
                     __typename
-                    ... on VideoEmbed {
-                      title
-                      embedUrl
-                    }
-                    ... on CodeBlock {
-                      description
-                      language
-                      code
-                    }
+                    ${GraphQLFragments.videoEmbed()}
+                    ${GraphQLFragments.codeBlock()}
                   }
                 }
-                assets {
-                  block {
-                    sys {
-                      id
-                    }
-                    url
-                    title
-                    width
-                    height
-                    description
-                  }
-                }
+                ${GraphQLFragments.linkedAssets()}
               }
             }
           }
@@ -400,31 +301,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
                 title
                 date
                 excerpt
-                author {
-                  name
-                  description
-                  image {
-                    url
-                  }
-                }
-                topicsCollection {
-                  items {
-                    sys {
-                      id  
-                    }
-                    name
-                    slug
-                  }
-                }
-                featuredImage {
-                  sys {
-                    id
-                  }
-                  height
-                  width
-                  description
-                  url
-                }
+                readingTime
+                ${GraphQLFragments.authorBasic()}
+                ${GraphQLFragments.topicsCollection()}
+                ${GraphQLFragments.featuredImage()}
               }
             }
           }
@@ -452,7 +332,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
     const query = `{
-        blogPostCollection(limit: ${Config.pagination.pageSize}, skip: ${skip}, order: date_DESC) {
+        blogPostCollection(limit: ${
+          Config.pagination.pageSize
+        }, skip: ${skip}, order: date_DESC) {
           total
           items {
             sys {
@@ -462,29 +344,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
             title
             slug
             excerpt
-            topicsCollection {
-              items {
-                sys {
-                  id  
-                }
-                name
-                slug
-              }
-            }
             readingTime
-            featuredImage {
-              url
-              description
-              height
-              width
-            }
-            author {
-              name
-              description
-              image {
-                url
-              }
-            }
+            ${GraphQLFragments.topicsCollection()}
+            ${GraphQLFragments.featuredImage()}
+            ${GraphQLFragments.authorBasic()}
           }
         }
       }`;

@@ -4,6 +4,7 @@ export default function ChevronLeft() {
       aria-hidden="true"
       focusable="false"
       role="img"
+      aria-label="Chevron left icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 320 512"
       height="20"

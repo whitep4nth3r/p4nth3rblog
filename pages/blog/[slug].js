@@ -1,4 +1,3 @@
-import ContentfulApi from "@contentful/Api";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import Post from "@components/Post";
 import { Config } from "@utils/Config";

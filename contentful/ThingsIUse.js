@@ -1,4 +1,5 @@
 import ContentfulApi from "@contentful/Api";
+import GraphQLFragments from "@contentful/GraphQLFragments";
 
 export default class ContentfulThingsIUse extends ContentfulApi {
   /*
@@ -26,13 +27,7 @@ export default class ContentfulThingsIUse extends ContentfulApi {
           isAffiliateLink
           customLinkText
           image {
-            url
-            description
-            height
-            width
-            sys {
-              id
-            }
+            ${GraphQLFragments.imageAsset()}
           }
         }
       }

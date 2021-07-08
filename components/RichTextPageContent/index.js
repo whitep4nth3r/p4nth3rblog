@@ -11,7 +11,7 @@ import { slugifyString } from "@utils/Tools";
 
 const DynamicCodeBlock = dynamic(() => import("./CodeBlock"));
 
-const DynamicVideoEmbed = dynamic(() => import("./VideoEmbed"));
+const DynamicVideoEmbed = dynamic(() => import("../VideoEmbed"));
 
 const DynamicTweetEmbed = dynamic(() => import("./TweetEmbed"));
 
@@ -44,13 +44,13 @@ export function getRichTextRenderOptions(links, options) {
 
   const entryMap = new Map();
 
-  if (links.entries.block) {
+  if (links?.entries.block) {
     for (const entry of links.entries.block) {
       entryMap.set(entry.sys.id, entry);
     }
   }
 
-  if (links.entries.inline) {
+  if (links?.entries.inline) {
     for (const entry of links.entries.inline) {
       entryMap.set(entry.sys.id, entry);
     }
