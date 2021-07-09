@@ -9,6 +9,7 @@ import Jamstack from "./svg/jamstack";
 import JavaScript from "./svg/javascript";
 import NodeJs from "./svg/nodejs";
 import Serverless from "./svg/serverless";
+import Snippets from "./svg/snippets";
 import Streaming from "./svg/streaming";
 import Tutorials from "./svg/tutorials";
 
@@ -32,6 +33,8 @@ function getSvgForTopic(slug) {
       return <NodeJs />;
     case "serverless":
       return <Serverless />;
+    case "snippets":
+      return <Snippets />;
     case "streaming":
       return <Streaming />;
     case "tutorials":

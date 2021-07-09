@@ -7,7 +7,7 @@ export default class ContentfulTopics extends ContentfulApi {
   static async getAll() {
     const query = `
     {
-      topicCollection {
+      topicCollection(order: name_ASC) {
         items {
           sys {
             id
