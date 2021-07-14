@@ -3,7 +3,7 @@ const SITE_URL = "https://whitep4nth3r.com";
 export const Config = {
   site: {
     owner: "Salma Alam-Naylor | whitep4nth3r",
-    title: "whitep4nth3r.com | Build stuff, learn things, love what you do",
+    title: "whitep4nth3r.com",
     domain: "whitep4nth3r.com",
     email: "whitep4nth3r@gmail.com",
     feedDescription:
