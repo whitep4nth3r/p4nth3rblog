@@ -22,6 +22,7 @@ export default function Post(props) {
       <PublishedDateAndReadingTime
         date={post.date}
         readingTime={post.readingTime}
+        updatedDate={post.updatedDate}
       />
       <Topics topics={post.topicsCollection.items} />
       <h1 className={TypographyStyles.heading__h1}>{post.title}</h1>

@@ -30,6 +30,7 @@ export default function PostList(props) {
               <PublishedDateAndReadingTime
                 date={post.date}
                 readingTime={post.readingTime}
+                updatedDate={post.updatedDate}
               />
               <Link href={`${Config.pageMeta.blogIndex.slug}/${post.slug}`}>
                 <a className={ContentListStyles.contentList__titleLink}>

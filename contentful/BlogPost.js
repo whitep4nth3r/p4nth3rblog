@@ -70,6 +70,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
             id
           }
           date
+          updatedDate
           title
           slug
           excerpt
@@ -184,6 +185,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
               id
             }
             date
+            updatedDate
             title
             slug
             excerpt
@@ -300,6 +302,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                 slug
                 title
                 date
+                updatedDate
                 excerpt
                 readingTime
                 ${GraphQLFragments.authorBasic()}
@@ -341,6 +344,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
               id
             }
             date
+            updatedDate
             title
             slug
             excerpt
