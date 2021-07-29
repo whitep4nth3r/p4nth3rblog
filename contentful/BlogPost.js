@@ -60,10 +60,23 @@ export default class ContentfulBlogPost extends ContentfulApi {
    */
 
   static async getBySlug(slug, options = defaultOptions) {
-    const query = `{
-      blogPostCollection(limit: 1, where: {slug: "${slug}"}, preview: ${
-      options.preview
-    }) {
+    const variables = { slug };
+
+    // defining that slug is required
+    // defining it is a string
+    // more self-documenting
+    // graphql typed
+
+    // benefits of graphql arguments - research
+    // type safety?
+    // moved from options obj to gql variables
+
+    // WHAT ACTUALLY ARE THE BENEFITS?
+    // https://www.apollographql.com/docs/react/data/operation-best-practices/#use-variables-to-provide-graphql-arguments
+    const query = `query GetPost($slug: String!, $preview: Boolean! = false) {
+      blogPostCollection(limit: 1, where: {slug: $slug}, preview: ${
+        options.preview
+      }) {
         total
         items {
           sys {
@@ -111,7 +124,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query, options);
+    // TODO
+    // REMEMBER THAT YOU DID THIS HERE AND EVERYTHING NEEDS TO BE REFACTORED!!!
+    const response = await this.callContentful(query, options, variables);
     const post = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
