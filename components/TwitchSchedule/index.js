@@ -47,53 +47,55 @@ export default function TwitchSchedule({ schedule }) {
           </div>
           {schedule.data.vacation && (
             <h3 className={Styles.twitchSchedule__vacation}>
-              I'm on vacation until{" "}
+              I'm taking a break until{" "}
               {formatDateForDisplay(schedule.data.vacation.end_time)}. See you
               soon!
             </h3>
           )}
-          <div className={Styles.twitchSchedule__grid}>
-            {schedule.data.segments.slice(0, 3).map((segment) => (
-              <a
-                href="https://twitch.tv/whitep4nth3r/schedule"
-                target="_blank"
-                title="View my Twitch schedule"
-                rel="nofollow noopener"
-                key={segment.id}
-                className={Styles.twitchSchedule__item}
-              >
-                <time
-                  className={Styles.twitchSchedule__itemDate}
-                  dateTime={formatDateForDateTime(segment.start_time)}
+          {!schedule.data.vacation && (
+            <div className={Styles.twitchSchedule__grid}>
+              {schedule.data.segments.slice(0, 3).map((segment) => (
+                <a
+                  href="https://twitch.tv/whitep4nth3r/schedule"
+                  target="_blank"
+                  title="View my Twitch schedule"
+                  rel="nofollow noopener"
+                  key={segment.id}
+                  className={Styles.twitchSchedule__item}
                 >
-                  {formatDateForTwitchDisplay(segment.start_time)}
-                </time>
+                  <time
+                    className={Styles.twitchSchedule__itemDate}
+                    dateTime={formatDateForDateTime(segment.start_time)}
+                  >
+                    {formatDateForTwitchDisplay(segment.start_time)}
+                  </time>
 
-                <p className={Styles.twitchSchedule__itemCat}>
-                  {segment.category.name}
-                </p>
-
-                <p className={Styles.twitchSchedule__itemTime}>
-                  {formatTwitchScheduleTimeSlot(
-                    segment.start_time,
-                    segment.end_time,
-                  )}
-                  <span className={Styles.twitchSchedule__itemTimeZone}>
-                    {timezone}
-                  </span>
-                </p>
-
-                <h3 className={Styles.twitchSchedule__itemTitle}>
-                  {segment.title}
-                </h3>
-                {segment.canceled_until && (
-                  <p className={Styles.twitchSchedule__itemCancelled}>
-                    Cancelled
+                  <p className={Styles.twitchSchedule__itemCat}>
+                    {segment.category.name}
                   </p>
-                )}
-              </a>
-            ))}
-          </div>
+
+                  <p className={Styles.twitchSchedule__itemTime}>
+                    {formatTwitchScheduleTimeSlot(
+                      segment.start_time,
+                      segment.end_time,
+                    )}
+                    <span className={Styles.twitchSchedule__itemTimeZone}>
+                      {timezone}
+                    </span>
+                  </p>
+
+                  <h3 className={Styles.twitchSchedule__itemTitle}>
+                    {segment.title}
+                  </h3>
+                  {segment.canceled_until && (
+                    <p className={Styles.twitchSchedule__itemCancelled}>
+                      Cancelled
+                    </p>
+                  )}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>
