@@ -186,7 +186,7 @@ export function getRichTextRenderOptions(links, options) {
 
         switch (__typename) {
           case "BlogPost":
-            return <BlogPostEmbed item={entry} />;
+            return <BlogPostEmbed item={entry} renderNativeImg={renderNativeImg} />;
           case "TweetEmbed":
             const { tweetId } = entry;
 

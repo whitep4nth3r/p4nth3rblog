@@ -216,6 +216,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     __typename
                     ${GraphQLFragments.videoEmbed()}
                     ${GraphQLFragments.codeBlock()}
+                    ${GraphQLFragments.blogPost()}
                   }
                 }
                 ${GraphQLFragments.linkedAssets()}
