@@ -1,4 +1,22 @@
 export default class GraphQLFragments {
+  static blogPost() {
+    return `
+    ... on BlogPost {
+      sys {
+        id
+      }
+      date
+      updatedDate
+      title
+      slug
+      excerpt
+      readingTime
+      ${GraphQLFragments.featuredImage()}
+      ${GraphQLFragments.topicsCollection()}
+    }
+  `;
+  }
+
   static topicsCollection() {
     return `
       topicsCollection {

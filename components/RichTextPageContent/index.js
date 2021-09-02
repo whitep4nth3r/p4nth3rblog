@@ -5,6 +5,7 @@ import RichTextPageContentStyles from "@styles/RichTextPageContent.module.css";
 import TypographyStyles from "@styles/Typography.module.css";
 import LinkPreviewStyles from "@styles/LinkPreview.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
+import BlogPostEmbed from "@components/RichTextPageContent/BlogPostEmbed";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { slugifyString } from "@utils/Tools";
@@ -184,6 +185,8 @@ export function getRichTextRenderOptions(links, options) {
         const { __typename } = entry;
 
         switch (__typename) {
+          case "BlogPost":
+            return <BlogPostEmbed item={entry} />;
           case "TweetEmbed":
             const { tweetId } = entry;
 
