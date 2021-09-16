@@ -42,11 +42,6 @@
   color: var(--color-background);
 }
 
-.post:hover img {
-  filter: grayscale(0);
-  transition: filter 0.2s ease-in-out;
-}
-
 .post:hover,
 .post:focus {
   outline: none;
@@ -77,8 +72,4 @@
   height: 10rem;
   overflow: hidden;
   display: block;
-}
-
-.imgContainer img {
-  filter: grayscale(1);
 }

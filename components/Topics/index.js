@@ -7,6 +7,7 @@ import Css from "./svg/css";
 import GraphQL from "./svg/graphql";
 import Jamstack from "./svg/jamstack";
 import JavaScript from "./svg/javascript";
+import NextJs from "./svg/nextjs";
 import NodeJs from "./svg/nodejs";
 import Serverless from "./svg/serverless";
 import Snippets from "./svg/snippets";
@@ -30,6 +31,8 @@ function getSvgForTopic(slug) {
       return <Jamstack />;
     case "javascript":
       return <JavaScript />;
+    case "nextjs":
+      return <NextJs />;
     case "nodejs":
       return <NodeJs />;
     case "serverless":
