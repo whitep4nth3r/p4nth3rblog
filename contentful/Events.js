@@ -30,6 +30,7 @@ export default class ContentfulEvents extends ContentfulApi {
           link
           description
           timeTbc
+          isVirtual
           image {
             url
             description

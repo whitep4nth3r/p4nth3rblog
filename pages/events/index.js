@@ -21,14 +21,13 @@ export default function Events(props) {
           url={Config.pageMeta.events.url}
         />
 
-        <Link href="/events">
-          <a>View upcoming events</a>
-        </Link>
-
         <LandingPageWrapper>
           <PageContentWrapper>
             {/* <RichTextPageContent richTextBodyField={pageContent.body} /> */}
             <EventsList events={events} />
+            <Link href="/events/past">
+              <a>View past events</a>
+            </Link>
           </PageContentWrapper>
         </LandingPageWrapper>
 

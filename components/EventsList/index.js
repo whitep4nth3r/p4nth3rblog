@@ -1,10 +1,8 @@
 import ReactMarkdown from "react-markdown";
-import ReactMarkdownRenderers from "@utils/ReactMarkdownRenderers";
 import Image from "next/image";
 import Styles from "@styles/EventList.module.css";
 import { formatDateForEventDisplay } from "@utils/Date";
 import { useEffect, useState } from "react";
-import ButtonStyles from "@styles/Button.module.css";
 
 function eventMarkdownRenderers(markdown) {
   return {
@@ -60,12 +58,17 @@ export default function EventsList({ events }) {
               renderers={eventMarkdownRenderers(event.description)}
             />
 
+            {event.isVirtual && (
+              <div style={{ color: "white" }}>VIRTUAL EVENT</div>
+            )}
+
             <a
-              className={ButtonStyles.button}
+              className={Styles.eventList__itemLink}
               href={event.link}
+              target="_blank"
               aria-label={`View details for ${event.name}`}
             >
-              View event
+              View event →
             </a>
           </div>
         </div>
