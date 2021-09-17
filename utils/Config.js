@@ -47,6 +47,10 @@ export const Config = {
       url: `${SITE_URL}/projects`,
       slug: "/projects",
     },
+    events: {
+      url: `${SITE_URL}/events`,
+      slug: "/events",
+    },
     uses: {
       url: `${SITE_URL}/uses`,
       slug: "/uses",
@@ -78,16 +82,16 @@ export const Config = {
       path: "/blog",
     },
     {
+      displayName: "events",
+      path: "/events",
+    },
+    {
       displayName: "Projects",
       path: "/projects",
     },
     {
       displayName: "Talks",
       path: "/talks",
-    },
-    {
-      displayName: "Uses",
-      path: "/uses",
     },
     {
       displayName: "FAQs",

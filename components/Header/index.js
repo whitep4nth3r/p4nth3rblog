@@ -1,8 +1,5 @@
-import useSWR from "swr";
-import fetcher from "@utils/Fetcher";
 import { useState } from "react";
 import HeaderStyles from "@styles/Header.module.css";
-import ButtonStyles from "@styles/Button.module.css";
 import Link from "next/link";
 import SocialLinks from "@components/SocialLinks";
 import { useRouter } from "next/router";
@@ -80,11 +77,16 @@ export default function Header() {
               router.pathname.startsWith("/talks") &&
               link.path.startsWith("/talks");
 
+            const onEventsPaths =
+              router.pathname.startsWith("/events") &&
+              link.path.startsWith("/events");
+
             const isActive =
               onBlogPost ||
               onBlogIndexPage ||
               onUsesPath ||
               onTalksPath ||
+              onEventsPaths ||
               router.pathname === link.path;
 
             const isActiveClass = isActive
