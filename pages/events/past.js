@@ -18,7 +18,7 @@ export default function Events(props) {
         <PageMeta
           title={pageContent.title}
           description={pageContent.description}
-          url={Config.pageMeta.events.url}
+          url={Config.pageMeta.pastEvents.url}
         />
 
         <LandingPageWrapper>
