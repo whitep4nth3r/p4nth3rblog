@@ -37,45 +37,48 @@ export default function EventsList({ events }) {
     <div className={Styles.eventList}>
       {events.map((event) => (
         <div className={Styles.eventList__item} key={event.sys.id}>
-          {event.image !== null && (
-            <div className={Styles.eventList__itemImageContainer}>
-              <Image
-                src={event.image.url}
-                alt={event.image.description}
-                height={event.image.height}
-                width={event.image.width}
-                layout="responsive"
-              />
-            </div>
-          )}
-          <div>
-            <p className={Styles.eventList__itemDate}>
-              {formatDateForEventDisplay(event.date, event.timeTbc)} {timezone}
-            </p>
-            <h2 className={Styles.eventList__itemName}>{event.name}</h2>
-
-            <ReactMarkdown
-              children={event.description}
-              renderers={eventMarkdownRenderers(event.description)}
-            />
-
-            {event.isVirtual && (
-              <div className={Styles.eventList__isVirtual}>
-                <Camera />
-                <p>Online event</p>
+          <p className={Styles.eventList__itemDate}>
+            {formatDateForEventDisplay(event.date, event.timeTbc)} {timezone}
+          </p>
+          
+          <div className={Styles.eventList__itemInner}>
+            {event.image !== null && (
+              <div className={Styles.eventList__itemImageContainer}>
+                <Image
+                  src={event.image.url}
+                  alt={event.image.description}
+                  height={event.image.height}
+                  width={event.image.width}
+                  layout="responsive"
+                />
               </div>
             )}
+            <div>
+              <h2 className={Styles.eventList__itemName}>{event.name}</h2>
 
-            {event.link && (
-              <a
-                className={Styles.eventList__itemLink}
-                href={event.link}
-                target="_blank"
-                aria-label={`View details for ${event.name}`}
-              >
-                View event →
-              </a>
-            )}
+              <ReactMarkdown
+                children={event.description}
+                renderers={eventMarkdownRenderers(event.description)}
+              />
+
+              {event.isVirtual && (
+                <div className={Styles.eventList__isVirtual}>
+                  <Camera />
+                  <p>Online event</p>
+                </div>
+              )}
+
+              {event.link && (
+                <a
+                  className={Styles.eventList__itemLink}
+                  href={event.link}
+                  target="_blank"
+                  aria-label={`View details for ${event.name}`}
+                >
+                  View event →
+                </a>
+              )}
+            </div>
           </div>
         </div>
       ))}

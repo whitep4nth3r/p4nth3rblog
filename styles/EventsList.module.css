@@ -5,13 +5,16 @@
 }
 
 .eventList__item {
+  background-color: var(--color-background);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.eventList__itemInner {
   display: grid;
   grid-template-columns: 1fr;
   column-gap: 2rem;
   padding: 2rem;
-  background-color: var(--color-background);
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .eventList__item a {
@@ -33,17 +36,19 @@
 }
 
 .eventList__itemDate {
-  color: var(--color-foreground);
-  font-weight: var(--font-weight-normal);
-  padding-bottom: 0.5rem;
+  color: var(--color-primary);
+  background-color: var(--color-foreground);
+  font-weight: var(--font-weight-bold);
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .eventList__itemName {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   line-height: 1.4;
-  margin-top: 1rem;
   margin-bottom: 1rem;
   color: var(--color-foreground);
 }
@@ -144,8 +149,8 @@
 }
 
 @media screen and (min-width: 768px) {
-  .eventList__item {
-    grid-template-columns: 1fr 1fr;
+  .eventList__itemInner {
+    grid-template-columns: 2fr 1fr;
   }
 
   .eventList__itemImageContainer {
@@ -153,6 +158,6 @@
   }
 
   .eventList__itemName {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 }

@@ -5,7 +5,7 @@ import RichTextPageContent from "@components/RichTextPageContent";
 import ContentfulEvents from "@contentful/Events";
 import MainLayout from "@layouts/main";
 import SwitchEventsButton from "@components/EventsList/SwitchEventsButton";
-import LandingPageWrapper from "@components/LandingPageWrapper";
+import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import EventsList from "@components/EventsList";
 
@@ -20,16 +20,13 @@ export default function Events(props) {
           description={pageContent.description}
           url={Config.pageMeta.pastEvents.url}
         />
-
-        <LandingPageWrapper>
+        <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
-            <SwitchEventsButton href="/events" text="View upcoming events" />
-            <EventsList events={events} />
           </PageContentWrapper>
-        </LandingPageWrapper>
-
-        <LandingPageWrapper></LandingPageWrapper>
+          <SwitchEventsButton href="/events" text="View upcoming events" />
+          <EventsList events={events} />
+        </ContentWrapper>
       </MainLayout>
     </>
   );

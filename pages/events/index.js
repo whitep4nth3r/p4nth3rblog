@@ -4,8 +4,8 @@ import ContentfulPageContent from "@contentful/PageContent";
 import RichTextPageContent from "@components/RichTextPageContent";
 import ContentfulEvents from "@contentful/Events";
 import MainLayout from "@layouts/main";
-import SwitchEventsButton from "@components/EventsList/SwitchEventsButton"
-import LandingPageWrapper from "@components/LandingPageWrapper";
+import SwitchEventsButton from "@components/EventsList/SwitchEventsButton";
+import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import EventsList from "@components/EventsList";
 
@@ -21,15 +21,13 @@ export default function Events(props) {
           url={Config.pageMeta.events.url}
         />
 
-        <LandingPageWrapper>
+        <ContentWrapper>
           <PageContentWrapper>
             <RichTextPageContent richTextBodyField={pageContent.body} />
-            <SwitchEventsButton href="/events/past" text="View past events" />
-            <EventsList events={events} />
           </PageContentWrapper>
-        </LandingPageWrapper>
-
-        <LandingPageWrapper></LandingPageWrapper>
+          <SwitchEventsButton href="/events/past" text="View past events" />
+          <EventsList events={events} />
+        </ContentWrapper>
       </MainLayout>
     </>
   );
