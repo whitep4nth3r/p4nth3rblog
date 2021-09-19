@@ -1,0 +1,163 @@
+.eventList {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem 0;
+}
+
+.eventList__item {
+  background-color: var(--color-background);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.eventList__itemInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 2rem;
+  padding: 2rem;
+}
+
+.eventList__item a {
+  margin-bottom: 1rem;
+}
+
+.eventList__itemImageContainer {
+  margin-bottom: 2rem;
+}
+
+.eventList__itemImageContainer > div {
+  overflow: visible !important;
+}
+
+.eventList__itemImageContainer img {
+  /* border-radius: 0.75rem; */
+  border: 0.125rem solid var(--color-foreground) !important;
+  box-shadow: 0.5rem 0.5rem 0 0 var(--color-primary) !important;
+}
+
+.eventList__itemDate {
+  color: var(--color-primary);
+  background-color: var(--color-foreground);
+  font-weight: var(--font-weight-bold);
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.eventList__itemName {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  color: var(--color-foreground);
+}
+
+.eventList__itemDescription {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-light);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+  word-break: break-word;
+}
+
+.eventList__itemLink {
+  letter-spacing: 1px;
+  color: var(--color-foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  margin-top: 2rem;
+  border-bottom: 0.125rem solid var(--color-tertiary);
+  cursor: pointer;
+}
+
+.eventList__itemDescriptionLink {
+  color: var(--color-foreground);
+  transition: color var(--global-transition-time) ease-in-out;
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+}
+
+.eventList__itemLink:focus,
+.eventList__itemLink:hover,
+.eventList__itemDescriptionLink:focus,
+.eventList__itemDescriptionLink:hover {
+  outline: none;
+  box-shadow: var(--color-primary) 0 0 0 0.25rem;
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.eventList__itemDescriptionBold {
+  font-weight: var(--font-weight-bold);
+}
+
+.eventList__isVirtual {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-weight: var(--font-weight-bold);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  border-radius: 0.6rem;
+  padding: 0.7rem 1rem;
+  border: 0.125rem solid var(--color-primary);
+  text-transform: uppercase;
+}
+
+.eventList__isVirtual svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.switchEventsButton {
+  letter-spacing: 1px;
+  color: var(--yellow);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 0.125rem solid var(--red);
+  display: inline-flex;
+  align-items: center;
+}
+
+.switchEventsButton:focus,
+.switchEventsButton:hover {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  transition: box-shadow 0.2s ease 0s;
+}
+
+.switchEventsButton::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' height='24px' width='24px'%3E%3Cpath fill='%23ffb626' d='M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z'%3E%3C/path%3E%3C/svg%3E");
+  margin-right: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .eventList__itemInner {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .eventList__itemImageContainer {
+    order: 2;
+  }
+
+  .eventList__itemName {
+    font-size: 1.4rem;
+  }
+}

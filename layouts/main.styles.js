@@ -12,6 +12,10 @@ export default css.global`
     --color-background: #ffffff;
     --color-muted: #666666;
 
+    --turquoise: #489fb9;
+    --pink: #cf4a88;
+    --purple: #633395;
+
     --grid-unit: 0.5rem;
 
     --font-weight-light: 300;

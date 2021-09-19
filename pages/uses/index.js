@@ -13,27 +13,25 @@ export default function Uses(props) {
   const { pageContent, preview, categories, thingsIUse } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.uses.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.uses.url}
+      />
 
-        {pageContent.heroBanner !== null && (
-          <HeroBanner data={pageContent.heroBanner} />
-        )}
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
 
-        <ContentWrapper>
-          <PageContentWrapper>
-            <RichTextPageContent richTextBodyField={pageContent.body} />
-          </PageContentWrapper>
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
 
-          <ThingsIUse things={thingsIUse} categories={categories} />
-        </ContentWrapper>
-      </MainLayout>
-    </>
+        <ThingsIUse things={thingsIUse} categories={categories} />
+      </ContentWrapper>
+    </MainLayout>
   );
 }
 

@@ -21,42 +21,40 @@ export default function Home({
   twitchData,
 }) {
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.home.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.home.url}
+      />
 
-        {pageContent.heroBanner !== null && (
-          <HeroBanner data={pageContent.heroBanner} />
-        )}
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
 
-        <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
-          <TwitchSchedule schedule={twitchData.schedule} />
-        </ColorBg>
-        <ContentWrapper>
-          <PageContentWrapper>
-            <RichTextPageContent richTextBodyField={pageContent.body} />
-          </PageContentWrapper>
-        </ContentWrapper>
+      <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
+        <TwitchSchedule schedule={twitchData.schedule} />
+      </ColorBg>
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
+      </ContentWrapper>
 
-        <ColorBg color="#ffb626" borderTopColor="#f11012">
-          <LandingPageWrapper>
-            <SocialCards />
-          </LandingPageWrapper>
-        </ColorBg>
-        <ColorBg borderTopColor="#f11012">
-          <LandingPageWrapper>
-            <RecentPostList
-              posts={recentPosts}
-              title="I build stuff, learn things, and write about it."
-            />
-          </LandingPageWrapper>
-        </ColorBg>
-      </MainLayout>
-    </>
+      <ColorBg color="#ffb626" borderTopColor="#f11012">
+        <LandingPageWrapper>
+          <SocialCards />
+        </LandingPageWrapper>
+      </ColorBg>
+      <ColorBg borderTopColor="#f11012">
+        <LandingPageWrapper>
+          <RecentPostList
+            posts={recentPosts}
+            title="I build stuff, learn things, and write about it."
+          />
+        </LandingPageWrapper>
+      </ColorBg>
+    </MainLayout>
   );
 }
 

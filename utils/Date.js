@@ -32,7 +32,7 @@ function getDayStringFromInt(int) {
   return days[int];
 }
 
-function addLeadingZero(num) {
+export function addLeadingZero(num) {
   num = num.toString();
   while (num.length < 2) num = "0" + num;
   return num;
@@ -52,6 +52,21 @@ export function formatDateForDisplay(dateString) {
   return `${date.getDate()} ${getMonthStringFromInt(
     date.getMonth(),
   )} ${date.getFullYear()}`;
+}
+
+export function formatDateForEventDisplay(dateString, timeTbc) {
+  const timestamp = Date.parse(dateString);
+  const date = new Date(timestamp);
+
+  const time = timeTbc
+    ? "TBC"
+    : `${addLeadingZero(date.getHours())}:${addLeadingZero(date.getMinutes())}`;
+
+  return `${getDayStringFromInt(
+    date.getDay(),
+  )} ${date.getDate()} ${getMonthStringFromInt(
+    date.getMonth(),
+  )} ${date.getFullYear()} @ ${time}`;
 }
 
 export function formatDateForTwitchDisplay(dateString) {
