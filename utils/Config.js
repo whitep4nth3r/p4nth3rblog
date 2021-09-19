@@ -51,6 +51,10 @@ export const Config = {
       url: `${SITE_URL}/events`,
       slug: "/events",
     },
+    pastEvents: {
+      url: `${SITE_URL}/events/past`,
+      slug: "/events/past",
+    },
     uses: {
       url: `${SITE_URL}/uses`,
       slug: "/uses",

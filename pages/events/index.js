@@ -1,10 +1,10 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
-// import ContentfulPageContent from "@contentful/PageContent";
-// import RichTextPageContent from "@components/RichTextPageContent";
+import ContentfulPageContent from "@contentful/PageContent";
+import RichTextPageContent from "@components/RichTextPageContent";
 import ContentfulEvents from "@contentful/Events";
 import MainLayout from "@layouts/main";
-import Link from "next/link";
+import SwitchEventsButton from "@components/EventsList/SwitchEventsButton"
 import LandingPageWrapper from "@components/LandingPageWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import EventsList from "@components/EventsList";
@@ -23,11 +23,9 @@ export default function Events(props) {
 
         <LandingPageWrapper>
           <PageContentWrapper>
-            {/* <RichTextPageContent richTextBodyField={pageContent.body} /> */}
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+            <SwitchEventsButton href="/events/past" text="View past events" />
             <EventsList events={events} />
-            <Link href="/events/past">
-              <a>View past events</a>
-            </Link>
           </PageContentWrapper>
         </LandingPageWrapper>
 
@@ -38,14 +36,11 @@ export default function Events(props) {
 }
 
 export async function getStaticProps() {
-  const pageContent = {
-    title: "TEST TEMP",
-    description: "TEST TEMP",
-  };
+  const pageContent = await ContentfulPageContent.getBySlug(
+    Config.pageMeta.events.slug,
+  );
 
   const events = await ContentfulEvents.getEvents();
-
-  console.log(events);
 
   return {
     props: {

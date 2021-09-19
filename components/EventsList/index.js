@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
-import Styles from "@styles/EventList.module.css";
+import Styles from "@styles/EventsList.module.css";
+import Camera from "./svg/Camera";
 import { formatDateForEventDisplay } from "@utils/Date";
 import { useEffect, useState } from "react";
 
@@ -35,7 +36,7 @@ export default function EventsList({ events }) {
   return (
     <div className={Styles.eventList}>
       {events.map((event) => (
-        <div className={Styles.eventList__item}>
+        <div className={Styles.eventList__item} key={event.sys.id}>
           {event.image !== null && (
             <div className={Styles.eventList__itemImageContainer}>
               <Image
@@ -59,17 +60,22 @@ export default function EventsList({ events }) {
             />
 
             {event.isVirtual && (
-              <div style={{ color: "white" }}>VIRTUAL EVENT</div>
+              <div className={Styles.eventList__isVirtual}>
+                <Camera />
+                <p>Online event</p>
+              </div>
             )}
 
-            <a
-              className={Styles.eventList__itemLink}
-              href={event.link}
-              target="_blank"
-              aria-label={`View details for ${event.name}`}
-            >
-              View event →
-            </a>
+            {event.link && (
+              <a
+                className={Styles.eventList__itemLink}
+                href={event.link}
+                target="_blank"
+                aria-label={`View details for ${event.name}`}
+              >
+                View event →
+              </a>
+            )}
           </div>
         </div>
       ))}
