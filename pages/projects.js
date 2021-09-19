@@ -15,32 +15,30 @@ export default function Projects(props) {
   const { pageContent, preview, projects } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.projects.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.projects.url}
+      />
 
-        {pageContent.heroBanner !== null && (
-          <HeroBanner data={pageContent.heroBanner} />
-        )}
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
 
-        {pageContent.body && (
-          <LandingPageWrapper>
-            <PageContentWrapper>
-              <RichTextPageContent richTextBodyField={pageContent.body} />
-            </PageContentWrapper>
-          </LandingPageWrapper>
-        )}
-        <ColorBg color="#ffb626" borderTopColor="#f11012">
-          <LandingPageWrapper>
-            <ProjectsList projects={projects} />
-          </LandingPageWrapper>
-        </ColorBg>
-      </MainLayout>
-    </>
+      {pageContent.body && (
+        <LandingPageWrapper>
+          <PageContentWrapper>
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+          </PageContentWrapper>
+        </LandingPageWrapper>
+      )}
+      <ColorBg color="#ffb626" borderTopColor="#f11012">
+        <LandingPageWrapper>
+          <ProjectsList projects={projects} />
+        </LandingPageWrapper>
+      </ColorBg>
+    </MainLayout>
   );
 }
 

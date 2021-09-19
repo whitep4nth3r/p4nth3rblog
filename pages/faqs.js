@@ -12,24 +12,22 @@ export default function FaqsPage(props) {
   const { pageContent, preview, faqs } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.faqs.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.faqs.url}
+      />
 
-        <ContentWrapper>
-          {pageContent.body && (
-            <PageContentWrapper>
-              <RichTextPageContent richTextBodyField={pageContent.body} />
-            </PageContentWrapper>
-          )}
-          <Faqs faqs={faqs} />
-        </ContentWrapper>
-      </MainLayout>
-    </>
+      <ContentWrapper>
+        {pageContent.body && (
+          <PageContentWrapper>
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+          </PageContentWrapper>
+        )}
+        <Faqs faqs={faqs} />
+      </ContentWrapper>
+    </MainLayout>
   );
 }
 

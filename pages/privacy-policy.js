@@ -11,25 +11,23 @@ export default function privacyPolicy(props) {
   const { pageContent, preview } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.privacyPolicy.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.privacyPolicy.url}
+      />
 
-        {pageContent.heroBanner !== null && (
-          <HeroBanner data={pageContent.heroBanner} />
-        )}
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
 
-        <ContentWrapper>
-          <PageContentWrapper>
-            <RichTextPageContent richTextBodyField={pageContent.body} />
-          </PageContentWrapper>
-        </ContentWrapper>
-      </MainLayout>
-    </>
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
+      </ContentWrapper>
+    </MainLayout>
   );
 }
 

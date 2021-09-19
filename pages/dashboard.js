@@ -13,29 +13,27 @@ export default function Dashboard(props) {
   const { pageContent, preview } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.dashboard.url}
-        />
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.dashboard.url}
+      />
 
-        {pageContent.body && (
-          <ContentWrapper>
-            <PageContentWrapper>
-              <RichTextPageContent richTextBodyField={pageContent.body} />
-            </PageContentWrapper>
-          </ContentWrapper>
-        )}
+      {pageContent.body && (
+        <ContentWrapper>
+          <PageContentWrapper>
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+          </PageContentWrapper>
+        </ContentWrapper>
+      )}
 
-        <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
-          <ContentWrapper>
-            <Metrics />
-          </ContentWrapper>
-        </ColorBg>
-      </MainLayout>
-    </>
+      <ColorBg borderTopColor="#f11012" borderBottomColor="#f11012">
+        <ContentWrapper>
+          <Metrics />
+        </ContentWrapper>
+      </ColorBg>
+    </MainLayout>
   );
 }
 

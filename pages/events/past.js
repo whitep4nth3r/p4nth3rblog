@@ -13,22 +13,20 @@ export default function Events(props) {
   const { pageContent, events } = props;
 
   return (
-    <>
-      <MainLayout>
-        <PageMeta
-          title={pageContent.title}
-          description={pageContent.description}
-          url={Config.pageMeta.pastEvents.url}
-        />
-        <ContentWrapper>
-          <PageContentWrapper>
-            <RichTextPageContent richTextBodyField={pageContent.body} />
-          </PageContentWrapper>
-          <SwitchEventsButton href="/events" text="View upcoming events" />
-          <EventsList events={events} />
-        </ContentWrapper>
-      </MainLayout>
-    </>
+    <MainLayout>
+      <PageMeta
+        title={pageContent.title}
+        description={pageContent.description}
+        url={Config.pageMeta.pastEvents.url}
+      />
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
+        <SwitchEventsButton href="/events" text="View upcoming events" />
+        <EventsList events={events} />
+      </ContentWrapper>
+    </MainLayout>
   );
 }
 
