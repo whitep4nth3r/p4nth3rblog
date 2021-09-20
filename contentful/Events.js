@@ -11,6 +11,7 @@ export default class ContentfulEvents extends ContentfulApi {
    */
   static async getEvents(options = defaultOptions) {
     const dateFilter = options.future ? "date_gt" : "date_lt";
+    const orderBy = options.future ? "date_ASC" : "date_DESC";
 
     const date = new Date();
 
@@ -20,7 +21,7 @@ export default class ContentfulEvents extends ContentfulApi {
     )}-${addLeadingZero(date.getDate())}`;
 
     const query = `{
-      eventCollection(where: {${dateFilter}: "${dateString}"}, order: date_ASC) {
+      eventCollection(where: {${dateFilter}: "${dateString}"}, order: ${orderBy}) {
         items {
           sys {
             id

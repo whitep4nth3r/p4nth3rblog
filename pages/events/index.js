@@ -24,7 +24,7 @@ export default function Events(props) {
         <PageContentWrapper>
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
-        <SwitchEventsButton href="/events/past" text="View past events" />
+        <SwitchEventsButton type="past" />
         <EventsList events={events} />
       </ContentWrapper>
     </MainLayout>

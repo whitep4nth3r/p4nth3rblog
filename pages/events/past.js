@@ -23,7 +23,7 @@ export default function Events(props) {
         <PageContentWrapper>
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
-        <SwitchEventsButton href="/events" text="View upcoming events" />
+        <SwitchEventsButton type="upcoming" />
         <EventsList events={events} />
       </ContentWrapper>
     </MainLayout>
