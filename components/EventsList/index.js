@@ -58,7 +58,6 @@ export default function EventsList({ events }) {
 
           <div className={Styles.eventList__itemInner}>
             <div className={Styles.eventList__time}>
-              {/* {event.isNext && <span>Up next</span>} */}
               <time
                 className={Styles.eventList__dateTime}
                 dateTime={formatDateForDateTime(event.date)}
