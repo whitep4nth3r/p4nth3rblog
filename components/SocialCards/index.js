@@ -37,10 +37,6 @@ const socialCardList = [
 export default function SocialCards() {
   return (
     <div className={Styles.socialCards}>
-      <h3 className={Styles.socialCards__header}>
-        I'm always somewhere on the web.
-      </h3>
-
       <ul className={Styles.socialCards__list}>
         {socialCardList.map((card) => (
           <li className={Styles.socialCards__listItem} key={card.name}>

@@ -90,3 +90,24 @@ export function formatTwitchScheduleTimeSlot(startTimeString, endTimeString) {
     startDate.getMinutes(),
   )} - ${endDate.getHours()}:${addLeadingZero(endDate.getMinutes())}`;
 }
+
+export function getDateFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return addLeadingZero(startDate.getDate());
+}
+
+export function getMonthFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return getMonthStringFromInt(startDate.getMonth());
+}
+
+export function getDayFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return getDayStringFromInt(startDate.getDay());
+}

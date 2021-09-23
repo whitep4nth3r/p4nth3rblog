@@ -7,6 +7,14 @@ const defaultOptions = {
 
 export default class ContentfulEvents extends ContentfulApi {
   /*
+   * Get next single event
+   */
+  static async getNext() {
+    const events = await this.getEvents();
+    return [events[0]];
+  }
+
+  /*
    * Get all events -- future by default
    */
   static async getEvents(options = defaultOptions) {

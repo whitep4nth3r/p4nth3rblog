@@ -1,24 +1,29 @@
 import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
+import ContentfulEvents from "@contentful/Events";
+import ContentfulLatestVideo from "@contentful/LatestVideo";
 import ContentfulPageContent from "@contentful/PageContent";
 import ContentfulBlogPost from "@contentful/BlogPost";
 import RichTextPageContent from "@components/RichTextPageContent";
 import MainLayout from "@layouts/main";
 import RecentPostList from "@components/RecentPostList";
 import HeroBanner from "@components/HeroBanner";
-import ContentWrapper from "@components/ContentWrapper";
 import ColorBg from "@components/ColorBg";
 import LandingPageWrapper from "@components/LandingPageWrapper";
-import PageContentWrapper from "@components/PageContentWrapper";
 import SocialCards from "@components/SocialCards";
 import TwitchSchedule from "@components/TwitchSchedule";
+import VideoEmbed from "@components/VideoEmbed";
+import EventsList from "@components/EventsList";
 import fetcher from "@utils/Fetcher";
+import styles from "@styles/HomePage.module.css";
 
 export default function Home({
   pageContent,
   recentPosts,
   preview,
   twitchData,
+  latestVideo,
+  nextEvent,
 }) {
   return (
     <MainLayout preview={preview}>
@@ -35,23 +40,39 @@ export default function Home({
       <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
         <TwitchSchedule schedule={twitchData.schedule} />
       </ColorBg>
-      <ContentWrapper>
-        <PageContentWrapper>
-          <RichTextPageContent richTextBodyField={pageContent.body} />
-        </PageContentWrapper>
-      </ContentWrapper>
 
-      <ColorBg color="#ffb626" borderTopColor="#f11012">
-        <LandingPageWrapper>
-          <SocialCards />
-        </LandingPageWrapper>
-      </ColorBg>
+      <LandingPageWrapper>
+        <div className={styles.homeGrid}>
+          <div className={styles.homeGrid__richText}>
+            <h2 className={styles.homeGrid__heading}>About</h2>
+            <RichTextPageContent richTextBodyField={pageContent.body} />
+          </div>
+          <div className={styles.homeGrid__video}>
+            <h2 className={styles.homeGrid__heading}>Latest video</h2>
+            <VideoEmbed
+              embedUrl={latestVideo.youTubeEmbed.embedUrl}
+              title={latestVideo.youTubeEmbed.title}
+            />
+          </div>
+          <div className={styles.homeGrid__event}>
+            <h2 className={styles.homeGrid__heading}>Next event</h2>
+            <EventsList events={nextEvent} />
+          </div>
+        </div>
+      </LandingPageWrapper>
+
       <ColorBg borderTopColor="#f11012">
         <LandingPageWrapper>
           <RecentPostList
             posts={recentPosts}
             title="I build stuff, learn things, and write about it."
           />
+        </LandingPageWrapper>
+      </ColorBg>
+
+      <ColorBg color="#ffb626" borderTopColor="#f11012">
+        <LandingPageWrapper>
+          <SocialCards />
         </LandingPageWrapper>
       </ColorBg>
     </MainLayout>
@@ -66,6 +87,8 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
+  const latestVideo = await ContentfulLatestVideo.get();
+  const nextEvent = await ContentfulEvents.getNext();
   const recentPosts = await ContentfulBlogPost.getRecent();
   const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
@@ -75,6 +98,8 @@ export async function getStaticProps({ preview = false }) {
       pageContent,
       recentPosts,
       twitchData,
+      latestVideo,
+      nextEvent,
     },
     revalidate: 1,
   };
