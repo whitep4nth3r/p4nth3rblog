@@ -43,14 +43,19 @@ export default function Home({
 
       <LandingPageWrapper>
         <div className={styles.homeGrid}>
-          <div className={styles.homeGrid__left}>
+          <div className={styles.homeGrid__richText}>
+            <h2 className={styles.homeGrid__heading}>About</h2>
             <RichTextPageContent richTextBodyField={pageContent.body} />
           </div>
-          <div className={styles.homeGrid__right}>
+          <div className={styles.homeGrid__video}>
+            <h2 className={styles.homeGrid__heading}>Latest video</h2>
             <VideoEmbed
               embedUrl={latestVideo.youTubeEmbed.embedUrl}
               title={latestVideo.youTubeEmbed.title}
             />
+          </div>
+          <div className={styles.homeGrid__event}>
+            <h2 className={styles.homeGrid__heading}>Next event</h2>
             <EventsList events={nextEvent} />
           </div>
         </div>
