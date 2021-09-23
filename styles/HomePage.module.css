@@ -1,0 +1,24 @@
+.homeGrid {
+  display: grid;
+  margin: 2rem auto;
+  column-gap: 4rem;
+  padding: 0 2rem;
+  grid-template-areas:
+    "left"
+    "right";
+}
+
+.homeGrid__left {
+  grid-area: left;
+}
+
+.homeGrid__right {
+  grid-area: right;
+}
+
+@media screen and (min-width: 1000px) {
+  .homeGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right";
+  }
+}
