@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import Styles from "@styles/EventsList.module.css";
-import Camera from "./svg/Camera";
+
 import {
   formatDateForDateTime,
   getDayFromTime,
@@ -44,7 +44,6 @@ export default function EventsList({ events }) {
         <div className={Styles.eventList__item} key={event.sys.id}>
           {event.isVirtual && (
             <span className={Styles.eventList__itemIsVirtual}>
-              <Camera />
               <span>Online</span>
             </span>
           )}
