@@ -25,102 +25,105 @@ export default function Header() {
     : `${HeaderStyles.header__navList} ${HeaderStyles.header__navList__hide}`;
 
   return (
-    <header className={HeaderStyles.header}>
-      <div className={HeaderStyles.header__logoContainer}>
-        <a
-          href="#main_content"
-          className={HeaderStyles.header__skipToMainContent}
-        >
-          Skip to main content
-        </a>
-        <Link href="/">
+    <>
+      <header className={HeaderStyles.header}>
+        <div className={HeaderStyles.header__logoContainer}>
           <a
-            className={HeaderStyles.header__logoContainerLink}
-            aria-label="Navigate to home page"
+            href="#main_content"
+            className={HeaderStyles.header__skipToMainContent}
           >
-            <Logo />
+            Skip to main content
           </a>
-        </Link>
-      </div>
-
-      <nav className={HeaderStyles.header__nav} role="navigation">
-        <button
-          className={hamburgerClasses}
-          onClick={() => toggleMenu()}
-          aria-expanded={menuOpen}
-          aria-label="Menu Toggle"
-          aria-controls="headerLinks"
-          type="button"
-        >
-          <span className={HeaderStyles.hamburger__box}>
-            <span className={HeaderStyles.hamburger__inner}></span>
-          </span>
-          <span className={HeaderStyles.hamburger__text}>Menu</span>
-        </button>
-
-        <ul className={navLinksClasses}>
-          {Config.menuLinks.map((link) => {
-            const onBlogPost =
-              router.pathname === Config.pageMeta.post.slug &&
-              link.path === Config.pageMeta.blogIndex.slug;
-
-            const onBlogIndexPage =
-              router.pathname === Config.pageMeta.blogIndexPage.slug &&
-              link.path === Config.pageMeta.blogIndex.slug;
-
-            //TODO make this better?
-            const onUsesPath =
-              router.pathname.startsWith("/uses") &&
-              link.path.startsWith("/uses");
-
-            const onTalksPath =
-              router.pathname.startsWith("/talks") &&
-              link.path.startsWith("/talks");
-
-            const onEventsPaths =
-              router.pathname.startsWith("/events") &&
-              link.path.startsWith("/events");
-
-            const isActive =
-              onBlogPost ||
-              onBlogIndexPage ||
-              onUsesPath ||
-              onTalksPath ||
-              onEventsPaths ||
-              router.pathname === link.path;
-
-            const isActiveClass = isActive
-              ? ` ${HeaderStyles.header__navListItem__active}`
-              : "";
-
-            return (
-              <li
-                key={link.displayName}
-                className={HeaderStyles.header__navListItem + isActiveClass}
-              >
-                <Link href={link.path}>
-                  <a className={HeaderStyles.header__navListItemLink}>
-                    {link.displayName}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-          <li className={HeaderStyles.header__navListItem}>
+          <Link href="/">
             <a
-              href="https://www.bonfire.com/store/p4nth3rshop/"
-              className={HeaderStyles.header__navListItemLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Shop whitepanther merchandise"
+              className={HeaderStyles.header__logoContainerLink}
+              aria-label="Navigate to home page"
             >
-              Merch
+              <Logo />
             </a>
-          </li>
-        </ul>
-      </nav>
+          </Link>
+        </div>
 
+        <div className={HeaderStyles.header__navOuter}>
+          <nav className={HeaderStyles.header__nav} role="navigation">
+            <button
+              className={hamburgerClasses}
+              onClick={() => toggleMenu()}
+              aria-expanded={menuOpen}
+              aria-label="Menu Toggle"
+              aria-controls="headerLinks"
+              type="button"
+            >
+              <span className={HeaderStyles.hamburger__box}>
+                <span className={HeaderStyles.hamburger__inner}></span>
+              </span>
+              <span className={HeaderStyles.hamburger__text}>Menu</span>
+            </button>
+
+            <ul className={navLinksClasses}>
+              {Config.menuLinks.map((link) => {
+                const onBlogPost =
+                  router.pathname === Config.pageMeta.post.slug &&
+                  link.path === Config.pageMeta.blogIndex.slug;
+
+                const onBlogIndexPage =
+                  router.pathname === Config.pageMeta.blogIndexPage.slug &&
+                  link.path === Config.pageMeta.blogIndex.slug;
+
+                //TODO make this better?
+                const onUsesPath =
+                  router.pathname.startsWith("/uses") &&
+                  link.path.startsWith("/uses");
+
+                const onTalksPath =
+                  router.pathname.startsWith("/talks") &&
+                  link.path.startsWith("/talks");
+
+                const onEventsPaths =
+                  router.pathname.startsWith("/events") &&
+                  link.path.startsWith("/events");
+
+                const isActive =
+                  onBlogPost ||
+                  onBlogIndexPage ||
+                  onUsesPath ||
+                  onTalksPath ||
+                  onEventsPaths ||
+                  router.pathname === link.path;
+
+                const isActiveClass = isActive
+                  ? ` ${HeaderStyles.header__navListItem__active}`
+                  : "";
+
+                return (
+                  <li
+                    key={link.displayName}
+                    className={HeaderStyles.header__navListItem + isActiveClass}
+                  >
+                    <Link href={link.path}>
+                      <a className={HeaderStyles.header__navListItemLink}>
+                        {link.displayName}
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
+              <li className={HeaderStyles.header__navListItem}>
+                <a
+                  href="https://www.bonfire.com/store/p4nth3rshop/"
+                  className={HeaderStyles.header__navListItemLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Shop whitepanther merchandise"
+                >
+                  Merch
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
       {showSocialLinks && <SocialLinks />}
-    </header>
+    </>
   );
 }

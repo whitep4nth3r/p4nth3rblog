@@ -32,6 +32,12 @@ export default css.global`
     --wrapper-max-width: 48rem;
     --landing-wrapper-max-width: 72rem;
 
+    --header-outer-height: 210px;
+    --header-inner-height: 50px;
+    --header-height-difference: calc(
+      var(--header-outer-height) - var(--header-inner-height)
+    );
+
     --hamburger_padding-x: 16px;
     --hamburger_padding-y: 16px;
     --hamburger_layer-width: 32px;

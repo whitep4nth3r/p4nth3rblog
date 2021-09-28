@@ -4,6 +4,13 @@
   position: relative;
   justify-content: center;
   align-content: center;
+
+  height: var(--header-outer-height);
+  position: sticky;
+  top: calc(var(--header-height-difference) * -1);
+  z-index: 5;
+
+  box-shadow: rgb(0 0 0 / 10%) -2px 2px 5px;
 }
 
 .header__skipToMainContent {
@@ -66,6 +73,10 @@
 }
 
 .header__nav {
+  height: var(--header-inner-height);
+  position: sticky;
+  top: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
