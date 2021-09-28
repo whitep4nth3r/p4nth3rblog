@@ -6,7 +6,7 @@ import {
   formatDateForDateTime,
   getDayFromTime,
   getDateFromTime,
-  getMonthFromTime,
+  getMonthAndYearFromTime,
 } from "@utils/Date";
 import { useEffect, useState } from "react";
 
@@ -38,14 +38,19 @@ export default function EventsList({ events }) {
     setTimezone(_timezone);
   }, [setTimezone]);
 
-  // todo - add if virtual
-
   return (
     <div className={Styles.eventList}>
       {events.map((event) => (
         <div className={Styles.eventList__item} key={event.sys.id}>
-          {event.image !== null && (
-            <div className={Styles.eventList__itemImageContainer}>
+          {event.isVirtual && (
+            <span className={Styles.eventList__itemIsVirtual}>
+              <Camera />
+              <span>Online</span>
+            </span>
+          )}
+
+          <div className={Styles.eventList__itemImageContainer}>
+            {event.image !== null && (
               <Image
                 src={event.image.url}
                 alt={event.image.description}
@@ -53,8 +58,17 @@ export default function EventsList({ events }) {
                 width={event.image.width}
                 layout="responsive"
               />
-            </div>
-          )}
+            )}
+            {event.image === null && (
+              <Image
+                src="/placeholder.png"
+                alt="Build stuff, learn things, love what you do slogan surrounded by panthers on a black patterned background"
+                height="1440"
+                width="2574"
+                layout="responsive"
+              />
+            )}
+          </div>
 
           <div className={Styles.eventList__itemInner}>
             <div className={Styles.eventList__time}>
@@ -66,7 +80,7 @@ export default function EventsList({ events }) {
                 <span className={Styles.eventList__dateTime__date}>
                   {getDateFromTime(event.date)}
                 </span>
-                <span>{getMonthFromTime(event.date)}</span>
+                <span>{getMonthAndYearFromTime(event.date)}</span>
               </time>
             </div>
 

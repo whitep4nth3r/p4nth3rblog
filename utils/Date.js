@@ -111,3 +111,19 @@ export function getDayFromTime(startTimeString) {
 
   return getDayStringFromInt(startDate.getDay());
 }
+
+export function getYearFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return startDate.getFullYear();
+}
+
+export function getMonthAndYearFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return (
+    getMonthStringFromInt(startDate.getMonth()) + " " + startDate.getFullYear()
+  );
+}

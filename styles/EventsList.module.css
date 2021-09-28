@@ -1,6 +1,7 @@
 .eventList {
   display: grid;
   grid-gap: 2rem 1rem;
+  margin-bottom: 4rem;
 }
 
 .eventList__itemInner {
@@ -8,7 +9,7 @@
   grid-template-columns: 1fr;
   column-gap: 2rem;
   row-gap: 2rem;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 1rem;
   grid-template-areas:
     "time"
     "description"
@@ -24,7 +25,29 @@
 }
 
 .eventList__item {
+  position: relative;
   background-color: var(--color-background);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.eventList__itemIsVirtual {
+  position: absolute;
+  background-color: var(--color-primary);
+  color: var(--color-foreground);
+  z-index: 2;
+  right: 0;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 1px;
+  border-bottom-left-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 0.5rem;
+  align-items: center;
+  border: 0.25rem solid var(--color-foreground);
+  justify-content: space-between;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
@@ -35,9 +58,10 @@
   justify-content: center;
   align-items: center;
   background-color: var(--color-primary);
+  border: 0.25rem solid var(--color-foreground);
   color: var(--color-foreground);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.75rem;
   text-transform: uppercase;
   font-weight: var(--font-weight-bold);
   font-size: 1.2rem;
@@ -157,9 +181,13 @@
 @media screen and (min-width: 768px) {
   .eventList__itemInner {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 3fr 9fr;
     grid-template-areas:
       "time description"
       ". link";
+  }
+
+  .eventList__dateTime {
+    font-size: 1rem;
   }
 }
