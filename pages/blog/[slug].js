@@ -5,8 +5,19 @@ import PageMeta from "@components/PageMeta";
 import MainLayout from "@layouts/main";
 import ContentWrapper from "@components/ContentWrapper";
 
+// add useRouter
+import { useRouter } from "next/router";
+
 export default function PostWrapper(props) {
   const { post, preview } = props;
+
+  const router = useRouter();
+
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...because we used fallback: true </div>;
+  }
 
   return (
     <MainLayout preview={preview}>
@@ -25,7 +36,8 @@ export default function PostWrapper(props) {
 }
 
 export async function getStaticPaths() {
-  const blogPostSlugs = await ContentfulBlogPost.getAllSlugs();
+  // just generate one slug
+  const blogPostSlugs = ["why-i-love-polywork-as-a-developer-advocate"];
 
   const paths = blogPostSlugs.map((slug) => {
     return { params: { slug } };
@@ -33,7 +45,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: true, // switch fallback to true
   };
 }
 
