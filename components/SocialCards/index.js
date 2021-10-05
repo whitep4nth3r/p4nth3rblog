@@ -9,7 +9,7 @@ const socialCardList = [
     name: "Twitter",
     title: "Twitter",
     description:
-      "I tweet about the stuff I build, the things I learn, and what I love. Come and laugh at my silly tech jokes?",
+      "I tweet about the stuff I build, the things I learn, the tech I love, and great events to tune into. Stay up to date!",
     url: "https://twitter.com/whitep4nth3r",
     ctaLabel: "Follow on Twitter",
     svg: <Twitter />,
@@ -37,10 +37,6 @@ const socialCardList = [
 export default function SocialCards() {
   return (
     <div className={Styles.socialCards}>
-      <h3 className={Styles.socialCards__header}>
-        I'm always somewhere on the web.
-      </h3>
-
       <ul className={Styles.socialCards__list}>
         {socialCardList.map((card) => (
           <li className={Styles.socialCards__listItem} key={card.name}>

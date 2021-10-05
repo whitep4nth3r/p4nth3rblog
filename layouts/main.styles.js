@@ -12,6 +12,10 @@ export default css.global`
     --color-background: #ffffff;
     --color-muted: #666666;
 
+    --turquoise: #489fb9;
+    --pink: #cf4a88;
+    --purple: #633395;
+
     --grid-unit: 0.5rem;
 
     --font-weight-light: 300;
@@ -27,6 +31,12 @@ export default css.global`
 
     --wrapper-max-width: 48rem;
     --landing-wrapper-max-width: 72rem;
+
+    --header-outer-height: 210px;
+    --header-inner-height: 50px;
+    --header-height-difference: calc(
+      var(--header-outer-height) - var(--header-inner-height)
+    );
 
     --hamburger_padding-x: 16px;
     --hamburger_padding-y: 16px;

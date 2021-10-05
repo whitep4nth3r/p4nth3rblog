@@ -45,11 +45,10 @@
   font-weight: var(--font-weight-bold);
   padding: 0.5rem;
   text-decoration: none;
-  /* border-bottom: 0.125rem solid var(--color-tertiary); */
 }
-
+.author__link:hover,
 .author__link:visited {
-  color: var(--color-primary);
+  color: var(--color-background);
 }
 
 .author__name {

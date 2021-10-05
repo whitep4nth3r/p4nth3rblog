@@ -2,47 +2,47 @@ import { Config } from "@utils/Config";
 import PageMeta from "@components/PageMeta";
 import ContentfulPageContent from "@contentful/PageContent";
 import RichTextPageContent from "@components/RichTextPageContent";
+import ContentfulEvents from "@contentful/Events";
 import MainLayout from "@layouts/main";
-import HeroBanner from "@components/HeroBanner";
+import SwitchEventsButton from "@components/EventsList/SwitchEventsButton";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
+import EventsList from "@components/EventsList";
 
-export default function privacyPolicy(props) {
-  const { pageContent, preview } = props;
+export default function Events(props) {
+  const { pageContent, events } = props;
 
   return (
-    <MainLayout preview={preview}>
+    <MainLayout>
       <PageMeta
         title={pageContent.title}
         description={pageContent.description}
-        url={Config.pageMeta.privacyPolicy.url}
+        url={Config.pageMeta.events.url}
       />
-
-      {pageContent.heroBanner !== null && (
-        <HeroBanner data={pageContent.heroBanner} />
-      )}
 
       <ContentWrapper>
         <PageContentWrapper>
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
+        <SwitchEventsButton type="past" />
+        <EventsList events={events} />
       </ContentWrapper>
     </MainLayout>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps() {
   const pageContent = await ContentfulPageContent.getBySlug(
-    Config.pageMeta.privacyPolicy.slug,
-    {
-      preview: preview,
-    },
+    Config.pageMeta.events.slug,
   );
+
+  const events = await ContentfulEvents.getEvents();
 
   return {
     props: {
-      preview,
+      events,
       pageContent,
     },
+    revalidate: 5,
   };
 }

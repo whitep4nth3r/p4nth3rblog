@@ -32,7 +32,7 @@ function getDayStringFromInt(int) {
   return days[int];
 }
 
-function addLeadingZero(num) {
+export function addLeadingZero(num) {
   num = num.toString();
   while (num.length < 2) num = "0" + num;
   return num;
@@ -52,6 +52,21 @@ export function formatDateForDisplay(dateString) {
   return `${date.getDate()} ${getMonthStringFromInt(
     date.getMonth(),
   )} ${date.getFullYear()}`;
+}
+
+export function formatDateForEventDisplay(dateString, timeTbc) {
+  const timestamp = Date.parse(dateString);
+  const date = new Date(timestamp);
+
+  const time = timeTbc
+    ? "TBC"
+    : `${addLeadingZero(date.getHours())}:${addLeadingZero(date.getMinutes())}`;
+
+  return `${getDayStringFromInt(
+    date.getDay(),
+  )} ${date.getDate()} ${getMonthStringFromInt(
+    date.getMonth(),
+  )} ${date.getFullYear()} @ ${time}`;
 }
 
 export function formatDateForTwitchDisplay(dateString) {
@@ -74,4 +89,41 @@ export function formatTwitchScheduleTimeSlot(startTimeString, endTimeString) {
   return `${startDate.getHours()}:${addLeadingZero(
     startDate.getMinutes(),
   )} - ${endDate.getHours()}:${addLeadingZero(endDate.getMinutes())}`;
+}
+
+export function getDateFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return addLeadingZero(startDate.getDate());
+}
+
+export function getMonthFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return getMonthStringFromInt(startDate.getMonth());
+}
+
+export function getDayFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return getDayStringFromInt(startDate.getDay());
+}
+
+export function getYearFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return startDate.getFullYear();
+}
+
+export function getMonthAndYearFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return (
+    getMonthStringFromInt(startDate.getMonth()) + " " + startDate.getFullYear()
+  );
 }

@@ -90,6 +90,9 @@ export default class ContentfulTalk extends ContentfulApi {
           watchTime
           slug
           excerpt
+          abstract {
+            json
+          }
           transcript {
             json
           }

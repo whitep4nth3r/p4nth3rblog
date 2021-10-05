@@ -18,30 +18,28 @@ export default function Topic(props) {
   const { topic, sortedItemsByTopic, allTopics } = props;
 
   return (
-    <>
-      <MainLayout>
-        <PageMeta
-          title={`Articles about ${topic.name}`}
-          description={`Articles about ${topic.name} from whitep4nth3r.com.`}
-          url={`${Config.pageMeta.topics.url}/${topic.slug}`}
-        />
+    <MainLayout>
+      <PageMeta
+        title={`Articles about ${topic.name}`}
+        description={`Articles about ${topic.name} from whitep4nth3r.com.`}
+        url={`${Config.pageMeta.topics.url}/${topic.slug}`}
+      />
 
-        <LandingPageWrapper>
-          <h1 className={TypographyStyles.heading__h1}>
-            Articles about {topic.name}
-          </h1>
-          <p className={TypographyStyles.heading__h3}>Browse article topics</p>
-          <Topics topics={allTopics} selected={topic} scroll={false} />
-          <hr className={RichTextPageContentStyles.page__hr} />
-          <ItemsByTopic items={sortedItemsByTopic} />
-          <div className={RecentPostListStyles.contentList__readMoreContainer}>
-            <Link href={Config.pageMeta.blogIndex.slug}>
-              <a className={ButtonStyles.button}>View recent articles →</a>
-            </Link>
-          </div>
-        </LandingPageWrapper>
-      </MainLayout>
-    </>
+      <LandingPageWrapper>
+        <h1 className={TypographyStyles.heading__h1}>
+          Articles about {topic.name}
+        </h1>
+        <p className={TypographyStyles.heading__h3}>Browse article topics</p>
+        <Topics topics={allTopics} selected={topic} scroll={false} />
+        <hr className={RichTextPageContentStyles.page__hr} />
+        <ItemsByTopic items={sortedItemsByTopic} />
+        <div className={RecentPostListStyles.contentList__readMoreContainer}>
+          <Link href={Config.pageMeta.blogIndex.slug}>
+            <a className={ButtonStyles.button}>View recent articles →</a>
+          </Link>
+        </div>
+      </LandingPageWrapper>
+    </MainLayout>
   );
 }
 

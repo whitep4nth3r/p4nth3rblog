@@ -14,31 +14,29 @@ export default function UsesCategory(props) {
   const { pageContent, preview, thingsIUse, categories, filter } = props;
 
   return (
-    <>
-      <MainLayout preview={preview}>
-        <PageMeta
-          title={`${pageContent.title} for ${capitalizeFirstChar(filter)}`}
-          description={pageContent.description}
-          url={`${Config.pageMeta.uses.url}/${filter}`}
+    <MainLayout preview={preview}>
+      <PageMeta
+        title={`${pageContent.title} for ${capitalizeFirstChar(filter)}`}
+        description={pageContent.description}
+        url={`${Config.pageMeta.uses.url}/${filter}`}
+      />
+
+      {pageContent.heroBanner !== null && (
+        <HeroBanner data={pageContent.heroBanner} />
+      )}
+
+      <ContentWrapper>
+        <PageContentWrapper>
+          <RichTextPageContent richTextBodyField={pageContent.body} />
+        </PageContentWrapper>
+
+        <ThingsIUse
+          things={thingsIUse}
+          categories={categories}
+          filter={filter}
         />
-
-        {pageContent.heroBanner !== null && (
-          <HeroBanner data={pageContent.heroBanner} />
-        )}
-
-        <ContentWrapper>
-          <PageContentWrapper>
-            <RichTextPageContent richTextBodyField={pageContent.body} />
-          </PageContentWrapper>
-
-          <ThingsIUse
-            things={thingsIUse}
-            categories={categories}
-            filter={filter}
-          />
-        </ContentWrapper>
-      </MainLayout>
-    </>
+      </ContentWrapper>
+    </MainLayout>
   );
 }
 

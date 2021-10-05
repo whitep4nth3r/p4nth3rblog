@@ -20,6 +20,8 @@ export default function Talk(props) {
         isTalk={true}
       />
 
+      <h2 className={TypographyStyles.heading__h2}>Slides</h2>
+
       <div className={Styles.talk__speakerDeck__img}>
         <Image
           src={talk.speakerDeckLink.image.url}
@@ -37,11 +39,27 @@ export default function Talk(props) {
         View on Speaker Deck
       </a>
 
+      <hr className={RichTextPageContentStyles.page__hr} />
+
+      <h2 className={TypographyStyles.heading__h2}>Recording</h2>
+
       <VideoEmbed
         embedUrl={talk.recording.embedUrl}
         title={talk.recording.title}
       />
-      <h2 className={TypographyStyles.heading__h2}>Talk transcript</h2>
+
+      <hr className={RichTextPageContentStyles.page__hr} />
+
+      <h2 className={TypographyStyles.heading__h2}>Abstract</h2>
+
+      <RichTextPageContent
+        richTextBodyField={talk.abstract}
+        renderH2Links={false}
+      />
+
+      <hr className={RichTextPageContentStyles.page__hr} />
+
+      <h2 className={TypographyStyles.heading__h2}>Transcript</h2>
       <RichTextPageContent
         richTextBodyField={talk.transcript}
         renderH2Links={true}

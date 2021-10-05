@@ -7,11 +7,13 @@ import Css from "./svg/css";
 import GraphQL from "./svg/graphql";
 import Jamstack from "./svg/jamstack";
 import JavaScript from "./svg/javascript";
+import NextJs from "./svg/nextjs";
 import NodeJs from "./svg/nodejs";
 import Serverless from "./svg/serverless";
 import Snippets from "./svg/snippets";
 import Streaming from "./svg/streaming";
 import Tutorials from "./svg/tutorials";
+import WebDev from "./svg/webdev";
 
 function getSvgForTopic(slug) {
   switch (slug) {
@@ -29,6 +31,8 @@ function getSvgForTopic(slug) {
       return <Jamstack />;
     case "javascript":
       return <JavaScript />;
+    case "nextjs":
+      return <NextJs />;
     case "nodejs":
       return <NodeJs />;
     case "serverless":
@@ -39,6 +43,8 @@ function getSvgForTopic(slug) {
       return <Streaming />;
     case "tutorials":
       return <Tutorials />;
+    case "webdev":
+      return <WebDev />;
     default:
       return null;
   }

@@ -12,7 +12,7 @@ import { Config } from "@utils/Config";
 const socialLinksList = [
   {
     name: "Discord",
-    url: "https://discord.gg/GQbXUVCneJ",
+    url: "https://discord.gg/theclaw",
     ariaLabel: "Join The Claw community on Discord",
     svg: <Discord />,
   },
