@@ -83,6 +83,10 @@
   font-size: 3rem;
 }
 
+.eventList__dateTime__time {
+  margin-top: 2rem;
+}
+
 .eventList__itemImageContainer {
   max-height: 20rem;
   overflow: hidden;

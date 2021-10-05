@@ -7,6 +7,7 @@ import {
   getDayFromTime,
   getDateFromTime,
   getMonthAndYearFromTime,
+  getTimeFromTime,
 } from "@utils/Date";
 import { useEffect, useState } from "react";
 
@@ -80,6 +81,19 @@ export default function EventsList({ events }) {
                   {getDateFromTime(event.date)}
                 </span>
                 <span>{getMonthAndYearFromTime(event.date)}</span>
+                {event.timeTbc && (
+                  <span className={Styles.eventList__dateTime__time}>
+                    Time TBC
+                  </span>
+                )}
+                {!event.timeTbc && (
+                  <>
+                    <span className={Styles.eventList__dateTime__time}>
+                      {getTimeFromTime(event.date)}
+                    </span>
+                    <span>{timezone}</span>
+                  </>
+                )}
               </time>
             </div>
 

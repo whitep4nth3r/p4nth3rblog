@@ -127,3 +127,12 @@ export function getMonthAndYearFromTime(startTimeString) {
     getMonthStringFromInt(startDate.getMonth()) + " " + startDate.getFullYear()
   );
 }
+
+export function getTimeFromTime(startTimeString) {
+  const startTimeStamp = Date.parse(startTimeString);
+  const startDate = new Date(startTimeStamp);
+
+  return `${addLeadingZero(startDate.getHours())}:${addLeadingZero(
+    startDate.getMinutes(),
+  )}`;
+}
