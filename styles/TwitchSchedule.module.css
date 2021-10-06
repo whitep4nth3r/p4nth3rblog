@@ -108,7 +108,7 @@
 }
 
 .twitchSchedule__itemTitle {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   letter-spacing: 1px;
   color: var(--color-background);
   text-decoration: none;
@@ -169,6 +169,7 @@
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-main);
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .twitchSchedule__vacation {
@@ -224,6 +225,10 @@
     margin-left: 1rem;
     width: unset;
     order: 2;
+    margin-bottom: 0;
+  }
+
+  .twitchSchedule__itemCancelled {
     margin-bottom: 0;
   }
 }
