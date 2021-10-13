@@ -102,17 +102,26 @@ export default class ContentfulTalk extends ContentfulApi {
             link
             title
             image {
-              ${GraphQLFragments.imageAsset()}
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
+              description
             }
           }
           recording {
             embedUrl
             title
           }
-          ${GraphQLFragments.topicsCollection()}
+          ...TopicsCollectionOnTalk
         }
       }
-    }`;
+    }
+    
+    ${GraphQLFragments.topicsCollectionOnTalk()}`;
 
     const response = await this.callContentful(query, variables, options);
     const talk = response.data.talkCollection.items
@@ -151,17 +160,26 @@ export default class ContentfulTalk extends ContentfulApi {
               link
               title
               image {
-                ${GraphQLFragments.imageAsset()}
+                sys {
+                  id
+                }
+                url
+                title
+                width
+                height
+                description
               }
             }
             recording {
               embedUrl
               title
             }
-            ${GraphQLFragments.topicsCollection()}
+            ...TopicsCollectionOnTalk
           }
         }
-      }`;
+      }
+      
+      ${GraphQLFragments.topicsCollectionOnTalk()}`;
 
     const response = await this.callContentful(query, variables);
 
@@ -220,13 +238,22 @@ export default class ContentfulTalk extends ContentfulApi {
             excerpt
             speakerDeckLink {
               image {
-                ${GraphQLFragments.imageAsset()}
+                sys {
+                  id
+                }
+                url
+                title
+                width
+                height
+                description
               }
             }
-            ${GraphQLFragments.topicsCollection()}
+            ...TopicsCollectionOnTalk
           }
         }
-      }`;
+      }
+      
+      ${GraphQLFragments.topicsCollectionOnTalk()}`;
 
     const response = await this.callContentful(query, variables);
 
@@ -287,10 +314,17 @@ export default class ContentfulTalk extends ContentfulApi {
                 date
                 excerpt
                 watchTime
-                ${GraphQLFragments.topicsCollection()}
+                ...TopicsCollectionOnTalk
                 speakerDeckLink {
                   image {
-                    ${GraphQLFragments.imageAsset()}
+                    sys {
+                      id
+                    }
+                    url
+                    title
+                    width
+                    height
+                    description
                   }
                 }
               }
@@ -298,7 +332,9 @@ export default class ContentfulTalk extends ContentfulApi {
           }
         }
       }
-    }`;
+    }
+    
+    ${GraphQLFragments.topicsCollectionOnTalk()}`;
 
     const response = await this.callContentful(query, variables);
 

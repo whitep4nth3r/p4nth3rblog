@@ -57,7 +57,7 @@ export default class ContentfulFaqs extends ContentfulApi {
                       title
                       slug
                       excerpt
-                      ${GraphQLFragments.featuredImage()}
+                      ...FeaturedImage
                     }
                   }
                   block {
@@ -65,16 +65,22 @@ export default class ContentfulFaqs extends ContentfulApi {
                       id
                     }
                     __typename
-                    ${GraphQLFragments.videoEmbed()}
-                    ${GraphQLFragments.codeBlock()}
+                    ...VideoEmbedAsLink
+                    ...CodeBlockAsLink
                   }
                 }
-                ${GraphQLFragments.linkedAssets()}
+                ...AssetsAsLinkOnFaq
               }
             }
           }
         }
-      }`;
+      }
+      
+      ${GraphQLFragments.codeBlockAsLink()}
+      ${GraphQLFragments.videoEmbedAsLink()}
+      ${GraphQLFragments.featuredImage()}
+      ${GraphQLFragments.assetsAsLinkOnFaq()}
+      `;
 
     const response = await this.callContentful(query, variables);
 

@@ -1,63 +1,74 @@
 export default class GraphQLFragments {
-  static blogPost() {
+  static blogPostFull() {
     return `
-    ... on BlogPost {
-      sys {
-        id
+    fragment BlogPostFullAsLink on Entry {
+      ... on BlogPost {
+        sys {
+          id
+        }
+        date
+        updatedDate
+        title
+        slug
+        excerpt
+        readingTime
+        ...TopicsCollectionOnBlogPost
+        ...FeaturedImage
       }
-      date
-      updatedDate
-      title
-      slug
-      excerpt
-      readingTime
-      ${GraphQLFragments.featuredImage()}
-      ${GraphQLFragments.topicsCollection()}
     }
   `;
   }
 
-  static topicsCollection() {
+  static topicsCollectionOnBlogPost() {
     return `
+    fragment TopicsCollectionOnBlogPost on BlogPost {
       topicsCollection {
         items {
           sys {
-            id  
+            id
           }
           name
           slug
         }
       }
+    }
     `;
   }
 
-  static authorBasic() {
+
+  static topicsCollectionOnTalk() {
     return `
-    author {
-      name
-      description
-      image {
-        url
+    fragment TopicsCollectionOnTalk on Talk {
+      topicsCollection {
+        items {
+          sys {
+            id
+          }
+          name
+          slug
+        }
       }
     }
     `;
   }
 
-  static imageAsset() {
+  static authorBasic() {
     return `
-        sys {
-          id
-        }
-        url
-        title
-        width
-        height
+    fragment AuthorBasic on BlogPost {
+      author {
+        name
         description
+        image {
+          url
+        }
+      }
+    }
     `;
   }
 
   static authorFull() {
     return `
+    fragment AuthorFull on BlogPost {
       author {
         name
         description
@@ -67,54 +78,124 @@ export default class GraphQLFragments {
         websiteUrl
         youtubeUrl
         image {
-          ${GraphQLFragments.imageAsset()}
+          sys {
+            id
+          }
+          url
+          title
+          width
+          height
+          description
         }
       }
+    }
     `;
   }
 
-  static linkedAssets() {
+  static assetsAsLinkOnBlogPost() {
     return `
+    fragment AssetsAsLinkOnBlogPost on BlogPostBodyLinks {
       assets {
         block {
-          ${GraphQLFragments.imageAsset()}
+          sys {
+            id
+          }
+          url
+          title
+          width
+          height
+          description
         }
       }
-    `;
-  }
-
-  static codeBlock() {
-    return `
-    ... on CodeBlock {
-      description
-      language
-      code
     }
     `;
   }
 
-  static tweetEmbed() {
+  static assetsAsLinkOnPageContent() {
     return `
-    ... on TweetEmbed {
-      tweetId
+    fragment AssetsAsLinkOnPageContent on PageContentBodyLinks {
+      assets {
+        block {
+          sys {
+            id
+          }
+          url
+          title
+          width
+          height
+          description
+        }
+      }
     }
     `;
   }
 
-  static videoEmbed() {
+  static assetsAsLinkOnFaq() {
     return `
+    fragment AssetsAsLinkOnFaq on FaqAnswerLinks {
+      assets {
+        block {
+          sys {
+            id
+          }
+          url
+          title
+          width
+          height
+          description
+        }
+      }
+    }
+    `;
+  }
+
+  static codeBlockAsLink() {
+    return `
+    fragment CodeBlockAsLink on Entry {
+      ... on CodeBlock {
+        description
+        language
+        code
+      }
+    }
+    `;
+  }
+
+  static tweetEmbedAsLink() {
+    return `
+    fragment TweetEmbedAsLink on Entry {
+      ... on TweetEmbed {
+        tweetId
+      }
+    }
+    `;
+  }
+
+  static videoEmbedAsLink() {
+    return `
+    fragment VideoEmbedAsLink on Entry {
     ... on VideoEmbed {
         title
         embedUrl
       }
+    }
     `;
   }
 
   static featuredImage() {
     return `
+    fragment FeaturedImage on BlogPost {
       featuredImage {
-        ${GraphQLFragments.imageAsset()}
+        sys {
+          id
+        }
+        url
+        title
+        width
+        height
+        description
       }
+    }
     `;
   }
 }

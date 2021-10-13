@@ -23,7 +23,14 @@ export default class ContentfulPageContent extends ContentfulApi {
             externalLink
             ctaText
             image {
-              ${GraphQLFragments.imageAsset()}
+              sys {
+                id
+              }
+              url
+              title
+              width
+              height
+              description
             }
           }
           title
@@ -38,16 +45,21 @@ export default class ContentfulPageContent extends ContentfulApi {
                     id
                   }
                   __typename
-                  ${GraphQLFragments.videoEmbed()}
-                  ${GraphQLFragments.codeBlock()}
+                  ...VideoEmbedAsLink
+                  ...CodeBlockAsLink
                 }
               }
-              ${GraphQLFragments.linkedAssets()}
+              ...AssetsAsLinkOnPageContent
             }
           }
         }
       }
-    }`;
+    }
+
+    ${GraphQLFragments.codeBlockAsLink()}
+    ${GraphQLFragments.videoEmbedAsLink()}
+    ${GraphQLFragments.assetsAsLinkOnPageContent()}
+    `;
 
     const response = await this.callContentful(query, variables, options);
     const pageContent = response.data.pageContentCollection.items

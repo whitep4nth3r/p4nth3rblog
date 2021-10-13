@@ -21,7 +21,14 @@ export default class ContentfulProjects extends ContentfulApi {
           order
           gitHubRepoName
           image {
-            ${GraphQLFragments.imageAsset()}
+            sys {
+              id
+            }
+            url
+            title
+            width
+            height
+            description
           }
         }
       }

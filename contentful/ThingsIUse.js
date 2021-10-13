@@ -27,7 +27,14 @@ export default class ContentfulThingsIUse extends ContentfulApi {
           isAffiliateLink
           customLinkText
           image {
-            ${GraphQLFragments.imageAsset()}
+            sys {
+              id
+            }
+            url
+            title
+            width
+            height
+            description
           }
         }
       }
