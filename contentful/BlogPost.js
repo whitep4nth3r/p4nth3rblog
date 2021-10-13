@@ -27,10 +27,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
    * Get most recent post summaries for home page (not paginated)
    */
   static async getRecent() {
-    const query = `{
-      blogPostCollection(limit: ${
-        Config.pagination.recentPostsSize
-      }, order: date_DESC) {
+    const variables = { limit: Config.pagination.recentPostsSize };
+
+    const query = `query GetRecent($limit: Int!) {
+      blogPostCollection(limit: $limit, order: date_DESC) {
         items {
           sys {
             id
@@ -45,7 +45,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const recentPosts = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
@@ -60,23 +60,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
    */
 
   static async getBySlug(slug, options = defaultOptions) {
-    const variables = { slug };
+    const variables = { slug, preview: options.preview };
 
-    // defining that slug is required
-    // defining it is a string
-    // more self-documenting
-    // graphql typed
-
-    // benefits of graphql arguments - research
-    // type safety?
-    // moved from options obj to gql variables
-
-    // WHAT ACTUALLY ARE THE BENEFITS?
-    // https://www.apollographql.com/docs/react/data/operation-best-practices/#use-variables-to-provide-graphql-arguments
-    const query = `query GetPost($slug: String!, $preview: Boolean! = false) {
-      blogPostCollection(limit: 1, where: {slug: $slug}, preview: ${
-        options.preview
-      }) {
+    const query = `query GetPostBySlug($slug: String!, $preview: Boolean!) {
+      blogPostCollection(limit: 1, where: {slug: $slug}, preview: $preview) {
         total
         items {
           sys {
@@ -125,9 +112,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
       }
     }`;
 
-    // TODO
-    // REMEMBER THAT YOU DID THIS HERE AND EVERYTHING NEEDS TO BE REFACTORED!!!
-    const response = await this.callContentful(query, options, variables);
+    const response = await this.callContentful(query, variables, options);
     const post = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
@@ -143,16 +128,18 @@ export default class ContentfulBlogPost extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-        blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
-          total
-          items {
-            slug
-            }
-          }
-        }`;
+    const variables = { limit: queryLimit, skip };
 
-    const response = await this.callContentful(query);
+    const query = `query GetPaginatedSlugs($limit: Int!, $skip: Int!) {
+      blogPostCollection(limit: $limit, skip: $skip, order: date_DESC) {
+        total
+        items {
+          slug
+        }
+      }
+    }`;
+
+    const response = await this.callContentful(query, variables);
 
     const { total } = response.data.blogPostCollection;
     const slugs = response.data.blogPostCollection.items
@@ -193,8 +180,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-        blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+    const variables = { skip, limit: queryLimit };
+
+    const query = `query GetPaginatedSlugs($limit: Int!, $skip: Int!) {
+        blogPostCollection(limit: $limit, skip: $skip, order: date_DESC) {
           total
           items {
             sys {
@@ -241,7 +230,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
         }
       }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const { total } = response.data.blogPostCollection;
     const posts = response.data.blogPostCollection.items
@@ -306,11 +295,13 @@ export default class ContentfulBlogPost extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-      topicCollection(where: { slug: "${topicSlug}" },  limit: 1) {
+    const variables = { slug: topicSlug, limit: queryLimit, skip };
+
+    const query = `query GetPaginatedByTopic($slug: String!, $limit: Int!, $skip: Int!) {
+      topicCollection(where: { slug: $slug },  limit: 1) {
         items {
           linkedFrom {
-            blogPostCollection(limit: ${queryLimit}, skip: ${skip}) {
+            blogPostCollection(limit: $limit, skip: $skip) {
               total
               items {
                 sys {
@@ -332,7 +323,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const results = response.data.topicCollection.items[0].linkedFrom
       .blogPostCollection
@@ -351,10 +342,10 @@ export default class ContentfulBlogPost extends ContentfulApi {
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
-    const query = `{
-        blogPostCollection(limit: ${
-          Config.pagination.pageSize
-        }, skip: ${skip}, order: date_DESC) {
+    const variables = { skip, limit: Config.pagination.pageSize };
+
+    const query = `query GetPaginatedSummaries($skip: Int!, $limit: Int!) {
+        blogPostCollection(limit: $limit, skip: $skip, order: date_DESC) {
           total
           items {
             sys {
@@ -373,7 +364,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
         }
       }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const paginatedPostSummaries = response.data.blogPostCollection
       ? response.data.blogPostCollection

@@ -78,8 +78,10 @@ export default class ContentfulTalk extends ContentfulApi {
    * param: slug (string)
    */
   static async getBySlug(slug, options = defaultOptions) {
-    const query = `{
-      talkCollection(limit: 1, where: {slug: "${slug}"}) {
+    const variables = { slug };
+
+    const query = `query GetBySlug($slug: String!) {
+      talkCollection(limit: 1, where: {slug: $slug}) {
         total
         items {
           sys {
@@ -112,7 +114,7 @@ export default class ContentfulTalk extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query, options);
+    const response = await this.callContentful(query, variables, options);
     const talk = response.data.talkCollection.items
       ? response.data.talkCollection.items
       : [];
@@ -128,8 +130,10 @@ export default class ContentfulTalk extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-        talkCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+    const variables = { skip, limit: queryLimit };
+
+    const query = `query GetPaginated($limit: Int!, $skip: Int!) {
+        talkCollection(limit: $limit, skip: $skip, order: date_DESC) {
           total
           items {
             sys {
@@ -159,7 +163,7 @@ export default class ContentfulTalk extends ContentfulApi {
         }
       }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const { total } = response.data.talkCollection;
     const talks = response.data.talkCollection.items
@@ -200,10 +204,10 @@ export default class ContentfulTalk extends ContentfulApi {
     const skip =
       skipMultiplier > 0 ? Config.pagination.pageSize * skipMultiplier : 0;
 
-    const query = `{
-        talkCollection(limit: ${
-          Config.pagination.pageSize
-        }, skip: ${skip}, order: date_DESC) {
+    const variables = { skip, limit: Config.pagination.pageSize };
+
+    const query = `query GetPaginatedSummaries($skip: Int!, $limit: Int!) {
+        talkCollection(limit: $limit, skip: $skip, order: date_DESC) {
           total
           items {
             sys {
@@ -224,7 +228,7 @@ export default class ContentfulTalk extends ContentfulApi {
         }
       }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const paginatedSummaries = response.data.talkCollection
       ? response.data.talkCollection
@@ -266,11 +270,13 @@ export default class ContentfulTalk extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-      topicCollection(where: { slug: "${topicSlug}" },  limit: 1) {
+    const variables = { skip, limit: queryLimit, slug: topicSlug };
+
+    const query = `query GetPaginatedByTopic($slug: String!, $limit: Int!, $skip: Int!) {
+      topicCollection(where: { slug: $slug },  limit: 1) {
         items {
           linkedFrom {
-            talkCollection(limit: ${queryLimit}, skip: ${skip}) {
+            talkCollection(limit: $limit, skip: $skip) {
               total
               items {
                 sys {
@@ -294,7 +300,7 @@ export default class ContentfulTalk extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const results = response.data.topicCollection.items[0].linkedFrom
       .talkCollection

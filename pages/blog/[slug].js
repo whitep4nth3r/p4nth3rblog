@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const post = await ContentfulBlogPost.getBySlug(parseInt(params.slug, 10), {
+  const post = await ContentfulBlogPost.getBySlug(params.slug, {
     preview: preview,
   });
 

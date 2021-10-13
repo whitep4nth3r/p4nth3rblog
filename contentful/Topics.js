@@ -33,9 +33,11 @@ export default class ContentfulTopics extends ContentfulApi {
    * param: slug (string)
    */
   static async getTopicFromSlug(slug) {
+    const variables = { slug };
+
     const query = `
-      {
-        topicCollection(where: {slug: "${slug}"}, limit: 1) {
+      query GetTopicFromSlug($slug: String!) {
+        topicCollection(where: {slug: $slug}, limit: 1) {
           items {
             name
             slug 
@@ -47,7 +49,7 @@ export default class ContentfulTopics extends ContentfulApi {
       }
     `;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     return response.data.topicCollection.items
       ? response.data.topicCollection.items[0]

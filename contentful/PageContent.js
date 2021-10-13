@@ -7,11 +7,11 @@ export default class ContentfulPageContent extends ContentfulApi {
    * param: slug (string)
    */
   static async getBySlug(slug, options = defaultOptions) {
-    const query = `
+    const variables = { slug, preview: options.preview };
+
+    const query = `query GetBySlug($slug: String!, $preview: Boolean!)
     {
-      pageContentCollection(limit: 1, where: {slug: "${slug}"}, preview: ${
-      options.preview
-    }) {
+      pageContentCollection(limit: 1, where: {slug: $slug}, preview: $preview) {
         items {
           sys {
             id
@@ -49,7 +49,7 @@ export default class ContentfulPageContent extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query, options);
+    const response = await this.callContentful(query, variables, options);
     const pageContent = response.data.pageContentCollection.items
       ? response.data.pageContentCollection.items
       : [];
