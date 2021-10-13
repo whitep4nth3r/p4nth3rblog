@@ -7,7 +7,7 @@ export default class ContentfulApi {
    * Call the Contentful GraphQL Api
    * param: query (string)
    */
-  static async callContentful(query, options = defaultOptions) {
+  static async callContentful(query, variables = {}, options = defaultOptions) {
     const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
 
     const accessToken = options.preview
@@ -20,7 +20,7 @@ export default class ContentfulApi {
         Authorization: "Bearer " + accessToken,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, variables }),
     };
 
     try {

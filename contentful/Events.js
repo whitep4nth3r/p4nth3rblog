@@ -19,17 +19,15 @@ export default class ContentfulEvents extends ContentfulApi {
    */
   static async getEvents(options = defaultOptions) {
     const dateFilter = options.future ? "date_gt" : "date_lt";
-    const orderBy = options.future ? "date_ASC" : "date_DESC";
+    const order = options.future ? "date_ASC" : "date_DESC";
 
     const date = new Date();
+    const formattedDate = date.toISOString().split(".")[0] + "Z";
 
-    // YYYY-MM-DD
-    const dateString = `${date.getFullYear()}-${addLeadingZero(
-      date.getMonth() + 1,
-    )}-${addLeadingZero(date.getDate())}`;
+    const variables = { date: formattedDate, order };
 
-    const query = `{
-      eventCollection(where: {${dateFilter}: "${dateString}"}, order: ${orderBy}) {
+    const query = `query GetEvents($date: DateTime!, $order: [EventOrder]!) {
+      eventCollection(where: {${dateFilter}: $date}, order: $order) {
         items {
           sys {
             id
@@ -50,7 +48,7 @@ export default class ContentfulEvents extends ContentfulApi {
       }
     }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const eventCollection = response.data.eventCollection.items
       ? response.data.eventCollection.items

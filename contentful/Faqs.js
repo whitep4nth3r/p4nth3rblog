@@ -33,8 +33,10 @@ export default class ContentfulFaqs extends ContentfulApi {
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-    const query = `{
-      faqCollection(limit: ${queryLimit}, skip: ${skip}, order: order_ASC) {
+    const variables = { skip, limit: queryLimit };
+
+    const query = `query GetPaginated($limit: Int!, $skip: Int!) {
+      faqCollection(limit: $limit, skip: $skip, order: order_ASC) {
           total
           items {
             sys {
@@ -74,7 +76,7 @@ export default class ContentfulFaqs extends ContentfulApi {
         }
       }`;
 
-    const response = await this.callContentful(query);
+    const response = await this.callContentful(query, variables);
 
     const { total } = response.data.faqCollection;
     const faqs = response.data.faqCollection.items
