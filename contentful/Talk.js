@@ -1,5 +1,5 @@
 import ContentfulApi from "@contentful/Api";
-import GraphQLFragments from "@contentful/GraphQLFragments";
+import GraphQLStringBlocks from "@contentful/GraphQLStringBlocks";
 import { Config } from "../utils/Config";
 
 export default class ContentfulTalk extends ContentfulApi {
@@ -102,14 +102,14 @@ export default class ContentfulTalk extends ContentfulApi {
             link
             title
             image {
-              ${GraphQLFragments.imageAsset()}
+              ${GraphQLStringBlocks.imageAsset()}
             }
           }
           recording {
             embedUrl
             title
           }
-          ${GraphQLFragments.topicsCollection()}
+          ${GraphQLStringBlocks.topicsCollection()}
         }
       }
     }`;
@@ -151,14 +151,14 @@ export default class ContentfulTalk extends ContentfulApi {
               link
               title
               image {
-                ${GraphQLFragments.imageAsset()}
+                ${GraphQLStringBlocks.imageAsset()}
               }
             }
             recording {
               embedUrl
               title
             }
-            ${GraphQLFragments.topicsCollection()}
+            ${GraphQLStringBlocks.topicsCollection()}
           }
         }
       }`;
@@ -220,10 +220,10 @@ export default class ContentfulTalk extends ContentfulApi {
             excerpt
             speakerDeckLink {
               image {
-                ${GraphQLFragments.imageAsset()}
+                ${GraphQLStringBlocks.imageAsset()}
               }
             }
-            ${GraphQLFragments.topicsCollection()}
+            ${GraphQLStringBlocks.topicsCollection()}
           }
         }
       }`;
@@ -287,10 +287,10 @@ export default class ContentfulTalk extends ContentfulApi {
                 date
                 excerpt
                 watchTime
-                ${GraphQLFragments.topicsCollection()}
+                ${GraphQLStringBlocks.topicsCollection()}
                 speakerDeckLink {
                   image {
-                    ${GraphQLFragments.imageAsset()}
+                    ${GraphQLStringBlocks.imageAsset()}
                   }
                 }
               }

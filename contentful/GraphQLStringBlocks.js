@@ -1,4 +1,4 @@
-export default class GraphQLFragments {
+export default class GraphQLStringBlocks {
   static blogPost() {
     return `
     ... on BlogPost {
@@ -11,8 +11,8 @@ export default class GraphQLFragments {
       slug
       excerpt
       readingTime
-      ${GraphQLFragments.featuredImage()}
-      ${GraphQLFragments.topicsCollection()}
+      ${GraphQLStringBlocks.featuredImage()}
+      ${GraphQLStringBlocks.topicsCollection()}
     }
   `;
   }
@@ -67,7 +67,7 @@ export default class GraphQLFragments {
         websiteUrl
         youtubeUrl
         image {
-          ${GraphQLFragments.imageAsset()}
+          ${GraphQLStringBlocks.imageAsset()}
         }
       }
     `;
@@ -77,7 +77,7 @@ export default class GraphQLFragments {
     return `
       assets {
         block {
-          ${GraphQLFragments.imageAsset()}
+          ${GraphQLStringBlocks.imageAsset()}
         }
       }
     `;
@@ -113,7 +113,7 @@ export default class GraphQLFragments {
   static featuredImage() {
     return `
       featuredImage {
-        ${GraphQLFragments.imageAsset()}
+        ${GraphQLStringBlocks.imageAsset()}
       }
     `;
   }

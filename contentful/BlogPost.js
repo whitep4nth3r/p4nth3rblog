@@ -1,5 +1,5 @@
 import ContentfulApi, { defaultOptions } from "@contentful/Api";
-import GraphQLFragments from "@contentful/GraphQLFragments";
+import GraphQLStringBlocks from "@contentful/GraphQLStringBlocks";
 import { Config } from "../utils/Config";
 
 export default class ContentfulBlogPost extends ContentfulApi {
@@ -40,7 +40,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
           slug
           excerpt
           readingTime
-          ${GraphQLFragments.topicsCollection()}
+          ${GraphQLStringBlocks.topicsCollection()}
         }
       }
     }`;
@@ -76,8 +76,8 @@ export default class ContentfulBlogPost extends ContentfulApi {
           excerpt
           readingTime
           externalUrl
-          ${GraphQLFragments.topicsCollection()}
-          ${GraphQLFragments.authorFull()}
+          ${GraphQLStringBlocks.topicsCollection()}
+          ${GraphQLStringBlocks.authorFull()}
           body {
             json
             links {
@@ -91,7 +91,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     title
                     slug
                     excerpt
-                    ${GraphQLFragments.featuredImage()}
+                    ${GraphQLStringBlocks.featuredImage()}
                   }
                 }
                 block {
@@ -99,13 +99,13 @@ export default class ContentfulBlogPost extends ContentfulApi {
                     id
                   }
                   __typename
-                  ${GraphQLFragments.tweetEmbed()}
-                  ${GraphQLFragments.videoEmbed()}
-                  ${GraphQLFragments.codeBlock()}
-                  ${GraphQLFragments.blogPost()}
+                  ${GraphQLStringBlocks.tweetEmbed()}
+                  ${GraphQLStringBlocks.videoEmbed()}
+                  ${GraphQLStringBlocks.codeBlock()}
+                  ${GraphQLStringBlocks.blogPost()}
                 }
               }
-              ${GraphQLFragments.linkedAssets()}
+              ${GraphQLStringBlocks.linkedAssets()}
             }
           }
         }
@@ -195,8 +195,8 @@ export default class ContentfulBlogPost extends ContentfulApi {
             slug
             excerpt
             externalUrl
-            ${GraphQLFragments.topicsCollection()}
-            ${GraphQLFragments.authorFull()}
+            ${GraphQLStringBlocks.topicsCollection()}
+            ${GraphQLStringBlocks.authorFull()}
             body {
               json
               links {
@@ -210,7 +210,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
                       title
                       slug
                       excerpt
-                      ${GraphQLFragments.featuredImage()}
+                      ${GraphQLStringBlocks.featuredImage()}
                     }
                   }
                   block {
@@ -218,12 +218,12 @@ export default class ContentfulBlogPost extends ContentfulApi {
                       id
                     }
                     __typename
-                    ${GraphQLFragments.videoEmbed()}
-                    ${GraphQLFragments.codeBlock()}
-                    ${GraphQLFragments.blogPost()}
+                    ${GraphQLStringBlocks.videoEmbed()}
+                    ${GraphQLStringBlocks.codeBlock()}
+                    ${GraphQLStringBlocks.blogPost()}
                   }
                 }
-                ${GraphQLFragments.linkedAssets()}
+                ${GraphQLStringBlocks.linkedAssets()}
               }
             }
           }
@@ -313,9 +313,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
                 updatedDate
                 excerpt
                 readingTime
-                ${GraphQLFragments.authorBasic()}
-                ${GraphQLFragments.topicsCollection()}
-                ${GraphQLFragments.featuredImage()}
+                ${GraphQLStringBlocks.authorBasic()}
+                ${GraphQLStringBlocks.topicsCollection()}
+                ${GraphQLStringBlocks.featuredImage()}
               }
             }
           }
@@ -357,9 +357,9 @@ export default class ContentfulBlogPost extends ContentfulApi {
             slug
             excerpt
             readingTime
-            ${GraphQLFragments.topicsCollection()}
-            ${GraphQLFragments.featuredImage()}
-            ${GraphQLFragments.authorBasic()}
+            ${GraphQLStringBlocks.topicsCollection()}
+            ${GraphQLStringBlocks.featuredImage()}
+            ${GraphQLStringBlocks.authorBasic()}
           }
         }
       }`;

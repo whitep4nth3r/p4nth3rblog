@@ -1,5 +1,5 @@
 import ContentfulApi from "@contentful/Api";
-import GraphQLFragments from "@contentful/GraphQLFragments";
+import GraphQLStringBlocks from "@contentful/GraphQLStringBlocks";
 
 export default class ContentfulFaqs extends ContentfulApi {
   /*
@@ -57,7 +57,7 @@ export default class ContentfulFaqs extends ContentfulApi {
                       title
                       slug
                       excerpt
-                      ${GraphQLFragments.featuredImage()}
+                      ${GraphQLStringBlocks.featuredImage()}
                     }
                   }
                   block {
@@ -65,11 +65,11 @@ export default class ContentfulFaqs extends ContentfulApi {
                       id
                     }
                     __typename
-                    ${GraphQLFragments.videoEmbed()}
-                    ${GraphQLFragments.codeBlock()}
+                    ${GraphQLStringBlocks.videoEmbed()}
+                    ${GraphQLStringBlocks.codeBlock()}
                   }
                 }
-                ${GraphQLFragments.linkedAssets()}
+                ${GraphQLStringBlocks.linkedAssets()}
               }
             }
           }
