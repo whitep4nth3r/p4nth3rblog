@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const algoliasearch = require("algoliasearch/lite");
 const richTextPlainTextRenderer = require("@contentful/rich-text-plain-text-renderer");
 
-async function callContentful(query) {
+async function callContentful(query, variables) {
   try {
     const data = await fetch(
       `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
@@ -13,7 +13,7 @@ async function callContentful(query) {
           Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query, variables }),
       },
     ).then((response) => response.json());
     return data;
@@ -27,8 +27,10 @@ async function getPaginatedPosts(page) {
   const skipMultiplier = page === 1 ? 0 : page - 1;
   const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-  const query = `{
-      blogPostCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+  const variables = { limit: queryLimit, skip };
+
+  const query = `query GetPaginatedPosts($limit: Int!, $skip: Int!) {
+      blogPostCollection(limit: $limit, skip: $skip, order: date_DESC) {
         total
         items {
           sys {
@@ -68,7 +70,7 @@ async function getPaginatedPosts(page) {
       }
     }`;
 
-  const response = await callContentful(query);
+  const response = await callContentful(query, variables);
 
   const { total } = response.data.blogPostCollection;
   const posts = response.data.blogPostCollection.items
@@ -126,8 +128,10 @@ async function getPaginatedTalks(page) {
   const skipMultiplier = page === 1 ? 0 : page - 1;
   const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
-  const query = `{
-      talkCollection(limit: ${queryLimit}, skip: ${skip}, order: date_DESC) {
+  const variables = { limit: queryLimit, skip };
+
+  const query = `query GetPaginatedTalks($limit: Int!, $skip: Int!) {
+      talkCollection(limit: $limit, skip: $skip, order: date_DESC) {
         total
         items {
           sys {
@@ -154,7 +158,7 @@ async function getPaginatedTalks(page) {
       }
     }`;
 
-  const response = await callContentful(query);
+  const response = await callContentful(query, variables);
 
   const { total } = response.data.talkCollection;
   const talks = response.data.talkCollection.items
