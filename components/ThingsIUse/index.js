@@ -16,7 +16,7 @@ function calculateLinkTextAndAttrs(thing) {
     };
   } else if (thing.isAffiliateLink) {
     return {
-      text: `View ${thing.name} on Amazon`,
+      text: `View ${thing.name} on Amazon*`,
       rel: "sponsored",
     };
   } else {
