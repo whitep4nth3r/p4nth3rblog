@@ -76,6 +76,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
           excerpt
           readingTime
           externalUrl
+          isSponsored
           ${GraphQLStringBlocks.topicsCollection()}
           ${GraphQLStringBlocks.authorFull()}
           body {

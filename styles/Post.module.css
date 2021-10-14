@@ -1,0 +1,19 @@
+.post__sponsored {
+  color: var(--color-foreground);
+  background-color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.post__sponsored svg {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+}
