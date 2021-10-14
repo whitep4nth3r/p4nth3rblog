@@ -6,7 +6,7 @@ import Author from "@components/Post/Author";
 import ExternalUrl from "@components/Post/ExternalUrl";
 import RichTextPageContent from "@components/RichTextPageContent";
 import Styles from "@styles/Post.module.css";
-import Star from "@components/Post/svg/Star";
+import SponsoredStar from "@components/Post/svg/SponsoredStar";
 import { buildStructuredDataForBlogPost } from "@utils/Tools";
 
 export default function Post(props) {
@@ -29,7 +29,7 @@ export default function Post(props) {
       <Topics topics={post.topicsCollection.items} />
       {post.isSponsored && (
         <p className={Styles.post__sponsored}>
-          <Star />
+          <SponsoredStar />
           <span>Sponsored</span>
         </p>
       )}

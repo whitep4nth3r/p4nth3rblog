@@ -1,4 +1,4 @@
-export default function star() {
+export default function SponsoredStar() {
   return (
     <svg
       height="16px"
