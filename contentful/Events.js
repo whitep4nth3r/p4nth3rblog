@@ -22,7 +22,7 @@ export default class ContentfulEvents extends ContentfulApi {
     const order = options.future ? "date_ASC" : "date_DESC";
 
     const date = new Date();
-    const formattedDate = date.toISOString().split(".")[0] + "Z";
+    const formattedDate = date.toISOString();
 
     const variables = { date: formattedDate, order };
 
