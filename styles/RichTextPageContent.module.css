@@ -65,9 +65,12 @@
 }
 
 .page__imgContainer {
+  margin: 1rem 0 2rem 0;
+}
+
+.page__imgContainer img {
   width: 100%;
   height: auto;
-  margin: 1rem 0 2rem 0;
 }
 
 .page__tweet {
