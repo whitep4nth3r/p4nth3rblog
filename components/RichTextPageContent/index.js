@@ -6,6 +6,7 @@ import TypographyStyles from "@styles/Typography.module.css";
 import LinkPreviewStyles from "@styles/LinkPreview.module.css";
 import LinkIcon from "@components/RichTextPageContent/svg/LinkIcon";
 import BlogPostEmbed from "@components/RichTextPageContent/BlogPostEmbed";
+import ResponsiveImage from "@components/ResponsiveImage";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { slugifyString } from "@utils/Tools";
@@ -186,7 +187,9 @@ export function getRichTextRenderOptions(links, options) {
 
         switch (__typename) {
           case "BlogPost":
-            return <BlogPostEmbed item={entry} renderNativeImg={renderNativeImg} />;
+            return (
+              <BlogPostEmbed item={entry} renderNativeImg={renderNativeImg} />
+            );
           case "TweetEmbed":
             const { tweetId } = entry;
 
@@ -203,9 +206,10 @@ export function getRichTextRenderOptions(links, options) {
         }
       },
       [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
-        const { title, url, height, width, description } = assetBlockMap.get(
-          node.data.target.sys.id,
-        );
+        const image = assetBlockMap.get(node.data.target.sys.id);
+
+        const { url, height, width, description } = image;
+
         if (renderNativeImg) {
           return (
             <div className={RichTextPageContentStyles.page__imgContainer}>
@@ -215,13 +219,7 @@ export function getRichTextRenderOptions(links, options) {
         } else {
           return (
             <div className={RichTextPageContentStyles.page__imgContainer}>
-              <Image
-                src={url}
-                alt={description}
-                height={height}
-                width={width}
-                layout="responsive"
-              />
+              <ResponsiveImage image={image} />
             </div>
           );
         }
