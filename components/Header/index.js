@@ -123,7 +123,11 @@ export default function Header() {
           </nav>
         </div>
       </header>
-      {showSocialLinks && <SocialLinks />}
+      {showSocialLinks && (
+        <aside>
+          <SocialLinks />
+        </aside>
+      )}
     </>
   );
 }
