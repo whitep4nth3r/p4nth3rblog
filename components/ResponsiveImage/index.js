@@ -1,23 +1,25 @@
 export default function ResponsiveImage({ image }) {
-  const small = 368;
-  const large = 736;
-  const quality = 75;
-  const sizes = `(max-width: ${large - 1}px) ${small}px,${large}px`;
+  const maxContainerSize = 736;
+  const imageWidths = [100, 200, 300, 400, 500, 600, 700, maxContainerSize];
+
+  // Below the maximum container size, make images span 100vw of the container
+  // Above the maximum container size, serve the image at the width of the container and no bigger
+  const sizes = `(max-width: ${
+    maxContainerSize - 1
+  }px) 100vw, ${maxContainerSize}px`;
+
+  const srcSetArray = imageWidths.map(
+    (width) => `${image.url}?q=75&w=${width}&fm=avif ${width}w`,
+  );
+
+  const srcSetString = srcSetArray.join(", ");
 
   return (
     <picture>
-      <source
-        type="image/avif"
-        srcSet={`${image.url}?q=${quality}&w=${small}&fm=avif ${small}w, ${image.url}?q=${quality}&w=${large}&fm=avif ${large}w`}
-        sizes={sizes}
-      />
-      <source
-        type="image/webp"
-        srcSet={`${image.url}?q=${quality}&w=${small}&fm=webp ${small}w, ${image.url}?q=${quality}&w=${large}&fm=webp ${large}w`}
-        sizes={sizes}
-      />
+      <source type="image/avif" srcSet={srcSetString} sizes={sizes} />
+      <source type="image/webp" srcSet={srcSetString} sizes={sizes} />
       <img
-        srcSet={`${image.url}?q=${quality}&w=${small}&fm=jpg&fl=progressive ${small}w, ${image.url}?q=${quality}&w=${large}&fm=jpg&fl=progressive ${large}w`}
+        srcSet={srcSetString}
         sizes={sizes}
         src={image.url}
         alt={image.description}
