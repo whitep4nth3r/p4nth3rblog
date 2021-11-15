@@ -8,18 +8,33 @@ export default function ResponsiveImage({ image }) {
     maxContainerSize - 1
   }px) 100vw, ${maxContainerSize}px`;
 
-  const srcSetArray = imageWidths.map(
-    (width) => `${image.url}?q=75&w=${width}&fm=avif ${width}w`,
-  );
+  function makeSrcSetArray(format) {
+    console.log(format);
+    const formatString = format === undefined ? "" : `&fm=${format}`;
 
-  const srcSetString = srcSetArray.join(", ");
+    return imageWidths.map(
+      (width) => `${image.url}?q=75&w=${width}${formatString} ${width}w`,
+    );
+  }
+
+  function makeSrcSetString(format) {
+    return makeSrcSetArray(format).join(", ");
+  }
 
   return (
     <picture>
-      <source type="image/avif" srcSet={srcSetString} sizes={sizes} />
-      <source type="image/webp" srcSet={srcSetString} sizes={sizes} />
+      <source
+        type="image/avif"
+        srcSet={makeSrcSetString("avif")}
+        sizes={sizes}
+      />
+      <source
+        type="image/webp"
+        srcSet={makeSrcSetString("webp")}
+        sizes={sizes}
+      />
       <img
-        srcSet={srcSetString}
+        srcSet={makeSrcSetString()}
         sizes={sizes}
         src={image.url}
         alt={image.description}
