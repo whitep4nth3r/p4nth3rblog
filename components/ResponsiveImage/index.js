@@ -9,7 +9,6 @@ export default function ResponsiveImage({ image }) {
   }px) 100vw, ${maxContainerSize}px`;
 
   function makeSrcSetArray(format) {
-    console.log(format);
     const formatString = format === undefined ? "" : `&fm=${format}`;
 
     return imageWidths.map(
