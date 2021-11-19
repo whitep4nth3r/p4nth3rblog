@@ -2,8 +2,6 @@ import css from "styled-jsx/css";
 import "prismjs/themes/prism-okaidia.css";
 
 export default css.global`
-  @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700&display=swap");
-
   :root {
     --color-primary: #ffb626;
     --color-secondary: #82af3a;
