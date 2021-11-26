@@ -127,14 +127,10 @@ export function getRichTextRenderOptions(links, options) {
         if (renderH2Links) {
           return (
             <div
+              id={`${slugifyString(children[0])}`}
               className={RichTextPageContentStyles.page__linkedHeaderContainer}
             >
-              <h2
-                id={`${slugifyString(children[0])}`}
-                className={TypographyStyles.heading__h2}
-              >
-                {children}
-              </h2>
+              <h2 className={TypographyStyles.heading__h2}>{children}</h2>
               <a
                 className={`${RichTextPageContentStyles.page__headerLink} ${TypographyStyles.inlineLink}`}
                 href={`#${slugifyString(children[0])}`}
