@@ -57,7 +57,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: var(--font-family-main);
-  color: var(--color-background);
+  color: var(--color-primary);
   text-align: center;
   border-bottom: 0.125rem solid var(--color-tertiary);
 }
