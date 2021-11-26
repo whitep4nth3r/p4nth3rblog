@@ -10,18 +10,27 @@ export default function Footer() {
 
   return (
     <footer className={FooterStyles.footer}>
+      <nav className={FooterStyles.footer__nav} aria-label="secondary">
+        <ul className={FooterStyles.footer__linkList}>
+          <li className={FooterStyles.footer__linkListItem}>
+            <Link href="/topics/webdev">
+              <a className={FooterStyles.footer__linkListItemLink}>
+                Explore content
+              </a>
+            </Link>
+          </li>
+          <li className={FooterStyles.footer__linkListItem}>
+            <Link href="/uses">
+              <a className={FooterStyles.footer__linkListItemLink}>
+                Things I use
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
       <div className={FooterStyles.footer__socialLinksContainer}>
         <SocialLinks fillColor="#ffffff" />
-      </div>
-      <div className={FooterStyles.footer__ctaContainer}>
-        <a
-          href="https://twitch.tv/whitep4nth3r"
-          className={ButtonStyles.button}
-          rel="nofollow noreferrer"
-          target="_blank"
-        >
-          Watch me live on Twitch
-        </a>
       </div>
       <p className={FooterStyles.footer__copyright}>
         © {Config.site.owner} {date.getFullYear()} All Rights Reserved.

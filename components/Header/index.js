@@ -45,7 +45,7 @@ export default function Header() {
         </div>
 
         <div className={HeaderStyles.header__navOuter}>
-          <nav className={HeaderStyles.header__nav} role="navigation">
+          <nav className={HeaderStyles.header__nav} aria-label="primary">
             <button
               className={hamburgerClasses}
               onClick={() => toggleMenu()}
