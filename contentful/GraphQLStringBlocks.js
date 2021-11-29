@@ -53,6 +53,7 @@ export default class GraphQLStringBlocks {
         width
         height
         description
+        contentType
     `;
   }
 

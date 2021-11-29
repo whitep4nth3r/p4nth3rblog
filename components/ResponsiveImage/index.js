@@ -1,4 +1,9 @@
 export default function ResponsiveImage({ image }) {
+  const { contentType } = image;
+  // Inspect contentType to convert GIF to WebP and not AVIF
+  // more info: https://twitter.com/whitep4nth3r/status/1460244790059188226
+  const isGif = contentType === "image/gif";
+
   // Note, this array could be further optimised looking at the resulting quality and file size
   const imageWidths = [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700, 1900];
 
@@ -27,11 +32,13 @@ export default function ResponsiveImage({ image }) {
 
   return (
     <picture>
-      <source
-        type="image/avif"
-        srcSet={makeSrcSetString("avif")}
-        sizes={sizes}
-      />
+      {!isGif && (
+        <source
+          type="image/avif"
+          srcSet={makeSrcSetString("avif")}
+          sizes={sizes}
+        />
+      )}
       <source
         type="image/webp"
         srcSet={makeSrcSetString("webp")}
