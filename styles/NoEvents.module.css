@@ -1,0 +1,11 @@
+.noEvents {
+  font-size: clamp(1.8rem, 2.8vw, 2rem);
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-family-main);
+  color: var(--color-foreground);
+  word-break: break-word;
+  hyphens: auto;
+  margin-bottom: 4rem;
+}

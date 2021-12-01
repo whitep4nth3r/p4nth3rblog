@@ -8,6 +8,7 @@ import SwitchEventsButton from "@components/EventsList/SwitchEventsButton";
 import ContentWrapper from "@components/ContentWrapper";
 import PageContentWrapper from "@components/PageContentWrapper";
 import EventsList from "@components/EventsList";
+import NoEvents from "@components/NoEvents";
 
 export default function Events(props) {
   const { pageContent, events } = props;
@@ -25,6 +26,7 @@ export default function Events(props) {
           <RichTextPageContent richTextBodyField={pageContent.body} />
         </PageContentWrapper>
         <SwitchEventsButton type="past" />
+        {events.length === 0 && <NoEvents />}
         <EventsList events={events} />
       </ContentWrapper>
     </MainLayout>
