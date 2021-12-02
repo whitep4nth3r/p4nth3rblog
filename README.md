@@ -15,3 +15,7 @@ Come and hang out!
 ## Building your own blog site with Next.js and Contentful
 
 Check out [this starter repo](https://github.com/whitep4nth3r/nextjs-contentful-blog-starter) to build your own.
+
+## The Claw
+
+Visit [theclaw.team](https://theclaw.team) to find out more about The Claw Stream Team on Twitch.
