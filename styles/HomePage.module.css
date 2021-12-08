@@ -9,6 +9,13 @@
     "video";
 }
 
+.homeGrid__emptyEvents {
+  max-width: var(--wrapper-max-width);
+  grid-template-areas:
+    "richText"
+    "video";
+}
+
 .homeGrid__richText {
   grid-area: richText;
 }
@@ -43,5 +50,12 @@
       "video video";
     padding: 0 2rem;
     row-gap: 4rem;
+  }
+
+  .homeGrid__emptyEvents {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "richText"
+      "video";
   }
 }

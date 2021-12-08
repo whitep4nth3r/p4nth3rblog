@@ -16,6 +16,7 @@ import VideoEmbed from "@components/VideoEmbed";
 import EventsList from "@components/EventsList";
 import fetcher from "@utils/Fetcher";
 import styles from "@styles/HomePage.module.css";
+import cn from "classnames";
 
 export default function Home({
   pageContent,
@@ -42,7 +43,11 @@ export default function Home({
       </ColorBg>
 
       <LandingPageWrapper>
-        <div className={styles.homeGrid}>
+        <div
+          className={cn(styles.homeGrid, {
+            [styles.homeGrid__emptyEvents]: nextEvent.length === 0,
+          })}
+        >
           <div className={styles.homeGrid__richText}>
             <h2 className={styles.homeGrid__heading}>About</h2>
             <RichTextPageContent richTextBodyField={pageContent.body} />
@@ -54,10 +59,12 @@ export default function Home({
               title={latestVideo.youTubeEmbed.title}
             />
           </div>
-          <div className={styles.homeGrid__event}>
-            <h2 className={styles.homeGrid__heading}>Next event</h2>
-            <EventsList events={nextEvent} />
-          </div>
+          {nextEvent.length > 0 && (
+            <div className={styles.homeGrid__event}>
+              <h2 className={styles.homeGrid__heading}>Next event</h2>
+              <EventsList events={nextEvent} />
+            </div>
+          )}
         </div>
       </LandingPageWrapper>
 
