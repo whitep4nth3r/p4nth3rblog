@@ -45,7 +45,7 @@ export default function Home({
       <LandingPageWrapper>
         <div
           className={cn(styles.homeGrid, {
-            [styles.homeGrid__emptyEvents]: nextEvent.length === 0,
+            [styles.homeGrid__emptyEvents]: nextEvent === null,
           })}
         >
           <div className={styles.homeGrid__richText}>
@@ -59,7 +59,7 @@ export default function Home({
               title={latestVideo.youTubeEmbed.title}
             />
           </div>
-          {nextEvent.length > 0 && (
+          {nextEvent !== null && (
             <div className={styles.homeGrid__event}>
               <h2 className={styles.homeGrid__heading}>Next event</h2>
               <EventsList events={nextEvent} />

@@ -10,7 +10,7 @@ export default class ContentfulEvents extends ContentfulApi {
    */
   static async getNext() {
     const events = await this.getEvents();
-    return [events[0]];
+    return events.length ? [events[0]] : null;
   }
 
   /*
