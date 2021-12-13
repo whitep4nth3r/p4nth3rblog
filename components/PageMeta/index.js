@@ -1,10 +1,16 @@
 import Head from "next/head";
-import OpenGraph from "@utils/OpenGraph";
+import { generateOpenGraphImage } from "@utils/OpenGraph";
 import { Config } from "@utils/Config";
 
-export default function PageMeta(props) {
-  const { title, description, url, canonical } = props;
+export default function PageMeta({
+  title,
+  description,
+  url,
+  canonical,
+  topics,
+}) {
   const siteTitle = `${title} | ${Config.site.title}`;
+  const ogImageUrl = generateOpenGraphImage(title, topics);
 
   return (
     <Head>
@@ -30,15 +36,12 @@ export default function PageMeta(props) {
       <meta property="og:url" content={url} />
       <meta property="twitter:url" content={url} />
 
-      <meta property="og:image" content={OpenGraph.generateImageUrl(title)} />
+      <meta property="og:image" content={ogImageUrl} />
       <meta
         property="og:image:alt"
         content={`An image with a patterned whitepanther tattoo background, with a panther logo above the title of the page, which is ${title}`}
       ></meta>
-      <meta
-        property="twitter:image"
-        content={OpenGraph.generateImageUrl(title)}
-      />
+      <meta property="twitter:image" content={ogImageUrl} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta

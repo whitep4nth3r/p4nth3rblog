@@ -177,7 +177,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
    * param: page (number)
    */
   static async getPaginated(page) {
-    const queryLimit = 9;
+    const queryLimit = 7;
     const skipMultiplier = page === 1 ? 0 : page - 1;
     const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 

@@ -14,6 +14,7 @@ export default function TalkWrapper(props) {
         title={talk.title}
         description={talk.excerpt}
         url={`${Config.pageMeta.talksIndex.url}/${talk.slug}`}
+        topic={talk.topicsCollection.items}
       />
 
       <ContentWrapper>
