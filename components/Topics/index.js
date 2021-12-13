@@ -1,58 +1,8 @@
 import TopicsStyles from "@styles/Topics.module.css";
 import Link from "next/link";
-import Accessibility from "./svg/a11y";
-import Career from "./svg/career";
-import Contentful from "./svg/contentful";
-import Css from "./svg/css";
-import GraphQL from "./svg/graphql";
-import Jamstack from "./svg/jamstack";
-import JavaScript from "./svg/javascript";
-import NextJs from "./svg/nextjs";
-import NodeJs from "./svg/nodejs";
-import Serverless from "./svg/serverless";
-import Snippets from "./svg/snippets";
-import Streaming from "./svg/streaming";
-import Tutorials from "./svg/tutorials";
-import WebDev from "./svg/webdev";
-
-function getSvgForTopic(slug) {
-  switch (slug) {
-    case "a11y":
-      return <Accessibility />;
-    case "career":
-      return <Career />;
-    case "contentful":
-      return <Contentful />;
-    case "css":
-      return <Css />;
-    case "graphql":
-      return <GraphQL />;
-    case "jamstack":
-      return <Jamstack />;
-    case "javascript":
-      return <JavaScript />;
-    case "nextjs":
-      return <NextJs />;
-    case "nodejs":
-      return <NodeJs />;
-    case "serverless":
-      return <Serverless />;
-    case "snippets":
-      return <Snippets />;
-    case "streaming":
-      return <Streaming />;
-    case "tutorials":
-      return <Tutorials />;
-    case "webdev":
-      return <WebDev />;
-    default:
-      return null;
-  }
-}
 
 export default function Topics(props) {
   const { topics, selected, scroll } = props;
-
   const linkClickScroll = scroll !== undefined ? scroll : true;
 
   return (
@@ -71,7 +21,15 @@ export default function Topics(props) {
                 aria-label={`View all ${topic.name} articles`}
               >
                 <span className={TopicsStyles.topics__topicSvgContainer}>
-                  {getSvgForTopic(topic.slug)}
+                  {topic.icon && (
+                    <img
+                      aria-hidden="true"
+                      src={topic.icon.url}
+                      alt={topic.icon.description}
+                      height="16"
+                      width="16"
+                    />
+                  )}
                 </span>
                 {topic.name}
               </a>

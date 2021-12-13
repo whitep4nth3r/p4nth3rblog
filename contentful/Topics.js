@@ -14,6 +14,10 @@ export default class ContentfulTopics extends ContentfulApi {
           }
           slug
           name
+          icon {
+            description
+            url
+          }
         }
       }
     }

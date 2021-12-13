@@ -26,6 +26,10 @@ export default class GraphQLStringBlocks {
           }
           name
           slug
+          icon {
+            description
+            url
+          }
         }
       }
     `;
