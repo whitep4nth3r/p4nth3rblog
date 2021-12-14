@@ -23,6 +23,7 @@ export default function Topic(props) {
         title={`Articles about ${topic.name}`}
         description={`Articles about ${topic.name} from whitep4nth3r.com.`}
         url={`${Config.pageMeta.topics.url}/${topic.slug}`}
+        topics={[topic]}
       />
 
       <LandingPageWrapper>

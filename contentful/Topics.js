@@ -48,6 +48,10 @@ export default class ContentfulTopics extends ContentfulApi {
             sys {
               id
             }
+            icon {
+              url
+              description
+            }
           }
         }
       }
