@@ -24,7 +24,8 @@
 
 .post {
   height: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   border: 0.25rem solid var(--color-tertiary);
   background-color: var(--color-foreground);
@@ -52,9 +53,8 @@
 
 .inner {
   background-color: var(--color-foreground);
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   flex-grow: 1;
 }

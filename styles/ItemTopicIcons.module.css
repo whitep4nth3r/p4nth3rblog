@@ -1,0 +1,11 @@
+.itemTopicIcons {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.itemTopicIcons__item {
+  margin-right: 1rem;
+}

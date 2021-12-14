@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import PublishedDateAndReadingTime from "@components/PublishedDateAndReadingTime";
+import ItemTopicIcons from "@components/ItemsByTopic/ItemTopicIcons";
 import Styles from "@styles/ItemsByTopic.module.css";
 import { Config } from "@utils/Config";
 
@@ -26,6 +27,7 @@ export default function TalkByTopic({ item }) {
           />
           <h2 className={Styles.title}>{item.title}</h2>
         </span>
+        <ItemTopicIcons topics={item.topicsCollection.items} />
       </a>
     </Link>
   );
