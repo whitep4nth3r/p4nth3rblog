@@ -27,27 +27,29 @@ export function generateOpenGraphImage(title, topics) {
     `l_text:worksansbold.ttf_45:${cleanText(`${title}`)}`,
   ].join(",");
 
-  // const topicConfig = [];
-  // const topicIconSize = 38;
-  // const topicGutter = 20;
+  const topicConfig = [];
+  const topicIconSize = 38;
+  const topicGutter = 20;
 
-  // const topicImageUrls = topics ? topics?.map((topic) => topic.icon.url) : [];
+  const topicImageUrls = topics ? topics?.map((topic) => topic.icon.url) : [];
 
-  // for (let i = 0; i < topicImageUrls.length; i++) {
-  //   const xPos = i === 0 ? 0 : i * (topicGutter + topicIconSize);
-  //   const yPos = i === 0 ? 200 : 0;
+  for (let i = 0; i < topicImageUrls.length; i++) {
+    const xPos =
+      i === 0
+        ? xBasePosition
+        : xBasePosition + i * (topicGutter + topicIconSize);
 
-  //   let base64 = Buffer.from(topicImageUrls[i]).toString("base64");
-  //   let transformations = [
-  //     `w_${topicIconSize}`,
-  //     `h_${topicIconSize}`,
-  //     "c_fill",
-  //   ].join(",");
-  //   let placementQuals = ["g_west", `x_${xPos}`, `y_${yPos}`].join(",");
-  //   topicConfig.push(
-  //     `l_fetch:${base64}/${transformations}/fl_layer_apply,${placementQuals}`,
-  //   );
-  // }
+    let base64 = Buffer.from(topicImageUrls[i]).toString("base64");
+    let transformations = [
+      `w_${topicIconSize}`,
+      `h_${topicIconSize}`,
+      "c_fit",
+    ].join(",");
+    let placementQuals = ["g_west", `x_${xPos}`, `y_185`].join(",");
+    topicConfig.push(
+      `l_fetch:${base64}/${transformations}/fl_layer_apply,${placementQuals}`,
+    );
+  }
 
   // configure social media image dimensions, quality, and format
   const imageConfig = [
@@ -65,7 +67,7 @@ export function generateOpenGraphImage(title, topics) {
     "image",
     "upload",
     imageConfig,
-    // topicConfig,
+    topicConfig.join("/"),
     titleConfig,
     "p4nth3rblog_og.png",
   ];
