@@ -44,7 +44,8 @@ export function getRichTextRenderOptions(links, options) {
     links?.assets?.block?.map((asset) => [asset.sys.id, asset]),
   );
 
-  const entryMap = new Map();
+  const inlineEntryMap = new Map();
+  const blockEntryMap = new Map();
 
   // to do - create block Map and inline Map
   // so the map doesn't get confused
@@ -52,13 +53,13 @@ export function getRichTextRenderOptions(links, options) {
   // of the same blog posts
   if (links?.entries.block) {
     for (const entry of links.entries.block) {
-      entryMap.set(entry.sys.id, entry);
+      blockEntryMap.set(entry.sys.id, entry);
     }
   }
 
   if (links?.entries.inline) {
     for (const entry of links.entries.inline) {
-      entryMap.set(entry.sys.id, entry);
+      inlineEntryMap.set(entry.sys.id, entry);
     }
   }
 
@@ -88,7 +89,7 @@ export function getRichTextRenderOptions(links, options) {
         </a>
       ),
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = entryMap.get(node.data.target.sys.id);
+        const entry = inlineEntryMap.get(node.data.target.sys.id);
         const { __typename } = entry;
 
         switch (__typename) {
@@ -182,7 +183,7 @@ export function getRichTextRenderOptions(links, options) {
         </li>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = entryMap.get(node.data.target.sys.id);
+        const entry = blockEntryMap.get(node.data.target.sys.id);
         const { __typename } = entry;
 
         switch (__typename) {
