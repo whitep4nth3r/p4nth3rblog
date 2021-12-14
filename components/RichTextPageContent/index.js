@@ -47,10 +47,6 @@ export function getRichTextRenderOptions(links, options) {
   const inlineEntryMap = new Map();
   const blockEntryMap = new Map();
 
-  // to do - create block Map and inline Map
-  // so the map doesn't get confused
-  // e.g. on What is GraphQL post — to link both inline + block versions
-  // of the same blog posts
   if (links?.entries.block) {
     for (const entry of links.entries.block) {
       blockEntryMap.set(entry.sys.id, entry);
