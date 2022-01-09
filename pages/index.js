@@ -39,7 +39,7 @@ export default function Home({
       )}
 
       <ColorBg borderBottomColor="#f11012" marginBottom="2rem">
-        {/* <TwitchSchedule schedule={twitchData.schedule} /> */}
+        <TwitchSchedule schedule={twitchData.schedule} />
       </ColorBg>
 
       <LandingPageWrapper>
@@ -97,14 +97,14 @@ export async function getStaticProps({ preview = false }) {
   const latestVideo = await ContentfulLatestVideo.get();
   const nextEvent = await ContentfulEvents.getNext();
   const recentPosts = await ContentfulBlogPost.getRecent();
-  // const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
+  const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
   return {
     props: {
       preview,
       pageContent,
       recentPosts,
-      twitchData: {},
+      twitchData,
       latestVideo,
       nextEvent,
     },
