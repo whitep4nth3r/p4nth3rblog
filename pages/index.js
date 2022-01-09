@@ -94,26 +94,6 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  console.log("NEXT_PUBLIC_GTAG");
-  console.log(process.env.NEXT_PUBLIC_GTAG);
-
-  console.log("GITHUB_ACCESS_TOKEN");
-  console.log(process.env.GITHUB_ACCESS_TOKEN);
-
-  console.log("TWITTER_API_KEY");
-  console.log(process.env.TWITTER_API_KEY);
-  console.log("TWITTER_SECRET_KEY");
-  console.log(process.env.TWITTER_SECRET_KEY);
-  console.log("TWITTER_BEARER_TOKEN");
-  console.log(process.env.TWITTER_BEARER_TOKEN);
-
-  console.log("GOOGLE_PRIVATE_KEY");
-  console.log(process.env.GOOGLE_PRIVATE_KEY);
-  console.log("GOOGLE_CLIENT_EMAIL");
-  console.log(process.env.GOOGLE_CLIENT_EMAIL);
-  console.log("GOOGLE_CLIENT_ID");
-  console.log(process.env.GOOGLE_CLIENT_ID);
-
   const latestVideo = await ContentfulLatestVideo.get();
   const nextEvent = await ContentfulEvents.getNext();
   const recentPosts = await ContentfulBlogPost.getRecent();
