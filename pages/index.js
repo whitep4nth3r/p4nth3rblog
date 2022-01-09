@@ -94,11 +94,6 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
-  const latestVideo = await ContentfulLatestVideo.get();
-  const nextEvent = await ContentfulEvents.getNext();
-  const recentPosts = await ContentfulBlogPost.getRecent();
-  const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
-
   console.log("NEXT_PUBLIC_GTAG");
   console.log(process.env.NEXT_PUBLIC_GTAG);
 
@@ -118,6 +113,11 @@ export async function getStaticProps({ preview = false }) {
   console.log(process.env.GOOGLE_CLIENT_EMAIL);
   console.log("GOOGLE_CLIENT_ID");
   console.log(process.env.GOOGLE_CLIENT_ID);
+
+  const latestVideo = await ContentfulLatestVideo.get();
+  const nextEvent = await ContentfulEvents.getNext();
+  const recentPosts = await ContentfulBlogPost.getRecent();
+  const twitchData = await fetcher(`${process.env.DOMAIN}/api/twitch`);
 
   return {
     props: {
