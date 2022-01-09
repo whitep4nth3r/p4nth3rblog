@@ -94,6 +94,8 @@ export async function getStaticProps({ preview = false }) {
     },
   );
 
+  console.log("HERE");
+  console.log(process.env.GOOGLE_CLIENT_EMAIL);
   const latestVideo = await ContentfulLatestVideo.get();
   const nextEvent = await ContentfulEvents.getNext();
   const recentPosts = await ContentfulBlogPost.getRecent();
