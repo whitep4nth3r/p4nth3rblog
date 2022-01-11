@@ -37,3 +37,6 @@ public/robots.txt
 
 .markdownlint.json
 .vercel
+
+# Local Netlify folder
+.netlify
