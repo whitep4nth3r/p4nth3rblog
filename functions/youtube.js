@@ -7,8 +7,9 @@ exports.handler = async function (event, context) {
     credentials: {
       client_email: process.env.GOOGLE_CLIENT_EMAIL,
       client_id: process.env.GOOGLE_CLIENT_ID,
-      private_key: process.env.GOOGLE_PRIVATE_KEY,
+      private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     },
+
     scopes: ["https://www.googleapis.com/auth/youtube.readonly"],
   });
 
@@ -30,6 +31,7 @@ exports.handler = async function (event, context) {
     headers: {
       "Cache-Control": "public, s-maxage=120, stale-while-revalidate=60",
     },
+
     body: JSON.stringify({
       subscriberCount,
       viewCount,

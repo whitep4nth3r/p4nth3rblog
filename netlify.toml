@@ -1,4 +1,5 @@
 [build]
+  command = "npm run build"
   functions = "functions/"
 [[redirects]]
   from = "/api/youtube"
