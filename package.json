@@ -11,7 +11,7 @@
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^15.0.0",
     "@contentful/rich-text-react-renderer": "^14.1.2",
-    "@netlify/plugin-nextjs": "^4.1.1",
+    "@netlify/plugin-nextjs": "^4.1.2",
     "@whitep4nth3r/get-random-entry": "^0.0.2",
     "algoliasearch": "^4.9.2",
     "classnames": "^2.3.1",
