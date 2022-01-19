@@ -18,7 +18,6 @@
     "comma-number": "^2.0.1",
     "dotenv": "^10.0.0",
     "googleapis": "^71.0.0",
-    "netlify-plugin-inline-functions-env": "^1.0.9",
     "next": "^12.0.3",
     "prismjs": "^1.23.0",
     "react": "^17.0.2",
@@ -31,6 +30,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "next-sitemap": "^1.6.9"
+    "next-sitemap": "^1.6.9",
+    "netlify-plugin-inline-functions-env": "^1.0.9"
   }
 }
