@@ -18,7 +18,7 @@ async function callContentful(query, variables) {
     ).then((response) => response.json());
     return data;
   } catch (error) {
-    throw new Error("Could not fetch data from Contentful!");
+    throw new Error(error);
   }
 }
 
@@ -48,6 +48,10 @@ async function getPaginatedPosts(page) {
               }
               name
               slug
+              icon {
+                url
+                description
+              }
             }
           }
           body {
@@ -124,7 +128,7 @@ function transformPostsToSearchObjects(posts) {
 }
 
 async function getPaginatedTalks(page) {
-  const queryLimit = 100;
+  const queryLimit = 10;
   const skipMultiplier = page === 1 ? 0 : page - 1;
   const skip = skipMultiplier > 0 ? queryLimit * skipMultiplier : 0;
 
@@ -149,6 +153,10 @@ async function getPaginatedTalks(page) {
               }
               name
               slug
+              icon {
+                url
+                description
+              }
             }
           }
           transcript {

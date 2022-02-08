@@ -105,7 +105,7 @@ export async function getStaticProps() {
 
   fs.writeFile("./public/feed.xml", feedString, function (err) {
     if (err) {
-      console.log("Could not write to feed.xml");
+      console.log(error);
     }
     console.log("feed.xml written to ./public!");
   });

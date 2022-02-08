@@ -36,7 +36,6 @@ export default class GitHub {
       );
       return data;
     } catch (error) {
-      throw new Error("Could not fetch data from GitHub!");
-    }
+      throw new Error(error)
   }
 }

@@ -19,7 +19,7 @@ export default class TwitterApi {
       );
       return data;
     } catch (error) {
-      throw new Error("Could not fetch Twitter data!");
+      throw new Error(error);
     }
   }
 }
