@@ -69,7 +69,6 @@ export default class GraphQLStringBlocks {
         twitchUsername
         twitterUsername
         gitHubUsername
-        websiteUrl
         youtubeUrl
         image {
           ${GraphQLStringBlocks.imageAsset()}

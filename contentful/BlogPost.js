@@ -114,6 +114,7 @@ export default class ContentfulBlogPost extends ContentfulApi {
     }`;
 
     const response = await this.callContentful(query, variables, options);
+
     const post = response.data.blogPostCollection.items
       ? response.data.blogPostCollection.items
       : [];
