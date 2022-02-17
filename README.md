@@ -1,4 +1,4 @@
-# p4nth3rblog 2021
+# whitep4nth3r.com 2021
 
 ## This blog site is built with Next.js and Contentful and served as my personal website in 2021
 
