@@ -4,4 +4,4 @@
 
 This website has now been migrated to Eleventy.
 
-[Visit the new repo](https://github.com/whitep4nth3r/mk2-p4ntherblog).
+[Visit the new repo](https://github.com/whitep4nth3r/mk2-p4nth3rblog).
